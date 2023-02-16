@@ -6,26 +6,15 @@ require "../../mysql/Query.php";
 require "../flash_message.php";
 
 //USUARIOS NUEVOS
-function crearCaso($persona_id, $name, $email, $password, $role)
+function crearCaso($persona_id, $fecha, $hora, $donativo, $tipo, $status, $observacion)
 {
     $row = null;
     $query = new Query();
-    $sql1 = "SELECT * FROM `users` WHERE `email` = '$email'";
-    $exite = $query->getFirst($sql1);
-
-    if ($exite) {
-
-        return false;
-
-    } else {
-
+    
         $hoy = date("Y-m-d");
-        $sql = "INSERT INTO `users` (`email`, `password`, `name`, `created_at`) VALUES ('$email', '$password', '$name', '$hoy');";
+        $sql = "INSERT INTO `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `status`, `observacion`, `created_at`) VALUES ('$persona_id', '$fecha', '$hora', '$donativo', '$tipo', '$status', '$observacion', '$hoy');";
         $row = $query->save($sql);
         return $row;
-
-    }
-
 
 }
 
