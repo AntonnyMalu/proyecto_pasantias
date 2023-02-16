@@ -84,7 +84,7 @@
             </div>
         </a>
     </div>
-    <?php if($_SESSION['role'] > 0) {  ?>
+    
             <!-- Heading -->
     <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
@@ -107,7 +107,7 @@
             </div>
         </a>
     </div>
-    <?php } ?>
+   
 
 
 </div>
