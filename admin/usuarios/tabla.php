@@ -36,7 +36,7 @@
                                                 if($usuario['role']){
                                                     echo "Administrador";
                                                 }else{
-                                                    echo "Secretatio";
+                                                    echo "Atención al Ciudadano";
                                                 }
                                                 
                                                 ?>

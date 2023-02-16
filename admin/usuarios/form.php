@@ -27,7 +27,7 @@
             <label>Tipo de Usuario</label>
             <select class="form-control" name="role" id="input_role" required>
                 <option value="">Seleccione</option>
-                <option value="0">Secretario</option>
+                <option value="0">Atención al Ciudadano</option>
                 <option value="1">Administrador</option>
             </select>
         </div>
