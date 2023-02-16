@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `firmantes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.firmantes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.firmantes: ~2 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.instituciones
 CREATE TABLE IF NOT EXISTS `instituciones` (
@@ -72,11 +72,11 @@ CREATE TABLE IF NOT EXISTS `instituciones` (
   `direccion` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   `created_at` date DEFAULT NULL,
-  `update_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.instituciones: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.instituciones: ~1 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.oficios
 CREATE TABLE IF NOT EXISTS `oficios` (
@@ -132,12 +132,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.users: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.users: ~4 rows (aproximadamente)
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created_at`, `updated_at`) VALUES
 	(1, 'leothan522@gmail.com', '20025623', 'Yonathan Castillo', 100, 1, '2023-01-22', '2023-01-22'),
-	(2, 'gabrielmalu15@gmail.com', '1234am', ' antonny maluenga', 100, 1, '2023-01-22', '2023-01-22');
+	(2, 'gabrielmalu15@gmail.com', '1234am', ' antonny maluenga', 100, 1, '2023-01-22', '2023-01-22'),
+	(3, 'hola@gmail.com', '20025623', 'hola', 0, 1, '2023-02-16', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
