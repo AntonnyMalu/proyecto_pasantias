@@ -9,7 +9,7 @@ function getUsuarios()
 {
     $query = new Query();
     $rows = null;
-    $sql = "SELECT COUNT(*) total FROM `users` WHERE `band`= 1 ";
+    $sql = "SELECT COUNT(*) total FROM `personas` WHERE `band`= 1 ";
     $rows = $query->getFirst($sql);
     return $rows['total'];
 }
@@ -18,7 +18,7 @@ function getGacetas()
 {
     $query = new Query();
     $rows = null;
-    $sql = "SELECT COUNT(*) total FROM `gacetas` WHERE `band` = 1;";
+    $sql = "SELECT COUNT(*) total FROM `casos` WHERE `band` = 1;";
     $rows = $query->getFirst($sql);
     return $rows['total'];
 }
@@ -27,7 +27,7 @@ function getSesiones()
 {
     $query = new Query();
     $rows = null;
-    $sql = "SELECT COUNT(*) total FROM `sesiones` WHERE `band`= 1 ";
+    $sql = "SELECT COUNT(*) total FROM `oficios` WHERE `band`= 1 ";
     $rows = $query->getFirst($sql);
     return $rows['total'];
 }
@@ -36,14 +36,14 @@ function getResoluciones()
 {
     $query = new Query();
     $rows = null;
-    $sql = "SELECT COUNT(*) total FROM `resoluciones` WHERE `band`= 1; ";
+    $sql = "SELECT COUNT(*) total FROM `personas` WHERE `band`= 1; ";
     $rows = $query->getFirst($sql);
     return $rows['total'];
 }
 
 $usuarios = getUsuarios();
-$gacetas = 1; //getGacetas();
-$sesiones = 2; //getSesiones();
-$resoluciones = 3;//getResoluciones();
+$gacetas = getGacetas();
+$sesiones = getSesiones();
+$resoluciones = getResoluciones();
 
 ?>
