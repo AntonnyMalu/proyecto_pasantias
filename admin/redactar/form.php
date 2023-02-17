@@ -8,11 +8,15 @@
 
         <div class="form-group">
             <label>Datos Personales</label>
-            <select class="form-control select2bs4" name="sesion_id" required>
+            <select class="form-control" name="personas_id" id="input_personas_id" required>
                 <option value="">Seleccione</option>
-                <?php foreach ($sesiones as $sesion){ ?>
-                    <option <?php if ($resol_id && $get_resol['sesiones_id'] == $sesion['id']){ echo 'selected="selected"'; } ?> value="<?php echo $sesion['id'] ?>"><?php echo "Sesion ".$sesion['tipo']." ".$sesion['codigo'] ?></option>
-                <?php  } ?>
+                <?php 
+                foreach($personas as $persona){
+                    ?>
+                    <option value="<?php echo $persona['id']; ?>"><?php echo $persona['cedula']; ?> <?php echo strtoupper($persona['nombre']); ?></option>
+                    <?php
+                }
+                ?>
             </select>
         </div>
 
@@ -48,17 +52,17 @@
 
         <div class="from-group">
             <lavel>Observación</lavel>
-            <textarea class="form-control" cols="1" rows="5" required></textarea><br>
+            <textarea class="form-control" cols="1" rows="5" required name="observacion"></textarea><br>
         </div>
        
 
 
         
 
-        <input type="hidden" name="opcion" value="<?php if ($resol_id){ echo "editar"; }else{ echo "guardar"; } ?>" id="input_opcion" />
-        <input type="hidden" name="resoluciones_id" value="<?php if ($resol_id){ echo $get_resol['id']; } ?>" id="input_redactar_id" />
+        <input type="text" name="opcion" value="guardar" id="input_opcion" />
+        <input type="text" name="casos_id" id="input_redactar_id" />
 
-        <a href="../resoluciones/" class="btn btn-secondary" id="btn_cancelar">Cancelar</a>
+        <a href="../casos/" class="btn btn-secondary" id="btn_cancelar">Cancelar</a>
         <button type="submit" class="btn btn-primary float-right">Guardar</button>
 
     </form>

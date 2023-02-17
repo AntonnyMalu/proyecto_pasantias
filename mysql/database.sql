@@ -23,8 +23,8 @@ USE `alguarisa`;
 CREATE TABLE IF NOT EXISTS `casos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `personas_id` int NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
+  `fecha` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
+  `hora` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
   `donativo` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `tipo` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `status` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -33,9 +33,11 @@ CREATE TABLE IF NOT EXISTS `casos` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- Volcando datos para la tabla alguarisa.casos: ~0 rows (aproximadamente)
+INSERT INTO `casos` (`id`, `personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `status`, `observacion`, `band`, `created_at`, `updated_at`) VALUES
+	(1, 1, '2023-02-24', '12:00 am', 'bolsa', 'antonny', 'aprovado', 'antonny', 1, '2023-02-17', NULL);
 
 -- Volcando estructura para tabla alguarisa.despacho
 CREATE TABLE IF NOT EXISTS `despacho` (
@@ -103,9 +105,14 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- Volcando datos para la tabla alguarisa.personas: ~0 rows (aproximadamente)
+INSERT INTO `personas` (`id`, `cedula`, `nombre`, `telefono`, `direccion`, `band`, `created_at`, `updated_at`) VALUES
+	(1, '27613025', 'antonny maluenga', '04121995644', 'san juan', 1, '2023-02-17', NULL),
+	(2, '23234345', 'manuel', '04233432345', 'san juan', 1, '2023-02-17', NULL),
+	(3, '12909876', 'isabel', '', 'san juan', 1, '2023-02-17', NULL),
+	(4, '4345435', 'alejandro', '', 'san juan', 1, '2023-02-17', NULL);
 
 -- Volcando estructura para tabla alguarisa.productos
 CREATE TABLE IF NOT EXISTS `productos` (

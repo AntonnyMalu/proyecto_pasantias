@@ -10,6 +10,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead  class="thead-dark">
                                         <tr>
+                                            <th>Cédula</th>
                                             <th>Nombre y Apellido</th>
                                             <th>Donativo</th>
                                             <th>Estatus</th>
@@ -24,20 +25,26 @@
                                         <?php 
                                             foreach($casos as $caso){
                                         ?>
+                                        <?php foreach($person as $persona){ ?>
 
                                         <tr>
                                             <td>
-                                               
+                                              <?php echo $persona['cedula']; ?>
                                             </td>
                                             <td>
-                                               
+                                               <?php echo strtoupper($persona['nombre']); ?>
                                             </td>
+                                            
                                             <td>
-                                               
+                                               <?php echo $caso['donativo']; ?>
                                             </td>
 
                                             <td>
-                                               
+                                               <?php echo $caso['status'] ?>
+                                            </td>
+
+                                            <td>
+                                               <?php echo $caso['fecha'] ?>
                                             </td>
                                             
                                             <td class="text-center">
@@ -59,6 +66,7 @@
 
                                             </td>
                                         </tr>
+                                        <?php }?>
 
                                         <?php 
                                             }
