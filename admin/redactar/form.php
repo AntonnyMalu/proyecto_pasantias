@@ -10,6 +10,7 @@
             <label>Datos Personales</label>
             <select class="form-control" name="personas_id" id="input_personas_id" required>
                 <option value="">Seleccione</option>
+                <option value="-1">NUEVO</option>
                 <?php 
                 foreach($personas as $persona){
                     ?>
@@ -18,29 +19,48 @@
                 }
                 ?>
             </select>
-        </div>
 
-        <div class="form-group">
-            <label>Fecha</label>
-            <input type="date" class="form-control" name="fecha" id="input_fecha" required />
-
+            <div class="row mt-3">
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" name="cedula" placeholder="Cédula" id="input_cedula" required>
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" id="input_nombre" required>
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" name="telefono" placeholder="Teléfono" id="input_telefono">
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" name="direccion" placeholder="Dirección" id="input_direccion">
+                </div>
+                
+            </div>
+        
         </div>
         
-        <div class="form-group">
+        <div class="row mt-3">
+        <div class="form-group col-lg-3">
+            <label>Fecha</label>
+            <input type="date" class="form-control" name="fecha" id="input_fecha" required />
+        </div>
+        
+        <div class="form-group col-lg-3">
             <label>Hora</label>
             <input type="text" class="form-control" name="hora" id="input_hora" required />
 
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-lg-3">
             <label>Donativo</label>
             <input type="text" class="form-control" name="donativo" id="input_donativo" required />
 
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-lg-3">
             <label>Tipo</label>
             <input type="text" class="form-control" name="tipo" id="input_tipo" required />
+
+        </div>
 
         </div>
 

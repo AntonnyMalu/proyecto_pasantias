@@ -7,12 +7,13 @@ $modulo = "casos";
 $alert = null;
 $message = null;
 
-function getPerson()
+
+function getPersona($id)
 {
     $query = new Query();
     $rows = null;
-    $sql = "SELECT * FROM `personas` WHERE `band`= 1; ";
-    $rows = $query->getAll($sql);
+    $sql = "SELECT * FROM `personas` WHERE `id`= '$id'; ";
+    $rows = $query->getfirst($sql);
     return $rows;
 }
 function getCasos()
@@ -27,7 +28,6 @@ function getCasos()
 
 
 $casos = getCasos();
-$person = getPerson();
 
 
 ?>

@@ -23,9 +23,9 @@
                                     <tbody>
 
                                         <?php 
-                                            foreach($casos as $caso){
+                                            foreach($casos as $caso){ 
+                                                $persona = getPersona($caso['personas_id']);
                                         ?>
-                                        <?php foreach($person as $persona){ ?>
 
                                         <tr>
                                             <td>
@@ -36,37 +36,43 @@
                                             </td>
                                             
                                             <td>
-                                               <?php echo $caso['donativo']; ?>
+                                               <?php echo strtoupper($caso['donativo']); ?>
                                             </td>
 
                                             <td>
-                                               <?php echo $caso['status'] ?>
+                                               <?php echo strtoupper($caso['status']); ?>
                                             </td>
 
                                             <td>
-                                               <?php echo $caso['fecha'] ?>
+                                               <?php echo $caso['fecha']; ?>
                                             </td>
                                             
                                             <td class="text-center">
 
-                                                <button type="button" class="btn btn-warning btn-circle btn-sm <?php if ($usuario['role'] != 100){ echo "edit-usu"; } ?>"
-                                                data-name="<?php echo $usuario['name']; ?>" data-email="<?php echo $usuario['email']; ?>" 
-                                                data-role="<?php echo $usuario['role']; ?>" data-id="<?php echo $usuario['id']; ?>" >
+                                            <a href="pdf_ficha.php" target="_blank" class="btn btn-success btn-circle btn-sm">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </a>
+
+                                                <button type="button" class="btn btn-warning btn-circle btn-sm edit-usu"
+                                                data-id="<?php echo $caso['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?>" 
+                                                data-nombre="<?php echo $persona['nombre']; ?>" data-fecha="<?php echo $caso['fecha']; ?>" data-hora="<?php echo $caso['hora']; ?>"
+                                                data-donativo="<?php echo $caso['donativo']; ?>" data-donativo="<?php echo $caso['donativo']; ?> " data-tipo="<?php echo $caso['tipo']; ?>" 
+                                                data-status="<?php echo $caso['status']; ?>" data-observacion="<?php echo $caso['observacion']; ?>">
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-circle btn-sm <?php if ($usuario['role'] != 100){ echo "elim-usu"; } ?>"
-                                                        data-id="<?php echo $usuario['id']; ?>">
+                                                <button type="button" class="btn btn-danger btn-circle btn-sm elim-usu"
+                                                        data-id="<?php echo $caso['id']; ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
 
-                                                <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $usuario['id']; ?>">
+                                                <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $caso['id']; ?>">
                                                     <input type="text" name="opcion" value="eliminar" />
-                                                    <input type="text" name="users_id" value="<?php echo $usuario['id']; ?>" />
+                                                    <input type="text" name="users_id" value="<?php echo $caso['id']; ?>" />
                                                 </form>
 
                                             </td>
                                         </tr>
-                                        <?php }?>
+                                        
 
                                         <?php 
                                             }
