@@ -1,4 +1,4 @@
-<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background: rgba(14,87,17,25);
+<ul class="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar" style="background: rgba(14,87,17,25);
 background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%);">
 
             <!-- Sidebar - Brand -->
@@ -64,7 +64,7 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
             <?php if($_SESSION['role'] > 0) {  ?>
             <!-- Heading -->
             <div class="sidebar-heading">
-                Administrador
+                ADMIN
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->

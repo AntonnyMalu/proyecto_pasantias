@@ -39,13 +39,13 @@ if ($_POST) {
     //GUARDAR NUEVO
     if ($_POST['opcion'] == "guardar") {
 
-        if(!empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['donativo']) && !empty($_POST['tipo']) && !empty($_POST['status']) && !empty($_POST['observacion'])){
+        if(!empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['donativo']) && !empty($_POST['tipo'])){
             $personas_id = $_POST['personas_id'];
             $fecha = $_POST['fecha'];
             $hora =  $_POST['hora'];
             $donativo =  $_POST['donativo'];
             $tipo =  $_POST['tipo'];
-            $status =  $_POST['status'];
+            
             $observacion =  $_POST['observacion'];
         
             $caso = crearCasos($personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion);
@@ -53,13 +53,13 @@ if ($_POST) {
             if ($caso) {
 
                 $alert = "success";
-                $message = "Usuario Creado Exitosamente";
+                $message = "Caso Social Registrado Exitosamente";
                 crearFlashMessage($alert,$message, '../casos/');
 
 
             } else {
                 $alert = "warning";
-                $message = "Email ya registrado";
+                $message = "Caso ya Reguistrado";
                 crearFlashMessage($alert, $message, '../casos/');
             }
 
@@ -96,21 +96,21 @@ if ($_POST) {
             if ($caso) {
 
                 $alert = "success";
-                $message = "Usuario Creado Exitosamente";
-                crearFlashMessage($alert,$message, '../redactar/');
+                $message = "editado";
+                crearFlashMessage($alert,$message, '../registrar/');
 
 
             } else {
                 $alert = "warning";
                 $message = "Email ya registrado";
-                crearFlashMessage($alert, $message, '../redactar/');
+                crearFlashMessage($alert, $message, '../registrar/');
             }
 
 
         } else {
             $alert = "danger";
             $message = "faltan datos"; 
-            crearFlashMessage($alert,$message, '../redactar/');
+            crearFlashMessage($alert,$message, '../registrar/');
         }
 
         }

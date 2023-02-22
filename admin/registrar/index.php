@@ -122,6 +122,7 @@ background: linear-gradient(0deg, rgba(220,227,208,1) 29%, rgba(247,247,247,1) 9
     <!-- include summernote-ko-KR -->
     <!--<script src="lang/summernote-ko-KR.js"></script>-->
     <script src="../../plantilla/vendor/summernote/lang/summernote-es-ES.min.js"></script>
+    <script src="app.js"></script>
 
   
 </body>

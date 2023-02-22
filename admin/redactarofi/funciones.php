@@ -11,11 +11,28 @@ $message = null;
 
 
 
+function getAllInsti()
+{
+    $row = null;
+    $query = new Query();
+    $sql = "SELECT * FROM `instituciones`;";
+    $row = $query->getAll($sql);
+    return $row;
+}
+
+function getAllPerson()
+{
+    $row = null;
+    $query = new Query();
+    $sql = "SELECT * FROM `personas`;";
+    $row = $query->getAll($sql);
+    return $row;
+}
 
 
 
-
-
+$oficios = getAllInsti();
+$personas = getAllPerson();
 
 
 
