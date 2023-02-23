@@ -1,6 +1,16 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary" id="titulo_form">Registrar Caso Social</h6>
+        <h6 class="m-0 font-weight-bold text-primary" id="titulo_form">
+            <?php 
+            if($caso_id){
+                echo "Editar Caso Social";
+            }else{
+                echo "Registrar Caso Social";
+            }
+            ?>
+        
+
+        </h6>
     </div>
     <div class="card-body">
 
@@ -148,8 +158,8 @@
     
         
 
-        <input type="text" name="opcion" value="<?php echo $opcion; ?>" id="input_opcion" />
-        <input type="text" name="casos_id" id="input_redactar_id" value="<?php echo $caso_id; ?>" />
+        <input type="hidden" name="opcion" value="<?php echo $opcion; ?>" id="input_opcion" />
+        <input type="hidden" name="casos_id" id="input_redactar_id" value="<?php echo $caso_id; ?>" />
 
         <a href="../casos/" class="btn btn-secondary" id="btn_cancelar">Cancelar</a>
         <button type="submit" class="btn btn-primary float-right">Guardar</button>

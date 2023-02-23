@@ -13,7 +13,7 @@ require "../flash_message.php";
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ALGUARISA - Redactar</title>
+    <title>ALGUARISA - Registrar Caso Social</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../plantilla/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

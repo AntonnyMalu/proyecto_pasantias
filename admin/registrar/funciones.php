@@ -52,6 +52,7 @@ if ($_GET)
         $caso_id = $_GET['id'];
         $get_caso = getCaso($caso_id);
         $get_persona = getPerson($get_caso['personas_id']);
+        
     }else{
         $caso_id = null;
         $get_person = null;

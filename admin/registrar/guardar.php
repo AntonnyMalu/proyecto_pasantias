@@ -7,7 +7,7 @@ require "../flash_message.php";
 
 
 
-function crearCasos($personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion)
+function crearCaso($personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion)
 {
     $row = null;
     $query = new Query();
@@ -20,18 +20,20 @@ function crearCasos($personas_id, $fecha, $hora, $donativo, $tipo, $status, $obs
 
 }
 
-function editarCasos($id, $personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion)
+function editarCaso($id, $personas_id, $fecha, $hora, $donativo, $tipo, $observacion)
 {
     $row = null;
     $query = new Query();
     $hoy = date("Y-m-d");
 
-    $sql = "UPDATE `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `status`, `observacion`, `updated_at`) 
-        VALUES ('$personas_id', '$fecha', '$hora', '$donativo', '$tipo', '$status', '$observacion', '$hoy');";
+    $sql = "UPDATE `casos` SET `personas_id`='$personas_id', `fecha`='$fecha', `hora`='$hora', `donativo`='$donativo', 
+    `tipo`='$tipo', `observacion`='$observacion', `updated_at`='$hoy' WHERE  `id`='$id';";
         $row = $query->save($sql);
         return $row;
 
 }
+
+
 
 
 
@@ -48,7 +50,7 @@ if ($_POST) {
             
             $observacion =  $_POST['observacion'];
         
-            $caso = crearCasos($personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion);
+            $caso = crearCaso($personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion);
 
             if ($caso) {
 
@@ -81,39 +83,39 @@ if ($_POST) {
     //EDITAR
     if ($_POST['opcion'] == "editar") {
 
-        if(!empty($_POST['casos_id']) && !empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['donativo']) && !empty($_POST['tipo']) && !empty($_POST['status']) && !empty($_POST['observacion'])){
+        if(!empty($_POST['casos_id']) && !empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['donativo']) && !empty($_POST['tipo'])){
             $id = $_POST['casos_id'];
             $personas_id = $_POST['personas_id'];
             $fecha = $_POST['fecha'];
             $hora =  $_POST['hora'];
             $donativo =  $_POST['donativo'];
             $tipo =  $_POST['tipo'];
-            $status =  $_POST['status'];
+            
             $observacion =  $_POST['observacion'];
         
-            $caso = editarCasos($id, $personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion);
+            $caso = editarCaso($id, $personas_id, $fecha, $hora, $donativo, $tipo, $observacion);
 
             if ($caso) {
 
                 $alert = "success";
-                $message = "editado";
-                crearFlashMessage($alert,$message, '../registrar/');
+                $message = "Registro Editado Exitosamente";
+                crearFlashMessage($alert,$message, '../casos/');
 
 
             } else {
                 $alert = "warning";
-                $message = "Email ya registrado";
-                crearFlashMessage($alert, $message, '../registrar/');
+                $message = "Error";
+                crearFlashMessage($alert, $message, '../casos/');
             }
 
 
         } else {
             $alert = "danger";
             $message = "faltan datos"; 
-            crearFlashMessage($alert,$message, '../registrar/');
+            crearFlashMessage($alert,$message, '../casos/');
         }
 
         }
     
-
+        
 ?>

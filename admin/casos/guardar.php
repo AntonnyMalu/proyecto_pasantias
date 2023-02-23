@@ -61,25 +61,16 @@ function editarUsuario($id, $name, $email, $password, $role)
 
 
 //ELIMINAR USUARIOS
-function eliminarUsuario($id)
+function eliminarCaso($id)
 {
     $row = null;
     $query = new Query();
-    $sql1 = "SELECT * FROM `users` WHERE `id` = '$id'";
-    $usuario = $query->getFirst($sql1);
 
-    if ($usuario) {
 
-        $hoy = date("Y-m-d");
-        $sql = "UPDATE `users` SET `band`='0', `updated_at`='$hoy' WHERE  `id`=$id;";
+    $hoy = date("Y-m-d");
+        $sql = "UPDATE `casos` SET `band`='0', `updated_at`='$hoy' WHERE  `id`=$id;";
         $row = $query->save($sql);
         return $row;
-
-    } else {
-
-        return false;
-
-    }
 
 
 }
@@ -155,26 +146,26 @@ if ($_POST) {
 //ELIMINAR USUARIO
     if ($_POST['opcion'] == "eliminar") {
 
-        if (!empty($_POST['users_id'])){
+        if (!empty($_POST['casos_id'])){
 
-            $id = $_POST['users_id'];
+            $id = $_POST['casos_id'];
 
-            $usuario = eliminarUsuario($id);
+            $usuario = eliminarCaso($id);
 
             if ($usuario) {
                 $alert = "success";
                 $message = "Usuario Emilinado";
-                crearFlashMessage($alert,$message, '../usuarios/');
+                crearFlashMessage($alert,$message, '../casos/');
             } else {
                 $alert = "warning";
                 $message = "Error";
-                crearFlashMessage($alert,$message, '../usuarios/');
+                crearFlashMessage($alert,$message, '../casos/');
             }
 
         } else {
             $alert = "danger";
             $message = "faltan datos";
-            crearFlashMessage($alert,$message, '../usuarios/');
+            crearFlashMessage($alert,$message, '../casos/');
         }
 
     }

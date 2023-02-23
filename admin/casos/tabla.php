@@ -10,11 +10,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead  class="thead-dark">
                                         <tr>
-                                            <th>#</th>
-                                            <th>Cédula</th>
-                                            <th>Nombre y Apellido</th>
-                                            <th>Fecha</th>
-                                            <th>Hora</th>
+                                            <th style="width:5% ;">#</th>
+                                            <th class="text-center">Cédula</th>
+                                            <th class="text-center">Nombre y Apellido</th>
+                                            <th class="text-center">Fecha</th>
+                                            <th class="text-center">Hora</th>
                                             
                                             <th style="width: 20%;"></th>
                                         </tr>
@@ -30,7 +30,7 @@
                                         ?>
 
                                         <tr>
-                                            <td><?php echo $i; ?></td>
+                                            <td class="text-center"><?php echo $i; ?></td>
                                             <td>
                                               <?php echo $persona['cedula']; ?>
                                             </td>
@@ -38,13 +38,13 @@
                                                <?php echo strtoupper($persona['nombre']); ?>
                                             </td>
                                             
-                                            <td>
+                                            <td class="text-center">
                                             <?php
                                                 $newDate = date("d-m-Y", strtotime($caso['fecha']));
                                                 echo $newDate; ?>
                                             </td>
 
-                                            <td>
+                                            <td class="text-center">
                                                 <?php echo $caso['hora']; ?>
                                             </td>
                                             
@@ -55,7 +55,7 @@
                                                 data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " 
                                                 data-fecha="<?php $newDate = date("d-m-Y", strtotime($caso['fecha']));
                                                 echo $newDate; ?> " data-hora="<?php echo $caso['hora']; ?> " data-donativo="<?php echo $caso['donativo']; ?> "
-                                                data-tipo="<?php echo $caso['tipo']; ?> " data-observacion="<?php echo $caso['observacion']; ?> ">
+                                                data-tipo="<?php echo strtoupper($caso['tipo']); ?> " data-observacion="<?php echo strtoupper($caso['observacion']); ?> ">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
@@ -105,7 +105,7 @@
 
 
     <div class="row col-md-12 justify-content-center">
-    <div class="col-md-9">
+    <div class="col-md-10">
     <div class="card" style="width:100%">
   <div class="card-header">
   <span class="text-primary" id="modal_titulo"> Caso </span>

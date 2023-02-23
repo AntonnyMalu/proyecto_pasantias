@@ -1,6 +1,6 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800" style="font-family: optima;"><i class="fas fa-clipboard-list"></i> Redactar Oficio</h1>
+    <h1 class="h3 mb-0 text-gray-800" style="font-family: optima;"><i class="fas fa-clipboard-list"></i> Registrar Oficio</h1>
     </div>
 
     
