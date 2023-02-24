@@ -49,7 +49,7 @@
                                             <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-person" 
                                                 data-id="<?php echo $oficio['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
                                                 data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " 
-                                                data-fecha="<?php $newDate = date("d-m-Y", strtotime($oficio['fecha'])); echo $newDate; ?> " data-rif="<?php echo $institucion['rif'] ?>" 
+                                                data-fecha="<?php $newDate = date("d-m-Y", strtotime($oficio['fecha'])); echo $newDate; ?> " data-rif="<?php echo strtoupper($institucion['rif']); ?>" 
                                                 data-nombrei="<?php echo strtoupper($institucion['nombre']); ?>" data-requerimientos="<?php echo strtoupper($oficio['requerimientos']); ?>">
                                                 
                                                     <i class="far fa-comment-alt"></i>

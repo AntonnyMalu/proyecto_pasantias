@@ -5,28 +5,51 @@ require "../seguridad.php";
 require "../../mysql/Query.php";
 require "../flash_message.php";
 
-
-
-function crearCaso($personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion)
-{
+function persona($id, $cedula, $nombre, $telefono, $direccion){
     $row = null;
     $query = new Query();
     $hoy = date("Y-m-d");
 
+    if($id == -1){ 
+        //nuevo
+         $sql = "INSERT INTO`personas` (`cedula`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$cedula', '$nombre', '$telefono', '$direccion', '$hoy');";
+        $row = $query->save($sql);
+        $sql2 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula'; ";
+        $row = $query->getFirst($sql2);
+        return $row['id'];
+        
+    
+    }else{
+        //editar
+        $sql = "UPDATE `personas` SET `cedula`='$cedula', `nombre`='$nombre', `telefono`='$telefono', `direccion`='$direccion', `updated_at`='$hoy' WHERE `id`=$id;";
+        $row = $query->save($sql);
+        return $id;
+    }
+}
+
+
+function crearCaso($personas_id,$persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion ,$fecha, $hora, $donativo, $tipo, $status, $observacion)
+{
+    $row = null;
+    $query = new Query();
+    $hoy = date("Y-m-d");
+    $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
+
     $sql = "INSERT INTO `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `status`, `observacion`, `created_at`) 
-        VALUES ('$personas_id', '$fecha', '$hora', '$donativo', '$tipo', '$status', '$observacion', '$hoy');";
+        VALUES ('$persona', '$fecha', '$hora', '$donativo', '$tipo', '$status', '$observacion', '$hoy');";
         $row = $query->save($sql);
         return $row;
 
 }
 
-function editarCaso($id, $personas_id, $fecha, $hora, $donativo, $tipo, $observacion)
+function editarCaso($id, $personas_id, $persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion)
 {
     $row = null;
     $query = new Query();
     $hoy = date("Y-m-d");
+    $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
 
-    $sql = "UPDATE `casos` SET `personas_id`='$personas_id', `fecha`='$fecha', `hora`='$hora', `donativo`='$donativo', 
+    $sql = "UPDATE `casos` SET `personas_id`='$persona', `fecha`='$fecha', `hora`='$hora', `donativo`='$donativo', 
     `tipo`='$tipo', `observacion`='$observacion', `updated_at`='$hoy' WHERE  `id`='$id';";
         $row = $query->save($sql);
         return $row;
@@ -47,10 +70,14 @@ if ($_POST) {
             $hora =  $_POST['hora'];
             $donativo =  $_POST['donativo'];
             $tipo =  $_POST['tipo'];
+            $persona_cedula = $_POST['persona_cedula'];
+            $persona_nombre = $_POST['persona_nombre'];
+            $persona_telefono = $_POST['persona_telefono'];
+            $persona_direccion = $_POST['persona_direccion'];
             
             $observacion =  $_POST['observacion'];
         
-            $caso = crearCaso($personas_id, $fecha, $hora, $donativo, $tipo, $status, $observacion);
+            $caso = crearCaso($personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $status, $observacion);
 
             if ($caso) {
 
@@ -90,10 +117,14 @@ if ($_POST) {
             $hora =  $_POST['hora'];
             $donativo =  $_POST['donativo'];
             $tipo =  $_POST['tipo'];
+            $persona_cedula = $_POST['persona_cedula'];
+            $persona_nombre = $_POST['persona_nombre'];
+            $persona_telefono = $_POST['persona_telefono'];
+            $persona_direccion = $_POST['persona_direccion'];
             
             $observacion =  $_POST['observacion'];
         
-            $caso = editarCaso($id, $personas_id, $fecha, $hora, $donativo, $tipo, $observacion);
+            $caso = editarCaso($id, $personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion);
 
             if ($caso) {
 

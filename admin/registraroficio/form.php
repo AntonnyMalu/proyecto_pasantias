@@ -66,16 +66,16 @@
             <div class="row mt-3">
                 
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="rif" placeholder="Rif" value="<?php echo strtoupper($rif); ?>"  id="input_insti_rif" required>
+                    <input type="text" class="form-control" name="institucion_rif" placeholder="Rif" value="<?php echo strtoupper($rif); ?>"  id="input_insti_rif" required>
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php echo strtoupper($nombre); ?>" id="input_insti_nombre" required>
+                    <input type="text" class="form-control" name="institucion_nombre" placeholder="Nombre" value="<?php echo strtoupper($nombre); ?>" id="input_insti_nombre" required>
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php echo $telefono; ?>" id="input_insti_telefono">
+                    <input type="text" class="form-control" name="institucion_telefono" placeholder="Teléfono" value="<?php echo $telefono; ?>" id="input_insti_telefono">
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php echo strtoupper($direccion); ?>" id="input_insti_direccion">
+                    <input type="text" class="form-control" name="institucion_direccion" placeholder="Dirección" value="<?php echo strtoupper($direccion); ?>" id="input_insti_direccion">
                 </div>
                 
         </div>
@@ -123,16 +123,16 @@
 
             <div class="row mt-3">
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="cedula" placeholder="Cédula" value="<?php echo $cedula ?>" id="input_cedula" required>
+                    <input type="text" class="form-control" name="persona_cedula" placeholder="Cédula" value="<?php echo $cedula ?>" id="input_cedula" required>
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="<?php echo strtoupper($nombre); ?>" id="input_nombre" required>
+                    <input type="text" class="form-control" name="persona_nombre" placeholder="Nombre" value="<?php echo strtoupper($nombre); ?>" id="input_nombre" required>
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="telefono" placeholder="Teléfono" value="<?php echo $telefono ?>" id="input_telefono">
+                    <input type="text" class="form-control" name="persona_telefono" placeholder="Teléfono" value="<?php echo $telefono ?>" id="input_telefono">
                 </div>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="direccion" placeholder="Dirección" value="<?php echo strtoupper($direccion); ?>" id="input_direccion">
+                    <input type="text" class="form-control" name="persona_direccion" placeholder="Dirección" value="<?php echo strtoupper($direccion); ?>" id="input_direccion">
                 </div>
                 
             </div>
