@@ -1,3 +1,18 @@
+$(".evento").click(function(e){
+
+    //e.preventDefault();
+
+    
+    //mostramos un Loading
+    Swal.fire({
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+    });
+});
+
 //ELIMINAR USUARIO
 $(".elim-caso").click(function(e){
 

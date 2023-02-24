@@ -51,6 +51,7 @@ $("#instituciones_id").change(function () {
     let nombre;
     let telefono;
     let direccion;
+    let requerimientos;
 
     if (estado != "") {
         if (estado != -1) {
@@ -59,27 +60,32 @@ $("#instituciones_id").change(function () {
             nombre = hidden.dataset.nombre;
             telefono = hidden.dataset.telefono;
             direccion = hidden.dataset.direccion;
+            requerimientos = hidden.dataset.requerimientos;
         } else {
             rif = null;
             nombre = null;
             telefono = null;
             direccion = null;
+            requerimientos = null;
         }
     } else {
             rif = null;
             nombre = null;
             telefono = null;
             direccion = null;
+            requerimientos = null;
     }
     let input_rif = document.getElementById("input_insti_rif");
     let input_nombre = document.getElementById("input_insti_nombre");
     let input_telefono = document.getElementById("input_insti_telefono");
     let input_direccion = document.getElementById("input_insti_direccion");
+    let input_requrimientos = document.getElementById("input_requerimientos");
 
     input_rif.value = rif;
     input_nombre.value = nombre;
     input_telefono.value = telefono;
     input_direccion.value = direccion;
+    input_requerimientos.value = requerimientos;
 
 });
 

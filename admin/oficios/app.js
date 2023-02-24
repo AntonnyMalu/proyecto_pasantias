@@ -1,5 +1,21 @@
+$(".evento").click(function(e){
+
+    //e.preventDefault();
+
+    
+    //mostramos un Loading
+    Swal.fire({
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+    });
+});
+
 //ELIMINAR USUARIO
-$(".elim-res").click(function(e){
+
+$(".elim-ofi").click(function(e){
 
     e.preventDefault();
     //obtenemos los datos
@@ -33,6 +49,8 @@ $(".show-person").click(function(e){
 
     //obtenemos los datos
     let rif = this.dataset.rif;
+    let fecha = this.dataset.fecha;
+    let requerimientos = this.dataset.requerimientos;
     let nombrei = this.dataset.nombrei;
     let cedula = this.dataset.cedula;
     let nombre = this.dataset.nombre;
@@ -42,6 +60,8 @@ $(".show-person").click(function(e){
 
     //identificamos los input
     let input_rif = document.getElementById("modal_rif");
+    let input_fecha = document.getElementById("modal_fecha");
+    let input_requerimientos = document.getElementById("modal_requerimientos");
     let input_cedula = document.getElementById("modal_cedula");
     let input_nombre = document.getElementById("modal_nombre");
     let input_telefono = document.getElementById("modal_telefono");
@@ -54,6 +74,8 @@ $(".show-person").click(function(e){
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
     input_rif.innerText = rif;
+    input_fecha.innerText = fecha;
+    input_requerimientos.innerText = requerimientos;
     input_cedula.innerText = cedula;
     input_nombre.innerText = nombre;
     input_telefono.innerText = telefono;

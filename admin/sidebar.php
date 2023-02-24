@@ -1,4 +1,4 @@
-<ul class="navbar-nav sidebar sidebar-dark accordion toggled" id="accordionSidebar" style="background: rgba(14,87,17,25);
+<ul class="navbar-nav sidebar sidebar-dark accordion <?php if($modulo != "usuarios" && $modulo != "firmantes"){ echo "toggled"; } ?>" id="accordionSidebar" style="background: rgba(14,87,17,25);
 background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%);">
 
             <!-- Sidebar - Brand -->
@@ -69,7 +69,7 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link <?php if($modulo != "usuarios"){ echo "collapsed"; } ?>" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                <a class="nav-link <?php if($modulo != "usuarios"){ echo "collapsed active"; } ?>" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Configuracion</span>

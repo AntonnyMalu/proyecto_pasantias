@@ -9,10 +9,10 @@
                                 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
-                                        <tr>
+                                        <tr class="text-center">
                                             
-                                            <th>Céduna</th>
-                                            <th>Nombre</th>
+                                            <th>Cédula</th>
+                                            <th>Nombre y Apellido</th>
                                             <th style="width: 20%;"></th>
                                         </tr>
                                     </thead>
@@ -26,14 +26,14 @@
                                             <?php echo $persona['cedula'] ?>
                                         </td>
                                         <td>
-                                        <?php echo $persona['nombre'] ?>
+                                        <?php echo strtoupper($persona['nombre'] );?>
                                         </td>
 
                                        
                                             <td class="text-center">
 
 
-                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success btn-circle btn-sm show-person" 
+                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-person" 
                                                 data-id="<?php echo $persona['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
                                                 data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " >
                                                     <i class="far fa-comment-alt"></i>
@@ -81,16 +81,15 @@
 
 
     <div class="row col-md-12 justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-10">
     <div class="card" style="width:100%">
   <div class="card-header">
-  <span class="text-primary" id="modal_tipo"> persona </span>
+  <span class="text-primary" id="modal_titulo"> persona </span>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cedula: <span class="text-primary float-right" id="modal_cedula"> jefe </span></li>
-    <li class="list-group-item">Nombre: <span class="text-primary float-right" id="modal_nombre"> jefe </span></li>
-    <li class="list-group-item">Telefono: <span class="text-primary float-right" id="modal_telefono"> jefe </span></li>
-    <li class="list-group-item">Direccion: <span class="text-primary float-right" id="modal_direccion"> jefe </span></li>
+    <li class="list-group-item">Cédula: <span class="text-primary float-right" id="modal_cedula"> jefe </span></li>
+    <li class="list-group-item">Teléfono: <span class="text-primary float-right" id="modal_telefono"> jefe </span></li>
+    <li class="list-group-item">Dirección: <br><span class="text-primary" id="modal_direccion"> jefe </span></li>
   </ul>
 </div>                              
     </div>

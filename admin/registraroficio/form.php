@@ -47,7 +47,7 @@
                     
                 ?>
 
-                    <option value="<?php echo $institucion['id']; ?>"><?php echo $institucion['rif']; ?> - <?php echo strtoupper($institucion['nombre']); ?></option>
+                    <option value="<?php echo $institucion['id']; ?>"><?php echo strtoupper($institucion['rif']); ?> - <?php echo strtoupper($institucion['nombre']); ?></option>
             
                 <?php 
                     }
@@ -58,8 +58,8 @@
 
 
                 <?php foreach ($intituciones as $institucion){  ?>
-                    <input type="hidden" value="<?php echo $institucion['rif']." ".strtoupper($institucion['nombre']) ?>" id="instituciones_<?php echo $institucion['id'] ?>"
-                           data-rif="<?php echo $institucion['rif'] ?>" data-nombre="<?php echo strtoupper($institucion['nombre']) ?>" data-telefono="<?php echo $institucion['telefono'] ?>" 
+                    <input type="hidden" value="<?php echo strtoupper($institucion['rif'])." ".strtoupper($institucion['nombre']) ?>" id="instituciones_<?php echo $institucion['id'] ?>"
+                           data-rif="<?php echo strtoupper($institucion['rif']) ?>" data-nombre="<?php echo strtoupper($institucion['nombre']) ?>" data-telefono="<?php echo strtoupper($institucion['telefono']); ?>" 
                            data-direccion="<?php echo strtoupper($institucion['direccion']) ?>" data-id="<?php echo $institucion['id'] ?>" >
                 <?php  } ?>
                 
@@ -94,7 +94,6 @@
                     
                 }else{
                     $dia = date("Y-m-d");
-                    $hora = date("H:i");
                     $requerimientos = "";
                     $cedula = "";
                     $nombre = "";
@@ -141,14 +140,14 @@
 
         <div class="form-group">
             <label>Fecha</label>
-            <input type="date" class="form-control" name="fecha" id="input_fecha" required />
+            <input type="date" class="form-control" name="fecha" value="<?php echo $dia; ?>" id="input_fecha" required />
 
         </div>
         
         <div class="form-group">
             <label>Requerimientos</label>
             
-            <textarea class="form-control" cols="1" rows="5"   name="requerimientos" id="input_requerimientos" <?php echo $requerimientos; ?> required ?></textarea><br>
+            <textarea class="form-control" cols="1" rows="5"   name="requerimientos" id="input_requerimientos"  required ?><?php echo $requerimientos; ?></textarea><br>
       
         </div>
 

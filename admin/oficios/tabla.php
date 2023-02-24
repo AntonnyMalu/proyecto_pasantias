@@ -46,11 +46,11 @@
                                             
                                             <td class="text-center">
 
-                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-circle btn-sm show-person" 
+                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-person" 
                                                 data-id="<?php echo $oficio['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
                                                 data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " 
                                                 data-fecha="<?php $newDate = date("d-m-Y", strtotime($oficio['fecha'])); echo $newDate; ?> " data-rif="<?php echo $institucion['rif'] ?>" 
-                                                data-nombrei="<?php echo strtoupper($institucion['nombre']); ?>">
+                                                data-nombrei="<?php echo strtoupper($institucion['nombre']); ?>" data-requerimientos="<?php echo strtoupper($oficio['requerimientos']); ?>">
                                                 
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
@@ -61,14 +61,14 @@
                                                 data-requerimientos="<?php echo $oficio['requerimientos'] ?>"  >
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-circle btn-sm <?php if ($usuario['role'] != 100){ echo "elim-usu"; } ?>"
-                                                        data-id="<?php echo $usuario['id']; ?>">
+                                                <button type="button" class="btn btn-danger btn-circle btn-sm elim-ofi"
+                                                        data-id="<?php echo $oficio['id']; ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
 
-                                                <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $usuario['id']; ?>">
+                                                <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $oficio['id']; ?>">
                                                     <input type="text" name="opcion" value="eliminar" />
-                                                    <input type="text" name="users_id" value="<?php echo $usuario['id']; ?>" />
+                                                    <input type="text" name="oficios_id" value="<?php echo $oficio['id']; ?>" />
                                                 </form>
 
                                             </td>
@@ -103,10 +103,12 @@
   </div>
   <ul class="list-group list-group-flush">
   <li class="list-group-item">Rif: <span class="text-primary float-right" id="modal_rif"> jefe </span></li>
+  <li class="list-group-item">Fecha: <span class="text-primary float-right" id="modal_fecha"> jefe </span></li>
+  <li class="list-group-item">Requerimientos: <br><span class="text-primary" id="modal_requerimientos"> jefe </span></li>
     <li class="list-group-item">Persona Contacto: <span class="text-primary float-right" id="modal_nombre"> jefe </span></li>
-    <li class="list-group-item">Cedula del Contacto: <span class="text-primary float-right" id="modal_cedula"> jefe </span></li>
-    <li class="list-group-item">Telefono del Contacto: <span class="text-primary float-right" id="modal_telefono"> jefe </span></li>
-    <li class="list-group-item">Direccion del Contacto: <span class="text-primary float-right" id="modal_direccion"> jefe </span></li>
+    <li class="list-group-item">Cédula del Contacto: <span class="text-primary float-right" id="modal_cedula"> jefe </span></li>
+    <li class="list-group-item">Teléfono del Contacto: <span class="text-primary float-right" id="modal_telefono"> jefe </span></li>
+    <li class="list-group-item">Dirección del Contacto: <br><span class="text-primary" id="modal_direccion"> jefe </span></li>
 
   </ul>
 

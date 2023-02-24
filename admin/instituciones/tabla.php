@@ -9,10 +9,10 @@
                                 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead class="thead-dark">
-                                        <tr>
+                                        <tr class="text-center">
                                             
                                             <th>Rif</th>
-                                            <th>Nombre</th>
+                                            <th>Nombre y Apellido</th>
                                             <th style="width: 20%;"></th>
                                         </tr>
                                     </thead>
@@ -23,25 +23,25 @@
                                         ?>
 
                                         <td>
-                                            <?php echo $persona['rif']; ?>
+                                            <?php echo strtoupper( $persona['rif']); ?>
                                         </td>
                                         <td>
-                                            <?php echo $persona['nombre'] ?>
+                                            <?php echo strtoupper($persona['nombre']); ?>
                                         </td>
 
                                        
                                             <td class="text-center">
 
 
-                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success btn-circle btn-sm show-inst" 
-                                                data-id="<?php echo $persona['id']; ?>" data-rif="<?php echo $persona['rif']; ?> "
+                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-inst" 
+                                                data-id="<?php echo $persona['id']; ?>" data-rif="<?php echo strtoupper($persona['rif']); ?> "
                                                 data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " >
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
                                             <button type="button" class="btn btn-warning btn-circle btn-sm edit-inst"
-                                                data-rif="<?php echo $persona['rif']; ?>" data-nombre="<?php echo $persona['nombre']; ?>" 
-                                                data-telefono="<?php echo $persona['telefono']; ?>" data-direccion="<?php echo $persona['direccion']; ?>"
+                                                data-rif="<?php echo $persona['rif']; ?>" data-nombre="<?php echo strtoupper($persona['nombre']); ?>" 
+                                                data-telefono="<?php echo $persona['telefono']; ?>" data-direccion="<?php echo strtoupper($persona['direccion']); ?>"
                                                 data-id="<?php echo $persona['id']; ?>" >
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
@@ -81,16 +81,16 @@
 
 
     <div class="row col-md-12 justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-10">
     <div class="card" style="width:100%">
   <div class="card-header">
   <span class="text-primary" id="modal_tipo"> Institución </span>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Rif: <span class="text-primary float-right" id="modal_rif"> jefe </span></li>
-    <li class="list-group-item">Nombre: <span class="text-primary float-right" id="modal_nombre"> jefe </span></li>
+    <li class="list-group-item">Nombre: <br><span class="text-primary" id="modal_nombre"> jefe </span></li>
     <li class="list-group-item">Telefono: <span class="text-primary float-right" id="modal_telefono"> jefe </span></li>
-    <li class="list-group-item">Direccion: <span class="text-primary float-right" id="modal_direccion"> jefe </span></li>
+    <li class="list-group-item">Direccion: <br><span class="text-primary" id="modal_direccion"> jefe </span></li>
   </ul>
 </div>                              
     </div>

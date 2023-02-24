@@ -1,3 +1,18 @@
+$(".evento").click(function(e){
+
+    //e.preventDefault();
+
+    
+    //mostramos un Loading
+    Swal.fire({
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+    });
+});
+
 $(".edit-person").click(function(e){
 
     e.preventDefault();
@@ -82,26 +97,26 @@ $(".show-person").click(function(e){
 
     //obtenemos los datos
     let cedula = this.dataset.cedula;
-    let nombre = this.dataset.nombre;
     let telefono = this.dataset.telefono;
     let direccion = this.dataset.direccion;
+    let nombre = this.dataset.nombre;
     let id = this.dataset.id;
 
     //identificamos los input
     let input_cedula = document.getElementById("modal_cedula");
-    let input_nombre = document.getElementById("modal_nombre");
     let input_telefono = document.getElementById("modal_telefono");
     let input_direccion = document.getElementById("modal_direccion");
+    let input_titulo = document.getElementById("modal_titulo");
+    
  
 
 
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
     input_cedula.innerText = cedula;
-    input_nombre.innerText = nombre;
     input_telefono.innerText = telefono;
     input_direccion.innerText = direccion;
-    
+    input_titulo.innerText = nombre;
 
 });
 

@@ -50,11 +50,12 @@
                                             
                                             <td class="text-center">
 
-                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary btn-circle btn-sm show-person" 
+                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-person" 
                                                 data-id="<?php echo $caso['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
-                                                data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " 
+                                                data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php if($persona['telefono']){echo $persona['telefono'];}else{ echo "Sin Teléfono Registrado";}  ?> " 
                                                 data-fecha="<?php $newDate = date("d-m-Y", strtotime($caso['fecha']));
-                                                echo $newDate; ?> " data-hora="<?php echo $caso['hora']; ?> " data-donativo="<?php echo $caso['donativo']; ?> "
+                                                echo $newDate; ?> " data-hora="<?php $newDate = date("H:i", strtotime($caso['hora']));
+                                                echo $newDate; ?> " data-donativo="<?php echo $caso['donativo']; ?> "
                                                 data-tipo="<?php echo strtoupper($caso['tipo']); ?> " data-observacion="<?php echo strtoupper($caso['observacion']); ?> ">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
@@ -111,15 +112,15 @@
   <span class="text-primary" id="modal_titulo"> Caso </span>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Cedula: <span class="text-primary float-right" id="modal_cedula"> jefe </span></li>
+    <li class="list-group-item">Cédula: <span class="text-primary float-right" id="modal_cedula"> jefe </span></li>
     <li class="list-group-item">Nombre: <span class="text-primary float-right" id="modal_nombre"> jefe </span></li>
-    <li class="list-group-item">Telefono: <span class="text-primary float-right" id="modal_telefono"> jefe </span></li>
-    <li class="list-group-item">Direccion: <span class="text-primary float-right" id="modal_direccion"> jefe </span></li>
+    <li class="list-group-item">Teléfono: <span class="text-primary float-right" id="modal_telefono"> jefe </span></li>
+    <li class="list-group-item">Dirección: <br><span class="text-primary" id="modal_direccion"> jefe </span></li>
     <li class="list-group-item">Fecha: <span class="text-primary float-right" id="modal_fecha"> jefe </span></li>
     <li class="list-group-item">Hora: <span class="text-primary float-right" id="modal_hora"> jefe </span></li>
     <li class="list-group-item">Donativo: <span class="text-primary float-right" id="modal_donativo"> jefe </span></li>
     <li class="list-group-item">Tipo: <span class="text-primary float-right" id="modal_tipo"> jefe </span></li>
-    <li class="list-group-item">Observacion: <span class="text-primary float-right" id="modal_observacion"> jefe </span></li>
+    <li class="list-group-item">Observación: <br><span class="text-primary" id="modal_observacion"> jefe </span></li>
   </ul>
 </div>                              
     </div>

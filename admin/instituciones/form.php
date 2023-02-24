@@ -8,22 +8,22 @@
 
         <div class="form-group">
             <label>Rif</label>
-            <input type="text" class="form-control" name="rif" placeholder="Ingrese el rif" id="input_rif" required />
+            <input type="text" class="form-control" name="rif" placeholder="Ingrese el Rif" id="input_rif" required />
         </div>
 
         <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre y apellido" id="input_nombre" required />
+            <label>Nombre y Apellido</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el Nombre y Apellido" id="input_nombre" required />
         </div>
 
         <div class="form-group">
             <label>Teléfono</label>
-            <input type="text" class="form-control" name="telefono" placeholder="Ingrese el teléfono" id="input_telefono" />
+            <input type="text" class="form-control" name="telefono" placeholder="Ingrese el Teléfono" id="input_telefono" />
         </div>
 
         <div class="form-group">
-            <label>Direccion</label>
-            <input type="text" class="form-control" name="direccion" placeholder="Ingrese la direccion" id="input_direccion" required />
+            <label>Dirección</label>
+            <input type="text" class="form-control" name="direccion" placeholder="Ingrese la Dirección" id="input_direccion" required />
         </div>
 
         <input type="hidden" name="opcion" value="guardar" id="input_opcion" />

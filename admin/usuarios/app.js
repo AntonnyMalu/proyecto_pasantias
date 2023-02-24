@@ -1,4 +1,19 @@
 
+$(".evento").click(function(e){
+
+    //e.preventDefault();
+
+    
+    //mostramos un Loading
+    Swal.fire({
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading()
+        },
+    });
+});
+
 //VALIDAR CONTRASEÑA
 $("#form_usuarios").submit(function (e) {
 
