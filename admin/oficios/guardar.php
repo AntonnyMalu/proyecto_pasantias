@@ -18,6 +18,20 @@ function eliminarOficio($id)
 
 }
 
+function editarStatus($id,$status)
+{
+    $row = null;
+    $query = new Query();
+   
+
+
+    $sql = "UPDATE `oficios` SET `status`='$status' WHERE  `id`='$id';";
+        $row = $query->save($sql);
+        return $row;
+
+}
+
+
 
 
 if ($_POST) {
@@ -48,7 +62,22 @@ if ($_POST) {
 
     }
 
+    if ($_POST['opcion'] == "cambiar_status") {
+        $id = $_POST['casos_id'];
+        $status = $_POST['casos_status'];
+        
+        $cambiar = editarStatus($id, $status);
+        if ($cambiar) {
+            $alert = "success";
+            $message = "Estatus Actualizado";
+            crearFlashMessage($alert,$message, '../oficios/');
+        } else {
+            $alert = "warning";
+            $message = "Error";
+            crearFlashMessage($alert,$message, '../oficios/');
+        }
 
+    }
         
 }
 ?>

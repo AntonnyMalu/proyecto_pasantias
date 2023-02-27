@@ -98,6 +98,8 @@ $(".show-person").click(function(e){
         span_reset.classList.add("d-none");
     }
 
+    $("#enlace_productos").attr("href", "../productos/index.php?id=" + id);
+
 
 
    

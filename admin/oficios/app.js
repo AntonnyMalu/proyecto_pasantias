@@ -57,6 +57,7 @@ $(".show-person").click(function(e){
     let telefono = this.dataset.telefono;
     let direccion = this.dataset.direccion;
     let id = this.dataset.id;
+    let xstatus = this.dataset.xstatus;
 
     //identificamos los input
     let input_rif = document.getElementById("modal_rif");
@@ -67,7 +68,10 @@ $(".show-person").click(function(e){
     let input_telefono = document.getElementById("modal_telefono");
     let input_direccion = document.getElementById("modal_direccion");
     let input_titulo = document.getElementById("modal_titulo");
-    
+    let casos_id = document.getElementById("casos_id");
+    let span_boton = document.getElementById("ver_botones_modal");
+    let span_reset = document.getElementById("ver_boton_reset");
+    let span_label_estatus = document.getElementById("ver_label_estatus");
  
 
 
@@ -81,7 +85,38 @@ $(".show-person").click(function(e){
     input_telefono.innerText = telefono;
     input_direccion.innerText = direccion;
     input_titulo.innerText = nombrei;
+    casos_id.value = id;
+
+    if(xstatus != ""){
+        span_label_estatus.innerText = xstatus;
+        span_boton.classList.add("d-none");
+        span_reset.classList.remove("d-none");
+    }else{
+        span_boton.classList.remove('d-none');
+        span_reset.classList.add("d-none");
+    }
+
+});
+
+$(".cambiar-status").click(function(e){
+
+    e.preventDefault();
+
     
+
+    //obtenemos los datos
+    let status = this.dataset.hola;
+
+    //identificamos los input
+    let input_status = document.getElementById("casos_status");
+    let formulario = document.getElementById("formulario_status");
+
+    //cambiamos el valor de los input y el titulo del CARDVIEW
+    input_status.value = status;
+    formulario.submit();
+
+    //alert('que eszta poasanbdo' + status);
+
 
 });
 

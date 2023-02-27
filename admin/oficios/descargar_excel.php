@@ -67,9 +67,11 @@ $oficios = getOficios();
             <?php echo strtoupper($oficio['requerimientos']); ?>
         </td>
         <td>
-             
+            <?php echo $oficio['status']; ?>
         </td>
         <td><?php echo $institucion['telefono']; ?></td>
+
+        
         
     </tr>
     <?php } ?>

@@ -16,7 +16,7 @@
                                             <th class="text-center">Fecha</th>
                                             <th class="text-center">Hora</th>
                                             
-                                            <th style="width: 20%;"></th>
+                                            <th style="width: 15%;"></th>
                                         </tr>
                                     </thead>
                                     
@@ -48,7 +48,9 @@
                                                 <?php echo $caso['hora']; ?>
                                             </td>
                                             
-                                            <td class="text-center">
+                                            <td class="text-right">
+
+                                            
 
                                             <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-person" 
                                                 data-id="<?php echo $caso['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
@@ -61,9 +63,7 @@
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
-                                            <a href="pdf_ficha.php" target="_blank" class="btn btn-success btn-circle btn-sm">
-                                                    <i class="fas fa-file-pdf"></i>
-                                                </a>
+                                        
 
                                                 <a href="../registrar/index.php?id=<?php echo $caso['id']; ?>" type="button" class="btn btn-warning btn-circle btn-sm edit-usu"
                                                 data-id="<?php echo $caso['id'] ?>" data-cedula="<?php echo $persona['cedula'] ?>" data-nombre="<?php echo $persona['nombre'] ?>"
@@ -71,10 +71,19 @@
                                                 data-donativo="<?php echo $caso['donativo'] ?>" data-tipo="<?php echo $caso['tipo'] ?>" data-observacion="<?php echo $caso['observacion'] ?>">
                                                     <i class="fas fa-user-edit"></i>
                                                 </a>
+
+                                                <?php if($caso['status']){ ?>
+                                                    <a href="pdf_ficha.php?id=<?php echo $caso['id']; ?>" target="_blank" class="btn btn-success btn-circle btn-sm">
+                                                        <i class="fas fa-file-pdf"></i>
+                                                    </a>
+                                            <?php }else{
+                                                ?>
                                                 <button type="button" class="btn btn-danger btn-circle btn-sm elim-caso"
                                                         data-id="<?php echo $caso['id']; ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
+                                                <?php
+                                            } ?>
 
                                                 <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $caso['id']; ?>">
                                                     <input type="text" name="opcion" value="eliminar" />
@@ -134,7 +143,7 @@
       <div class="modal-footer">
         <form id="formulario_status" method="POST" action="guardar.php">
         <span class="span" id="ver_botones_modal">
-            <button type="button" class="btn btn-success cambiar-status" data-hola="Aprobado">Aprobado</button>
+            <a href="../productos/index.php" class="btn btn-success" id="enlace_productos">Aprobado</a>
             <button type="button" class="btn btn-danger cambiar-status" data-hola="Sin producción">Sin producción</button>
         </span>
         <span class="d-none" id="ver_boton_reset">

@@ -142,6 +142,7 @@ if ($_POST) {
         }
 
     }
+    
     if ($_POST['opcion'] == "cambiar_status") {
         $id = $_POST['casos_id'];
         $status = $_POST['casos_status'];

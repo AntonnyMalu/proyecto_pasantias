@@ -54,15 +54,14 @@
                                                 data-id="<?php echo $oficio['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
                                                 data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " 
                                                 data-fecha="<?php $newDate = date("d-m-Y", strtotime($oficio['fecha'])); echo $newDate; ?> " data-rif="<?php echo strtoupper($institucion['rif']); ?>" 
-                                                data-nombrei="<?php echo strtoupper($institucion['nombre']); ?>" data-requerimientos="<?php echo strtoupper($oficio['requerimientos']); ?>">
-                                                
+                                                data-nombrei="<?php echo strtoupper($institucion['nombre']); ?>" data-requerimientos="<?php echo strtoupper($oficio['requerimientos']); ?>" data-xstatus="<?php echo $oficio['status']; ?>">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
                                                 <a href="../registraroficio/index.php?id=<?php echo $oficio['id']; ?>" type="button" class="btn btn-warning btn-circle btn-sm edit-usu"
                                                 data-id="<?php echo $oficio['id'] ?>" data-cedula="<?php echo $persona['cedula'] ?>" data-nombre="<?php echo strtoupper($persona['nombre']); ?>"
-                                                data-direccion="<?php echo $persona['direccion'] ?>" data-fecha="<?php echo $oficio['fecha'] ?>" data-hora="<?php echo $caso['hora'] ?>"
-                                                data-requerimientos="<?php echo $oficio['requerimientos'] ?>"  >
+                                                data-direccion="<?php echo $persona['direccion'] ?>" data-fecha="<?php echo $oficio['fecha'] ?>" 
+                                                data-requerimientos="<?php echo $oficio['requerimientos'] ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-circle btn-sm elim-ofi"
@@ -104,6 +103,7 @@
     <div class="card" style="width:100%">
   <div class="card-header">
   <span class="text-primary" id="modal_titulo"> Oficio </span>
+  <span class="float-lg-right" id="ver_label_estatus"></span>
   </div>
   <ul class="list-group list-group-flush">
   <li class="list-group-item">Rif: <span class="text-primary float-right" id="modal_rif"> jefe </span></li>
@@ -124,12 +124,19 @@
 
       </div>
       <div class="modal-footer">
-        
-        <button type="button" class="btn btn-success" data-dismiss="modal">Aprobado</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Sin producción</button>
+        <form id="formulario_status" method="POST" action="guardar.php">
+        <span class="span" id="ver_botones_modal">
+            <button type="button" class="btn btn-success cambiar-status" data-hola="Aprobado">Aprobado</button>
+            <button type="button" class="btn btn-danger cambiar-status" data-hola="Sin producción">Sin producción</button>
+        </span>
+        <span class="d-none" id="ver_boton_reset">
+            <button type="button" class="btn btn-warning cambiar-status" data-hola="<?php echo null; ?>">Reset Estatus</button>
+        </span>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        
-                            
+        <input type="hidden" name="casos_id" value="" placeholder="casos_id" id="casos_id">
+        <input type="hidden" name="casos_status" value="" placeholder="casos_status" id="casos_status">
+        <input type="hidden" name="opcion" value="cambiar_status" placeholder="opcion">
+        </form>             
         </div>
     </div>
   </div>
