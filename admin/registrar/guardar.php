@@ -28,15 +28,15 @@ function persona($id, $cedula, $nombre, $telefono, $direccion){
 }
 
 
-function crearCaso($personas_id,$persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion ,$fecha, $hora, $donativo, $tipo, $status, $observacion)
+function crearCaso($personas_id,$persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion ,$fecha, $hora, $donativo, $tipo, $observacion)
 {
     $row = null;
     $query = new Query();
     $hoy = date("Y-m-d");
     $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
 
-    $sql = "INSERT INTO `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `status`, `observacion`, `created_at`) 
-        VALUES ('$persona', '$fecha', '$hora', '$donativo', '$tipo', '$status', '$observacion', '$hoy');";
+    $sql = "INSERT INTO `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `observacion`, `created_at`) 
+        VALUES ('$persona', '$fecha', '$hora', '$donativo', '$tipo', '$observacion', '$hoy');";
         $row = $query->save($sql);
         return $row;
 
@@ -77,7 +77,7 @@ if ($_POST) {
             
             $observacion =  $_POST['observacion'];
         
-            $caso = crearCaso($personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $status, $observacion);
+            $caso = crearCaso($personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion);
 
             if ($caso) {
 

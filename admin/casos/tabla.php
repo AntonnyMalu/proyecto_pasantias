@@ -56,7 +56,8 @@
                                                 data-fecha="<?php $newDate = date("d-m-Y", strtotime($caso['fecha']));
                                                 echo $newDate; ?> " data-hora="<?php $newDate = date("H:i", strtotime($caso['hora']));
                                                 echo $newDate; ?> " data-donativo="<?php echo $caso['donativo']; ?> "
-                                                data-tipo="<?php echo strtoupper($caso['tipo']); ?> " data-observacion="<?php echo strtoupper($caso['observacion']); ?> ">
+                                                data-tipo="<?php echo strtoupper($caso['tipo']); ?> " data-observacion="<?php echo strtoupper($caso['observacion']); ?> "
+                                                data-xstatus="<?php echo $caso['status']; ?>">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
@@ -130,9 +131,16 @@
 
       </div>
       <div class="modal-footer">
-        
+        <form id="formulario_status" method="POST" action="guardar.php">
+        <span class="span" id="ver_botones_modal">
+            <button type="button" class="btn btn-success cambiar-status" data-hola="Aprobado">Aprobado</button>
+            <button type="button" class="btn btn-danger cambiar-status" data-hola="Sin producción">Sin producción</button>
+        </span>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            
+        <input type="hidden" name="casos_id" value="" placeholder="casos_id" id="casos_id">
+        <input type="hidden" name="casos_status" value="" placeholder="casos_status" id="casos_status">
+        <input type="hidden" name="opcion" value="cambiar_status" placeholder="opcion">
+        </form>             
         </div>
     </div>
   </div>

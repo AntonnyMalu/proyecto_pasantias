@@ -57,6 +57,7 @@ $(".show-person").click(function(e){
     let tipo = this.dataset.tipo;
     let observacion = this.dataset.observacion;
     let id = this.dataset.id;
+    let xstatus = this.dataset.xstatus;
 
     //identificamos los input
     let input_cedula = document.getElementById("modal_cedula");
@@ -69,9 +70,8 @@ $(".show-person").click(function(e){
     let input_tipo = document.getElementById("modal_tipo");
     let input_observacion = document.getElementById("modal_observacion");
     let input_titulo = document.getElementById("modal_titulo");
-    
- 
-
+    let casos_id = document.getElementById("casos_id");
+    let span_boton = document.getElementById("ver_botones_modal");
 
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
@@ -83,9 +83,43 @@ $(".show-person").click(function(e){
     input_hora.innerText = hora;
     input_donativo.innerText = donativo;
     input_tipo.innerText = tipo;
-    input_observacion.innerText = observacion;
+    input_observacion.innerText = xstatus;
     input_titulo.innerText = nombre;
+    casos_id.value = id;
+
+    if(xstatus != ""){
+        span_boton.classList.add("d-none");
+    }else{
+        span_boton.classList.remove('d-none');
+    }
+
+
+
+   
+   
     
+
+});
+
+$(".cambiar-status").click(function(e){
+
+    e.preventDefault();
+
+    
+
+    //obtenemos los datos
+    let status = this.dataset.hola;
+
+    //identificamos los input
+    let input_status = document.getElementById("casos_status");
+    let formulario = document.getElementById("formulario_status");
+
+    //cambiamos el valor de los input y el titulo del CARDVIEW
+    input_status.value = status;
+    formulario.submit();
+
+    //alert('que eszta poasanbdo' + status);
+
 
 });
 

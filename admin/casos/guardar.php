@@ -18,46 +18,19 @@ function crearCaso($persona_id, $fecha, $hora, $donativo, $tipo, $status, $obser
 
 }
 
-//EDITAR USUARIOS
-function editarUsuario($id, $name, $email, $password, $role)
+function editarStatus($id,$status)
 {
     $row = null;
     $query = new Query();
-    $sql1 = "SELECT * FROM `users` WHERE `id` = '$id'";
-    $usuario = $query->getFirst($sql1);
-
-    if ($usuario) {
-
-        $sql2 = "SELECT * FROM `users` WHERE `email` = '$email' AND `id` != '$id'";
-        $exite = $query->getFirst($sql2);
-
-        if ($exite){
-
-            return false;
-
-        }else{
-
-            $hoy = date("Y-m-d");
-            if (!empty($password)){
-                $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
-            }else{
-                $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
-            }
-            $row = $query->save($sql);
-            return $row;
-
-        }
+    $hoy = date("Y-m-d");
 
 
-
-    } else {
-
-        return false;
-
-    }
-
+    $sql = "UPDATE `casos` SET `status`='$status', `updated_at`='$hoy' WHERE  `id`='$id';";
+        $row = $query->save($sql);
+        return $row;
 
 }
+
 
 
 //ELIMINAR USUARIOS
@@ -169,7 +142,22 @@ if ($_POST) {
         }
 
     }
+    if ($_POST['opcion'] == "cambiar_status") {
+        $id = $_POST['casos_id'];
+        $status = $_POST['casos_status'];
+        
+        $cambiar = editarStatus($id, $status);
+        if ($cambiar) {
+            $alert = "success";
+            $message = "Estatus Actualizado";
+            crearFlashMessage($alert,$message, '../casos/');
+        } else {
+            $alert = "warning";
+            $message = "Error";
+            crearFlashMessage($alert,$message, '../casos/');
+        }
 
+    }
 
 }
 

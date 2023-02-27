@@ -1,4 +1,5 @@
 <?php 
+session_start(); 
 header("Pragma: public");
 header("Expires: 0");
 $filename = "Oficios Recibidos.xls";
@@ -7,25 +8,70 @@ header("Content-Disposition: attachment; filename=$filename");
 header("Pragma: no-cache");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 
+require "../seguridad.php";
+require "../../mysql/Query.php";
+
+function getOficios()
+{
+    $query = new Query();
+    $rows = null;
+    $sql = "SELECT * FROM `oficios` WHERE `band`= 1 ";
+    $rows = $query->getAll($sql);
+    return $rows;
+}
+function getInstituciones($id)
+{
+    $query = new Query();
+    $rows = null;
+    $sql = "SELECT * FROM `instituciones` WHERE `id`= '$id'; ";
+    $rows = $query->getfirst($sql);
+    return $rows;
+}
+
+$oficios = getOficios();
+
+
 ?>
-<table>
+<meta charset="utf-8">
+<table border="1">
 <tbody>
-<tr>
-<th>
-<h2>Listado en tabla excel</h2>
-</th>
-</tr>
-<tr>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-<td>7</td>
-<td>8</td>
-<td>9</td>
-<td>10</td>
-</tr>
+    <tr>
+        <th>#</th>
+        <th>Fecha</th>
+        <th>Institución</th>
+        <th>Requerimiento</th>
+        <th>Aprobación</th>
+        <th>Teléfono</th>
+        
+    </tr>
+    <?php 
+    $i=0;
+    foreach($oficios as $oficio){ 
+        $i++;
+        $institucion = getInstituciones($oficio['instituciones_id']);
+        ?>
+    <tr>
+        <td>
+            <?php echo $i; ?>
+        </td>
+        <td>
+        <?php
+                $newDate = date("d-m-Y", strtotime($oficio['fecha']));
+                echo $newDate; 
+            ?>
+        </td>
+        <td>
+            <?php echo strtoupper($institucion['nombre']); ?>
+        </td>
+        <td>
+            <?php echo strtoupper($oficio['requerimientos']); ?>
+        </td>
+        <td>
+             
+        </td>
+        <td><?php echo $institucion['telefono']; ?></td>
+        
+    </tr>
+    <?php } ?>
 </tbody>
 </table>

@@ -13,6 +13,7 @@
                                             <th>#</th>
                                             <th class="text-center">Rif</th>
                                             <th class="text-center">Nombre de la Institución</th>
+                                            <th class="text-center">Persona Contacto</th>
                                             <th class="text-center">Fecha</th>
                                         
                                             <th hora="width: 20%;"></th>
@@ -38,6 +39,9 @@
                                             </td>
                                             <td>
                                                 <?php echo strtoupper($institucion['nombre']); ?>
+                                            </td>
+                                            <td>
+                                                <?php echo strtoupper($persona['nombre']) ?>
                                             </td>
                                             <td class="text-center">
                                                <?php $newDate = date("d-m-Y", strtotime($oficio['fecha']));
@@ -121,7 +125,10 @@
       </div>
       <div class="modal-footer">
         
+        <button type="button" class="btn btn-success" data-dismiss="modal">Aprobado</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Sin producción</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        
                             
         </div>
     </div>

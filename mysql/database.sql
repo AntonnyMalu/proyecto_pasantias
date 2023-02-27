@@ -27,17 +27,15 @@ CREATE TABLE IF NOT EXISTS `casos` (
   `hora` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
   `donativo` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `tipo` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `observacion` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- Volcando datos para la tabla alguarisa.casos: ~0 rows (aproximadamente)
-INSERT INTO `casos` (`id`, `personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `status`, `observacion`, `band`, `created_at`, `updated_at`) VALUES
-	(1, 1, '2023-02-24', '12:00 am', 'bolsa', 'antonny', 'aprovado', 'antonny', 1, '2023-02-17', NULL);
 
 -- Volcando estructura para tabla alguarisa.despacho
 CREATE TABLE IF NOT EXISTS `despacho` (
@@ -63,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `firmantes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.firmantes: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.firmantes: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.instituciones
 CREATE TABLE IF NOT EXISTS `instituciones` (
@@ -78,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `instituciones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.instituciones: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.instituciones: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.oficios
 CREATE TABLE IF NOT EXISTS `oficios` (
@@ -87,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `oficios` (
   `personas_id` int NOT NULL,
   `fecha` date NOT NULL,
   `requerimientos` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `status` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `band` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -105,14 +103,9 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- Volcando datos para la tabla alguarisa.personas: ~0 rows (aproximadamente)
-INSERT INTO `personas` (`id`, `cedula`, `nombre`, `telefono`, `direccion`, `band`, `created_at`, `updated_at`) VALUES
-	(1, '27613025', 'antonny maluenga', '04121995644', 'san juan', 1, '2023-02-17', NULL),
-	(2, '23234345', 'manuel', '04233432345', 'san juan', 1, '2023-02-17', NULL),
-	(3, '12909876', 'isabel', '', 'san juan', 1, '2023-02-17', NULL),
-	(4, '4345435', 'alejandro', '', 'san juan', 1, '2023-02-17', NULL);
 
 -- Volcando estructura para tabla alguarisa.productos
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -141,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.users: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.users: ~3 rows (aproximadamente)
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created_at`, `updated_at`) VALUES
 	(1, 'leothan522@gmail.com', '20025623', 'Yonathan Castillo', 100, 1, '2023-01-22', '2023-01-22'),
 	(2, 'gabrielmalu15@gmail.com', '1234am', ' antonny maluenga', 100, 1, '2023-01-22', '2023-01-22'),
