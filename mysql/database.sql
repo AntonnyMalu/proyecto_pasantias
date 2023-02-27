@@ -35,20 +35,7 @@ CREATE TABLE IF NOT EXISTS `casos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.casos: ~0 rows (aproximadamente)
-
--- Volcando estructura para tabla alguarisa.despacho
-CREATE TABLE IF NOT EXISTS `despacho` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `casos_id` int NOT NULL,
-  `personas_id` int NOT NULL,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
-  `band` int NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
--- Volcando datos para la tabla alguarisa.despacho: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.casos: ~14 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.firmantes
 CREATE TABLE IF NOT EXISTS `firmantes` (
@@ -76,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `instituciones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.instituciones: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.instituciones: ~4 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.oficios
 CREATE TABLE IF NOT EXISTS `oficios` (
@@ -90,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `oficios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.oficios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.oficios: ~9 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.personas
 CREATE TABLE IF NOT EXISTS `personas` (
@@ -105,14 +92,12 @@ CREATE TABLE IF NOT EXISTS `personas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa.personas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.personas: ~11 rows (aproximadamente)
 
 -- Volcando estructura para tabla alguarisa.productos
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `despacho_id` int NOT NULL,
-  `cargos_id` int NOT NULL,
-  `personas_id` int NOT NULL,
+  `casos_id` int NOT NULL,
   `producto` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `cantidad` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',

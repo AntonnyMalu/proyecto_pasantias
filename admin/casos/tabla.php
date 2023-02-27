@@ -45,7 +45,10 @@
                                             </td>
 
                                             <td class="text-center">
-                                                <?php echo $caso['hora']; ?>
+                                                <?php 
+                                                $newHora = date("g:i a", strtotime($caso['hora']));
+                                                echo $newHora; 
+                                                ?>
                                             </td>
                                             
                                             <td class="text-right">
@@ -56,7 +59,7 @@
                                                 data-id="<?php echo $caso['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
                                                 data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php if($persona['telefono']){echo $persona['telefono'];}else{ echo "Sin Teléfono Registrado";}  ?> " 
                                                 data-fecha="<?php $newDate = date("d-m-Y", strtotime($caso['fecha']));
-                                                echo $newDate; ?> " data-hora="<?php $newDate = date("H:i", strtotime($caso['hora']));
+                                                echo $newDate; ?> " data-hora="<?php $newDate = date("h:i a", strtotime($caso['hora']));
                                                 echo $newDate; ?> " data-donativo="<?php echo $caso['donativo']; ?> "
                                                 data-tipo="<?php echo strtoupper($caso['tipo']); ?> " data-observacion="<?php echo strtoupper($caso['observacion']); ?> "
                                                 data-xstatus="<?php echo $caso['status']; ?>">

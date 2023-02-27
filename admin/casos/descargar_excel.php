@@ -69,7 +69,10 @@ $casos = getCasos();
                 <?php echo $caso['donativo']; ?>
             </td>
             <td>
-                <?php echo $caso['hora']; ?>
+                <?php 
+                $newHora = date("g:i a", strtotime($caso['hora']));
+                echo $newHora; 
+                ?>
             </td>
             <td>
                 <?php echo $persona['direccion']; ?>
