@@ -75,7 +75,7 @@ $casos = getCasos();
                 <?php echo $persona['direccion']; ?>
             </td>
             <td>
-
+            <?php echo $caso['status']; ?>
             </td>
         </tr>
         <?php } ?>

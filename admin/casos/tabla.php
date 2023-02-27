@@ -111,6 +111,7 @@
     <div class="card" style="width:100%">
   <div class="card-header">
   <span class="text-primary" id="modal_titulo"> Caso </span>
+  <span class="float-lg-right" id="ver_label_estatus"></span>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Cédula: <span class="text-primary float-right" id="modal_cedula"> jefe </span></li>
@@ -135,6 +136,9 @@
         <span class="span" id="ver_botones_modal">
             <button type="button" class="btn btn-success cambiar-status" data-hola="Aprobado">Aprobado</button>
             <button type="button" class="btn btn-danger cambiar-status" data-hola="Sin producción">Sin producción</button>
+        </span>
+        <span class="d-none" id="ver_boton_reset">
+            <button type="button" class="btn btn-warning cambiar-status" data-hola="<?php echo null; ?>">Reset Estatus</button>
         </span>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <input type="hidden" name="casos_id" value="" placeholder="casos_id" id="casos_id">

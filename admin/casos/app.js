@@ -72,6 +72,8 @@ $(".show-person").click(function(e){
     let input_titulo = document.getElementById("modal_titulo");
     let casos_id = document.getElementById("casos_id");
     let span_boton = document.getElementById("ver_botones_modal");
+    let span_reset = document.getElementById("ver_boton_reset");
+    let span_label_estatus = document.getElementById("ver_label_estatus");
 
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
@@ -83,14 +85,17 @@ $(".show-person").click(function(e){
     input_hora.innerText = hora;
     input_donativo.innerText = donativo;
     input_tipo.innerText = tipo;
-    input_observacion.innerText = xstatus;
+    input_observacion.innerText = observacion;
     input_titulo.innerText = nombre;
     casos_id.value = id;
 
     if(xstatus != ""){
+        span_label_estatus.innerText = xstatus;
         span_boton.classList.add("d-none");
+        span_reset.classList.remove("d-none");
     }else{
         span_boton.classList.remove('d-none');
+        span_reset.classList.add("d-none");
     }
 
 
