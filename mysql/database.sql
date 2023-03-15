@@ -16,8 +16,8 @@
 
 
 -- Volcando estructura de base de datos para alguarisa
-CREATE DATABASE IF NOT EXISTS `alguarisa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `alguarisa`;
+CREATE DATABASE IF NOT EXISTS `atencion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `atencion`;
 
 -- Volcando estructura para tabla alguarisa.casos
 CREATE TABLE IF NOT EXISTS `casos` (
