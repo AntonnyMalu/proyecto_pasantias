@@ -86,7 +86,7 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
                             <i class="fas fa-pen-fancy"></i>
                             Firmantes
                         </a>
-                        <a  href="../../mysql/myphp-backup.php"class="collapse-item" target="blank">
+                        <a  class="collapse-item" target="blank" href="<?php if($modulo == "dashboard") { echo "../mysql/myphp-backup.php"; }else{ echo "../../mysql/myphp-backup.php"; } ?>">
                         <i class="fas fa-database"></i>
                             Descargar SQL
                         </a>
