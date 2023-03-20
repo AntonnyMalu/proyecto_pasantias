@@ -160,7 +160,7 @@ $y = $pdf->GetY();
 $pdf->Cell(37, 5, utf8_decode('OBERVACIONES'), 1, 1, 'C');
 $pdf->Rect($x, $y + 5, 37, 35);
 $pdf->SetFont('Times','',9);
-$pdf->SetX(17, $y+5);
+$pdf->SetX(17, $y + 5);
 $pdf->SetFont('Times','',9);
 $i=0;
 $j = 88;
@@ -203,14 +203,39 @@ while($i < 8)
         $i++;
 }
 
+if(empty($atencion)){
+    $atencion_nombre = "";
+    $atencion_cargo = "Jefe de Atencion al Ciudadano";
+
+}else{
+    $atencion_nombre = $atencion['nombre'];
+    $atencion_cargo = $atencion['cargo'];
+}
+
+if(empty($almacen)){
+    $almacen_nombre = "";
+    $almacen_cargo = "Jefe de Almacen";
+}else{
+    $alamacen_nombre = $almacen['nombre'];
+    $almacen_cargo = $almacen['cargo'];
+}
+
+if(empty($get_persona)){
+    $persona_nombre = "";
+    $persona_cedula = "";
+}else{
+    $persona_nombre = $get_persona['nombre'];
+    $persona_cedula = $get_persona['cedula'];
+}
+
 $pdf->SetFont('Times','',7);
 
 $pdf->SetXY(17, 118);
-$pdf->Cell(65,20,utf8_decode(strtoupper($atencion['nombre'])), 0, 0, 'C');
+$pdf->Cell(65,20,utf8_decode(strtoupper($atencion_nombre)), 0, 0, 'C');
 
-$pdf->Cell(55,20,utf8_decode(strtoupper($almacen['nombre'])), 0, 0, 'C');
+$pdf->Cell(55,20,utf8_decode(strtoupper($almacen_nombre)), 0, 0, 'C');
 
-$pdf->Cell(70,20,utf8_decode(strtoupper($get_persona['nombre'])), 0, 0, 'C');
+$pdf->Cell(70,20,utf8_decode(strtoupper($persona_nombre)), 0, 0, 'C');
 
 $pdf->SetXY(17, 123);
 $pdf->Cell(65,2,'__________________________', 0, 0, 'C');
@@ -220,11 +245,11 @@ $pdf->Cell(55,2,'__________________________', 0, 0, 'C');
 $pdf->Cell(70,2,'__________________________', 0, 0, 'C');
 
 $pdf->SetXY(17, 128);
-$pdf->Cell(65,7,utf8_decode(strtoupper($atencion['cargo'])), 0, 0, 'C');
+$pdf->Cell(65,7,utf8_decode(strtoupper($atencion_cargo)), 0, 0, 'C');
 
-$pdf->Cell(55,7,utf8_decode(strtoupper($almacen['cargo'])), 0, 0, 'C');
+$pdf->Cell(55,7,utf8_decode(strtoupper($almacen_cargo)), 0, 0, 'C');
 
-$pdf->Cell(70,7,'C.I:'.utf8_decode(strtoupper($get_persona['cedula'])), 0, 0, 'C');
+$pdf->Cell(70,7,'C.I:'.utf8_decode(strtoupper($persona_cedula)), 0, 0, 'C');
 
 
 $pdf->Output('I', "FICHA ", true);
