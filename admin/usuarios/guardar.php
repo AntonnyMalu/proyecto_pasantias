@@ -20,7 +20,8 @@ function crearUsuario($name, $email, $password, $role)
     } else {
 
         $hoy = date("Y-m-d");
-        $sql = "INSERT INTO `users` (`email`, `password`, `name`, `created_at`) VALUES ('$email', '$password', '$name', '$hoy');";
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO `users` (`email`, `password`, `name`, `created_at`) VALUES ('$email', '$password_hash', '$name', '$hoy');";
         $row = $query->save($sql);
         return $row;
 
@@ -50,7 +51,8 @@ function editarUsuario($id, $name, $email, $password, $role)
 
             $hoy = date("Y-m-d");
             if (!empty($password)){
-                $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
+                $password_hash = password_hash($password, PASSWORD_DEFAULT);
+                $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password_hash', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
             }else{
                 $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
             }

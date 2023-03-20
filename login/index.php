@@ -20,7 +20,8 @@ if (isset($_SESSION['email'])) {
 
     if($row){
     
-        if($row['password'] == $password){
+        
+            if (password_verify($password, $row['password'])){
             $_SESSION['email'] = $row['email'];
             $_SESSION['name'] = $row['name'];
             $_SESSION['role'] = $row['role'];
