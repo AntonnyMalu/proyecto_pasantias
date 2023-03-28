@@ -28,7 +28,7 @@
                                                 id="exampleInputPassword" placeholder="contraseña" name="password" required>
                                         </div>
                                        
-                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Login" />
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Iniciar sesión" />
 
                                         <div class="form-group mt-3">
                                           
