@@ -49,12 +49,12 @@ function eliminarPersona($id)
 }
 
 
-function crearPersona( $cedula, $nombre, $telefono, $direccion)
+function crearPersona($id, $cedula, $nombre, $telefono, $direccion)
 {
     $row = null;
     $query = new Query();
     $hoy = date("Y-m-d");
-    $existe = existePersona($cedula);
+    $existe = existePersona($cedula, $id);
     if(!$existe){
         $sql = "INSERT INTO`personas` (`cedula`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$cedula', '$nombre', '$telefono', '$direccion', '$hoy');";
         $row = $query->save($sql);
@@ -87,12 +87,13 @@ if ($_POST) {
 
         if (!empty($_POST['cedula']) && !empty($_POST['nombre']) && !empty($_POST['direccion'])) {
 
+            $id = $_POST['input_personas_id'];
             $cedula = $_POST['cedula'];
             $nombre = $_POST['nombre'];
             $direccion = $_POST['direccion'];
             $telefono = $_POST['telefono'];
 
-            $persona = crearPersona($cedula, $nombre, $telefono, $direccion);
+            $persona = crearPersona($id, $cedula, $nombre, $telefono, $direccion);
 
             if ($persona) {
 
