@@ -18,7 +18,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-family: optima;">
                                 Casos Sociales</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo $gacetas; ?>
+                                <?php echo $casos; ?>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -40,7 +40,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="font-family: optima;">
                                 Oficios</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo $sesiones; ?>
+                                <?php echo $oficios; ?>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -64,7 +64,7 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        <?php echo $resoluciones; ?>
+                                        <?php echo $personas; ?>
                                     </div>
                                 </div>
                                 <!--<div class="col">
@@ -96,7 +96,7 @@
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="font-family: optima;">
                                 Intituciones</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo $usuarios; ?>
+                                <?php echo $instituciones; ?>
                             </div>
                         </div>
                         <div class="col-auto">
