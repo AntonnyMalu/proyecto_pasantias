@@ -216,7 +216,7 @@ if(empty($almacen)){
     $almacen_nombre = "";
     $almacen_cargo = "Jefe de Almacen";
 }else{
-    $alamacen_nombre = $almacen['nombre'];
+    $almacen_nombre = $almacen['nombre'];
     $almacen_cargo = $almacen['cargo'];
 }
 
