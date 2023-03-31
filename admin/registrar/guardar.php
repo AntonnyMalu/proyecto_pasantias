@@ -5,6 +5,29 @@ require "../seguridad.php";
 require "../../mysql/Query.php";
 require "../flash_message.php";
 
+function existePersona($cedula, $id){
+    $row = null;
+    $query = new Query();
+    
+    if($id == -1){
+        $mensaje = 1;
+        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1'";
+    }else{
+        $mensaje = 2;
+        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1' AND `id` != '$id'";
+    }
+    $exite = $query->getFirst($sql1);
+
+    if($exite){
+        $array = array(true, $mensaje);  
+    }else{
+        $array = array(false, $mensaje);
+    }
+    return $array;
+
+}
+
+
 function persona($id, $cedula, $nombre, $telefono, $direccion){
     $row = null;
     $query = new Query();
@@ -12,18 +35,31 @@ function persona($id, $cedula, $nombre, $telefono, $direccion){
 
     if($id == -1){ 
         //nuevo
-         $sql = "INSERT INTO`personas` (`cedula`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$cedula', '$nombre', '$telefono', '$direccion', '$hoy');";
-        $row = $query->save($sql);
-        $sql2 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula'; ";
-        $row = $query->getFirst($sql2);
-        return $row['id'];
+        $existe = existePersona($cedula, $id);
+        if(!$existe[0]){
+            $sql = "INSERT INTO`personas` (`cedula`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$cedula', '$nombre', '$telefono', '$direccion', '$hoy');";
+            $row = $query->save($sql);
+            $sql2 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula'; ";
+            $row = $query->getFirst($sql2);
+            $array = array(true, $row['id']);
+        }else{
+            $array = array(false, $existe[1]);
         
-    
+        }
+    return $array;
+
     }else{
         //editar
-        $sql = "UPDATE `personas` SET `cedula`='$cedula', `nombre`='$nombre', `telefono`='$telefono', `direccion`='$direccion', `updated_at`='$hoy' WHERE `id`=$id;";
-        $row = $query->save($sql);
-        return $id;
+        $existe = existePersona($cedula, $id);
+        if(!$existe[0]){
+            $sql = "UPDATE `personas` SET `cedula`='$cedula', `nombre`='$nombre', `telefono`='$telefono', `direccion`='$direccion', `updated_at`='$hoy' WHERE `id`=$id;";
+            $row = $query->save($sql);
+            $array = array(true, $id);   
+        }else{
+            $array = array(false, $existe[1]);
+        }
+        return $array;
+    
     }
 }
 
@@ -35,10 +71,16 @@ function crearCaso($personas_id,$persona_cedula, $persona_nombre,  $persona_tele
     $hoy = date("Y-m-d");
     $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
 
-    $sql = "INSERT INTO `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `observacion`, `created_at`) 
-        VALUES ('$persona', '$fecha', '$hora', '$donativo', '$tipo', '$observacion', '$hoy');";
+    if($persona[0]){
+        $sql = "INSERT INTO `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `observacion`, `created_at`) 
+        VALUES ('$persona[1]', '$fecha', '$hora', '$donativo', '$tipo', '$observacion', '$hoy');";
         $row = $query->save($sql);
-        return $row;
+        $array = array(true, $row);
+    }else{
+        $array = array(false, $persona[1]);
+    }
+    return $array;
+   
 
 }
 
@@ -49,10 +91,15 @@ function editarCaso($id, $personas_id, $persona_cedula, $persona_nombre,  $perso
     $hoy = date("Y-m-d");
     $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
 
+    if($persona[0]){
     $sql = "UPDATE `casos` SET `personas_id`='$persona', `fecha`='$fecha', `hora`='$hora', `donativo`='$donativo', 
     `tipo`='$tipo', `observacion`='$observacion', `updated_at`='$hoy' WHERE  `id`='$id';";
         $row = $query->save($sql);
-        return $row;
+        $array = array(true, $row);
+    }else{
+        $array = array(false, $persona[1]);
+    }
+    return $array;
 
 }
 
@@ -79,8 +126,8 @@ if ($_POST) {
         
             $caso = crearCaso($personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion);
 
-            if ($caso) {
-
+            if ($caso[0]) {
+                
                 $alert = "success";
                 $message = "Caso Social Registrado Exitosamente";
                 crearFlashMessage($alert,$message, '../casos/');
@@ -88,8 +135,13 @@ if ($_POST) {
 
             } else {
                 $alert = "warning";
-                $message = "Caso ya Reguistrado";
-                crearFlashMessage($alert, $message, '../casos/');
+                if($caso[1] == 1){
+                    $message = "El campo <strong>Cédula</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
+                }else{
+                    $message = "La Cédula ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
+                }
+                
+                crearFlashMessage($alert, $message, '../registrar/');
             }
 
 
@@ -126,7 +178,7 @@ if ($_POST) {
         
             $caso = editarCaso($id, $personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion);
 
-            if ($caso) {
+            if ($caso[0]) {
 
                 $alert = "success";
                 $message = "Registro Editado Exitosamente";
@@ -135,8 +187,12 @@ if ($_POST) {
 
             } else {
                 $alert = "warning";
-                $message = "Error";
-                crearFlashMessage($alert, $message, '../casos/');
+                if($caso[1] == 1){
+                    $message = "El campo <strong>Cédula</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
+                }else{
+                    $message = "La Cédula ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
+                }
+                crearFlashMessage($alert, $message, '../registrar/index.php?id='.$id);
             }
 
 
