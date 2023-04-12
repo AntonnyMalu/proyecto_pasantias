@@ -1,7 +1,7 @@
 <?php
 // start a session
 session_start();
-require "../mysql/Query.php";
+require "../../mysql/Query.php";
 $condicion = false;
 $message = null;
 $alert = "warning";
@@ -48,7 +48,7 @@ if (isset($_SESSION['email'])) {
         $resultado = getLogin($email, $pass);
 
         if($resultado == "redireccionar"){
-            header('location: ../admin');
+            header('location: ../');
         }
 
         if($resultado == "error_password"){
@@ -82,43 +82,15 @@ if (isset($_SESSION['email'])) {
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
-
-    <title>Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="../plantilla/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="../plantilla/css/sb-admin-2.css" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="../admin/favicon/favicon-32x32.png">
-
+<title>Login</title>
+<?php require "../_layout/cargar_css.php"; ?>
 </head>
 
-<body style="background: url('../img/free-background-green-yellow-1639359.jpg')">
+<body style="background: url('../../img/free-background-green-yellow-1639359.jpg')">
 
     <?php require 'container.php'; ?>
 
-
-    <!-- Bootstrap core JavaScript-->
-    <!-- Bootstrap core JavaScript-->
-    <script src="../plantilla/vendor/jquery/jquery.min.js"></script>
-    <script src="../plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../plantilla/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../plantilla/js/sb-admin-2.min.js"></script>
-
+    <?php require "../_layout/cargar_js.php"; ?>
 </body>
 
 </html>
