@@ -17,7 +17,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">¡Bienvenido!</h1>
                                     </div>
-                                    <form  method="POST" class="user">
+                                    <form  method="POST" class="user" action="login.php">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
@@ -33,17 +33,9 @@
                                         <div class="form-group mt-3">
                                           
 
-                                            <?php if($condicion){ ?>
-
-
-                                                <div class="alert alert-<?php echo $alert; ?> alert-dismissible fade show" role="alert">
-                                                <strong><?php echo $message ?></strong>
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                </div>
-
-                                            <?php } ?>
+                                        <?php
+                                            display_flash_message();
+                                        ?>
 
 
                                                 
