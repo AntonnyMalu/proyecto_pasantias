@@ -1,5 +1,5 @@
 <ul class="navbar-nav sidebar sidebar-dark accordion <?php if($modulo != "usuarios" && $modulo != "firmantes"){ echo "toggled"; } ?>" id="accordionSidebar" style="background: rgba(14,87,17,25);
- background: linear-gradient(to top, #780206, #061161);">
+background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%);">
 
             <!-- Sidebar - Brand -->
                 <?php
