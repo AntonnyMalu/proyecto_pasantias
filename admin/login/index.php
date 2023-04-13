@@ -1,7 +1,7 @@
 <?php 
 // start a session
 session_start();
-require "../flash_message.php";
+require "../_layout/flash_message.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">

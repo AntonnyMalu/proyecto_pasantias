@@ -3,7 +3,7 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
-require "../flash_message.php";
+require "../_layout/flash_message.php";
 
 function existePersona($cedula, $id){
     $row = null;
@@ -92,7 +92,7 @@ function editarCaso($id, $personas_id, $persona_cedula, $persona_nombre,  $perso
     $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
 
     if($persona[0]){
-    $sql = "UPDATE `casos` SET `personas_id`='$persona', `fecha`='$fecha', `hora`='$hora', `donativo`='$donativo', 
+    $sql = "UPDATE `casos` SET `personas_id`='$persona[1]', `fecha`='$fecha', `hora`='$hora', `donativo`='$donativo', 
     `tipo`='$tipo', `observacion`='$observacion', `updated_at`='$hoy' WHERE  `id`='$id';";
         $row = $query->save($sql);
         $array = array(true, $row);

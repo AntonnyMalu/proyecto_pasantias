@@ -3,7 +3,7 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
-require "../flash_message.php";
+require "../_layout/flash_message.php";
 
 //USUARIOS NUEVOS
 function crearUsuario($name, $email, $password, $role)

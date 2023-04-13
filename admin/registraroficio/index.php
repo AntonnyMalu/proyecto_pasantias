@@ -1,6 +1,6 @@
 <?php
 require "funciones.php";
-require "../flash_message.php";
+require "../_layout/flash_message.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -30,10 +30,6 @@ require "../flash_message.php";
     <!-- Select2 -->
     <link rel="stylesheet" href="../../plantilla/vendor/select2/css/select2.min.css">
     <link rel="stylesheet" href="../../plantilla/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
-    <!-- summernote -->
-    <!--<link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.min.css">-->
-    <link rel="stylesheet" href="../../plantilla/vendor/summernote/summernote-bs4.min.css">
 
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
 
@@ -94,34 +90,7 @@ background: linear-gradient(0deg, rgba(220,227,208,1) 29%, rgba(247,247,247,1) 9
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../../plantilla/vendor/jquery/jquery.min.js"></script>
-    <script src="../../plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../../plantilla/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../../plantilla/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../../plantilla/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../../plantilla/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../../plantilla/js/demo/datatables-demo.js"></script>
-
-    <!-- Select2 -->
-    <!--<script src="../../plugins/select2/js/select2.full.min.js"></script>-->
-    <script src="../../plantilla/vendor/select2/js/select2.full.min.js"></script>
-
-
-    <!-- Summernote -->
-    <!--<script src="../../plugins/summernote/summernote-bs4.min.js"></script>-->
-    <script src="../../plantilla/vendor/summernote/summernote-bs4.min.js"></script>
-    <!-- include summernote-ko-KR -->
-    <!--<script src="lang/summernote-ko-KR.js"></script>-->
-    <script src="../../plantilla/vendor/summernote/lang/summernote-es-ES.min.js"></script>
+    <?php require ('../_layout/cargar_js.php') ?>
     <script src="app.js"></script>
 
   

@@ -3,7 +3,7 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
-require "../flash_message.php";
+require "../_layout/flash_message.php";
 $alert = null;
 $message = null;
 
@@ -15,7 +15,7 @@ function existeFirmante($cargo, $id=null){
     if(!$id){
         $sql1 = "SELECT * FROM `firmantes` WHERE `cargo` = '$cargo' AND `band` = '1'";
     }else{
-        $sql1 = "SELECT * FROM `firmantes` WHERE `cargos` = '$cargo' AND `band` = '1' AND `id` != '$id'";
+        $sql1 = "SELECT * FROM `firmantes` WHERE `cargo` = '$cargo' AND `band` = '1' AND `id` != '$id'";
     }
     $exite = $query->getFirst($sql1);
 

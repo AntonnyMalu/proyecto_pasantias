@@ -2,7 +2,7 @@
 // start a session
 session_start();
 require "../../mysql/Query.php";
-require "../flash_message.php";
+require "../_layout/flash_message.php";
 $condicion = false;
 $message = null;
 $alert = "warning";

@@ -14,11 +14,21 @@
 
 <!-- Page level custom scripts -->
 <script src="../../plantilla/js/demo/datatables-demo.js"></script>
-
+<script src="../../plantilla/vendor/select2/js/select2.full.min.js"></script>
 <!-- Sweetalert2 -->
 <script src="../../plantilla/js/sweetalert2.all.min.js"></script>
 <script src="app.js" type="text/javascript"></script>
 
+   <!-- Select2 -->
+    <!--<script src="../../plugins/select2/js/select2.full.min.js"></script>-->
+    <script src="../../plantilla/vendor/select2/js/select2.full.min.js"></script>
+
+ <!-- Summernote -->
+    <!--<script src="../../plugins/summernote/summernote-bs4.min.js"></script>-->
+    <script src="../../plantilla/vendor/summernote/summernote-bs4.min.js"></script>
+    <!-- include summernote-ko-KR -->
+    <!--<script src="lang/summernote-ko-KR.js"></script>-->
+    <script src="../../plantilla/vendor/summernote/lang/summernote-es-ES.min.js"></script>
 <script>
     console.log("Hi!");
 </script>
