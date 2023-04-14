@@ -16,7 +16,7 @@ require "../_layout/flash_message.php";
     <div id="wrapper">
 
         <!-- Sidebar -->
-            <?php require('../sidebar.php'); ?>
+            <?php require('../_layout/sidebar.php'); ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -27,7 +27,7 @@ require "../_layout/flash_message.php";
             <div id="content">
 
                 <!-- Topbar -->
-                <?php require('../topbar.php'); ?>
+                <?php require('../_layout/topbar.php'); ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -41,7 +41,7 @@ require "../_layout/flash_message.php";
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php require('../footer.php'); ?>
+            <?php require('../_layout/footer.php'); ?>
             <!-- End of Footer -->
 
         </div>
