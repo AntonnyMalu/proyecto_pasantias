@@ -34,5 +34,11 @@ class Query{
        return $statement;
     }
 
+    public function cerosIzquierda($numero, $cant_ceros)
+    {
+        $numeroConCeros = str_pad($numero, $cant_ceros, "0", STR_PAD_LEFT);
+        return $numeroConCeros;
+    }
+
 
 }

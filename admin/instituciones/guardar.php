@@ -48,6 +48,20 @@ function eliminarInstitucion($id)
 
 }
 
+function ritTemporal()
+{
+    $rows = null;
+    $query = new Query();
+    $sql = "SELECT * FROM `instituciones` WHERE `rif` LIKE '%TEMP-%' AND `band` = '1'";
+    $rows = $query->getAll($sql);
+    $i = 1;
+    foreach($rows as $row){
+        $i++;
+    }
+    $numero = $query->cerosIzquierda($i, 3);
+    $rif_temporal = "TEMP-" . $numero;
+    return $rif_temporal;
+}
 
 function crearInstitucion( $rif, $nombre, $telefono, $direccion)
 {
@@ -85,12 +99,17 @@ if ($_POST) {
 
     if ($_POST['opcion'] == "guardar") {
 
-        if (!empty($_POST['rif']) && !empty($_POST['nombre']) && !empty($_POST['direccion'])) {
+        if (!empty($_POST['nombre']) && !empty($_POST['direccion'])) {
 
             $rif = $_POST['rif'];
             $nombre = $_POST['nombre'];
             $direccion = $_POST['direccion'];
             $telefono = $_POST['telefono'];
+
+            if(empty($rif))
+            {
+                $rif = ritTemporal();
+            }
 
             $institucion = crearInstitucion($rif, $nombre, $telefono, $direccion);
 
@@ -110,7 +129,7 @@ if ($_POST) {
 
         } else {
             $alert = "danger";
-            $message = "faltan datos";
+            $message = "Faltan Datos *************************";
             crearFlashMessage($alert,$message, '../instituciones/');
         }
 
@@ -146,7 +165,7 @@ if ($_POST) {
 
         } else {
             $alert = "danger";
-            $message = "faltan datos";
+            $message = "Faltan Datos";
             crearFlashMessage($alert, $message, '../instituciones/');
         }
 
