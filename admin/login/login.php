@@ -27,6 +27,7 @@ if (isset($_SESSION['email'])) {
             $_SESSION['name'] = $row['name'];
             $_SESSION['role'] = $row['role'];
             $_SESSION['band'] = $row['band'];
+            $_SESSION['id'] = $row['id'];
             return "redireccionar";
         }else{
             return "error_password";

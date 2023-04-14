@@ -14,7 +14,7 @@
                                             <th>Email</th>
                                             <th>Tipo</th>
                                             <th>created_at</th>
-                                            <th style="width: 20%;"></th>
+                                            <th style="width: 25%;"></th>
                                         </tr>
                                     </thead>
                                     
@@ -33,12 +33,19 @@
                                             </td>
                                             <td>
                                                 <?php 
-                                                if($usuario['role']){
+                                                if($usuario['role'] == 100){
+                                                    echo "Root";
+                                                }
+                                                if($usuario['role'] == 99){
                                                     echo "Administrador";
-                                                }else{
+                                                }
+                                                if($usuario['role'] == 1){
                                                     echo "Atención al Ciudadano";
                                                 }
-                                                
+                                                if($usuario['role'] == 2){
+                                                    echo "Recursos Humanos";
+                                                }
+      
                                                 ?>
                                             </td>
                                             <td>
@@ -49,12 +56,12 @@
                                             </td>
                                             <td class="text-center">
 
-                                                <button type="button" class="btn btn-warning btn-circle btn-sm <?php if ($usuario['role'] != 100){ echo "edit-usu"; } ?>"
+                                                <button type="button" class="btn btn-warning btn-circle btn-sm <?php if ($usuario['role'] != 100 && $usuario['id'] != $_SESSION['id']){ echo "edit-usu"; }else{ echo "disabled";}  ?>"
                                                 data-name="<?php echo $usuario['name']; ?>" data-email="<?php echo $usuario['email']; ?>" 
                                                 data-role="<?php echo $usuario['role']; ?>" data-id="<?php echo $usuario['id']; ?>" >
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-circle btn-sm <?php if ($usuario['role'] != 100){ echo "elim-usu"; } ?>"
+                                                <button type="button" class="btn btn-danger btn-circle btn-sm <?php if ($usuario['role'] != 100 && $usuario['id'] != $_SESSION['id']){ echo "elim-usu"; }else{ echo "disabled";} ?>"
                                                         data-id="<?php echo $usuario['id']; ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>

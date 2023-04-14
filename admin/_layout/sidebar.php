@@ -1,4 +1,4 @@
-<ul class="navbar-nav sidebar sidebar-dark accordion <?php if($modulo != "usuarios" && $modulo != "firmantes"){ echo "toggled"; } ?>" id="accordionSidebar" style="background: rgba(14,87,17,25);
+<ul class="navbar-nav sidebar sidebar-dark accordion <?php if($modulo == "dashboard"){ echo "toggled"; } ?>" id="accordionSidebar" style="background: rgba(14,87,17,25);
 background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%);">
 
             <!-- Sidebar - Brand -->
@@ -27,44 +27,62 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
                     <span>Dashboard</span></a>
             </li>
 
-             <!-- Nav Item - Agendas -->
-             <li class="nav-item <?php if($modulo == "casos" || $modulo== "despacho") { echo "active"; } ?>">
-                <a class="nav-link" href="<?php if($modulo == "dashboard") { echo "casos"; }else{ echo "../casos"; } ?>">
-                    <i class="fas fa-users"></i>
-                    <span>Casos Sociales</span></a>
+            
+
+           
+
+            <?php if($_SESSION['role'] == 1 || $_SESSION['role'] > 98 ) {  ?>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Recepción
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link <?php if($modulo != "usuarios"){ echo "collapsed active"; } ?>" href="#" data-toggle="collapse" data-target="#collapseAtencion"
+                    aria-expanded="true" aria-controls="collapseAtencion">
+                    <i class="fas fa-fw fa-user-friends"></i>
+                    <span>Atención al Ciudadano</span>
+                </a>
+                <div id="collapseAtencion" class="collapse <?php if($modulo == "casos" || $modulo == "oficios" || $modulo == "personas" || $modulo == "instituciones" || $modulo == "miembros"){ echo "show"; } ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Registros:</h6>
+
+                        <a class="collapse-item <?php if($modulo == "casos") { echo "active"; } ?>" href="<?php if($modulo == "dashboard") { echo "casos"; }else{ echo "../casos"; } ?>">
+                            <i class="fas fa-user-friends"></i>
+                            Casos Sociales
+                        </a>
+                
+                        <a class="collapse-item <?php if($modulo == "oficios") { echo "active"; } ?>" href="<?php if($modulo == "dashboard") { echo "oficios"; }else{ echo "../oficios"; } ?>">
+                            <i class="fas fa-clipboard-list"></i>
+                            Oficios
+                        </a>
+
+                        <a class="collapse-item <?php if($modulo == "personas") { echo "active"; } ?>" href="<?php if($modulo == "dashboard") { echo "personas"; }else{ echo "../personas"; } ?>">
+                            <i class="fas fa-user-alt"></i>
+                            Personas
+                        </a>
+
+                        <a class="collapse-item <?php if($modulo == "instituciones") { echo "active"; } ?>" href="<?php if($modulo == "dashboard") { echo "instituciones"; }else{ echo "../instituciones"; } ?>">
+                            <i class="fas fa-university"></i>
+                            Intituciones
+                        </a>
+                        
+                    </div>
+                </div>
             </li>
 
-    
-
-            <!-- Nav Item - Resoluciones -->
-            <li class="nav-item <?php if($modulo == "oficios") { echo "active"; } ?>">
-                <a class="nav-link" href="<?php if($modulo == "dashboard") { echo "oficios"; }else{ echo "../oficios"; } ?>">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span>Oficios</span></a>
-            </li>
-
-            <!-- Nav Item - Resoluciones -->
-            <li class="nav-item <?php if($modulo == "personas") { echo "active"; } ?>">
-                <a class="nav-link" href="<?php if($modulo == "dashboard") { echo "personas"; }else{ echo "../personas"; } ?>">
-                    <i class="fas fa-user-alt"></i>
-                    <span>Personas</span></a>
-            </li>
-
-            <li class="nav-item <?php if($modulo == "instituciones") { echo "active"; } ?>">
-                <a class="nav-link" href="<?php if($modulo == "dashboard") { echo "instituciones"; }else{ echo "../instituciones"; } ?>">
-                    <i class="fas fa-university"></i>
-                    <span>Intituciones</span></a>
-            </li>
-
-
+        
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+            <?php } ?>
 
-            <?php if($_SESSION['role'] > 0) {  ?>
+
+            <?php if($_SESSION['role'] > 98 ) {  ?>
             <!-- Heading -->
             <div class="sidebar-heading">
-                ADMIN
+                Admin
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -86,10 +104,13 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
                             <i class="fas fa-pen-fancy"></i>
                             Firmantes
                         </a>
-                        <a  class="collapse-item" target="blank" href="<?php if($modulo == "dashboard") { echo "../mysql/myphp-backup.php"; }else{ echo "../../mysql/myphp-backup.php"; } ?>">
-                        <i class="fas fa-database"></i>
-                            Descargar SQL
-                        </a>
+                        <?php if($_SESSION['role'] == 100 ) {  ?>
+                            <h6 class="collapse-header">Backup:</h6>
+                            <a  class="collapse-item" target="blank" href="<?php if($modulo == "dashboard") { echo "../mysql/myphp-backup.php"; }else{ echo "../../mysql/myphp-backup.php"; } ?>">
+                            <i class="fas fa-database"></i>
+                                Descargar SQL
+                            </a>
+                        <?php } ?>
                     </div>
                 </div>
             </li>

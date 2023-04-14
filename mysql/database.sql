@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `casos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.casos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.casos: ~2 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.firmantes
 CREATE TABLE IF NOT EXISTS `firmantes` (
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `firmantes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.firmantes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.firmantes: ~4 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.instituciones
 CREATE TABLE IF NOT EXISTS `instituciones` (
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `oficios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.oficios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.oficios: ~4 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.personas
 CREATE TABLE IF NOT EXISTS `personas` (
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.personas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.personas: ~5 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.productos
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -117,14 +117,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 -- Volcando datos para la tabla atencion.users: ~4 rows (aproximadamente)
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created_at`, `updated_at`) VALUES
 	(1, 'leothan522@gmail.com', '$2y$10$Vuukyxuv6haC.nQhAWK3oeGLwAq8POECeyx0eQOAO3JpVuw97pFHm', 'Yonathan Castillo', 100, 1, '2023-01-22', '2023-01-22'),
-	(2, 'gabrielmalu15@gmail.com', '$2y$10$AOYgEPj4Zt3sTXCIaSU1LO7B5ljKYpInm9.uVVujZSvFJMhGWBGCa', ' Antonny Maluenga', 100, 1, '2023-01-22', '2023-01-22'),
-	(4, 'karleidysalazar@gmail.com', '$2y$10$9Qse5RDa4LaTNQub/COk3eI2LX7pgxzfRvFtQMWLbQyrTprnmSek2', 'Karleidy Salazar', 100, 1, '2023-03-31', '2023-03-31'),
-	(5, 'milexitorrealba536@gmail.com', '$2y$10$kOKftSQUdcGWHFwjou.t1OjHBx1l10SjME65dbKnQlyE.p.2xhDBK', 'Milexi Torrealba', 100, 1, '2023-03-31', '2023-03-31');
+	(2, 'gabrielmalu15@gmail.com', '$2y$10$tNST6nHuXNdeT/v3j/WCPeJvaBPGBgdRgNUCHk2QFJ7vJ79hv6PPi', ' Antonny Maluenga', 100, 1, '2023-01-22', '2023-04-14'),
+	(3, 'milexitorrealba536@gmail.com', '$2y$10$kOKftSQUdcGWHFwjou.t1OjHBx1l10SjME65dbKnQlyE.p.2xhDBK', 'Milexi Torrealba', 2, 1, '2023-03-31', '2023-03-31'),
+	(4, 'karleidysalazar@gmail.com', '$2y$10$9Qse5RDa4LaTNQub/COk3eI2LX7pgxzfRvFtQMWLbQyrTprnmSek2', 'Karleidy Salazar', 2, 1, '2023-03-31', '2023-03-31');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
