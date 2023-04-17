@@ -66,7 +66,7 @@
             <div class="row mt-3">
                 
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" name="institucion_rif" placeholder="Rif" value="<?php echo strtoupper($rif); ?>"  id="input_insti_rif" required>
+                    <input type="text" class="form-control" name="institucion_rif" placeholder="Rif" value="<?php echo strtoupper($rif); ?>"  id="input_insti_rif">
                 </div>
                 <div class="col-lg-3">
                     <input type="text" class="form-control" name="institucion_nombre" placeholder="Nombre" value="<?php echo strtoupper($nombre); ?>" id="input_insti_nombre" required>

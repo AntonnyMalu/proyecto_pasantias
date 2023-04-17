@@ -157,6 +157,21 @@ function instituciones($id,$rif, $nombre, $telefono, $direccion){
     }
 }
 
+function ritTemporal()
+{
+    $rows = null;
+    $query = new Query();
+    $sql = "SELECT * FROM `instituciones` WHERE `rif` LIKE '%TEMP-%' AND `band` = '1'";
+    $rows = $query->getAll($sql);
+    $i = 1;
+    foreach($rows as $row){
+        $i++;
+    }
+    $numero = $query->cerosIzquierda($i, 3);
+    $rif_temporal = "TEMP-" . $numero;
+    return $rif_temporal;
+}
+
 function crearOficio($instituciones_id, $personas_id, $persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion, 
                         $institucion_rif,$institucion_nombre,$institucion_telefono,$institucion_direccion,$fecha, $requerimientos)
 {
@@ -246,6 +261,11 @@ if ($_POST) {
             $institucion_nombre = $_POST['institucion_nombre'];
             $institucion_telefono = $_POST['institucion_telefono'];
             $institucion_direccion = $_POST['institucion_direccion'];
+
+            if(empty($institucion_rif))
+            {
+                $institucion_rif = ritTemporal();
+            }
 
             $oficio = crearOficio($instituciones_id, $personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  
             $persona_direccion,$institucion_rif,$institucion_nombre,$institucion_telefono,$institucion_direccion, $fecha, $requerimientos);

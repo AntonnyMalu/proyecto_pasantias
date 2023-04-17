@@ -129,7 +129,7 @@ if ($_POST) {
 
         } else {
             $alert = "danger";
-            $message = "Faltan Datos *************************";
+            $message = "Faltan Datos";
             crearFlashMessage($alert,$message, '../instituciones/');
         }
 
