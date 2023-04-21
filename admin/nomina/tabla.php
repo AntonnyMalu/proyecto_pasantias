@@ -1,7 +1,7 @@
  <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Usuarios Registrados</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Trabajadores Registrados</h6>
                         </div>
                         <div class="card-body">
                             
@@ -10,11 +10,11 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead  class="thead-dark">
                                         <tr>
-                                            <th>#</th>
-                                            <th>Cédula</th>
-                                            <th>Nombre y Apellido</th>
-                                            <th>Cargo</th>
-                                            <th>Ubicación Administrativa</th>
+                                            <th style="width: 5%;" class="text-center">#</th>
+                                            <th class="text-center">Cédula</th>
+                                            <th class="text-center">Nombre Completo</th>
+                                            <th class="text-center">Cargo</th>
+                                            <th class="text-center">Ubicación</th>
                                             <th style="width: 15%;"></th>
                                         </tr>
                                     </thead>
@@ -30,20 +30,20 @@
                                         ?>
 
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 <?php echo $i++; ?>
                                             </td>
                                             <td class="text-right">
-                                                <?php echo $nomina['cedula']; ?>
+                                                <span class="text-small"><?php echo $nomina['cedula']; ?></span>
                                             </td>
                                             <td>
-                                                <?php echo $nomina['nombre']; ?>
+                                                <span class="text-small"><?php echo $nomina['nombre']; ?></span>
                                             </td>
                                             <td>
-                                               <?php echo $nomina['cargo']; ?>
+                                               <span class="text-small"><?php echo $nomina['cargo']; ?></span>
                                             </td>
                                             <td class="text-center">
-                                                <?php echo $nomina['ubicacion_administrativa'] ?>
+                                                <span class="text-small"><?php echo $nomina['ubicacion_administrativa'] ?></span>
                                             </td>
                                             <td class="text-center">
 
