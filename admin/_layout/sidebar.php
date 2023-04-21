@@ -78,6 +78,38 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
 
             <?php } ?>
 
+            <?php if($_SESSION['role'] > 98 ) {  ?>
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                RRHH
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link <?php if($modulo != "usuarios"){ echo "collapsed active"; } ?>" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Recursos Humanos</span>
+                </a>
+                <div id="collapseTwo" class="collapse <?php if($modulo == "usuarios" || $modulo == "firmantes" || $modulo == "sellos" || $modulo == "redactar" || $modulo == "miembros"){ echo "show"; } ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Carnetización:</h6>
+                        <a class="collapse-item <?php if($modulo == "nomina") { echo "active"; } ?>" href="<?php if($modulo == "dashboard") { echo "nomina"; }else{ echo "../nomina"; } ?>">
+                            <i class="fas fa-clipboard-list"></i>
+                            Nómina
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+        
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <?php } ?>
+
+            
+
 
             <?php if($_SESSION['role'] > 98 ) {  ?>
             <!-- Heading -->
