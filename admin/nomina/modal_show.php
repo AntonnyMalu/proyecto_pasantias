@@ -9,7 +9,9 @@
         </button>
       </div>
       <div class="modal-body">
-        
+      <div class="text-center">
+        <img src="../../img/149071.png" class="rounded w-50">
+      </div>
 
 
 

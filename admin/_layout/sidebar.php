@@ -78,7 +78,7 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
 
             <?php } ?>
 
-            <?php if($_SESSION['role'] > 98 ) {  ?>
+            <?php if($_SESSION['role'] == 2 || $_SESSION['role'] > 98) {  ?>
             <!-- Heading -->
             <div class="sidebar-heading">
                 RRHH

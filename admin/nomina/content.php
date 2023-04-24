@@ -7,8 +7,14 @@
             <i class=" fa-sm text-white-50"></i>
             Registrar Trabajador
     </button>
+
+    <a href="descargar_excel.php" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm evento">
+            <i class=" fa-sm text-white-50"></i>
+            Descargar Excel
+        </a>
     </div>
     </div>
+    
 
 
     
