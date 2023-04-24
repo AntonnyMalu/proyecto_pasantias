@@ -19,6 +19,16 @@
 CREATE DATABASE IF NOT EXISTS `atencion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `atencion`;
 
+-- Volcando estructura para tabla atencion.cargos
+CREATE TABLE IF NOT EXISTS `cargos` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `cargo` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `band` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.cargos: ~0 rows (aproximadamente)
+
 -- Volcando estructura para tabla atencion.casos
 CREATE TABLE IF NOT EXISTS `casos` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -63,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `instituciones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.instituciones: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.instituciones: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.nomina
 CREATE TABLE IF NOT EXISTS `nomina` (
@@ -366,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `oficios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.oficios: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.oficios: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.personas
 CREATE TABLE IF NOT EXISTS `personas` (

@@ -17,8 +17,8 @@
         </div>
 
         <div class="form-group">
-            <label>Nombre y Apellido</label>
-            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el Nombre y Apellido" id="input_nombre" required />
+            <label>Nombre Completo</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Ingrese el Nombre Completo" id="input_nombre" required />
         </div>
 
         <div class="form-group">

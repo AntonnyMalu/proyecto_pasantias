@@ -56,7 +56,7 @@ $(".edit-person").click(function(e){
 });
 
 //ELIMINAR USUARIO
-$(".elim-Person").click(function(e){
+$(".eliminar").click(function(e){
 
     e.preventDefault();
     //obtenemos los datos
@@ -120,4 +120,4 @@ $(".show-person").click(function(e){
 
 });
 
-console.log('personas-app.js');
+console.log('cargos-app.js');

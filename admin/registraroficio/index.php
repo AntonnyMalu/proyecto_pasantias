@@ -59,7 +59,7 @@ background: linear-gradient(0deg, rgba(220,227,208,1) 29%, rgba(247,247,247,1) 9
     </a>
 
     <?php require ('../_layout/cargar_js.php') ?>
-    <script src="app.js"></script>
+    
  
 </body>
 

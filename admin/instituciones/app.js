@@ -120,4 +120,4 @@ $(".show-inst").click(function(e){
 
 });
 
-console.log('hi!');
+console.log('instituciones-app.js');

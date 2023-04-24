@@ -89,4 +89,4 @@ $("#instituciones_id").change(function () {
 
 });
 
-console.log('hi!');
+console.log('registraroficio-app.js');

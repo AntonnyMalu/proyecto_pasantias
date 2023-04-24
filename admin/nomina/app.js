@@ -43,27 +43,31 @@ $(".elim-nomi").click(function(e){
 
 });
 
-$(".show").click(function(e){
+$(".show-nomina").click(function(e){
 
     e.preventDefault();
 
     //obtenemos los datos
     let id = this.dataset.id;
+    let nombre = this.dataset.nombre;
+    let geografica = this.dataset.geografica;
+    let administrativa = this.dataset.administrativa;
+    let estatus = this.dataset.estatus;
 
     //identificamos los input
-    /**let input_cedula = document.getElementById("modal_cedula");
-    let input_telefono = document.getElementById("modal_telefono");
-    let input_direccion = document.getElementById("modal_direccion");
-    let input_titulo = document.getElementById("modal_titulo");**/
+    let modal_nombre = document.getElementById("modal_nombre_trabajador");
+    let modal_administrativa = document.getElementById("modal_ubicacion_administrativa");
+    let modal_geografica = document.getElementById("modal_ubicacion_geografica");
+    let modal_estatus = document.getElementById("modal_estatus_carnet");
     
 
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
-    /**input_cedula.innerText = cedula;
-    input_telefono.innerText = telefono;
-    input_direccion.innerText = direccion;
-    input_titulo.innerText = nombre;*/
+    modal_nombre.innerText = nombre;
+    modal_administrativa.innerText = administrativa;
+    modal_geografica.innerText = geografica;
+    modal_estatus.innerText = estatus;
 
 });
 
-console.log('hi!');
+console.log('nomina-app.js');

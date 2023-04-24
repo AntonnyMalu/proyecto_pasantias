@@ -120,4 +120,4 @@ $(".cambiar-status").click(function(e){
 
 });
 
-console.log('hi!');
+console.log('oficios-app.js');

@@ -47,17 +47,25 @@
                                             </td>
                                             <td class="text-center">
 
-                                            
-                                            <button type="button" class="btn btn-primary btn-circle btn-sm"
-                                                 data-id="<?php echo $nomina['id']; ?>" data-toggle="modal" data-target="#modal_show">
+                                            <?php 
+                                                if(empty($nomina['carnet'])){
+                                                    $nomina['carnet'] = "SIN CARNET";
+                                                }
+                                            ?>
+                                            <button type="button" class="btn btn-primary btn-circle btn-sm show-nomina"
+                                                 data-id="<?php echo $nomina['id']; ?>" data-nombre="<?php echo $nomina['nombre'] ?>"
+                                                 data-geografica="<?php echo $nomina['ubicacion_geografica'] ?>" 
+                                                 data-estatus="<?php echo $nomina['carnet'] ?>"
+                                                 data-administrativa="<?php echo $nomina['ubicacion_administrativa'] ?>"
+                                                data-toggle="modal" data-target="#modal_show">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
-                                                <button type="button" class="btn btn-warning btn-circle btn-sm <?php if ($usuario['role'] != 100 && $usuario['id'] != $_SESSION['id']){ echo "edit-usu"; }else{ echo "disabled";}  ?>"
+                                                <!--<button type="button" class="btn btn-warning btn-circle btn-sm <?php if ($usuario['role'] != 100 && $usuario['id'] != $_SESSION['id']){ echo "edit-usu"; }else{ echo "disabled";}  ?>"
                                                 data-name="<?php echo $usuario['name']; ?>" data-email="<?php echo $usuario['email']; ?>" 
                                                 data-role="<?php echo $usuario['role']; ?>" data-id="<?php echo $usuario['id']; ?>" data-toggle="modal" data-target="#modal_form" >
                                                     <i class="fas fa-user-edit"></i>
-                                                </button>
+                                                </button>-->
                                                 <button type="button" class="btn btn-danger btn-circle btn-sm elim-nomi"
                                                         data-id="<?php echo $nomina['id']; ?>">
                                                     <i class="fas fa-trash-alt"></i>

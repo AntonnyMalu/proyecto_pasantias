@@ -86,17 +86,22 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link <?php if($modulo != "nomina"){ echo "collapsed active"; } ?>" href="#" data-toggle="collapse" data-target="#collapserecursos"
+                <a class="nav-link <?php if($modulo != "nomina" || $modulo != "cargos"){ echo "collapsed active"; } ?>" href="#" data-toggle="collapse" data-target="#collapserecursos"
                     aria-expanded="true" aria-controls="collapserecursos">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Recursos Humanos</span>
                 </a>
-                <div id="collapserecursos" class="collapse <?php if($modulo == "nomina"){ echo "show"; } ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapserecursos" class="collapse <?php if($modulo == "nomina" || $modulo == "cargos"){ echo "show"; } ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Carnetización:</h6>
                         <a class="collapse-item <?php if($modulo == "nomina") { echo "active"; } ?>" href="<?php if($modulo == "dashboard") { echo "nomina"; }else{ echo "../nomina"; } ?>">
                             <i class="fas fa-clipboard-list"></i>
                             Nómina
+                        </a>
+
+                        <a class="collapse-item <?php if($modulo == "cargos") { echo "active"; } ?>" href="<?php if($modulo == "dashboard") { echo "cargos"; }else{ echo "../cargos"; } ?>">
+                            <i class="fas fa-list"></i>
+                            Cargos
                         </a>
                     </div>
                 </div>

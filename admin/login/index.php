@@ -2,6 +2,7 @@
 // start a session
 session_start();
 require "../_layout/flash_message.php";
+$modulo = "login";
 ?>
 <!DOCTYPE html>
 <html lang="es">

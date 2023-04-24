@@ -17,7 +17,7 @@
 <script src="../../plantilla/vendor/select2/js/select2.full.min.js"></script>
 <!-- Sweetalert2 -->
 <script src="../../plantilla/js/sweetalert2.all.min.js"></script>
-<script src="app.js" type="text/javascript"></script>
+
 
    <!-- Select2 -->
     <!--<script src="../../plugins/select2/js/select2.full.min.js"></script>-->
@@ -30,8 +30,13 @@
     <!--<script src="lang/summernote-ko-KR.js"></script>-->
     <script src="../../plantilla/vendor/summernote/lang/summernote-es-ES.min.js"></script>
 <script>
-    console.log("Hi!");
+    console.log("cargar_js!");
 </script>
+<?php if($modulo != "dashboard" && $modulo != "login" ){ ?>
+    <script src="app.js"></script>
+ <?php } ?>
+
+
 
 
 

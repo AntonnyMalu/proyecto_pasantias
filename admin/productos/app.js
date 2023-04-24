@@ -114,4 +114,4 @@ $(".show-person").click(function(e){
 
 });
 
-console.log('hi!');
+console.log('productos-app.js');

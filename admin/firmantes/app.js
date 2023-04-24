@@ -70,4 +70,4 @@ $("#btn_cancelar").click(function(e){
     titulo.innerText = "Crear Usuario";
 });
 
-console.log('hi!');
+console.log('firmantes-app.js');

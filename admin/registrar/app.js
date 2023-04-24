@@ -43,4 +43,4 @@ $("#personas_id").change(function () {
 
 });
 
-console.log('hi!');
+console.log('registrar-app.js');

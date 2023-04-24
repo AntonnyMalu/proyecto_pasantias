@@ -130,4 +130,4 @@ $(".cambiar-status").click(function(e){
 
 });
 
-console.log('hi!');
+console.log('casos-app.js');
