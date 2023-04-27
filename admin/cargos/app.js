@@ -13,7 +13,7 @@ $(".evento").click(function(e){
     });
 });
 
-$(".edit-person").click(function(e){
+$(".edit-cargo").click(function(e){
 
     e.preventDefault();
 
@@ -27,31 +27,20 @@ $(".edit-person").click(function(e){
     });
 
     //obtenemos los datos
-    let cedula = this.dataset.cedula;
-    let nombre = this.dataset.nombre;
-    let telefono = this.dataset.telefono;
-    let direccion = this.dataset.direccion;
+    let cargo = this.dataset.cargo;
     let id = this.dataset.id;
 
     //identificamos los input
-    let input_cedula = document.getElementById("input_cedula");
-    let input_nombre = document.getElementById("input_nombre");
-    let input_telefono = document.getElementById("input_telefono");
-    let input_direccion = document.getElementById("input_direccion");
-    let input_opcion = document.getElementById("input_opcion");
-    let input_personas_id = document.getElementById("input_personas_id");
+    let input_cargo = document.getElementById("input_cargo");
     let titulo = document.getElementById("titulo_form");
 
 
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
-    input_cedula.value = cedula;
-    input_nombre.value = nombre;
-    input_telefono.value = telefono;
-    input_direccion.value = direccion;
-    input_personas_id.value = id;
+    input_cargo.value = cargo;
+    input_cargos_id.value = id;
     input_opcion.value = "editar";
-    titulo.innerText = "Editar Persona";
+    titulo.innerText = "Editar Cargo";
 
 });
 

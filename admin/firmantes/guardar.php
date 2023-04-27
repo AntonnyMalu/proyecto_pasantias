@@ -24,7 +24,7 @@ if ($_POST) {
                 crearFlashMessage($alert,$message, '../firmantes/');
             } else {
                 $alert = "warning";
-                $message = "No se puede reguistrar porque ya ese cargo esta siendo utilizado";
+                $message = "No se puede registrar porque ya ese cargo esta siendo utilizado";
                 crearFlashMessage($alert, $message, '../firmantes/');
             }
         } else {

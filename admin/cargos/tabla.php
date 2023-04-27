@@ -36,10 +36,9 @@
                                        
                                             <td class="text-center">
 
-                                            <button type="button" class="btn btn-warning btn-circle btn-sm edit-person"
-                                                data-cedula="<?php echo $persona['cedula']; ?>" data-nombre="<?php echo $persona['nombre']; ?>" 
-                                                data-telefono="<?php echo $persona['telefono']; ?>" data-direccion="<?php echo $persona['direccion']; ?>"
-                                                data-id="<?php echo $persona['id']; ?>" >
+                                            <button type="button" class="btn btn-warning btn-circle btn-sm edit-cargo"
+                                                data-cargo="<?php echo $cargo['cargo']; ?>"
+                                                data-id="<?php echo $cargo['id']; ?>" >
                                                     <i class="fas fa-edit"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-danger btn-circle btn-sm eliminar"

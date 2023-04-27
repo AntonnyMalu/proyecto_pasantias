@@ -68,7 +68,7 @@ class Cargo
         $sql1 = "SELECT * FROM `cargos` WHERE `id` = $id;";
         $cargos = $query->getFirst($sql1);
         if ($cargos) {
-            $sql = "UPDATE `cargos` SET `band`='0' WHERE  `id`=''$id;";
+            $sql = "UPDATE `cargos` SET `band`='0' WHERE  `id`='$id';";
             $row = $query->save($sql);
             return $row;
         }else {
