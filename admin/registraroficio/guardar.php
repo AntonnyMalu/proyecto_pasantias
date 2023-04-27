@@ -3,6 +3,9 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
+require "../../model/Persona.php";
+require "../../model/Institucion.php";
+require "../../model/Oficio.php";
 require "../_layout/flash_message.php";
 $modulo = "resoluciones";
 
@@ -40,85 +43,26 @@ function existeGlobal($cedula, $id_cedula, $rif, $id_rif)
         $array[2]  = true;
         $array[3] = $mensaje_rif;
     }
-
     return $array;
-
-}
-
-function existePersona($cedula, $id){
-    $row = null;
-    $query = new Query();
-    
-    if($id == -1){
-        $mensaje = 1;
-        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1'";
-    }else{
-        $mensaje = 2;
-        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1' AND `id` != '$id'";
-    }
-    $exite = $query->getFirst($sql1);
-
-    if($exite){
-        $array = array(true, $mensaje);  
-    }else{
-        $array = array(false, $mensaje);
-    }
-    return $array;
-
-}
-
-function existeInstitucion($rif, $id){
-    $row = null;
-    $query = new Query();
-    
-    if($id == -1){
-        $mensaje = 3;
-        $sql1 = "SELECT * FROM `instituciones` WHERE `rif` = '$rif' AND `band` = '1'";
-    }else{
-        $mensaje = 4;
-        $sql1 = "SELECT * FROM `instituciones` WHERE `rif` = '$rif' AND `band` = '1' AND `id` != '$id'";
-    }
-    $exite = $query->getFirst($sql1);
-
-    if($exite){
-        $array = array(true, $mensaje);
-    }else{
-        $array = array(false, $mensaje);
-    }
-    return $array;
-
 }
 
 function persona($id, $cedula, $nombre, $telefono, $direccion){
     $row = null;
     $query = new Query();
+    $persona = new Persona();
     $hoy = date("Y-m-d");
 
     if($id == -1){ 
         //nuevo
-        $existe = existePersona($cedula, $id);
-        if(!$existe[0]){
-            $sql = "INSERT INTO`personas` (`cedula`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$cedula', '$nombre', '$telefono', '$direccion', '$hoy');";
-            $row = $query->save($sql);
-            $sql2 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula'; ";
-            $row = $query->getFirst($sql2);
-            $array = array(true, $row['id']);
-        }else{
-            $array = array(false, $existe[1]);
-        
-        }
-    return $array;
-
+        $row = $persona->save($id, $cedula, $nombre, $telefono, $direccion);
+        $sql = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1'; ";
+        $row = $query->getFirst($sql);
+        $array = array(true, $row['id']);
+        return $array;
     }else{
         //editar
-        $existe = existePersona($cedula, $id);
-        if(!$existe[0]){
-            $sql = "UPDATE `personas` SET `cedula`='$cedula', `nombre`='$nombre', `telefono`='$telefono', `direccion`='$direccion', `updated_at`='$hoy' WHERE `id`=$id;";
-            $row = $query->save($sql);
-            $array = array(true, $id);   
-        }else{
-            $array = array(false, $existe[1]);
-        }
+        $row = $persona->update($id,$cedula, $nombre, $telefono, $direccion);
+        $array = array(true, $id);
         return $array;
     
     }
@@ -127,49 +71,23 @@ function persona($id, $cedula, $nombre, $telefono, $direccion){
 function instituciones($id,$rif, $nombre, $telefono, $direccion){
     $row = null;
     $query = new Query();
+    $institucion = new Institucion();
     $hoy = date("Y-m-d");
 
     if($id == -1){ 
         //nuevo
-        $existe = existeInstitucion($rif, $id);
-        if(!$existe[0]){
-            $sql = "INSERT INTO`instituciones` (`rif`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$rif', '$nombre', '$telefono', '$direccion', '$hoy');";
-            $row = $query->save($sql);
-            $sql2 = "SELECT * FROM `instituciones` WHERE `rif` = '$rif'; ";
-            $row = $query->getFirst($sql2);
-            $array = array(true, $row['id']);
-        }else{
-            $array = array(false, $existe[1]);
-        }
+        $row = $institucion->save($rif, $nombre, $telefono, $direccion);
+        $sql = "SELECT * FROM `instituciones` WHERE `rif` = '$rif'  AND `band` = '1';";
+        $row = $query->getFirst($sql);
+        $array = array(true, $row['id']);
         return $array;
     
     }else{
         //editar
-        $existe = existeInstitucion($rif, $id);
-        if(!$existe[0]){
-        $sql = "UPDATE `instituciones` SET `rif`='$rif', `nombre`='$nombre', `telefono`='$telefono', `direccion`='$direccion', `updated_at`='$hoy' WHERE `id`=$id;";
-        $row = $query->save($sql);
+        $row = $institucion->update($id, $rif, $nombre, $telefono, $direccion);
         $array = array(true, $id);
-        }else{
-            $array = array(false, $existe[1]);
-        }
         return $array;
     }
-}
-
-function ritTemporal()
-{
-    $rows = null;
-    $query = new Query();
-    $sql = "SELECT * FROM `instituciones` WHERE `rif` LIKE '%TEMP-%' AND `band` = '1'";
-    $rows = $query->getAll($sql);
-    $i = 1;
-    foreach($rows as $row){
-        $i++;
-    }
-    $numero = $query->cerosIzquierda($i, 3);
-    $rif_temporal = "TEMP-" . $numero;
-    return $rif_temporal;
 }
 
 function crearOficio($instituciones_id, $personas_id, $persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion, 
@@ -177,16 +95,14 @@ function crearOficio($instituciones_id, $personas_id, $persona_cedula, $persona_
 {
     $row = null;
     $query = new Query();
+    $oficio = new Oficio();
     $hoy = date("Y-m-d");
     $existe = existeGlobal($persona_cedula, $personas_id, $institucion_rif, $instituciones_id);
 
     if(!$existe[0] && !$existe[2]){
-    $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
-    $institucion = instituciones($instituciones_id,$institucion_rif, $institucion_nombre, $institucion_telefono, $institucion_direccion);
-
-    $sql = "INSERT INTO `oficios` (`instituciones_id`, `personas_id`, `fecha`, `requerimientos`) 
-    VALUES ('$institucion[1]', '$persona[1]', '$fecha', '$requerimientos');";
-        $row = $query->save($sql);
+        $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
+        $institucion = instituciones($instituciones_id,$institucion_rif, $institucion_nombre, $institucion_telefono, $institucion_direccion);
+        $row = $oficio->save($institucion[1], $persona[1], $fecha, $requerimientos);
         $array = array(true, $row, true, $row);
     }else{
 
@@ -210,6 +126,7 @@ function editarOficio($id, $instituciones_id, $personas_id,$persona_cedula, $per
 {
     $row = null;
     $query = new Query();
+    $oficio = new Oficio();
     $hoy = date("Y-m-d");
     $existe = existeGlobal($persona_cedula, $personas_id, $institucion_rif, $instituciones_id);
 
@@ -217,10 +134,7 @@ function editarOficio($id, $instituciones_id, $personas_id,$persona_cedula, $per
 
         $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
         $institucion = instituciones($instituciones_id,$institucion_rif, $institucion_nombre, $institucion_telefono, $institucion_direccion);
-        //echo $institucion[1];
-        //exit;
-        $sql = "UPDATE `oficios` SET `instituciones_id`='$institucion[1]', `personas_id`='$persona[1]', `fecha`='$fecha', `requerimientos`='$requerimientos' WHERE  `id`=$id;";
-        $row = $query->save($sql);
+        $row = $oficio->update($id, $institucion[1], $persona[1], $fecha, $requerimientos);
         $array = array(true, $row, true, $row);
 
     }else{
@@ -240,13 +154,10 @@ function editarOficio($id, $instituciones_id, $personas_id,$persona_cedula, $per
 
 }
 
-
-
-
-
 if ($_POST) {
+    $institucion = new Institucion();
     if ($_POST['opcion'] == "guardar") {
-
+        
         if(!empty($_POST['instituciones_id']) && !empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['requerimientos'])){
 
             $instituciones_id = $_POST['instituciones_id'];
@@ -264,7 +175,8 @@ if ($_POST) {
 
             if(empty($institucion_rif))
             {
-                $institucion_rif = ritTemporal();
+                //$institucion_rif = ritTemporal();
+                $institucion_rif = $institucion->ritTemporal();
             }
 
             $oficio = crearOficio($instituciones_id, $personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  
@@ -333,7 +245,11 @@ if ($_POST) {
                 $institucion_telefono = $_POST['institucion_telefono'];
                 $institucion_direccion = $_POST['institucion_direccion'];
 
-
+                if(empty($institucion_rif))
+                {
+                    //$institucion_rif = ritTemporal();
+                    $institucion_rif = $institucion->ritTemporal();
+                }
                 $oficio = editarOficio($id, $instituciones_id, $personas_id,$persona_cedula,  $persona_nombre,  $persona_telefono,  
                 $persona_direccion,$institucion_rif,$institucion_nombre,$institucion_telefono,$institucion_direccion, $fecha, $requerimientos);
                 

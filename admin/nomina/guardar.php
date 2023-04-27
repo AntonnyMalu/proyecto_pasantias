@@ -3,6 +3,7 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
+require "../../model/Nomina.php";
 require "../_layout/flash_message.php";
 
 function eliminarNomina($id)

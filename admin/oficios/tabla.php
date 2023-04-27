@@ -26,8 +26,19 @@
                                         $i=0;
                                             foreach($oficios as $oficio){
                                                 $i++;
-                                                $institucion = getInstituciones($oficio['instituciones_id']);
-                                                $persona = getPersona($oficio['personas_id']);
+                                                //$institucion = getInstituciones($oficio['instituciones_id']);
+                                                $insti = new Institucion();
+                                                $institucion = $insti->getFirst($oficio['instituciones_id']);
+                                                if(!$institucion){
+                                                    $institucion = [
+                                                        "rif" => 'NO DEFINIDO',
+                                                        "nombre" => 'NO DEFINIDO'
+                                                    ];
+                                                   
+                                                }
+                                                //$persona = getPersona($oficio['personas_id']);
+                                                $person = new Persona();
+                                                $persona = $person->getFirst($oficio['personas_id']);
                                         ?>
 
                                         <tr>

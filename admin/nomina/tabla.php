@@ -57,6 +57,7 @@
                                                  data-geografica="<?php echo $nomina['ubicacion_geografica'] ?>" 
                                                  data-estatus="<?php echo $nomina['carnet'] ?>"
                                                  data-administrativa="<?php echo $nomina['ubicacion_administrativa'] ?>"
+                                                 data-mini="<?php echo $nomina['mini'] ?>"
                                                 data-toggle="modal" data-target="#modal_show">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>

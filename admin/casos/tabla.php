@@ -26,7 +26,9 @@
                                         $i=0;
                                             foreach($casos as $caso){ 
                                                 $i++;
-                                                $persona = getPersona($caso['personas_id']);
+                                                //$persona = getPersona($caso['personas_id']);
+                                                $person = new Persona();
+                                                $persona = $person->getFirst($caso['personas_id']);
                                         ?>
 
                                         <tr>

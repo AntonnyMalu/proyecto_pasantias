@@ -2,102 +2,11 @@
 // start a session
 session_start();
 require "../seguridad.php";
-require "../../mysql/Query.php";
+require "../../model/User.php";
 require "../_layout/flash_message.php";
 
-//USUARIOS NUEVOS
-function crearUsuario($name, $email, $password, $role)
-{
-    $row = null;
-    $query = new Query();
-    $sql1 = "SELECT * FROM `users` WHERE `email` = '$email'";
-    $exite = $query->getFirst($sql1);
-
-    if ($exite) {
-
-        return false;
-
-    } else {
-
-        $hoy = date("Y-m-d");
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO `users` (`email`, `password`, `name`, `created_at`) VALUES ('$email', '$password_hash', '$name', '$hoy');";
-        $row = $query->save($sql);
-        return $row;
-
-    }
-
-
-}
-
-//EDITAR USUARIOS
-function editarUsuario($id, $name, $email, $password, $role)
-{
-    $row = null;
-    $query = new Query();
-    $sql1 = "SELECT * FROM `users` WHERE `id` = '$id'";
-    $usuario = $query->getFirst($sql1);
-
-    if ($usuario) {
-
-        $sql2 = "SELECT * FROM `users` WHERE `email` = '$email' AND `id` != '$id'";
-        $exite = $query->getFirst($sql2);
-
-        if ($exite){
-
-            return false;
-
-        }else{
-
-            $hoy = date("Y-m-d");
-            if (!empty($password)){
-                $password_hash = password_hash($password, PASSWORD_DEFAULT);
-                $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password_hash', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
-            }else{
-                $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
-            }
-            $row = $query->save($sql);
-            return $row;
-
-        }
-
-
-
-    } else {
-
-        return false;
-
-    }
-
-
-}
-
-
-//ELIMINAR USUARIOS
-function eliminarUsuario($id)
-{
-    $row = null;
-    $query = new Query();
-    $sql1 = "SELECT * FROM `users` WHERE `id` = '$id'";
-    $usuario = $query->getFirst($sql1);
-
-    if ($usuario) {
-
-        $hoy = date("Y-m-d");
-        $sql = "UPDATE `users` SET `band`='0', `updated_at`='$hoy' WHERE  `id`=$id;";
-        $row = $query->save($sql);
-        return $row;
-
-    } else {
-
-        return false;
-
-    }
-
-
-}
-
 if ($_POST) {
+    $user = new User();
     //GUARDAR NUEVO USUARIO
     if ($_POST['opcion'] == "guardar") {
 
@@ -108,7 +17,8 @@ if ($_POST) {
             $password = $_POST['password'];
             $role = $_POST['role'];
 
-            $usuario = crearUsuario($name, $email, $password, $role);
+            //$usuario = crearUsuario($name, $email, $password, $role);
+            $usuario = $user->save($name, $email, $password, $role);
 
             if ($usuario) {
 
@@ -123,13 +33,11 @@ if ($_POST) {
                 crearFlashMessage($alert, $message, '../usuarios/');
             }
 
-
         } else {
             $alert = "danger";
             $message = "faltan datos";
             crearFlashMessage($alert,$message, '../usuarios/');
         }
-
     }
 
     //EDITAR USUARIO
@@ -137,14 +45,14 @@ if ($_POST) {
 
         if (!empty($_POST['users_id']) && !empty($_POST['name']) && !empty($_POST['email']) && isset($_POST['password']) && isset($_POST['role'])) {
 
-
             $id = $_POST['users_id'];
             $name = $_POST['name'];
             $email = $_POST['email'];
             $password = $_POST['password'];
             $role = $_POST['role'];
 
-            $usuario = editarUsuario($id, $name, $email, $password, $role);
+            //$usuario = editarUsuario($id, $name, $email, $password, $role);
+             $usuario = $user->update($id,$name, $email, $password, $role);
 
             if ($usuario) {
                 $alert = "success";
@@ -162,7 +70,6 @@ if ($_POST) {
             $message = "faltan datos";
             crearFlashMessage($alert,$message, '../usuarios/');
         }
-
     }
 
 //ELIMINAR USUARIO
@@ -172,7 +79,8 @@ if ($_POST) {
 
             $id = $_POST['users_id'];
 
-            $usuario = eliminarUsuario($id);
+            //$usuario = eliminarUsuario($id);
+            $usuario = $user->delete($id);
 
             if ($usuario) {
                 $alert = "success";
@@ -189,12 +97,7 @@ if ($_POST) {
             $message = "faltan datos";
             crearFlashMessage($alert,$message, '../usuarios/');
         }
-
     }
-
-
 }
-
-
 
 ?>

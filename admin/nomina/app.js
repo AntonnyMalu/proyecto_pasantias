@@ -53,6 +53,7 @@ $(".show-nomina").click(function(e){
     let geografica = this.dataset.geografica;
     let administrativa = this.dataset.administrativa;
     let estatus = this.dataset.estatus;
+    let mini = this.dataset.mini;
 
     //identificamos los input
     let modal_nombre = document.getElementById("modal_nombre_trabajador");
@@ -63,10 +64,12 @@ $(".show-nomina").click(function(e){
 
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
-    modal_nombre.innerText = nombre;
+    modal_nombre.innerText = mini;
     modal_administrativa.innerText = administrativa;
     modal_geografica.innerText = geografica;
     modal_estatus.innerText = estatus;
+
+    $("#modal_imagen").attr("src", mini);
 
 });
 

@@ -22,7 +22,7 @@ USE `atencion`;
 -- Volcando estructura para tabla atencion.cargos
 CREATE TABLE IF NOT EXISTS `cargos` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `cargo` varchar(200) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `cargo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `instituciones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.instituciones: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.instituciones: ~1 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.nomina
 CREATE TABLE IF NOT EXISTS `nomina` (
@@ -391,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.personas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.personas: ~2 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.productos
 CREATE TABLE IF NOT EXISTS `productos` (
@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
--- Volcando datos para la tabla atencion.users: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.users: ~5 rows (aproximadamente)
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created_at`, `updated_at`) VALUES
 	(1, 'leothan522@gmail.com', '$2y$10$Vuukyxuv6haC.nQhAWK3oeGLwAq8POECeyx0eQOAO3JpVuw97pFHm', 'Yonathan Castillo', 100, 1, '2023-01-22', '2023-01-22'),
 	(2, 'gabrielmalu15@gmail.com', '$2y$10$tNST6nHuXNdeT/v3j/WCPeJvaBPGBgdRgNUCHk2QFJ7vJ79hv6PPi', ' Antonny Maluenga', 100, 1, '2023-01-22', '2023-04-14'),

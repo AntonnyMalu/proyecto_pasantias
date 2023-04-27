@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
       <div class="text-center">
-        <img src="../../img/Koala.jpg" class="rounded w-50 rounded-circle">
+        <img src="../../img/Koala.jpg" class="rounded w-50 rounded-circle" id="modal_imagen">
       </div>
 
       <div class="mt-3">

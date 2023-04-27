@@ -3,89 +3,37 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
+require "../../model/Oficio.php";
+require "../../model/Institucion.php";
+require "../../model/Persona.php";
 $modulo = "oficios";
 
 $alert = null;
 $message = null;
 
-
-
-
-function getAllInsti()
-{
-    $row = null;
-    $query = new Query();
-    $sql = "SELECT * FROM `instituciones`;";
-    $row = $query->getAll($sql);
-    return $row;
-}
-
-function getAllPerson()
-{
-    $row = null;
-    $query = new Query();
-    $sql = "SELECT * FROM `personas`;";
-    $row = $query->getAll($sql);
-    return $row;
-}
-
-function getInstituciones($id)
-{
-    $query = new Query();
-    $rows = null;
-    $sql = "SELECT * FROM `instituciones` WHERE `id`= '$id'; ";
-    $rows = $query->getfirst($sql);
-    if($rows){
-        return $rows;
-    }else{
-        $rows = [
-            "rif" => 'NO DEFINIDO',
-            "nombre" => 'NO DEFINIDO',
-             "telefono" => 'NO DEFINIDO',
-             "direccion" => 'NO DEFINIDO'
-        ];
-        return $rows;
-    }
-    
-}
-
-function getOficio($id)
-{
-    $query = new Query();
-    $rows = null;
-    $sql = "SELECT * FROM `oficios` WHERE `id` = $id;";
-    $rows = $query->getFirst($sql);
-    if(!$rows){
-        header('location: ../oficios');
-    }else{
-        return $rows;
-    }
-    
-}
-
-function getPerson($id)
-{
-    $query = new Query();
-    $rows = null;
-    $sql = "SELECT * FROM `personas` WHERE `id` = $id;";
-    $rows = $query->getFirst($sql);
-    if(!$rows){
-        header('location: ../oficios');
-    }else{
-        return $rows;
-    }
-    
-}
-
-
-
 if ($_GET)
 {
+    $oficio = new Oficio();
+    $persona = new Persona();
+    $institucion = new Institucion();
     if(!empty($_GET['id'])){
         $oficio_id = $_GET['id'];
-        $get_oficio = getOficio($oficio_id);
-        $get_persona = getPerson($get_oficio['personas_id']);
-        $get_institucion = getInstituciones($get_oficio['instituciones_id']);
+        $get_oficio = $oficio->getFirst($oficio_id);
+        $get_persona = $persona->getFirst($get_oficio['personas_id']);
+        if(!$get_persona || !$get_oficio){
+            header('location: ../oficios');
+            exit;
+        }
+        $get_institucion = $institucion->getFirst($get_oficio['instituciones_id']);
+        if(!$get_institucion){
+            $get_institucion = [
+                "rif" => 'NO DEFINIDO',
+                "nombre" => 'NO DEFINIDO',
+                 "telefono" => 'NO DEFINIDO',
+                 "direccion" => 'NO DEFINIDO',
+                 "id" => null
+            ];
+        }
     }else{
         $oficio_id = null;
         $get_person = null;
@@ -96,11 +44,10 @@ if ($_GET)
     $get_institucion = null;
 }
 
-
-
-$intituciones = getAllInsti();
-$personas = getAllPerson();
-
-
-
+//$intituciones = getAllInsti();
+$institucion = new Institucion();
+$intituciones = $institucion->getAll();
+//$personas = getAllPerson();
+$persona = new Persona();
+$personas = $persona->getAll();
 ?>

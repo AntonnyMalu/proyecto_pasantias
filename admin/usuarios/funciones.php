@@ -3,6 +3,7 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
+require "../../model/User.php";
 $modulo = "usuarios";
 
 $alert = null;
@@ -10,7 +11,7 @@ $message = null;
 
 
 //LISTAR USUARIOS
-function getUsuarios()
+/**function getUsuarios()
 {
     $query = new Query();
     $rows = null;
@@ -19,6 +20,10 @@ function getUsuarios()
     return $rows;
 }
 
-$usuarios = getUsuarios();
+$usuarios = getUsuarios();*/
+
+$user = new User();
+$usuarios = $user->getAll();
+
 
 ?>

@@ -3,100 +3,11 @@
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
+require "../../model/Institucion.php";
 require "../_layout/flash_message.php";
 
-function existeInstitucion($rif, $id=null){
-    $row = null;
-    $query = new Query();
-    
-    if(!$id){
-        $sql1 = "SELECT * FROM `instituciones` WHERE `rif` = '$rif' AND `band` = '1'";
-    }else{
-        $sql1 = "SELECT * FROM `instituciones` WHERE `rif` = '$rif' AND `band` = '1' AND `id` != '$id'";
-    }
-    $exite = $query->getFirst($sql1);
-
-    if($exite){
-        return true;
-    }else{
-        return false;
-    }
-
-}
-
-function eliminarInstitucion($id)
-{
-    $row = null;
-    $query = new Query();
-    $sql1 = "SELECT * FROM `instituciones` WHERE `id` = $id;";
-    $institucion = $query->getFirst($sql1);
-
-    if ($institucion) {
-
-
-        $hoy = date("Y-m-d");
-        $sql = "UPDATE `instituciones` SET `band`='0', `updated_at`='$hoy' WHERE  `id`=$id;";
-        $row = $query->save($sql);
-        return $row;
-
-    } else {
-
-        return false;
-
-    }
-
-
-}
-
-function ritTemporal()
-{
-    $rows = null;
-    $query = new Query();
-    $sql = "SELECT * FROM `instituciones` WHERE `rif` LIKE '%TEMP-%' AND `band` = '1'";
-    $rows = $query->getAll($sql);
-    $i = 1;
-    foreach($rows as $row){
-        $i++;
-    }
-    $numero = $query->cerosIzquierda($i, 3);
-    $rif_temporal = "TEMP-" . $numero;
-    return $rif_temporal;
-}
-
-function crearInstitucion( $rif, $nombre, $telefono, $direccion)
-{
-    $row = null;
-    $query = new Query();
-    $hoy = date("Y-m-d");
-    $existe = existeInstitucion($rif);
-    if(!$existe){
-        $sql = "INSERT INTO`instituciones` (`rif`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$rif', '$nombre', '$telefono', '$direccion', '$hoy');";
-        $row = $query->save($sql);
-        return $row;
-    }else{
-        return false;
-    }
-
-}
-
-function editarInstitucion($id, $rif, $nombre, $telefono, $direccion)
-{
-    $row = null;
-    $query = new Query();
-    $hoy = date("Y-m-d");
-    $existe = existeInstitucion($rif, $id);
-    if(!$existe){
-        $sql = "UPDATE `instituciones` SET `rif`='$rif', `nombre`='$nombre', `telefono`='$telefono', `direccion`='$direccion', `updated_at`='$hoy' WHERE `id`=$id;";
-        $row = $query->save($sql);
-        return $row;
-    }else{
-        return false;
-    }
-
-}
-
 if ($_POST) {
-
+    $insti = new Institucion();
     if ($_POST['opcion'] == "guardar") {
 
         if (!empty($_POST['nombre']) && !empty($_POST['direccion'])) {
@@ -108,10 +19,11 @@ if ($_POST) {
 
             if(empty($rif))
             {
-                $rif = ritTemporal();
+                $rif = $insti->ritTemporal();
             }
 
-            $institucion = crearInstitucion($rif, $nombre, $telefono, $direccion);
+            //$institucion = crearInstitucion($rif, $nombre, $telefono, $direccion);
+            $institucion = $insti->save($rif, $nombre, $telefono, $direccion);
 
             if ($institucion) {
 
@@ -145,7 +57,8 @@ if ($_POST) {
             $telefono = $_POST['telefono'];
             $direccion = $_POST['direccion'];
 
-            $institucion = editarInstitucion($id, $rif, $nombre, $telefono, $direccion);
+            //$institucion = editarInstitucion($id, $rif, $nombre, $telefono, $direccion);
+            $institucion = $insti->update($id, $rif, $nombre, $telefono, $direccion);
 
 
             if ($institucion) {
@@ -179,7 +92,8 @@ if ($_POST) {
 
             $id = $_POST['instituciones_id'];
 
-            $institucion = eliminarInstitucion($id);
+            //$institucion = eliminarInstitucion($id);
+            $institucion = $insti->delete($id);
 
             if ($institucion) {
                 $alert = "success";
