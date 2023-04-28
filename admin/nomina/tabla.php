@@ -40,7 +40,7 @@
                                                 <span class="text-small"><?php echo $nomina['nombre']; ?></span>
                                             </td>
                                             <td>
-                                               <span class="text-small"><?php echo $nomina['cargo']; ?></span>
+                                               <span class="text-small"><?php echo getCargo($nomina['cargos_id']); ?></span>
                                             </td>
                                             <td class="text-center">
                                                 <span class="text-small"><?php echo $nomina['ubicacion_administrativa'] ?></span>

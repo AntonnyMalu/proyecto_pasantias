@@ -10,6 +10,7 @@ header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 
 require "../seguridad.php";
 require "../../mysql/Query.php";
+require "../../model/Cargo.php";
 
 
 function getNomina()
@@ -19,6 +20,17 @@ function getNomina()
     $sql = "SELECT * FROM `nomina` WHERE `band`= 1 ";
     $rows = $query->getAll($sql);
     return $rows;
+}
+
+function getCargo($id)
+{
+    $cargo = new Cargo();
+    $row = $cargo->getFirst($id);
+    if($row){
+        return $row['cargo'];
+    }else{
+        return "NO DEFINIDO";
+    }
 }
 
 $listar_nomina = getNomina();
@@ -31,7 +43,8 @@ $listar_nomina = getNomina();
             <th>#</th>
             <th>Cédula</th>
             <th>Nombre</th>
-            <th>Cargo</th>
+            <th>Cargo Original</th>
+            <th>Cargo database</th>
             <th>Ubicación Geográfica</th>
             <th>Ubicación Administrativa</th>
         </tr>
@@ -52,6 +65,9 @@ $listar_nomina = getNomina();
         </td>
         <td>
             <?php echo strtoupper($nomina['cargo'])  ?>
+        </td>
+        <td>
+            <?php echo strtoupper(getCargo($nomina['cargos_id']))  ?>
         </td>
         <td>
             <?php echo strtoupper($nomina['ubicacion_geografica']); ?>
