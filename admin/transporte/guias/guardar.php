@@ -321,7 +321,7 @@ if ($_POST) {
                     array_push($anterior, $auditoria);
                     $guias->update($id, 'auditoria', json_encode($anterior));
                     $alert = "success";
-                    $message = "Guía Actualizada.";
+                    $message = 'Guía Actualizada. N°: <a href="#" target="_blank"><strong>' . $codigo . '</strong></a>';
                 }
 
 
@@ -383,19 +383,32 @@ if ($_POST) {
                     $message = "Guía Actualizada.";
                 }
 
-                if(!$cambios && !$cambiosCarga) {
+                if (!$cambios && !$cambiosCarga) {
                     $alert = "info";
                     $message = "No se Realizó ningún Cambio.";
                 }
-            
             }
         } else {
             $alert = "warning";
             $message = "No se guardo, porque Estas intentando crear una guia Duplicada.";
         }
     } else {
-        $alert = "warning";
-        $message = "Faltan Datos.";
+        if ($_POST['opcion'] == 'eliminar' && !empty($_POST['id'])) {
+            $id = $_POST['id'];
+            $user = $_SESSION['id'];
+            $hoy = date('Y-m-d');
+            $guias = new Guia();
+
+            $editar = $guias->update($id, 'band', 0);
+            $editar = $guias->update($id, 'users_id', $user);
+            $editar = $guias->update($id, 'deleted_at', $hoy);
+
+            $alert = "info";
+            $message = "Guía Eliminada.";
+        } else {
+            $alert = "warning";
+            $message = "Faltan Datos.";
+        }
     }
 } else {
     $alert = "danger";

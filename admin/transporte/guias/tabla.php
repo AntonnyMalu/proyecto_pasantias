@@ -111,13 +111,16 @@
                    <i class="fas fa-edit"></i>
                  </button>
 
-                 <button type="button" class="btn btn-danger btn-circle btn-sm" data-id="<?php echo $persona['id']; ?>">
+                 <button type="button" class="btn btn-danger btn-circle btn-sm" 
+                 data-id="<?php echo $guia['id']; ?>"
+                 onclick="btnEliminar('<?php echo $guia['id']; ?>')"
+                 id="btn_eliminar_<?php echo $guia['id']; ?>" >
                    <i class="fas fa-trash-alt"></i>
                  </button>
 
-                 <form action="guardar.php" method="post" class="d-none" id="form_eliminar_<?php echo $persona['id']; ?>">
+                 <form action="guardar.php" method="post" class="d-none" id="form_eliminar_<?php echo $guia['id']; ?>">
                    <input type="text" name="opcion" value="eliminar" />
-                   <input type="text" name="instituciones_id" value="<?php echo $persona['id']; ?>" />
+                   <input type="text" name="id" value="<?php echo $guia['id']; ?>" />
                  </form>
 
                </td>
