@@ -67,6 +67,8 @@ function btnRemove(item) {
 $("#btn_cancelar").click(function (e) {
     let titulo = document.getElementById("titulo_form");
     titulo.innerText = "Nueva Guia";
+    let tipo_guia = document.getElementById("seleccionar_tipo_guia");
+    tipo_guia.dataset.nuevo = "nuevo";
     $("#seleccionar_tipo_guia").val("");
     $('#seleccionar_tipo_guia').trigger('change');
     $("#seleccionar_vehiculo").val("");

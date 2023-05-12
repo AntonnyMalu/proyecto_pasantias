@@ -46,15 +46,17 @@
                   
                   $editCarga .= '<div class="row" id="item_'.$carga['id'].'">';
                   $editCarga .= '<div class="col-3">';
-                  $editCarga .= '<input type="text" class="form-control" name="cantidad_'.$carga['id'].'" value="'.$carga['cantidad'].'" placeholder="Cant." id="cantidad_'.$carga['id'].'"  />';
+                  $editCarga .= '<input type="text" class="form-control" name="cantidad_'.$j.'" value="'.$carga['cantidad'].'" placeholder="Cant." id="cantidad_'.$carga['id'].'"  />';
                   $editCarga .= '</div>';
                   $editCarga .= '<div class="col-7">';
-                  $editCarga .= '<input type="text" class="form-control" name="descripcion_'.$carga['id'].'" value="'.$carga['descripcion'].'" placeholder="Descripción" id="descripcion_'.$carga['id'].'"  />';
+                  $editCarga .= '<input type="text" class="form-control" name="descripcion_'.$j.'" value="'.$carga['descripcion'].'" placeholder="Descripción" id="descripcion_'.$carga['id'].'"  />';
                   $editCarga .= '</div>';
                   $editCarga .= '<div class="col-2 p-1">';
                   $editCarga .= $btn;
                   $editCarga .= '</div>';
                   $editCarga .= '</div>';
+                  $editCarga .= '<input type="hidden" class="form-control" name="carga_id_'.$j.'" value="'.$carga['id'].'" placeholder="carga_id_'.$j.'">';
+                  
                 }
               }else{
                 $html = '<tr><td colspan="2" class="text-center text-danger"><i class="fas fa-exclamation-triangle"></i> Sin Carga Definidad.</td></tr>';

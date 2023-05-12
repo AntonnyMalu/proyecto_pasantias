@@ -38,9 +38,7 @@ function getRuta($origen, $destino)
     } else {
         $alert = "warning";
         $message = "RUTA NO REGISTRADA.";
-        //crearFlashMessage($alert, $message, '../guias/');
-        return $message;
-        //exit;
+        crearFlashMessage($alert, $message, '../guias/');
     }
 }
 
@@ -185,14 +183,17 @@ if ($_POST) {
                     $getGuia = $guias->first('codigo', '=', $codigo);
                     $id = $getGuia['id'];
                     for ($i = 1; $i <= $contador; $i++) {
-                        $cantidad = $_POST['cantidad_' . $i];
-                        $descripcion = $_POST['descripcion_' . $i];
-                        $datos = [
-                            $id,
-                            $cantidad,
-                            $descripcion
-                        ];
-                        $guardarCarga = $cargamentos->save($datos);
+
+                        if (isset($_POST['cantidad_' . $i]) && isset($_POST['descripcion_' . $i])) {
+                            $cantidad = $_POST['cantidad_' . $i];
+                            $descripcion = $_POST['descripcion_' . $i];
+                            $datos = [
+                                $id,
+                                $cantidad,
+                                $descripcion
+                            ];
+                            $guardarCarga = $cargamentos->save($datos);
+                        }
                     }
 
                     $alert = "success";
@@ -321,10 +322,72 @@ if ($_POST) {
                     $guias->update($id, 'auditoria', json_encode($anterior));
                     $alert = "success";
                     $message = "Guía Actualizada.";
-                } else {
+                }
+
+
+
+                /// Validamos la carga
+                $cambiosCarga = false;
+                $listarCarga = [];
+                for ($i = 1; $i <= $contador; $i++) {
+                    $cambiosCarga = false;
+                    if (isset($_POST['cantidad_' . $i]) && isset($_POST['descripcion_' . $i])) {
+                        $cantidad = $_POST['cantidad_' . $i];
+                        $descripcion = $_POST['descripcion_' . $i];
+
+                        if (isset($_POST['carga_id_' . $i])) {
+                            //edito
+                            $carga_id = $_POST['carga_id_' . $i];
+
+                            $database = $cargamentos->find($carga_id);
+                            if ($cantidad != $database['cantidad']) {
+                                $cargamentos->update($carga_id, 'cantidad', $cantidad);
+                                $cambiosCarga =  true;
+                            }
+
+                            if ($descripcion != $database['descripcion']) {
+                                $cargamentos->update($carga_id, 'descripcion', $descripcion);
+                                $cambiosCarga =  true;
+                            }
+                        } else {
+                            //creo nuevo
+                            $datos = [
+                                $id,
+                                $cantidad,
+                                $descripcion
+                            ];
+                            $cargamentos->save($datos);
+                            $cambiosCarga = true;
+                        }
+                    } else {
+
+                        if (isset($_POST['carga_id_' . $i])) {
+                            $carga_id = $_POST['carga_id_' . $i];
+                            $cargamentos->delete($carga_id);
+                            $cambiosCarga = true;
+                        }
+                    }
+                }
+
+
+                if ($cambiosCarga) {
+                    $array = [
+                        'campo' => 'carga',
+                        'anterior' => 'no',
+                        'nuevo' => 'no',
+                    ];
+                    array_push($auditoria['afectados'], $array);
+                    array_push($anterior, $auditoria);
+                    $guias->update($id, 'auditoria', json_encode($anterior));
+                    $alert = "success";
+                    $message = "Guía Actualizada.";
+                }
+
+                if(!$cambios && !$cambiosCarga) {
                     $alert = "info";
                     $message = "No se Realizó ningún Cambio.";
                 }
+            
             }
         } else {
             $alert = "warning";
