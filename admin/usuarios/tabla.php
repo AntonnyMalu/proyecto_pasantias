@@ -10,21 +10,24 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead  class="thead-dark">
                                         <tr>
+                                            <th style="width: 5%; text-align: center;">#</th>
                                             <th>Nombre</th>
                                             <th>Email</th>
                                             <th>Tipo</th>
                                             <th>created_at</th>
-                                            <th style="width: 25%;"></th>
+                                            <th style="width: 10%;"></th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
 
                                         <?php 
+                                        $i= 1;
                                             foreach($usuarios as $usuario){
                                         ?>
 
                                         <tr>
+                                            <td style="text-align: center;"> <?php echo $i++; ?></td>
                                             <td>
                                                 <?php echo $usuario['name']; ?>
                                             </td>
@@ -44,6 +47,9 @@
                                                 }
                                                 if($usuario['role'] == 2){
                                                     echo "Recursos Humanos";
+                                                }
+                                                if($usuario['role'] == 3){
+                                                    echo "Transporte";
                                                 }
       
                                                 ?>

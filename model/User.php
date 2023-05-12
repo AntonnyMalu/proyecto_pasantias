@@ -7,7 +7,7 @@ class User{
     {
         $query = new Query();
         $rows = null;
-        $sql = "SELECT * FROM `users` WHERE `band`= 1 ";
+        $sql = "SELECT * FROM `users` WHERE `band`= 1 ORDER BY `role` ASC";
         $rows = $query->getAll($sql);
         return $rows;
     }
@@ -28,7 +28,7 @@ class User{
 
             $hoy = date("Y-m-d");
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO `users` (`email`, `password`, `name`, `created_at`) VALUES ('$email', '$password_hash', '$name', '$hoy');";
+            $sql = "INSERT INTO `users` (`email`, `password`, `name`, `role`, `created_at`) VALUES ('$email', '$password_hash', '$name', '$role', '$hoy');";
             $row = $query->save($sql);
             return $row;
 

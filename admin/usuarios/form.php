@@ -29,6 +29,7 @@
                 <option value="">Seleccione</option>
                 <option value="1">Atención al Ciudadano</option>
                 <option value="2">Recursos Humanos</option>
+                <option value="3">Transporte</option>
                 <option value="99">Administrador</option>
             </select>
         </div>

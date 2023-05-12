@@ -36,11 +36,19 @@
                                 </span>
                                 <img class="img-profile rounded-circle"
                                 <?php 
-                                if($modulo == "dashboard") { 
-                                    $img_tobar = "../plantilla/img/undraw_profile.svg";
-                                 }else{ 
-                                    $img_tobar = "../../plantilla/img/undraw_profile.svg";
-                                  } 
+                                if(isset($raiz)){
+                                    if($modulo == "dashboard") { 
+                                        $img_tobar = "../../plantilla/img/undraw_profile.svg";
+                                     }else{ 
+                                        $img_tobar = "../../../plantilla/img/undraw_profile.svg";
+                                      } 
+                                }else{
+                                    if($modulo == "dashboard") { 
+                                        $img_tobar = "../plantilla/img/undraw_profile.svg";
+                                     }else{ 
+                                        $img_tobar = "../../plantilla/img/undraw_profile.svg";
+                                      } 
+                                }
                                  ?>
                                     src="<?php echo $img_tobar; ?>">
                             </a>
@@ -52,15 +60,9 @@
                                     <?php echo $_SESSION['email']; ?>
                                 </a>
                             
-                                <div class="dropdown-divider"></div>
-                                <?php 
-                                if($modulo == "dashboard") { 
-                                    $ruta_salir = "salir.php";
-                                 }else{ 
-                                    $ruta_salir = "../salir.php";
-                                  } 
-                                 ?>
-                                <a class="dropdown-item" href="<?php echo $ruta_salir; ?>">
+                                <div class="dropdown-divider"></div> 
+                        
+                                <a class="dropdown-item" href="<?php echo $url."salir.php"; ?>">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Salir
                                 </a>

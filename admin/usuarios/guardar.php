@@ -2,6 +2,7 @@
 // start a session
 session_start();
 require "../seguridad.php";
+require "../../mysql/Query.php";
 require "../../model/User.php";
 require "../_layout/flash_message.php";
 

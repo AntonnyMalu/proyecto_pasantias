@@ -34,11 +34,19 @@ class Query{
        return $statement;
     }
 
+    public function count($sql)
+    {
+        $conexion = new Conexion();
+        $statement = $conexion->CONEXION->prepare($sql);
+        $statement->execute();
+        $count = $statement->fetchColumn();
+        return $count;
+    }
+
     public function cerosIzquierda($numero, $cant_ceros)
     {
         $numeroConCeros = str_pad($numero, $cant_ceros, "0", STR_PAD_LEFT);
         return $numeroConCeros;
     }
-
 
 }
