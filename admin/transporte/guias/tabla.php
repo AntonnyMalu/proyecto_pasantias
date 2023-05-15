@@ -10,7 +10,7 @@
        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
          <thead class="thead-dark">
            <tr class="text-center">
-             <th style="width: 10%;">#</th>
+             <!--<th style="width: 10%;">#</th>-->
              <th>Fecha</th>
              <th>N° Guia</th>
              <th>Placa</th>
@@ -24,6 +24,7 @@
             $i = 0;
             foreach ($listarGuias as $guia) {
               $i++;
+              if ($guia['pdf_impreso']) { $disable = "disabled"; $label = "Ver Guía"; }else{ $disable = null; $label = "Generar Guía"; }
               $listarCargamento = $cargamento->getList('guias_id', '=', $guia['id']);
               $html = "";
               $editCarga = "";
@@ -63,9 +64,9 @@
               }
             ?>
              <tr>
-               <td class="text-center">
+               <!--<td class="text-center">
                  <?php echo $i; ?>
-               </td>
+               </td>-->
                <td class="text-center">
                  <?php echo verFecha($guia['fecha']); ?>
                </td>
@@ -74,7 +75,7 @@
                  <?php echo $guia['codigo'] ?>
                </td>
                <td>
-                <?php echo $guia['vehiculos_placa_batea'] ?>
+                <?php echo strtoupper($guia['vehiculos_placa_batea']); ?>
                 <input type="hidden" value="<?php echo htmlentities($html); ?>" id="data_carga_guia_<?php echo $guia['id'];  ?>">
                 <input type="hidden" value="<?php echo htmlentities($editCarga); ?>" id="edit_carga_guia_<?php echo $guia['id'];  ?>">
               </td>
@@ -92,6 +93,7 @@
                  data-chofer="<?php echo $guia['choferes_nombre'] . " - " . $guia['choferes_telefono']; ?>" 
                  data-origen="<?php echo $guia['rutas_origen']; ?>" data-destino="<?php echo $guia['rutas_destino']; ?>" 
                  data-fecha="<?php echo verFecha($guia['fecha']); ?>"
+                 data-label="<?php echo $label; ?>"
                  onclick="btnShow('<?php echo $guia['id']; ?>')" 
                  id="btn_show_<?php echo $guia['id']; ?>">
                    <i class="far fa-comment-alt"></i>
@@ -107,14 +109,14 @@
                  data-territorios_destino="<?php echo $guia['territorios_destino']; ?>"
                  data-fecha="<?php echo $guia['fecha'] ?>"
                  data-contador="<?php echo $j ?>" 
-                 id="btn_editar_<?php echo $guia['id']; ?>">
+                 id="btn_editar_<?php echo $guia['id']; ?>" <?php echo $disable; ?> >
                    <i class="fas fa-edit"></i>
                  </button>
 
                  <button type="button" class="btn btn-danger btn-circle btn-sm" 
                  data-id="<?php echo $guia['id']; ?>"
                  onclick="btnEliminar('<?php echo $guia['id']; ?>')"
-                 id="btn_eliminar_<?php echo $guia['id']; ?>" >
+                 id="btn_eliminar_<?php echo $guia['id']; ?>" <?php echo $disable; ?> >
                    <i class="fas fa-trash-alt"></i>
                  </button>
 

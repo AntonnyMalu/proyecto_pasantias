@@ -11,6 +11,7 @@ require "../../../model/VehiculoTipo.php";
 require "../../../model/Choferes.php";
 require "../../../model/Rutas.php";
 require "../../../model/RutasTerritorio.php";
+require "../../../model/GuiaFormato.php";
 
 function getRuta($origen, $destino)
 {
@@ -79,7 +80,22 @@ function editCampo($id, $campo, $valor)
     return $afectados;
 }
 
+function getFormato(){
+    $query = new Query();
+    $sql = "SELECT * FROM `guias_formatos_pdf` ORDER BY `id` DESC LIMIT 1;";
+    $row = $query->getFirst($sql);
+    if($row){
+        return $row['id'];
+    }else{
+        echo "NO SE HA DEFINIDO NINGUN FORMATO DE GUIA EN LA BASE DE DATOS. CONTACTE CON SU ADMINISTRADOR"; 
+        exit;
+    }
+    
+}
 $ruta = '../guias/';
+$formato_pdf_id = getFormato();
+
+
 
 if ($_POST) {
 
@@ -173,7 +189,8 @@ if ($_POST) {
                     $rutas_ruta,
                     $fecha,
                     $users_id,
-                    $hoy
+                    $hoy,
+                    $formato_pdf_id
                 ];
 
                 //guarda en tabla guias

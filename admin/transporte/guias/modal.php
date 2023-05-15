@@ -60,7 +60,9 @@
       </div>
       <div class="modal-footer">
 
-        <a href="#" type="button" class="btn btn-primary" target="_blank">Ver Guía</a href="#">
+        <a href="#" type="button" class="btn" id="btn_generar_pdf">
+          Ver Guía
+        </a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
       </div>

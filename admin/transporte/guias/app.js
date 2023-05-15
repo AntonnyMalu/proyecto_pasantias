@@ -109,6 +109,7 @@ function btnShow(id)
     let origen = button.dataset.origen;
     let destino = button.dataset.destino;
     let fecha = button.dataset.fecha;
+    let label = button.dataset.label;
 
     let modal_tipo = document.getElementById("modal_tipo");
     let modal_codigo = document.getElementById("modal_codigo");
@@ -118,6 +119,7 @@ function btnShow(id)
     let modal_destino = document.getElementById("modal_destino");
     let modal_fecha = document.getElementById("modal_fecha");
     let modal_cargamento = document.getElementById("modal_tbody_data_carga");
+    let btn_pdf = document.getElementById("btn_generar_pdf");
 
     modal_tipo.innerText = tipo;
     modal_codigo.innerText = codigo;
@@ -127,6 +129,15 @@ function btnShow(id)
     modal_destino.innerText = destino;
     modal_fecha.innerText = fecha;
     modal_cargamento.innerHTML = html;
+    if (label === "Ver Guía") {
+        btn_pdf.classList.add('btn-primary');
+        btn_pdf.classList.remove('btn-warning');   
+    }else{
+        btn_pdf.classList.add('btn-warning');
+        btn_pdf.classList.remove('btn-primary');
+    }
+    btn_pdf.innerHTML = '<i class="far fa-file-pdf"></i> ' + label;
+    $('#btn_generar_pdf').attr('href', 'formatos/?id=' + id);
 
 }
 

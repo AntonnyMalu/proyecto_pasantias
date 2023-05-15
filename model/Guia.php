@@ -26,7 +26,8 @@ class Guia
         'rutas_ruta', 
         'fecha', 
         'users_id', 
-        'created_at'
+        'created_at',
+        'pdf_id'
     ];
 
     /* ****************************************************************************************************************   */
@@ -66,7 +67,7 @@ class Guia
     public function find($id)
     {
         $query = new Query();
-        $sql = "SELECT * FROM `$this->TABLA` WHERE `id`= '$id'; ";
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `id`= '$id';";
         $rows = $query->getfirst($sql);
         return $rows;
     }
