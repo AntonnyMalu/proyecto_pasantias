@@ -112,6 +112,37 @@ CREATE TABLE IF NOT EXISTS `casos` (
 
 -- Volcando datos para la tabla atencion.casos: ~0 rows (aproximadamente)
 
+-- Volcando estructura para tabla atencion.choferes
+CREATE TABLE IF NOT EXISTS `choferes` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `empresas_id` int NOT NULL,
+  `vehiculos_id` int DEFAULT NULL,
+  `cedula` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `telefono` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `band` int NOT NULL DEFAULT '1',
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.choferes: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla atencion.empresas
+CREATE TABLE IF NOT EXISTS `empresas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `rif` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `responsable` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `telefono` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `band` int NOT NULL DEFAULT '1',
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.empresas: ~0 rows (aproximadamente)
+
 -- Volcando estructura para tabla atencion.firmantes
 CREATE TABLE IF NOT EXISTS `firmantes` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -124,6 +155,77 @@ CREATE TABLE IF NOT EXISTS `firmantes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- Volcando datos para la tabla atencion.firmantes: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla atencion.guias
+CREATE TABLE IF NOT EXISTS `guias` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `guias_tipos_id` int NOT NULL,
+  `tipos_nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_id` int NOT NULL,
+  `vehiculos_tipo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_marca` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_placa_batea` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_placa_chuto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_color` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_capacidad` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `choferes_id` int NOT NULL,
+  `choferes_cedula` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `choferes_nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `choferes_telefono` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `territorios_origen` int NOT NULL,
+  `territorios_destino` int NOT NULL,
+  `rutas_id` int NOT NULL,
+  `rutas_origen` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `rutas_destino` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `rutas_ruta` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `fecha` date NOT NULL,
+  `users_id` int NOT NULL,
+  `band` int NOT NULL DEFAULT '1',
+  `created_at` date DEFAULT NULL,
+  `auditoria` text COLLATE utf8mb4_spanish_ci,
+  `deleted_at` date DEFAULT NULL,
+  `pdf_id` int DEFAULT '1',
+  `pdf_impreso` int DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.guias: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla atencion.guias_carga
+CREATE TABLE IF NOT EXISTS `guias_carga` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `guias_id` int NOT NULL,
+  `cantidad` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcion` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.guias_carga: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla atencion.guias_formatos_pdf
+CREATE TABLE IF NOT EXISTS `guias_formatos_pdf` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.guias_formatos_pdf: ~1 rows (aproximadamente)
+INSERT INTO `guias_formatos_pdf` (`id`, `nombre`) VALUES
+	(1, 'guia_1.php');
+
+-- Volcando estructura para tabla atencion.guias_tipos
+CREATE TABLE IF NOT EXISTS `guias_tipos` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `codigo` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.guias_tipos: ~2 rows (aproximadamente)
+INSERT INTO `guias_tipos` (`id`, `nombre`, `codigo`) VALUES
+	(1, 'BOLSAS CLAP', 'BC'),
+	(2, 'RUBROS', 'RB');
 
 -- Volcando estructura para tabla atencion.instituciones
 CREATE TABLE IF NOT EXISTS `instituciones` (
@@ -471,25 +573,86 @@ CREATE TABLE IF NOT EXISTS `productos` (
 
 -- Volcando datos para la tabla atencion.productos: ~0 rows (aproximadamente)
 
+-- Volcando estructura para tabla atencion.rutas
+CREATE TABLE IF NOT EXISTS `rutas` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `origen` int unsigned NOT NULL,
+  `destino` int unsigned NOT NULL,
+  `ruta` text COLLATE utf8mb4_spanish_ci,
+  `band` int DEFAULT '1',
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.rutas: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla atencion.rutas_territorio
+CREATE TABLE IF NOT EXISTS `rutas_territorio` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `municipio` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `parroquia` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.rutas_territorio: ~2 rows (aproximadamente)
+INSERT INTO `rutas_territorio` (`id`, `municipio`, `parroquia`) VALUES
+	(1, 'JUAN GERMÁN ROSCIO NIEVES CAPITAL', 'SAN JUAN DE LOS MORROS'),
+	(2, 'ORTIZ', 'SAN JOSÉ DE TIZNADO');
+
 -- Volcando estructura para tabla atencion.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `password` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `name` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `role` int NOT NULL DEFAULT '0',
+  `role` int NOT NULL DEFAULT '1',
   `band` int NOT NULL DEFAULT '1',
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
--- Volcando datos para la tabla atencion.users: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.users: ~7 rows (aproximadamente)
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created_at`, `updated_at`) VALUES
 	(1, 'leothan522@gmail.com', '$2y$10$Vuukyxuv6haC.nQhAWK3oeGLwAq8POECeyx0eQOAO3JpVuw97pFHm', 'Yonathan Castillo', 100, 1, '2023-01-22', '2023-01-22'),
 	(2, 'gabrielmalu15@gmail.com', '$2y$10$tNST6nHuXNdeT/v3j/WCPeJvaBPGBgdRgNUCHk2QFJ7vJ79hv6PPi', ' Antonny Maluenga', 100, 1, '2023-01-22', '2023-04-14'),
 	(3, 'milexitorrealba536@gmail.com', '$2y$10$kOKftSQUdcGWHFwjou.t1OjHBx1l10SjME65dbKnQlyE.p.2xhDBK', 'Milexi Torrealba', 2, 1, '2023-03-31', '2023-03-31'),
-	(4, 'karleidysalazar@gmail.com', '$2y$10$9Qse5RDa4LaTNQub/COk3eI2LX7pgxzfRvFtQMWLbQyrTprnmSek2', 'Karleidy Salazar', 2, 1, '2023-03-31', '2023-03-31');
+	(4, 'karleidysalazar@gmail.com', '$2y$10$9Qse5RDa4LaTNQub/COk3eI2LX7pgxzfRvFtQMWLbQyrTprnmSek2', 'Karleidy Salazar', 2, 1, '2023-03-31', '2023-03-31'),
+	(5, 'transporte@alguarisa.com', '$2y$10$WpBQP1lGFYusJiZ4ME1W0uZ6WN3fCXktyWffniIne9uggSyrqun36', 'Transporte', 3, 1, '2023-05-03', '2023-05-03'),
+	(7, 'atencion@alguarisa', '$2y$10$2h5eRizYtYruheaRx3pcAOu8cXCBPlRrtPdvQYlEo7l5WUAOrES0a', 'Atencion', 1, 1, '2023-05-03', NULL),
+	(8, 'rrhh@alguarisa.com', '$2y$10$DYXH5kf1x5Q.IBmumtBoE.oOKEsgWkOMfleP.tjyM/AadVW7J/nnS', 'RRHH', 2, 1, '2023-05-03', NULL);
+
+-- Volcando estructura para tabla atencion.vehiculos
+CREATE TABLE IF NOT EXISTS `vehiculos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `empresas_id` int NOT NULL,
+  `tipo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `marca` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `placa_batea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `placa_chuto` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `color` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `capacidad` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `band` int NOT NULL DEFAULT '1',
+  `created_at` date DEFAULT NULL,
+  `updated_at` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.vehiculos: ~0 rows (aproximadamente)
+
+-- Volcando estructura para tabla atencion.vehiculos_tipo
+CREATE TABLE IF NOT EXISTS `vehiculos_tipo` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla atencion.vehiculos_tipo: ~3 rows (aproximadamente)
+INSERT INTO `vehiculos_tipo` (`id`, `nombre`) VALUES
+	(1, 'GANDOLA PLATAFORMA'),
+	(2, 'CAMIÓN PLATAFORMA'),
+	(3, 'CAMIÓN CAVA');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
