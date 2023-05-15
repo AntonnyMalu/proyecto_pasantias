@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `empresas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.empresas: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.empresas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.guias
 CREATE TABLE IF NOT EXISTS `guias` (
@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `guias` (
   `deleted_at` date DEFAULT NULL,
   `pdf_id` int DEFAULT '1',
   `pdf_impreso` int DEFAULT '0',
+  `estatus` int DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -133,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `rutas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.rutas: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.rutas: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.rutas_territorio
 CREATE TABLE IF NOT EXISTS `rutas_territorio` (
@@ -143,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `rutas_territorio` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.rutas_territorio: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.rutas_territorio: ~2 rows (aproximadamente)
 INSERT INTO `rutas_territorio` (`id`, `municipio`, `parroquia`) VALUES
 	(1, 'JUAN GERMÁN ROSCIO NIEVES CAPITAL', 'SAN JUAN DE LOS MORROS'),
 	(2, 'ORTIZ', 'SAN JOSÉ DE TIZNADO');
@@ -164,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `vehiculos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.vehiculos: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.vehiculos: ~0 rows (aproximadamente)
 
 -- Volcando estructura para tabla atencion.vehiculos_tipo
 CREATE TABLE IF NOT EXISTS `vehiculos_tipo` (
@@ -173,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `vehiculos_tipo` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.vehiculos_tipo: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla atencion.vehiculos_tipo: ~3 rows (aproximadamente)
 INSERT INTO `vehiculos_tipo` (`id`, `nombre`) VALUES
 	(1, 'GANDOLA PLATAFORMA'),
 	(2, 'CAMIÓN PLATAFORMA'),

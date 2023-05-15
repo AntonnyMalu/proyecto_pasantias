@@ -10,7 +10,7 @@ if ($_POST) {
     $vehiculos = new Vehiculos();
     if ($_POST['opcion'] == "guardar") {
 
-        if (!empty($_POST['empresas_id']) && !empty($_POST['tipo']) && !empty($_POST['marca']) && !empty($_POST['placa']) && !empty($_POST['chuto']) && !empty($_POST['capacidad']) && !empty($_POST['color'])) {
+        if (!empty($_POST['empresas_id']) && !empty($_POST['tipo']) && !empty($_POST['marca']) && !empty($_POST['placa']) && isset($_POST['chuto']) && !empty($_POST['capacidad']) && !empty($_POST['color'])) {
 
             $empresas_id = $_POST['empresas_id'];
             $tipo = $_POST['tipo'];
@@ -47,7 +47,7 @@ if ($_POST) {
 
     if ($_POST['opcion'] == "editar") {
 
-        if (!empty($_POST['vehiculos_id']) && !empty($_POST['empresas_id']) && !empty($_POST['placa']) && !empty($_POST['tipo']) && !empty($_POST['marca']) && !empty($_POST['color']) && !empty($_POST['capacidad'])  && !empty($_POST['chuto'])) {
+        if (!empty($_POST['vehiculos_id']) && !empty($_POST['empresas_id']) && !empty($_POST['placa']) && !empty($_POST['tipo']) && !empty($_POST['marca']) && !empty($_POST['color']) && !empty($_POST['capacidad'])  && isset($_POST['chuto'])) {
 
             $id = $_POST['vehiculos_id'];
             $empresas_id = $_POST['empresas_id'];

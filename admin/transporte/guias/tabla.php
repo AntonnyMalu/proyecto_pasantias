@@ -24,7 +24,7 @@
             $i = 0;
             foreach ($listarGuias as $guia) {
               $i++;
-              if ($guia['pdf_impreso']) { $disable = "disabled"; $label = "Ver Guía"; }else{ $disable = null; $label = "Generar Guía"; }
+              if ($guia['pdf_impreso'] || !$guia['estatus']) { $disable = "disabled"; $label = "Descargar Guía"; }else{ $disable = null; $label = "Generar Guía"; }
               $listarCargamento = $cargamento->getList('guias_id', '=', $guia['id']);
               $html = "";
               $editCarga = "";
@@ -47,10 +47,10 @@
                   
                   $editCarga .= '<div class="row" id="item_'.$carga['id'].'">';
                   $editCarga .= '<div class="col-3">';
-                  $editCarga .= '<input type="text" class="form-control" name="cantidad_'.$j.'" value="'.$carga['cantidad'].'" placeholder="Cant." id="cantidad_'.$carga['id'].'"  />';
+                  $editCarga .= '<input type="text" class="form-control" name="cantidad_'.$j.'" value="'.$carga['cantidad'].'" placeholder="Cant." id="cantidad_'.$carga['id'].'" required />';
                   $editCarga .= '</div>';
                   $editCarga .= '<div class="col-7">';
-                  $editCarga .= '<input type="text" class="form-control" name="descripcion_'.$j.'" value="'.$carga['descripcion'].'" placeholder="Descripción" id="descripcion_'.$carga['id'].'"  />';
+                  $editCarga .= '<input type="text" class="form-control" name="descripcion_'.$j.'" value="'.$carga['descripcion'].'" placeholder="Descripción" id="descripcion_'.$carga['id'].'" required />';
                   $editCarga .= '</div>';
                   $editCarga .= '<div class="col-2 p-1">';
                   $editCarga .= $btn;
@@ -72,7 +72,14 @@
                </td>
 
                <td>
-                 <?php echo $guia['codigo'] ?>
+                 <?php 
+                    if($guia['estatus'] == 0){
+                      echo '<span class="text-secondary font-italic text-gray-500"> '.$guia['codigo'].  '  </span><i class="fas fa-backspace text-danger"></i>';
+                    }else{
+                      echo $guia['codigo'];
+                    }
+                 ?>
+                 
                </td>
                <td>
                 <?php echo strtoupper($guia['vehiculos_placa_batea']); ?>
@@ -94,6 +101,7 @@
                  data-origen="<?php echo $guia['rutas_origen']; ?>" data-destino="<?php echo $guia['rutas_destino']; ?>" 
                  data-fecha="<?php echo verFecha($guia['fecha']); ?>"
                  data-label="<?php echo $label; ?>"
+                 data-estatus="<?php echo $guia['estatus']; ?>"
                  onclick="btnShow('<?php echo $guia['id']; ?>')" 
                  id="btn_show_<?php echo $guia['id']; ?>">
                    <i class="far fa-comment-alt"></i>

@@ -110,6 +110,7 @@ function btnShow(id)
     let destino = button.dataset.destino;
     let fecha = button.dataset.fecha;
     let label = button.dataset.label;
+    let estatus = button.dataset.estatus;
 
     let modal_tipo = document.getElementById("modal_tipo");
     let modal_codigo = document.getElementById("modal_codigo");
@@ -129,7 +130,7 @@ function btnShow(id)
     modal_destino.innerText = destino;
     modal_fecha.innerText = fecha;
     modal_cargamento.innerHTML = html;
-    if (label === "Ver Guía") {
+    if (label === "Descargar Guía") {
         btn_pdf.classList.add('btn-primary');
         btn_pdf.classList.remove('btn-warning');   
     }else{
@@ -138,6 +139,17 @@ function btnShow(id)
     }
     btn_pdf.innerHTML = '<i class="far fa-file-alt"></i> ' + label;
     $('#btn_generar_pdf').attr('href', 'formatos/?id=' + id);
+    $('#modal_input_id').val(id);
+    
+    if(estatus == '0'){
+        $('#span_modal_anulado').removeClass('d-none');
+        $('#btn_anular_guia').addClass('d-none');
+        $('#btn_generar_pdf').addClass('d-none');
+    }else{
+        $('#btn_anular_guia').removeClass('d-none');
+        $('#span_modal_anulado').addClass('d-none');
+        $('#btn_generar_pdf').removeClass('d-none');
+    }
 
 }
 

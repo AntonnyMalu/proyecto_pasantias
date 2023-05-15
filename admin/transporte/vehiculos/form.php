@@ -18,7 +18,7 @@
 
         <div class="form-group">
             <label>Placa Batea</label>
-            <input type="text" class="form-control" name="placa" placeholder="Ingrese la Placa Batea" id="input_placa" />
+            <input type="text" class="form-control" name="placa" placeholder="Ingrese la Placa Batea" id="input_placa" required />
         </div>
 
         <div class="form-group">
@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <label>Tipo</label>
-            <select class="form-control" name="tipo" id="input_tipo">
+            <select class="form-control" name="tipo" id="input_tipo" required>
                 <option value="">Seleccione</option>
                 <?php foreach($listarTipos as $tipo){ ?>
                     <option value="<?php echo $tipo['id']; ?>"> <?php echo $tipo['nombre']; ?></option>
@@ -38,17 +38,17 @@
 
         <div class="form-group">
             <label>Marca</label>
-            <input type="text" class="form-control" name="marca" placeholder="Ingrese la Marca del Vehículo" id="input_marca" />
+            <input type="text" class="form-control" name="marca" placeholder="Ingrese la Marca del Vehículo" id="input_marca" required />
         </div>
 
         <div class="form-group">
             <label>Color</label>
-            <input type="text" class="form-control" name="color" placeholder="Ingrese el Color de Vehículo" id="input_color" />
+            <input type="text" class="form-control" name="color" placeholder="Ingrese el Color de Vehículo" id="input_color" required />
         </div>
 
         <div class="form-group">
             <label>Capacidad</label>
-            <input type="text" class="form-control" name="capacidad" placeholder="Ingrese el Capacidad del Vehículo" id="input_capacidad" />
+            <input type="text" class="form-control" name="capacidad" placeholder="Ingrese el Capacidad del Vehículo" id="input_capacidad" required />
         </div>
 
 

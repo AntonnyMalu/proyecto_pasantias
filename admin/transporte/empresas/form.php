@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <label>Rif</label>
-            <input type="text" class="form-control" name="rif" placeholder="Ingrese el Rif" id="input_rif" />
+            <input type="text" class="form-control" name="rif" placeholder="Ingrese el Rif" id="input_rif" required />
         </div>
 
         <div class="form-group">

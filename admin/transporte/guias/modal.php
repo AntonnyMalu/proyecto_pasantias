@@ -59,12 +59,20 @@
 
       </div>
       <div class="modal-footer">
-
-        <a href="#" type="button" class="btn" id="btn_generar_pdf">
+        <div class="col-12">
+        <form action="guardar.php" method="post">
+          <input type="hidden" name="id" id="modal_input_id">
+          <input type="hidden" name="opcion" id="modal_input_opcion" value="anular">
+          <span class="btn d-none" id="span_modal_anulado">Guía Anulada <i class="fas fa-backspace text-danger"></i></span>
+          <button type="submit" class="btn btn-danger" id="btn_anular_guia"> 
+          <i class="fas fa-ban"></i> Anular Guía
+        </button>
+        <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Cerrar</button>
+        <a href="#" type="button" class="btn float-right mr-1" id="btn_generar_pdf">
           Ver Guía
         </a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
+        </form>
+        </div>
       </div>
     </div>
   </div>

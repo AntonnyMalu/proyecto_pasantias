@@ -3,6 +3,9 @@ $('.select2bs4').select2({
     theme: 'bootstrap4'
 });
 
+$('#input_cedula').inputmask("9{1,8}");
+$('#input_telefono').inputmask({"mask": "(9999) 999.99.99"});
+
 $(".evento").click(function(e){
 
     //e.preventDefault();

@@ -37,7 +37,7 @@ class Vehiculos
         $existePlacaChuto = $this->existe($placa, $id, "placa_chuto");
         $existeChuto = $this->existe($chuto, $id, "placa_chuto");
         $existeChutoPlaca = $this->existe($chuto, $id, "placa_batea");
-        if(!$existePlaca && !$existeChuto && !$existeChutoPlaca && !$existePlacaChuto){
+        if(!$existePlaca && !$existePlacaChuto){
             $sql = "INSERT INTO `vehiculos` (`empresas_id`, `tipo`, `marca`, `placa_batea`, `placa_chuto`, `color`, `capacidad`, `created_at`) 
             VALUES ('$empresas_id', '$tipo', '$marca', '$placa', '$chuto', '$color', '$capacidad', '$hoy');";
             $row = $query->save($sql);
@@ -56,7 +56,7 @@ class Vehiculos
         $existePlacaChuto = $this->existe($placa, $id, "placa_chuto");
         $existeChuto = $this->existe($chuto, $id, "placa_chuto");
         $existeChutoPlaca = $this->existe($chuto, $id, "placa_batea");
-        if(!$existePlaca && !$existeChuto && !$existeChutoPlaca && !$existePlacaChuto){
+        if(!$existePlaca && !$existePlacaChuto){
             $sql = "UPDATE `vehiculos` SET 
             `empresas_id`='$empresas_id', 
             `tipo`='$tipo', `marca`='$marca', 

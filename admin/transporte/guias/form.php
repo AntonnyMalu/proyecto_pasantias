@@ -9,7 +9,7 @@
 
             <div class="form-group">
                 <label>Tipo Guía:</label>
-                <select class="form-control select2bs4" name="guias_tipos_id" data-nuevo="nuevo" id="seleccionar_tipo_guia">
+                <select class="form-control select2bs4" name="guias_tipos_id" data-nuevo="nuevo" id="seleccionar_tipo_guia" required >
                     <option value="">Seleccione </option>
                     <?php foreach ($listarTiposGuias as $tipo) { ?>
                         <option value="<?php echo $tipo['id']; ?>"><?php echo strtoupper($tipo['nombre']); ?></option>
@@ -23,12 +23,12 @@
 
             <div class="form-group">
                 <label>Codigo Guía:</label>
-                <input type="text" class="form-control" name="codigo" data-codigo_nuevo="<?php echo $codigo_nuevo; ?>" id="input_codigo" readonly />
+                <input type="text" class="form-control" name="codigo" data-codigo_nuevo="<?php echo $codigo_nuevo; ?>" id="input_codigo" readonly required />
             </div>
 
             <div class="form-group">
                 <label>Vehículo:</label>
-                <select class="form-control select2bs4" name="vehiculos_id" id="seleccionar_vehiculo" >
+                <select class="form-control select2bs4" name="vehiculos_id" id="seleccionar_vehiculo" required >
                     <option value="">Seleccione</option>
                     <?php
                     foreach ($listarVehiculos as $vehiculo) {
@@ -41,7 +41,7 @@
 
             <div class="form-group">
                 <label>Chofer:</label>
-                <select class="form-control select2bs4" name="choferes_id" id="seleccionar_chofer" >
+                <select class="form-control select2bs4" name="choferes_id" id="seleccionar_chofer" required >
                     <option value="">Seleccione</option>
                     <?php foreach ($listarChoferes as $choferes) { ?>
                         <option value="<?php echo $choferes['id']; ?>"><?php echo strtoupper($choferes['cedula']); ?> - <?php echo strtoupper($choferes['nombre']); ?></option>
@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label>Lugar de Origen:</label>
-                <select class="form-control select2bs4" name="origen" id="seleccionar_origen" >
+                <select class="form-control select2bs4" name="origen" id="seleccionar_origen" required >
                     <option value="">Seleccione</option>
                     <?php foreach ($listarTerritorios as $territorio) { ?>
                         <option value="<?php echo $territorio['id']; ?>"><?php echo strtoupper($territorio['parroquia']); ?></option>
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <label>Lugar de Destino:</label>
-                <select class="form-control select2bs4" name="destino" id="seleccionar_destino" >
+                <select class="form-control select2bs4" name="destino" id="seleccionar_destino" required >
                     <option value="">Seleccione</option>
                     <?php foreach ($listarTerritorios as $territorio) { ?>
                         <option value="<?php echo $territorio['id']; ?>"><?php echo strtoupper($territorio['parroquia']); ?></option>
@@ -71,7 +71,7 @@
 
             <div class="form-group">
                 <label>Fecha Guía:</label>
-                <input type="date" class="form-control" name="fecha" id="input_fecha"  />
+                <input type="date" class="form-control" name="fecha" id="input_fecha" required  />
             </div>
 
             <hr>
@@ -87,10 +87,10 @@
                 <div id="items">
                     <div class="row" id="item_1">
                         <div class="col-3">
-                            <input type="text" class="form-control" name="cantidad_1" placeholder="Cant." id="cantidad_1"  />
+                            <input type="text" class="form-control" name="cantidad_1" placeholder="Cant." id="cantidad_1" required  />
                         </div>
                         <div class="col-7">
-                            <input type="text" class="form-control" name="descripcion_1" placeholder="Descripción" id="descripcion_1"  />
+                            <input type="text" class="form-control" name="descripcion_1" placeholder="Descripción" id="descripcion_1" required  />
                         </div>
                         <div class="col-2 p-1">
                             &nbsp;

@@ -11,7 +11,7 @@ $pdf->SetFont('Times', 'BU', 12);
 $pdf->Image('../../../../img/hoja_membretada.png', 0, 0, 210, 280);
 $pdf->Image('QRcode.png', 10, 28, 30, 30);
 $pdf->ln(20);
-$pdf->Cell(0, 4, utf8_decode('Nº R00100-2023'), 0, 1, 'R');
+$pdf->Cell(0, 4, utf8_decode($guia['codigo']), 0, 1, 'R');
 $pdf->Ln(5);
 $pdf->Cell(0, 4, utf8_decode('AUTORIZACIÓN DE TRASLADO'), 0, 1, 'C');
 

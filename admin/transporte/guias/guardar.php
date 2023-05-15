@@ -422,10 +422,20 @@ if ($_POST) {
 
             $alert = "info";
             $message = "Guía Eliminada.";
-        } else {
-            $alert = "warning";
-            $message = "Faltan Datos.";
-        }
+        } 
+        if ($_POST['opcion'] == 'anular' && !empty($_POST['id'])) {
+            $id = $_POST['id'];
+            $user = $_SESSION['id'];
+            $hoy = date('Y-m-d');
+            $guias = new Guia();
+
+            $editar = $guias->update($id, 'estatus', 0);
+            $editar = $guias->update($id, 'users_id', $user);
+
+            $alert = "info";
+            $message = "Guía anulada.";
+        } 
+        
     }
 } else {
     $alert = "danger";
