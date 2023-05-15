@@ -136,7 +136,7 @@ function btnShow(id)
         btn_pdf.classList.add('btn-warning');
         btn_pdf.classList.remove('btn-primary');
     }
-    btn_pdf.innerHTML = '<i class="far fa-file-pdf"></i> ' + label;
+    btn_pdf.innerHTML = '<i class="far fa-file-alt"></i> ' + label;
     $('#btn_generar_pdf').attr('href', 'formatos/?id=' + id);
 
 }
