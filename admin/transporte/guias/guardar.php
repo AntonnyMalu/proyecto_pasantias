@@ -214,7 +214,12 @@ if ($_POST) {
                     }
 
                     $alert = "success";
-                    $message = 'Guia Creada correctamente. N°: <a href="#" target="_blank"><strong>' . $codigo . '</strong></a>';
+                    $message = 'Guia Creada correctamente. N°: 
+                    <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#exampleModal"
+                    onclick="btnShow(\''.$id.'\')" >
+                        <strong>' . $codigo . '</strong>
+                    </button>
+                    ';
                 } else {
                     $alert = "danger";
                     $message = 'Error en el Model. Contacte a su administrador.';
@@ -338,7 +343,12 @@ if ($_POST) {
                     array_push($anterior, $auditoria);
                     $guias->update($id, 'auditoria', json_encode($anterior));
                     $alert = "success";
-                    $message = 'Guía Actualizada. N°: <a href="#" target="_blank"><strong>' . $codigo . '</strong></a>';
+                    $message = 'Guía Actualizada. N°: 
+                    <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#exampleModal"
+                    onclick="btnShow(\''.$id.'\')" >
+                        <strong>' . $codigo . '</strong>
+                    </button>
+                    ';
                 }
 
 
@@ -397,7 +407,12 @@ if ($_POST) {
                     array_push($anterior, $auditoria);
                     $guias->update($id, 'auditoria', json_encode($anterior));
                     $alert = "success";
-                    $message = "Guía Actualizada.";
+                    $message = 'Guía Actualizada. N°: 
+                    <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#exampleModal"
+                    onclick="btnShow(\''.$id.'\')" >
+                        <strong>' . $codigo . '</strong>
+                    </button>
+                    ';
                 }
 
                 if (!$cambios && !$cambiosCarga) {
