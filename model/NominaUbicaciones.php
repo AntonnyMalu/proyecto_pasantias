@@ -1,9 +1,10 @@
 <?php
-class Model
+class NominaUbicaciones
 {
-    public $TABLA = "";
+    public $TABLA = "nomina_ubicaciones";
     public $DATA = [
-        ''
+        'tipo',
+        'nombre'
     ];
 
     /* ****************************************************************************************************************   */

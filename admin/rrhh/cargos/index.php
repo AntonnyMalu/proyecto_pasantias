@@ -1,13 +1,13 @@
 <?php
 require "funciones.php";
-require "../_layout/flash_message.php";
+require "../../_layout/flash_message.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <title>ALGUARISA - Personas</title>
-    <?php require('../_layout/cargar_css.php') ?>
+    <?php require('../../_layout/admin_css.php') ?>
 
 </head>
 
@@ -17,7 +17,7 @@ require "../_layout/flash_message.php";
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php require('../_layout/sidebar.php'); ?>
+    <?php require('../../_layout/sidebar.php'); ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -28,7 +28,7 @@ background: linear-gradient(0deg, rgba(220,227,208,1) 29%, rgba(247,247,247,1) 9
         <div id="content">
 
             <!-- Topbar -->
-            <?php require('../_layout/topbar.php'); ?>
+            <?php require('../../_layout/topbar.php'); ?>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
@@ -43,7 +43,7 @@ background: linear-gradient(0deg, rgba(220,227,208,1) 29%, rgba(247,247,247,1) 9
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <?php require('../_layout/footer.php'); ?>
+        <?php require('../../_layout/footer.php'); ?>
         <!-- End of Footer -->
 
     </div>
@@ -57,7 +57,7 @@ background: linear-gradient(0deg, rgba(220,227,208,1) 29%, rgba(247,247,247,1) 9
     <i class="fas fa-angle-up"></i>
 </a>
 
-    <?php require('../_layout/cargar_js.php') ?>
+    <?php require('../../_layout/admin_js.php') ?>
 </body>
 
 </html>

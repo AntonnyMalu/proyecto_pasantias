@@ -2,93 +2,118 @@
 
 class Nomina
 {
-    function getAll()
+    public $TABLA = "nomina";
+    public $DATA = [
+        'cedula',
+        'nombre',
+        'cargos_id',
+        'administrativa_id',
+        'geografica_id',
+        'created_at'
+    ];
+
+    /* ****************************************************************************************************************   */
+
+    public function getAll($band = null)
     {
-        $row = null;
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "WHERE `band`= $band";
+        }
         $query = new Query();
-        $sql = "SELECT * FROM `nomina` WHERE `band` = 1;";
-        $row = $query->getAll($sql);
+        $sql = "SELECT * FROM `$this->TABLA` $extra  ;";
+        $rows = $query->getAll($sql);
+        return $rows;
+    }
+
+    public function getList($campo, $operador, $valor)
+    {
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor'; ";
+        $rows = $query->getAll($sql);
+        return $rows;
+    }
+
+    public function count($band = null)
+    {
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "WHERE `band`= $band";
+        }
+        $query = new Query();
+        $sql = "SELECT COUNT(*) FROM `$this->TABLA` $extra ;";
+        $rows = $query->count($sql);
+        return $rows;
+    }
+
+    public function find($id)
+    {
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `id`= '$id'; ";
+        $rows = $query->getfirst($sql);
+        return $rows;
+    }
+
+    public function first($campo, $operador, $valor)
+    {
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor'; ";
+        $rows = $query->getfirst($sql);
+        return $rows;
+    }
+
+    public function existe($campo, $operador, $valor, $id = null, $band = null)
+    {
+        $extra = null;
+        $edit = null;
+        if ($band) {
+            $extra = "AND `band`= $band";
+        }
+        if ($id) {
+            $edit = "AND `id` != '$id'";
+        }
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra $edit;";
+        $row = $query->getFirst($sql);
         return $row;
     }
 
-    function existe($cedula, $id=null){
-        $row = null;
-        $query = new Query();
-        
-        if(!$id){
-            $sql1 = "SELECT * FROM `nomina` WHERE `cedula` = '$cedula' AND `band` = '1'";
-        }else{
-            $sql1 = "SELECT * FROM `nomina` WHERE `cedula` = '$cedula' AND `band` = '1' AND `id` != '$id'";
-        }
-        $exite = $query->getFirst($sql1);
-    
-        if($exite){
-            return true;
-        }else{
-            return false;
-        }
-    
-    }
-
-    function save($id, $nombre, $ubicacion_geografica, $ubicacion_administrativa, $cedula, $cargo)
-    {
-        $row = null;
-        $query = new Query();
-        $hoy = date("Y-m-d");
-        $existe = $this->existe($cedula, $id);
-        if(!$existe){
-            $sql = "INSERT INTO `nomina` (`nombre`, `ubicacion_geografica`, `ubicacion_administrativa`, `cedula`, `cargo`, `created_at`)
-             VALUES ('$nombre', '$ubicacion_geografica', '$ubicacion_administrativa', '$cedula', '$cargo', '$hoy');";
-            $row = $query->save($sql);
-            return $row;
-        }else{
-            return false;
-        }
-
-    }
-
-    function update($id, $nombre, $ubicacion_geografica, $ubicacion_administrativa, $cedula, $cargo)
-    {
-        $row = null;
-        $query = new Query();
-        $hoy = date("Y-m-d");
-        $existe = $this->existe($cedula, $id);
-        if(!$existe){
-            $sql = "UPDATE `nomina` SET `nombre`='$nombre', `ubicacion_geografica`='$ubicacion_geografica', 
-            `ubicacion_administrativa`='$ubicacion_administrativa', `cedula`='$cedula', `cargo`='$cargo', `updated_at`='$hoy' WHERE  `id`='$id';";
-            $row = $query->save($sql);
-            return $row;
-        }else{
-            return false;
-        }
-
-    }
-
-    function delete($id)
-    {
-        $row = null;
-        $query = new Query();
-        $sql1 = "SELECT * FROM `nomina` WHERE `id` = $id;";
-        $nomina = $query->getFirst($sql1);
-
-        if ($nomina) {
-            $hoy = date("Y-m-d");
-            $sql = "UPDATE `nomina` SET `band`='0', `updated_at`='$hoy' WHERE  `id`='$id';";
-            $row = $query->save($sql);
-            return $row;
-
-        }else {
-            return false;
-        }
-    }
-
-    function getFirst($id)
+    public function save($data = array())
     {
         $query = new Query();
-        $rows = null;
-        $sql = "SELECT * FROM `nomina` WHERE `id`= '$id'; ";
-        $rows = $query->getfirst($sql);   
-        return $rows;  
+        $campos = "(";
+        foreach ($this->DATA as $campo) {
+            $campos .= "`$campo`, ";
+        }
+        $campos .= ")exit";
+        $campos = str_replace(", )exit", ")", $campos);
+        $values = "(";
+        foreach ($data as $input) {
+            $values .= "'$input', ";
+        }
+        $values .= ")exit";
+        $values = str_replace(", )exit", ")", $values);
+
+        $sql = "INSERT INTO `$this->TABLA` $campos VALUES $values;";
+
+        $row = $query->save($sql);
+        return $row;
+    }
+
+    public function update($id, $campo, $valor)
+    {
+        $query = new Query();
+        $sql = "UPDATE `$this->TABLA` SET `$campo` = '$valor' WHERE `id` = '$id';";
+        $row = $query->save($sql);
+        return $row;
+    }
+
+    public function delete($id)
+    {
+        $query = new Query();
+        $sql = "DELETE FROM `$this->TABLA` WHERE  `id` = $id;";
+        $row = $query->save($sql);
+        return $row;
     }
 
 }

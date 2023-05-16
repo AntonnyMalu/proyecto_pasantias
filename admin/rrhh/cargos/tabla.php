@@ -20,7 +20,7 @@
                                     <tbody>
                                     <?php 
                                             $i = 1;
-                                            foreach($cargos as $cargo){
+                                            foreach($listarCargos as $cargo){
 
                                         ?>
 

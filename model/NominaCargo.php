@@ -1,9 +1,10 @@
 <?php
-class Model
+
+class NominaCargo
 {
-    public $TABLA = "";
+    public $TABLA = "nomina_cargos";
     public $DATA = [
-        ''
+        'cargo'
     ];
 
     /* ****************************************************************************************************************   */
@@ -20,14 +21,10 @@ class Model
         return $rows;
     }
 
-    public function getList($campo, $operador, $valor, $band = null)
+    public function getList($campo, $operador, $valor)
     {
-        $extra = null;
-        if (!is_null($band)) {
-            $extra = "AND `band`= $band";
-        }
         $query = new Query();
-        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra; ";
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor'; ";
         $rows = $query->getAll($sql);
         return $rows;
     }

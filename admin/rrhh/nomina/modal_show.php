@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
       <div class="text-center">
-        <img src="../../img/Koala.jpg" class="rounded w-50 rounded-circle" id="modal_imagen">
+        <img src="../../../img/img_placeolder.png" class="rounded w-50 rounded-circle" id="modal_imagen">
       </div>
 
       <div class="mt-3">
@@ -25,7 +25,7 @@
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Estatus del Carnet
-              <span class="font-weight-bold text-primary" id="modal_estatus_carnet">Entregado</span>
+              <span class="font-weight-bold text-primary" id="modal_estatus_carnet">NO DEFINIDO</span>
             </li>
       </ul>
 </div>
