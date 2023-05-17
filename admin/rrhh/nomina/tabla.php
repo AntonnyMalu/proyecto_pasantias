@@ -25,6 +25,16 @@
                         $i = 1;
                         foreach ($listarNomina as $nomina) {
                             $getCargo = $cargos->find($nomina['cargos_id']);
+                            if ($nomina['path']) {
+                                if (file_exists('../../../'.$nomina['path'])) {
+                                    $path = '../../../'.$nomina['path'];
+                                }else{
+                                    $path = '../../../img/img_placeolder.png';
+                                }
+                            }else {
+                                $path = '../../../img/img_placeolder.png';
+                            }
+                            
                         ?>
 
                          <tr>
@@ -70,6 +80,7 @@
                                  data-nombre="<?php echo $nomina['nombre']; ?>"
                                  data-geografica_id="<?php echo $label_geo; ?>"
                                  data-administrativa_id="<?php echo $label_admin; ?>"
+                                 data-path="<?php echo $path; ?>"
                                  onclick="btnShow(<?php echo $nomina['id'] ?>)"
                                  id="btn_show_<?php echo $nomina['id'] ?>">
                                      <i class="far fa-comment-alt"></i>

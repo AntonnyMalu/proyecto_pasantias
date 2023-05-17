@@ -75,6 +75,7 @@ function btnShow(id)
     let nombre = button.dataset.nombre;
     let geografica_id = button.dataset.geografica_id;
     let administrativa_id  = button.dataset.administrativa_id;
+    let path = button.dataset.path;
 
 
     //identificamos los input
@@ -89,8 +90,8 @@ function btnShow(id)
     modal_nombre.innerText = nombre;
     modal_administrativa.innerText = administrativa_id;
     modal_geografica.innerText = geografica_id;
-
-    //$("#modal_imagen").attr("src", mini);
+    $('#link_modal_id').attr('href', '../foto/?id=' + id);
+    $("#modal_imagen").attr("src", path);
 }
 
 console.log('nomina-app.js');

@@ -41,6 +41,7 @@
 
       </div>
       <div class="modal-footer">
+        <a class="btn btn-primary" href="#" id="link_modal_id">Cambiar Foto</a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
