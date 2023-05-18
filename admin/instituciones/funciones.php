@@ -7,7 +7,7 @@ require "../../model/Institucion.php";
 $modulo = "instituciones";
 $alert = null;
 $message = null;
-$institucion = new Institucion();
-$instituciones = $institucion->getAll();
+$instituciones = new Institucion();
+$listarInstituciones = $instituciones->getAll(1);
 
 ?>

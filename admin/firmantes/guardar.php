@@ -63,6 +63,7 @@ if ($_POST) {
         //opcion eliminar
         if($opcion == "eliminar"){
             $editar = $firmantes->update($id, 'band', 0);
+            $editar = $firmantes->update($id, 'updated_at', $hoy);
             if ($editar) {
                 $alert = "success";
                 $message = "Firmante Eliminado.";
