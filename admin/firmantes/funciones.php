@@ -7,6 +7,6 @@ require "../../model/Firmante.php";
 $modulo = "firmantes";
 $alert = null;
 $message = null;
-$firmante = new Firmante();
-$firmantes = $firmante->getAll();
+$firmantes = new Firmante();
+$listarFirmantes = $firmantes->getAll(1);
 ?>

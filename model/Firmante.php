@@ -2,84 +2,120 @@
 
 class Firmante
 {
-    function getAll()
+    public $TABLA = "firmantes";
+    public $DATA = [
+        'nombre',
+        'cargo',
+        'created_at',
+    ];
+
+    /* ****************************************************************************************************************   */
+
+    public function getAll($band = null)
     {
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "WHERE `band`= $band";
+        }
         $query = new Query();
-        $rows = null;
-        $sql = "SELECT * FROM `firmantes` WHERE `band`= 1 ";
+        $sql = "SELECT * FROM `$this->TABLA` $extra  ;";
         $rows = $query->getAll($sql);
         return $rows;
     }
 
-    function existe($cargo, $id=null){
-        $row = null;
-        $query = new Query();
-        if(!$id){
-            $sql1 = "SELECT * FROM `firmantes` WHERE `cargo` = '$cargo' AND `band` = '1'";
-        }else{
-            $sql1 = "SELECT * FROM `firmantes` WHERE `cargo` = '$cargo' AND `band` = '1' AND `id` != '$id'";
-        }
-        $exite = $query->getFirst($sql1);
-        if($exite){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    function save($nombre, $cargo)
+    public function getList($campo, $operador, $valor, $band = null)
     {
-        $row = null;
-        $query = new Query();
-        $hoy = date("Y-m-d");
-        $existe = $this->existe($cargo);
-        if(!$existe){
-            $sql = "INSERT INTO `firmantes` (`nombre`, `cargo`, `created_at`) VALUES ('$nombre', '$cargo', '$hoy');";
-            $row = $query->save($sql);
-            return $row;
-        }else{
-            return false;
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "AND `band`= $band";
         }
-
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra; ";
+        $rows = $query->getAll($sql);
+        return $rows;
     }
 
-    function update($id, $nombre, $cargo)
+    public function count($band = null)
     {
-        $row = null;
-        $query = new Query();
-        $hoy = date("Y-m-d");
-        $existe = $this->existe($cargo , $id);
-        if(!$existe){
-            $sql = "UPDATE `firmantes` SET `nombre`='$nombre', `cargo`='$cargo', `updated_at`='$hoy' WHERE `id`=$id;";
-            $row = $query->save($sql);
-            return $row;
-        }else{
-            return false;
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "WHERE `band`= $band";
         }
-
+        $query = new Query();
+        $sql = "SELECT COUNT(*) FROM `$this->TABLA` $extra ;";
+        $rows = $query->count($sql);
+        return $rows;
     }
 
-    function delete($id)
+    public function find($id)
     {
-        $row = null;
         $query = new Query();
-        $sql1 = "SELECT * FROM `firmantes` WHERE `id` = $id;";
-        $firmante = $query->getFirst($sql1);
-
-        if ($firmante) {
-
-
-            $hoy = date("Y-m-d");
-            $sql = "UPDATE `firmantes` SET `band`='0', `updated_at`='$hoy' WHERE  `id`=$id;";
-            $row = $query->save($sql);
-            return $row;
-
-        } else {
-
-            return false;
-
-        }
-
-
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `id`= '$id'; ";
+        $rows = $query->getfirst($sql);
+        return $rows;
     }
+
+    public function first($campo, $operador, $valor)
+    {
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor'; ";
+        $rows = $query->getfirst($sql);
+        return $rows;
+    }
+
+    public function existe($campo, $operador, $valor, $id = null, $band = null)
+    {
+        $extra = null;
+        $edit = null;
+        if ($band) {
+            $extra = "AND `band`= $band";
+        }
+        if ($id) {
+            $edit = "AND `id` != '$id'";
+        }
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra $edit;";
+        $row = $query->getFirst($sql);
+        return $row;
+    }
+
+    public function save($data = array())
+    {
+        $query = new Query();
+        $campos = "(";
+        foreach ($this->DATA as $campo) {
+            $campos .= "`$campo`, ";
+        }
+        $campos .= ")exit";
+        $campos = str_replace(", )exit", ")", $campos);
+        $values = "(";
+        foreach ($data as $input) {
+            $values .= "'$input', ";
+        }
+        $values .= ")exit";
+        $values = str_replace(", )exit", ")", $values);
+
+        $sql = "INSERT INTO `$this->TABLA` $campos VALUES $values;";
+
+        $row = $query->save($sql);
+        return $row;
+    }
+
+    public function update($id, $campo, $valor)
+    {
+        $query = new Query();
+        $hoy = null;
+        $sql = "UPDATE `$this->TABLA` SET `$campo` = '$valor' WHERE `id` = '$id';";
+        $row = $query->save($sql);
+        return $row;
+    }
+
+    public function delete($id)
+    {
+        $query = new Query();
+        $sql = "DELETE FROM `$this->TABLA` WHERE  `id` = $id;";
+        $row = $query->save($sql);
+        return $row;
+    }
+
 }
