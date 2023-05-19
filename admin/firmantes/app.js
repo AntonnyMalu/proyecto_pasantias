@@ -25,7 +25,6 @@ function btnEdit(id){
 
 function btnElim(id){
     let button = document.getElementById("btn_eliminar_" + id);
-    let id_firmmante = button.dataset.id;
     let form = document.getElementById("form_eliminar_" + id);
     //motramos la advertencia
     Swal.fire({

@@ -33,20 +33,28 @@
                                             <td class="text-center">
 
 
-                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-inst" 
-                                                data-id="<?php echo $persona['id']; ?>" data-rif="<?php echo strtoupper($persona['rif']); ?> "
-                                                data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " >
+                                            <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm"
+                                                onclick="btnShow('<?php echo $persona['id'] ?>')"
+                                                data-rif="<?php echo strtoupper($persona['rif']); ?> "
+                                                data-nombre="<?php echo strtoupper($persona['nombre']); ?> " 
+                                                data-direccion="<?php echo strtoupper($persona['direccion']); ?> " 
+                                                data-telefono="<?php echo $persona['telefono']; ?> " 
+                                                id="btn_show_<?php echo $persona['id']; ?>">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
-                                            <button type="button" class="btn btn-warning btn-circle btn-sm edit-inst"
+                                            <button type="button" class="btn btn-warning btn-circle btn-sm"
+                                                onclick="btnEditar('<?php echo $persona['id']; ?>')"
                                                 data-rif="<?php echo $persona['rif']; ?>" data-nombre="<?php echo strtoupper($persona['nombre']); ?>" 
                                                 data-telefono="<?php echo $persona['telefono']; ?>" data-direccion="<?php echo strtoupper($persona['direccion']); ?>"
-                                                data-id="<?php echo $persona['id']; ?>" >
+                                                id="btn_eliminar_<?php echo $persona['id']; ?>" >
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-circle btn-sm elim-inst"
-                                                        data-id="<?php echo $persona['id']; ?>">
+
+                                                <button type="button" class="btn btn-danger btn-circle btn-sm"
+                                                onclick="btnEditar('<?php echo $persona['id']; ?>')"
+                                                data-id="<?php echo $persona['id']; ?>"
+                                                id="btn_eliminar_<?php echo $persona['id']; ?>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
 
@@ -66,7 +74,7 @@
                                         
                                     </tbody>
                                 </table>
-                                                            <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -102,6 +110,7 @@
       <div class="modal-footer">
         
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <input type="hidden" id="id">                                    
                             
         </div>
     </div>

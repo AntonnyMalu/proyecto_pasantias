@@ -1,25 +1,7 @@
-$('#input_telefono').inputmask({"mask": "(9999) 999.99.99"});
-$('#input_rif').inputmask({"mask": "A-9{1,8}-9"});
+$('#input_telefono').inputmask({ "mask": "(9999) 999.99.99" });
+$('#input_rif').inputmask({ "mask": "A-9{1,8}-9" });
 
-$(".evento").click(function(e){
-
-    //e.preventDefault();
-
-    
-    //mostramos un Loading
-    Swal.fire({
-        timer: 1000,
-        timerProgressBar: true,
-        didOpen: () => {
-            Swal.showLoading()
-        },
-    });
-});
-
-$(".edit-inst").click(function(e){
-
-    e.preventDefault();
-
+function btnEditar(id) {
     //mostramos un Loading
     Swal.fire({
         timer: 1000,
@@ -29,43 +11,29 @@ $(".edit-inst").click(function(e){
         },
     });
 
-    //obtenemos los datos
-    let rif = this.dataset.rif;
-    let nombre = this.dataset.nombre;
-    let telefono = this.dataset.telefono;
-    let direccion = this.dataset.direccion;
-    let id = this.dataset.id;
-
-    //identificamos los input
-    let input_rif = document.getElementById("input_rif");
-    let input_nombre = document.getElementById("input_nombre");
-    let input_telefono = document.getElementById("input_telefono");
-    let input_direccion = document.getElementById("input_direccion");
-    let input_opcion = document.getElementById("input_opcion");
-    let instituciones_id = document.getElementById("input_instituciones_id");
+    let button = document.getElementById("btn_eliminar_" + id);
     let titulo = document.getElementById("titulo_form");
 
+    let rif = button.dataset.rif;
+    let nombre = button.dataset.nombre;
+    let telefono = button.dataset.telefono;
+    let direccion = button.dataset.direccion;
 
+    $("#input_rif").val(rif);
+    $('#input_rif').trigger('change');
+    $("#input_nombre").val(nombre);
+    $('#input_nombre').trigger('change');
+    $("#input_telefono").val(telefono);
+    $('#input_telefono').trigger('change');
+    $("#input_direccion").val(direccion);
+    $('#input_direccion').trigger('change');
+    $('#input_form_id').val(id);
+    $("#input_opcion").val("editar");
+    titulo.innerText = "Editar";
+}
 
-    //cambiamos el valor de los input y el titulo del CARDVIEW
-    input_rif.value = rif;
-    input_nombre.value = nombre;
-    input_telefono.value = telefono;
-    input_direccion.value = direccion;
-    input_instituciones_id.value = id;
-    input_opcion.value = "editar";
-    titulo.innerText = "Editar Institución";
-
-});
-
-//ELIMINAR USUARIO
-$(".elim-inst").click(function(e){
-
-    e.preventDefault();
-    //obtenemos los datos
-    let id = this.dataset.id;
-
-    //identificamos el formulario
+function btnEliminar(id) {
+    let button = document.getElementById("btn_eliminar_" + id);
     let form = document.getElementById("form_eliminar_" + id);
 
     //motramos la advertencia
@@ -84,43 +52,29 @@ $(".elim-inst").click(function(e){
             form.submit();
         }
     });
-
-});
-
+}
 
 //CAMBIAR TITULO EN EL CARDVIEW
-$("#btn_cancelar").click(function(e){
+$("#btn_cancelar").click(function (e) {
     let titulo = document.getElementById("titulo_form");
     titulo.innerText = "Crear Usuario";
 });
 
-$(".show-inst").click(function(e){
 
-    e.preventDefault();
+function btnShow(id) {
+    let button = document.getElementById("btn_show_" + id);
 
-    //obtenemos los datos
-    let rif = this.dataset.rif;
-    let nombre = this.dataset.nombre;
-    let telefono = this.dataset.telefono;
-    let direccion = this.dataset.direccion;
-    let id = this.dataset.id;
+    let rif = button.dataset.rif;
+    let nombre = button.dataset.nombre;
+    let telefono = button.dataset.telefono;
+    let direccion = button.dataset.direccion;
 
-    //identificamos los input
-    let input_rif = document.getElementById("modal_rif");
-    let input_nombre = document.getElementById("modal_nombre");
-    let input_telefono = document.getElementById("modal_telefono");
-    let input_direccion = document.getElementById("modal_direccion");
- 
+    $("#modal_rif").text(rif);
+    $("#modal_nombre").text(nombre);
+    $("#modal_telefono").text(telefono);
+    $("#modal_direccion").text(direccion);
+    $('#id').val(id);
 
-
-
-    //cambiamos el valor de los input y el titulo del CARDVIEW
-    input_rif.innerText = rif;
-    input_nombre.innerText = nombre;
-    input_telefono.innerText = telefono;
-    input_direccion.innerText = direccion;
-    
-
-});
+}
 
 console.log('instituciones-app.js');
