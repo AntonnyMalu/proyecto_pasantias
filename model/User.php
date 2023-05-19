@@ -1,104 +1,122 @@
 <?php
 
-class User{
+class User
+{
+    public $TABLA = "users";
+    public $DATA = [
+        'email',
+        'password',
+        'name',
+        'role',
+        'created_at'
+    ];
 
-    //LISTAR USUARIOS
-    function getAll()
+    /* ****************************************************************************************************************   */
+
+    public function getAll($band = null)
     {
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "WHERE `band`= $band";
+        }
         $query = new Query();
-        $rows = null;
-        $sql = "SELECT * FROM `users` WHERE `band`= 1 ORDER BY `role` ASC";
+        $sql = "SELECT * FROM `$this->TABLA` $extra  ;";
         $rows = $query->getAll($sql);
         return $rows;
     }
 
-        //USUARIOS NUEVOS
-    function save($name, $email, $password, $role)
+    public function getList($campo, $operador, $valor, $band = null)
     {
-        $row = null;
-        $query = new Query();
-        $sql1 = "SELECT * FROM `users` WHERE `email` = '$email'";
-        $exite = $query->getFirst($sql1);
-
-        if ($exite) {
-
-            return false;
-
-        } else {
-
-            $hoy = date("Y-m-d");
-            $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO `users` (`email`, `password`, `name`, `role`, `created_at`) VALUES ('$email', '$password_hash', '$name', '$role', '$hoy');";
-            $row = $query->save($sql);
-            return $row;
-
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "AND `band`= $band";
         }
-
-
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra; ";
+        $rows = $query->getAll($sql);
+        return $rows;
     }
 
-        //EDITAR USUARIOS
-    function update($id, $name, $email, $password, $role)
+    public function count($band = null)
     {
-        $row = null;
-        $query = new Query();
-        $sql1 = "SELECT * FROM `users` WHERE `id` = '$id'";
-        $usuario = $query->getFirst($sql1);
-
-        if ($usuario) {
-
-            $sql2 = "SELECT * FROM `users` WHERE `email` = '$email' AND `id` != '$id'";
-            $exite = $query->getFirst($sql2);
-
-            if ($exite){
-
-                return false;
-
-            }else{
-
-                $hoy = date("Y-m-d");
-                if (!empty($password)){
-                    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-                    $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `password`='$password_hash', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
-                }else{
-                    $sql = "UPDATE `users` SET `name`='$name', `email`='$email', `role`='$role', `updated_at`='$hoy' WHERE  `id`=$id;";
-                }
-                $row = $query->save($sql);
-                return $row;
-
-            }
-
-        } else {
-
-            return false;
-
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "WHERE `band`= $band";
         }
-
+        $query = new Query();
+        $sql = "SELECT COUNT(*) FROM `$this->TABLA` $extra ;";
+        $rows = $query->count($sql);
+        return $rows;
     }
 
-        //ELIMINAR USUARIOS
-    function delete($id)
+    public function find($id)
     {
-        $row = null;
         $query = new Query();
-        $sql1 = "SELECT * FROM `users` WHERE `id` = '$id'";
-        $usuario = $query->getFirst($sql1);
-
-        if ($usuario) {
-
-            $hoy = date("Y-m-d");
-            $sql = "UPDATE `users` SET `band`='0', `updated_at`='$hoy' WHERE  `id`=$id;";
-            $row = $query->save($sql);
-            return $row;
-
-        } else {
-
-            return false;
-
-        }
-
-
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `id`= '$id'; ";
+        $rows = $query->getfirst($sql);
+        return $rows;
     }
+
+    public function first($campo, $operador, $valor)
+    {
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor'; ";
+        $rows = $query->getfirst($sql);
+        return $rows;
+    }
+
+    public function existe($campo, $operador, $valor, $id = null, $band = null)
+    {
+        $extra = null;
+        $edit = null;
+        if ($band) {
+            $extra = "AND `band`= $band";
+        }
+        if ($id) {
+            $edit = "AND `id` != '$id'";
+        }
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra $edit;";
+        $row = $query->getFirst($sql);
+        return $row;
+    }
+
+    public function save($data = array())
+    {
+        $query = new Query();
+        $campos = "(";
+        foreach ($this->DATA as $campo) {
+            $campos .= "`$campo`, ";
+        }
+        $campos .= ")exit";
+        $campos = str_replace(", )exit", ")", $campos);
+        $values = "(";
+        foreach ($data as $input) {
+            $values .= "'$input', ";
+        }
+        $values .= ")exit";
+        $values = str_replace(", )exit", ")", $values);
+
+        $sql = "INSERT INTO `$this->TABLA` $campos VALUES $values;";
+
+        $row = $query->save($sql);
+        return $row;
+    }
+
+    public function update($id, $campo, $valor)
+    {
+        $query = new Query();
+        $sql = "UPDATE `$this->TABLA` SET `$campo` = '$valor' WHERE `id` = '$id';";
+        $row = $query->save($sql);
+        return $row;
+    }
+
+    public function delete($id)
+    {
+        $query = new Query();
+        $sql = "DELETE FROM `$this->TABLA` WHERE  `id` = $id;";
+        $row = $query->save($sql);
+        return $row;
+    }
+
 }
-
-

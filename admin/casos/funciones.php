@@ -8,6 +8,8 @@ require "../../model/Caso.php";
 $modulo = "casos";
 $alert = null;
 $message = null;
-$caso = new Caso();
-$casos = $caso->getAll();
+$casos = new Caso();
+$personas = new Persona();
+
+$listarCasos = $casos->getAll(1);
 ?>

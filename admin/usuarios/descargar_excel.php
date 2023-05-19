@@ -9,17 +9,10 @@ header("Pragma: no-cache");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 require "../seguridad.php";
 require "../../mysql/Query.php";
+require "../../model/User.php";
 
-function getUsuarios()
-{
-    $query = new Query();
-    $rows = null;
-    $sql = "SELECT * FROM `users` WHERE `band`= 1 ";
-    $rows = $query->getAll($sql);
-    return $rows;
-}
-
-$usuarios = getUsuarios();
+$users = new User();
+$listarUser = $users->getAll(1);
 ?>
 <table border="1">
     <tbody>
@@ -32,7 +25,7 @@ $usuarios = getUsuarios();
         </tr>
         <?php 
             $i = 0;
-            foreach($usuarios as $usuario){
+            foreach($listarUser as $usuario){
                 $i++;
         ?>
         <tr>

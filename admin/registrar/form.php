@@ -2,7 +2,7 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary" id="titulo_form">
             <?php 
-            if($caso_id){
+            if($getCaso){
                 echo "Editar Caso Social";
             }else{
                 echo "Registrar Caso Social";
@@ -19,15 +19,16 @@
         <div class="form-group">
             <label>Datos Personales</label>
             <?php 
-                if($caso_id){
-                    $dia = $get_caso['fecha'];
-                    $hora = $get_caso['hora'];
-                    $tipo = $get_caso['tipo'];
-                    $obsevacion = $get_caso['observacion'];
-                    $cedula = $get_persona['cedula'];
-                    $nombre = $get_persona['nombre'];
-                    $telefono = $get_persona['telefono'];
-                    $direccion = $get_persona['direccion'];
+                if($getCaso){
+                    $getPersona = $personas->find($getCaso['personas_id']);
+                    $dia = $getCaso['fecha'];
+                    $hora = $getCaso['hora'];
+                    $tipo = $getCaso['tipo'];
+                    $obsevacion = $getCaso['observacion'];
+                    $cedula = $getPersona['cedula'];
+                    $nombre = $getPersona['nombre'];
+                    $telefono = $getPersona['telefono'];
+                    $direccion = $getPersona['direccion'];
                     $opcion = "editar";
                 }else{
                     $dia = date("Y-m-d");
@@ -45,8 +46,8 @@
             <select class="form-control select2bs4" name="personas_id" id="personas_id" required>
 
                 <?php
-                    if($caso_id){
-                        echo '<option value="'.$get_persona['id'].'">'.$get_persona['cedula'].' - '.strtoupper($get_persona['nombre']).'</option>';
+                    if($getCaso){
+                        echo '<option value="'.$getPersona['id'].'">'.$getPersona['cedula'].' - '.strtoupper($getPersona['nombre']).'</option>';
                     }else{
                         echo '<option value="">Buscar...</option>';
                     }
@@ -56,8 +57,8 @@
                 
                 <option value="-1">NUEVO</option>
                 <?php 
-                foreach($personas as $persona){
-                    if($get_persona['id'] != $persona['id']){
+                foreach($listarPersona as $persona){
+                    if($getPersona['id'] != $persona['id']){
 
                    
 
@@ -70,7 +71,7 @@
                 }
                 ?>
             </select>
-            <?php foreach ($personas as $persona){ ?>
+            <?php foreach ($listarPersona as $persona){ ?>
                     <input type="hidden" value="<?php echo $persona['cedula']." ".strtoupper($persona['nombre']) ?>" id="data_<?php echo $persona['id'] ?>"
                            data-cedula="<?php echo $persona['cedula'] ?>" data-nombre="<?php echo strtoupper($persona['nombre']) ?>" data-telefono="<?php echo $persona['telefono'] ?>" 
                            data-direccion="<?php echo strtoupper($persona['direccion']) ?>" data-id="<?php echo $persona['id'] ?>">
@@ -114,8 +115,8 @@
             <select class="form-control" name="donativo" id="donativo" required>
                 
                 <?php
-                    if($caso_id){
-                        if($get_caso['donativo'] == 'Si'){
+                    if($getCaso){
+                        if($getCaso['donativo'] == 'Si'){
                             //si
                             echo '<option value="Si">Si</option>
                             <option value="No">No</option>';
@@ -159,7 +160,7 @@
         
 
         <input type="hidden" name="opcion" value="<?php echo $opcion; ?>" id="input_opcion" />
-        <input type="hidden" name="casos_id" id="input_redactar_id" value="<?php echo $caso_id; ?>" />
+        <input type="hidden" name="id" id="input_redactar_id" value="<?php echo $id; ?>" />
 
         <a href="../casos/" class="btn btn-secondary" id="btn_cancelar">Cancelar</a>
         <button type="submit" class="btn btn-primary float-right">Guardar</button>

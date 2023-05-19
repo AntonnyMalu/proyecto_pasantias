@@ -7,54 +7,47 @@ require "../../model/Caso.php";
 require "../_layout/flash_message.php";
 
 if ($_POST) {
-    $caso = new Caso();
-//ELIMINAR USUARIO
-    if ($_POST['opcion'] == "eliminar") {
 
-        if (!empty($_POST['casos_id'])){
+    $casos = new Caso();
+    $opcion = $_POST['opcion'];
+    $id = $_POST['id'];
+    $hoy = date('Y-m-d');
 
-            $id = $_POST['casos_id'];
+    if (!empty($id)) {
 
-            //$usuario = eliminarCaso($id);
-            $casos = $caso->delete($id);
-
-            if ($casos) {
+        if ($opcion == "cambiar_status") {
+            $status = $_POST['casos_status'];
+    
+            $cambiar = $casos->update($id, 'status', $status);
+            if ($cambiar) {
                 $alert = "success";
-                $message = "Caso Eliminado.";
-                crearFlashMessage($alert,$message, '../casos/');
+                $message = "Estatus Actualizado";
             } else {
                 $alert = "warning";
                 $message = "Error";
-                crearFlashMessage($alert,$message, '../casos/');
             }
-
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert,$message, '../casos/');
         }
 
-    }
-    
-    if ($_POST['opcion'] == "cambiar_status") {
-        $id = $_POST['casos_id'];
-        $status = $_POST['casos_status'];
-        
-        $cambiar = $caso->setStatus($id, $status);
-        if ($cambiar) {
-            $alert = "success";
-            $message = "Estatus Actualizado";
-            crearFlashMessage($alert,$message, '../casos/');
-        } else {
-            $alert = "warning";
-            $message = "Error";
-            crearFlashMessage($alert,$message, '../casos/');
+        if ($opcion == "eliminar") {
+            $editar = $casos->update($id, 'band', 0);
+            $editar = $casos->update($id, 'updated_at', $hoy);
+            if ($editar) {
+                $alert = "success";
+                $message = "Caso Eliminado.";
+            }else{
+                $alert = "warning";
+                $message = "Error en el Modelo";
+            }
         }
 
+    }else{
+        $alert ="danger";
+        $message = "Faltan Datos";
     }
 
+} else {
+    $alert = "danger";
+    $message = "Se deben enviar los datos por el metodo POST";
 }
 
-
-
-?>
+crearFlashMessage($alert, $message, '../casos/');

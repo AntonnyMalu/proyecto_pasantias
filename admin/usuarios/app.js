@@ -72,11 +72,8 @@ $("#form_usuarios").submit(function (e) {
 
 
 // CAMBIAR FORMULARIO PARA EDITAR USUARIO
-
-$(".edit-usu").click(function(e){
-
-    e.preventDefault();
-
+function btnEditar(id){
+    
     //mostramos un Loading
     Swal.fire({
         timer: 1000,
@@ -85,12 +82,11 @@ $(".edit-usu").click(function(e){
             Swal.showLoading()
         },
     });
-
+    let button = document.getElementById("btn_editar_" + id);
     //obtenemos los datos
-    let name = this.dataset.name;
-    let email = this.dataset.email;
-    let role = this.dataset.role;
-    let id = this.dataset.id;
+    let name = button.dataset.name;
+    let email = button.dataset.email;
+    let role = button.dataset.role;
 
     //identificamos los input
     let input_name = document.getElementById("input_name");
@@ -109,8 +105,9 @@ $(".edit-usu").click(function(e){
     input_user_id.value = id;
     input_opcion.value = "editar";
     titulo.innerText = "Editar Usuario";
-
-});
+    $('#input_password').val("");
+    $('#input_confirmar').val('');
+}
 
 
 //ELIMINAR USUARIO
@@ -142,11 +139,36 @@ $(".elim-usu").click(function(e){
 
 });
 
+function btnEliminar(id){
+    let button = document.getElementById("btn_eliminar_" + id);
+    //identificamos el formulario
+    let form = document.getElementById("form_eliminar_" + id);
+
+    //motramos la advertencia
+    Swal.fire({
+        title: '¿Estas seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, bórralo!'
+    }).then((result) => {
+        //validamos que la respues sea si
+        if (result.isConfirmed) {
+            //mandamos a enviar el formulario
+            form.submit();
+        }
+    });
+
+}
 
 //CAMBIAR TITULO EN EL CARDVIEW
 $("#btn_cancelar").click(function(e){
     let titulo = document.getElementById("titulo_form");
     titulo.innerText = "Crear Usuario";
+    $('#input_opcion').val('guardar');
+    $('#input_user_id').val('');
 });
 
 console.log('usuarios-app.js');

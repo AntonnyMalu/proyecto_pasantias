@@ -4,205 +4,142 @@ session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
 require "../_layout/flash_message.php";
+require "../../model/Caso.php";
+require "../../model/Persona.php";
+require "../../funciones/funciones.php";
 
-function existePersona($cedula, $id){
-    $row = null;
-    $query = new Query();
-    
-    if($id == -1){
-        $mensaje = 1;
-        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1'";
-    }else{
-        $mensaje = 2;
-        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1' AND `id` != '$id'";
-    }
-    $exite = $query->getFirst($sql1);
-
-    if($exite){
-        $array = array(true, $mensaje);  
-    }else{
-        $array = array(false, $mensaje);
-    }
-    return $array;
-
-}
-
-
-function persona($id, $cedula, $nombre, $telefono, $direccion){
-    $row = null;
-    $query = new Query();
-    $hoy = date("Y-m-d");
-
-    if($id == -1){ 
-        //nuevo
-        $existe = existePersona($cedula, $id);
-        if(!$existe[0]){
-            $sql = "INSERT INTO`personas` (`cedula`, `nombre`, `telefono`, `direccion`, `created_at`) VALUES ('$cedula', '$nombre', '$telefono', '$direccion', '$hoy');";
-            $row = $query->save($sql);
-            $sql2 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula'; ";
-            $row = $query->getFirst($sql2);
-            $array = array(true, $row['id']);
-        }else{
-            $array = array(false, $existe[1]);
-        
-        }
-    return $array;
-
-    }else{
-        //editar
-        $existe = existePersona($cedula, $id);
-        if(!$existe[0]){
-            $sql = "UPDATE `personas` SET `cedula`='$cedula', `nombre`='$nombre', `telefono`='$telefono', `direccion`='$direccion', `updated_at`='$hoy' WHERE `id`=$id;";
-            $row = $query->save($sql);
-            $array = array(true, $id);   
-        }else{
-            $array = array(false, $existe[1]);
-        }
-        return $array;
-    
-    }
-}
-
-
-function crearCaso($personas_id,$persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion ,$fecha, $hora, $donativo, $tipo, $observacion)
+function existeCaso($personas_id, $fecha)
 {
-    $row = null;
     $query = new Query();
-    $hoy = date("Y-m-d");
-    $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
-
-    if($persona[0]){
-        $sql = "INSERT INTO `casos` (`personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `observacion`, `created_at`) 
-        VALUES ('$persona[1]', '$fecha', '$hora', '$donativo', '$tipo', '$observacion', '$hoy');";
-        $row = $query->save($sql);
-        $array = array(true, $row);
+    $sql = "SELECT * FROM `casos` WHERE `personas_id` = '$personas_id' AND  `band` = 1 ORDER BY `fecha` DESC; ";
+    $row = $query->getFirst($sql);
+    if ($row) {
+        $dias = compararFechas($row['fecha'], $fecha);
+        if ($dias>=30) {
+            return false;
+        }else{
+            return true;
+        }
     }else{
-        $array = array(false, $persona[1]);
+        return false;
     }
-    return $array;
-   
-
+    
 }
-
-function editarCaso($id, $personas_id, $persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion)
-{
-    $row = null;
-    $query = new Query();
-    $hoy = date("Y-m-d");
-    $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
-
-    if($persona[0]){
-    $sql = "UPDATE `casos` SET `personas_id`='$persona[1]', `fecha`='$fecha', `hora`='$hora', `donativo`='$donativo', 
-    `tipo`='$tipo', `observacion`='$observacion', `updated_at`='$hoy' WHERE  `id`='$id';";
-        $row = $query->save($sql);
-        $array = array(true, $row);
-    }else{
-        $array = array(false, $persona[1]);
-    }
-    return $array;
-
-}
-
-
-
-
 
 if ($_POST) {
-    //GUARDAR NUEVO
-    if ($_POST['opcion'] == "guardar") {
+    $id = $_POST['id'];
+    $opcion = $_POST['opcion'];
+    $hoy = date('Y-m-d');
+    $casos = new Caso();
+    $personas = new Persona();
 
-        if(!empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['donativo']) && !empty($_POST['tipo'])){
-            $personas_id = $_POST['personas_id'];
-            $fecha = $_POST['fecha'];
-            $hora =  $_POST['hora'];
-            $donativo =  $_POST['donativo'];
-            $tipo =  $_POST['tipo'];
-            $persona_cedula = $_POST['persona_cedula'];
-            $persona_nombre = $_POST['persona_nombre'];
-            $persona_telefono = $_POST['persona_telefono'];
-            $persona_direccion = $_POST['persona_direccion'];
-            
-            $observacion =  $_POST['observacion'];
-        
-            $caso = crearCaso($personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion);
+    if (
+        !empty($_POST['personas_id']) &&
+        !empty($_POST['fecha']) &&
+        !empty($_POST['hora']) &&
+        !empty($_POST['donativo']) &&
+        !empty($_POST['tipo'])
+    ) {
+        $personas_id = $_POST['personas_id'];
+        $fecha = $_POST['fecha'];
+        $hora =  $_POST['hora'];
+        $donativo =  $_POST['donativo'];
+        $tipo =  $_POST['tipo'];
+        $persona_cedula = $_POST['persona_cedula'];
+        $persona_nombre = $_POST['persona_nombre'];
+        $persona_telefono = $_POST['persona_telefono'];
+        $persona_direccion = $_POST['persona_direccion'];
+        $observacion =  $_POST['observacion'];
 
-            if ($caso[0]) {
-                
-                $alert = "success";
-                $message = "Caso Social Registrado Exitosamente";
-                crearFlashMessage($alert,$message, '../casos/');
+        if ($personas_id == '-1') {
+            //nuevo
+            $personas_id = null;
+        }
 
+        $existePersona = $personas->existe('cedula', '=', $persona_cedula, $personas_id, 1);
+        if (!$existePersona) {
 
+            if (is_null($personas_id)) {
+                $dataPersona = [
+                    $persona_cedula,
+                    $persona_nombre,
+                    $persona_telefono,
+                    $persona_direccion,
+                    $hoy
+                ];
+                $guardarPersona = $personas->save($dataPersona);
+                $getPersona = $personas->first('cedula', '=', $persona_cedula);
+                $personas_id = $getPersona['id'];
             } else {
-                $alert = "warning";
-                if($caso[1] == 1){
-                    $message = "El campo <strong>Cédula</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                }else{
-                    $message = "La Cédula ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                }
-                
-                crearFlashMessage($alert, $message, '../registrar/');
+                //editar
+                $guardarPersona = $personas->update($personas_id, 'cedula', $persona_cedula);
+                $guardarPersona = $personas->update($personas_id, 'nombre', $persona_nombre);
+                $guardarPersona = $personas->update($personas_id, 'telefono', $persona_telefono);
+                $guardarPersona = $personas->update($personas_id, 'direccion', $persona_direccion);
+                $guardarPersona = $personas->update($personas_id, 'updated_at', $hoy);
             }
 
 
+
+
+            if (!existeCaso($personas_id, $fecha)) {
+
+                if ($opcion == "guardar") {
+
+                    $dataCaso = [
+                        $personas_id,
+                        $fecha,
+                        $hora,
+                        $donativo,
+                        $tipo,
+                        $observacion,
+                        $hoy
+                    ];
+
+                    $guardarCaso = $casos->save($dataCaso);
+                    if ($guardarCaso) {
+                        $alert = "success";
+                        $message = "Caso Registrado Correctamente.";
+                        crearFlashMessage($alert, $message, '../casos/');
+                        exit;
+                    }
+                }
+
+
+                if ($opcion == "editar") {
+                    $editarCaso = $casos->update($id, 'personas_id', $personas_id);
+                    $editarCaso = $casos->update($id, 'fecha', $fecha);
+                    $editarCaso = $casos->update($id, 'hora', $hora);
+                    $editarCaso = $casos->update($id, 'donativo', $donativo);
+                    $editarCaso = $casos->update($id, 'observacion', $observacion);
+                    $editarCaso = $casos->update($id, 'updated_at', $hoy);
+
+                    if ($editarCaso) {
+                        $alert = "success";
+                        $message = "Cambios Guardados.";
+                        crearFlashMessage($alert, $message, '../casos/');
+                        exit;
+                    }
+                }
+            } else {
+                $alert = "warning";
+                $message = "La cedula ingresada tiene un caso social registrado a menos de 30 días de la fecha indicada.";
+            }
         } else {
-            $alert = "danger";
-            $message = "faltan datos"; 
-            crearFlashMessage($alert,$message, '../casos/');
+            $alert = "warning";
+            $message = "La Cédula ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
         }
-
-        }
-       
-        
-       
-       
-
+    } else {
+        $alert = "warning";
+        $message = "Faltan datos.";
     }
-
-    //EDITAR
-    if ($_POST['opcion'] == "editar") {
-
-        if(!empty($_POST['casos_id']) && !empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['hora']) && !empty($_POST['donativo']) && !empty($_POST['tipo'])){
-            $id = $_POST['casos_id'];
-            $personas_id = $_POST['personas_id'];
-            $fecha = $_POST['fecha'];
-            $hora =  $_POST['hora'];
-            $donativo =  $_POST['donativo'];
-            $tipo =  $_POST['tipo'];
-            $persona_cedula = $_POST['persona_cedula'];
-            $persona_nombre = $_POST['persona_nombre'];
-            $persona_telefono = $_POST['persona_telefono'];
-            $persona_direccion = $_POST['persona_direccion'];
-            
-            $observacion =  $_POST['observacion'];
-        
-            $caso = editarCaso($id, $personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  $persona_direccion, $fecha, $hora, $donativo, $tipo, $observacion);
-
-            if ($caso[0]) {
-
-                $alert = "success";
-                $message = "Registro Editado Exitosamente";
-                crearFlashMessage($alert,$message, '../casos/');
-
-
-            } else {
-                $alert = "warning";
-                if($caso[1] == 1){
-                    $message = "El campo <strong>Cédula</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                }else{
-                    $message = "La Cédula ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                }
-                crearFlashMessage($alert, $message, '../registrar/index.php?id='.$id);
-            }
-
-
-        } else {
-            $alert = "danger";
-            $message = "faltan datos"; 
-            crearFlashMessage($alert,$message, '../casos/');
-        }
-
-        }
-    
-        
-?>
+} else {
+    $alert = "warning";
+    $message = "Se deben Enviar los datos por el metodo POST";
+}
+if (isset($id)) {
+    $ruta = '../registrar/?id=' . $id;
+} else {
+    $ruta = '../registrar/';
+}
+crearFlashMessage($alert, $message, $ruta);

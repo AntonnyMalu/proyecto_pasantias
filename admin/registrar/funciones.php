@@ -1,66 +1,30 @@
-<?php 
+<?php
 // start a session
 session_start();
 require "../seguridad.php";
 require "../../mysql/Query.php";
-$modulo = "casos";
+require "../../model/Caso.php";
+require "../../model/Persona.php";
 
+$modulo = "casos";
 $alert = null;
 $message = null;
+$casos = new Caso();
+$personas = new Persona();
 
-
-function getAllPerson()
-{
-    $row = null;
-    $query = new Query();
-    $sql = "SELECT * FROM `personas`;";
-    $row = $query->getAll($sql);
-    return $row;
-}
-
-
-function getcaso($id)
-{
-    $query = new Query();
-    $rows = null;
-    $sql = "SELECT * FROM `casos` WHERE `id` = $id;";
-    $rows = $query->getFirst($sql);
-    if(!$rows){
-        header('location: ../casos');
-    }else{
-        return $rows;
-    }
-    
-}
-function getPerson($id)
-{
-    $query = new Query();
-    $rows = null;
-    $sql = "SELECT * FROM `personas` WHERE `id` = $id;";
-    $rows = $query->getFirst($sql);
-    if(!$rows){
-        header('location: ../casos');
-    }else{
-        return $rows;
-    }
-    
-}
-
-if ($_GET)
-{
-    if(!empty($_GET['id'])){
-        $caso_id = $_GET['id'];
-        $get_caso = getCaso($caso_id);
-        $get_persona = getPerson($get_caso['personas_id']);
-        
-    }else{
-        $caso_id = null;
-        $get_person = null;
+if (isset($_GET['id']) && !empty($_GET['id'])) {
+    $id = $_GET['id'];
+    $getCaso = $casos->find($id);
+    if (!$getCaso) {
+        require "../_layout/flash_message.php";
+        $alert = "warning";
+        $message = "ID no encontrado.";
+        crearFlashMessage($alert, $message, '../casos/');
     }
 }else{
-    $caso_id = null;
+    $getCaso = null;
+    $id = null;
 }
 
-$personas = getAllPerson();
-
-?>
+$listarCaso = $casos->getAll(1);
+$listarPersona = $personas->getAll(1);

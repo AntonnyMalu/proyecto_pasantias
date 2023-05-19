@@ -6,99 +6,93 @@ require "../../mysql/Query.php";
 require "../../model/User.php";
 require "../_layout/flash_message.php";
 
+$ruta = '../usuarios';
 if ($_POST) {
-    $user = new User();
-    //GUARDAR NUEVO USUARIO
-    if ($_POST['opcion'] == "guardar") {
+    //PROCESAR
+    $users = new User();
+    $opcion = $_POST['opcion'];
+    $id = $_POST['id'];
+    $hoy = date('Y-m-d');
+    $password_hash = null;
 
-        if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password']) && isset($_POST['role'])) {
+    if (
+        !empty($_POST['name']) &&
+        !empty($_POST['email']) &&
+        isset($_POST['password']) &&
+        !empty($_POST['role'])
+    ) {
 
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $role = $_POST['role'];
-
-            //$usuario = crearUsuario($name, $email, $password, $role);
-            $usuario = $user->save($name, $email, $password, $role);
-
-            if ($usuario) {
-
-                $alert = "success";
-                $message = "Usuario Creado Exitosamente";
-                crearFlashMessage($alert,$message, '../usuarios/');
-
-
-            } else {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $role = $_POST['role'];
+        $confirmar = $_POST['confirmar'];
+        if (!empty($password)) {
+            if ($password == $confirmar) {
+                $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            }else{
                 $alert = "warning";
-                $message = "Email ya registrado";
-                crearFlashMessage($alert, $message, '../usuarios/');
+                $message = "Las contraseñas no coinciden.";
+                crearFlashMessage($alert,$message, $ruta);
+            }
+           
+        }
+
+        $data = [
+            $email,
+            $password_hash,
+            $name,
+            $role,
+            $hoy
+        ];
+
+        $existe = $users->existe('email', '=', $email, $id, 1);
+
+        if (!$existe) {
+            if ($opcion == "guardar") {
+                if (!is_null($password_hash)) {
+                    $guardar = $users->save($data);
+                    if ($guardar) {
+                        $alert = "success";
+                        $message = "Usuario Registrado Exitosamente";
+                    }
+                } else {
+                    $alert = "warning";
+                    $message = "Faltan datos al Crear en usuario";
+                }
             }
 
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert,$message, '../usuarios/');
-        }
-    }
 
-    //EDITAR USUARIO
-    if ($_POST['opcion'] == "editar") {
-
-        if (!empty($_POST['users_id']) && !empty($_POST['name']) && !empty($_POST['email']) && isset($_POST['password']) && isset($_POST['role'])) {
-
-            $id = $_POST['users_id'];
-            $name = $_POST['name'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $role = $_POST['role'];
-
-            //$usuario = editarUsuario($id, $name, $email, $password, $role);
-             $usuario = $user->update($id,$name, $email, $password, $role);
-
-            if ($usuario) {
-                $alert = "success";
-                $message = "Cambios Guardados";
-                crearFlashMessage($alert,$message, '../usuarios/');
-            } else {
-
-                $alert = "warning";
-                $message = "Email ya registrado";
-                crearFlashMessage($alert,$message, '../usuarios/');
+            if ($opcion == "editar") {
+                $editar = $users->update($id, 'email', $email);
+                $editar = $users->update($id, 'name', $name);
+                $editar = $users->update($id, 'role', $role);
+                if(!is_null($password_hash)){
+                    $editar = $users->update($id, 'password', $password_hash);
+                }
+                if($editar){
+                    $alert = "success";
+                    $message = "Cambios Guardados";
+                }
             }
-
         } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert,$message, '../usuarios/');
+            $alert = "warning";
+            $message = "No se puede Registrat porque el Email ya esta Registrado.";
         }
-    }
-
-//ELIMINAR USUARIO
-    if ($_POST['opcion'] == "eliminar") {
-
-        if (!empty($_POST['users_id'])){
-
-            $id = $_POST['users_id'];
-
-            //$usuario = eliminarUsuario($id);
-            $usuario = $user->delete($id);
-
-            if ($usuario) {
+    } else {
+        if ($opcion == "eliminar" && !empty($id)) {
+            $eliminar = $users->delete($id);
+            if($eliminar){
                 $alert = "success";
-                $message = "Usuario Emilinado";
-                crearFlashMessage($alert,$message, '../usuarios/');
-            } else {
-                $alert = "warning";
-                $message = "Error";
-                crearFlashMessage($alert,$message, '../usuarios/');
+                $message = "Eliminado Exitosamente.";
             }
-
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert,$message, '../usuarios/');
+        }else{
+            $alert = "warning";
+            $message = "Faltan Datos.";
         }
     }
+} else {
+    $alert = "danger";
+    $message = "Debes Enviar los Datos por el Metodo POST.";
 }
-
-?>
+crearFlashMessage($alert,$message, $ruta);

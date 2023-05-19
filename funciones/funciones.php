@@ -27,5 +27,27 @@ function verFechaGuia($fecha)
     $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
     $nombreMes = str_replace($meses_EN, $meses_ES, $mes);
     //return $nombredia . " " . $numeroDia . " de " . $nombreMes . " de " . $anio;
-    return "A los ".strtoupper($numero_ES[$numeroDia - 1]). " (" .$numeroDia.") DEL MES DE ".strtoupper($nombreMes)." DEL AÑO ".$anio.".";
+    return "A los " . strtoupper($numero_ES[$numeroDia - 1]) . " (" . $numeroDia . ") DEL MES DE " . strtoupper($nombreMes) . " DEL AÑO " . $anio . ".";
+}
+
+function compararFechas($fechaInicial, $fechaFinal)
+{
+    // Declaramos nuestras fechas inicial y final
+    //$fechaInicial = date('2023-05-18');
+    //$fechaFinal = date('2023-05-19');
+
+    // Las convertimos a segundos
+    $fechaInicialSegundos = strtotime($fechaInicial);
+    $fechaFinalSegundos = strtotime($fechaFinal);
+
+    // Hacemos las operaciones para calcular los dias entre las dos fechas y mostramos el resultado
+    $dias = ($fechaFinalSegundos - $fechaInicialSegundos) / 86400;
+    //echo "La diferencia entre la fecha : " . $fechaInicial . " y " . $fechaFinal . " es de: " . round($dias, 0, PHP_ROUND_HALF_UP)  . " dias.";
+
+    //Resultado de los dias de diferencia entre dos fechas
+
+    /*
+*   La diferencia entre la fecha : 2022-01-01 y 2023-01-01 es de: 365 dias.
+*/
+    return  round($dias, 0, PHP_ROUND_HALF_UP);
 }

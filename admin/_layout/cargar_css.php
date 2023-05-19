@@ -18,3 +18,4 @@
 <link href="../../plantilla/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../plantilla/vendor/select2/css/select2.min.css">
 <link rel="stylesheet" href="../../plantilla/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<?php require "../../funciones/funciones.php" ?> 

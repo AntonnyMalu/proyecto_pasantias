@@ -9,8 +9,8 @@ $modulo = "usuarios";
 $alert = null;
 $message = null;
 
-$user = new User();
-$usuarios = $user->getAll();
+$users = new User();
+$listarUsers = $users->getAll(1);
 
 
 ?>

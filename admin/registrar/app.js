@@ -3,6 +3,59 @@ $('.select2bs4').select2({
     theme: 'bootstrap4'
 });
 
+$("#xxxxxxx").submit(function (e) {
+
+    e.preventDefault();
+    let input_opcion = document.getElementById("input_opcion").value;
+    let input_password = document.getElementById("input_password").value;
+    let input_confirmar = document.getElementById("input_confirmar").value;
+
+    // GUARDAR
+    if (input_opcion === "guardar"){
+
+        if (input_password.length === 0 || input_confirmar.length === 0){
+
+             return Swal.fire({
+                icon: 'error',
+                text: 'Llena todos los campos de la contraseña'
+            });
+
+            //return alert("Llena todos los campos de la contraseña");
+
+        }else {
+
+            if (input_password === input_confirmar){
+                this.submit();
+            } else {
+
+                return Swal.fire({
+                    icon: 'warning',
+                    text: 'Las contraseñas no coinciden.'
+                });
+
+                //return alert("Las contraseñas no coinciden.");
+            }
+
+        }
+
+    }
+
+    //EDITAR
+    if (input_opcion === "editar"){
+
+        if (input_password === input_confirmar){
+            this.submit();
+        } else {
+            return Swal.fire({
+                icon: 'warning',
+                text: 'Las contraseñas no coinciden.'
+            });
+            //return alert("Las contraseñas no coinciden.");
+        }
+
+    }
+
+});
 
 
 $("#personas_id").change(function () {

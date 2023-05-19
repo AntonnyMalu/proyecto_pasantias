@@ -23,7 +23,7 @@
 
                                         <?php 
                                         $i= 1;
-                                            foreach($usuarios as $usuario){
+                                            foreach($listarUsers as $usuario){
                                         ?>
 
                                         <tr>
@@ -62,19 +62,26 @@
                                             </td>
                                             <td class="text-center">
 
-                                                <button type="button" class="btn btn-warning btn-circle btn-sm <?php if ($usuario['role'] != 100 && $usuario['id'] != $_SESSION['id']){ echo "edit-usu"; }else{ echo "disabled";}  ?>"
-                                                data-name="<?php echo $usuario['name']; ?>" data-email="<?php echo $usuario['email']; ?>" 
-                                                data-role="<?php echo $usuario['role']; ?>" data-id="<?php echo $usuario['id']; ?>" >
+                                                <button type="button" class="btn btn-warning btn-circle btn-sm"
+                                                onclick="btnEditar('<?php echo $usuario['id'] ?>')"
+                                                data-name="<?php echo $usuario['name']; ?>" 
+                                                data-email="<?php echo $usuario['email']; ?>" 
+                                                data-role="<?php echo $usuario['role']; ?>" 
+                                                id="btn_editar_<?php echo $usuario['id']; ?>"
+                                               <?php if($usuario['role']>=99){echo 'disabled';} ?> >
                                                     <i class="fas fa-user-edit"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-circle btn-sm <?php if ($usuario['role'] != 100 && $usuario['id'] != $_SESSION['id']){ echo "elim-usu"; }else{ echo "disabled";} ?>"
-                                                        data-id="<?php echo $usuario['id']; ?>">
+
+                                                <button type="button" class="btn btn-danger btn-circle btn-sm"
+                                                onclick="btnEliminar('<?php echo $usuario['id'] ?>')"
+                                                id="btn_eliminar_<?php echo $usuario['id'] ?>"
+                                                <?php if($usuario['role']>=99){echo 'disabled';} ?>>
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
 
                                                 <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $usuario['id']; ?>">
                                                     <input type="text" name="opcion" value="eliminar" />
-                                                    <input type="text" name="users_id" value="<?php echo $usuario['id']; ?>" />
+                                                    <input type="text" name="id" value="<?php echo $usuario['id']; ?>" />
                                                 </form>
 
                                             </td>
