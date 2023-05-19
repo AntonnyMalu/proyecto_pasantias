@@ -23,8 +23,8 @@ if ($_POST) {
         $data = [
             $cedula,
             $nombre,
-            $direccion,
             $telefono,
+            $direccion,
             $hoy
         ];
 

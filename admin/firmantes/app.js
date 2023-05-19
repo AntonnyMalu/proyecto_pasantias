@@ -14,9 +14,7 @@ function btnEdit(id){
     let cargo = button.dataset.cargo;
 
     $("#input_nombre").val(nombre);
-    $('#input_nombre').trigger('change');
     $("#input_cargo").val(cargo);
-    $('#input_cargo').trigger('change');
     $('#input_form_id').val(id);
     $("#input_opcion").val("editar");
     titulo.innerText = "Editar Firmante";
