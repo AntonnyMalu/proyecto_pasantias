@@ -1,3 +1,6 @@
+$('#input_telefono').inputmask({"mask": "(9999) 999.99.99"});
+$('#input_rif').inputmask({"mask": "A-9{1,8}-9"});
+
 $(".evento").click(function(e){
 
     //e.preventDefault();

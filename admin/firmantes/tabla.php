@@ -31,14 +31,17 @@
 
                          <td class="text-center">
 
-                             <button type="button" class="btn btn-warning btn-circle btn-sm edit-firm" 
+                             <button type="button" class="btn btn-warning btn-circle btn-sm" 
+                             onclick="btnEdit('<?php echo $firmante['id']; ?>')"
                              data-nombre="<?php echo $firmante['nombre']; ?>" 
                              data-cargo="<?php echo $firmante['cargo']; ?>" 
-                             data-id="<?php echo $firmante['id']; ?>">
+                             id="btn_editar_<?php echo $firmante['id']; ?>">
                                  <i class="fas fa-user-edit"></i>
                              </button>
-                             <button type="button" class="btn btn-danger btn-circle btn-sm elim-Firm" 
-                             data-id="<?php echo $firmante['id']; ?>">
+                             <button type="button" class="btn btn-danger btn-circle btn-sm" 
+                             onclick="btnElim('<?php echo $firmante['id']; ?>')"
+                             data-id_firmmante="<?php echo $firmante['id']; ?>"
+                             id="btn_eliminar_<?php echo $firmante['id']; ?>">
                                  <i class="fas fa-trash-alt"></i>
                              </button>
 

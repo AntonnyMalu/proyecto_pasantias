@@ -1,7 +1,4 @@
-$(".edit-firm").click(function(e){
-
-    e.preventDefault();
-
+function btnEdit(id){
     //mostramos un Loading
     Swal.fire({
         timer: 1000,
@@ -10,40 +7,26 @@ $(".edit-firm").click(function(e){
             Swal.showLoading()
         },
     });
-
-    //obtenemos los datos
-    let nombre = this.dataset.nombre;
-    let cargo = this.dataset.cargo;
-    let id = this.dataset.id;
-
-    //identificamos los input
-    let input_nombre = document.getElementById("input_nombre");
-    let input_cargo = document.getElementById("input_cargo");
-    let input_opcion = document.getElementById("input_opcion");
-    let input_firmantes_id = document.getElementById("input_firmantes_id");
+    
+    let button = document.getElementById("btn_editar_" + id);
     let titulo = document.getElementById("titulo_form");
+    let nombre = button.dataset.nombre;
+    let cargo = button.dataset.cargo;
 
-
-
-    //cambiamos el valor de los input y el titulo del CARDVIEW
-    input_nombre.value = nombre;
-    input_cargo.value = cargo;
-    input_firmantes_id.value = id;
-    input_opcion.value = "editar";
+    $("#input_nombre").val(nombre);
+    $('#input_nombre').trigger('change');
+    $("#input_cargo").val(cargo);
+    $('#input_cargo').trigger('change');
+    $('#input_form_id').val(id);
+    $("#input_opcion").val("editar");
     titulo.innerText = "Editar Firmante";
+    
+}
 
-});
-
-//ELIMINAR USUARIO
-$(".elim-Firm").click(function(e){
-
-    e.preventDefault();
-    //obtenemos los datos
-    let id = this.dataset.id;
-
-    //identificamos el formulario
+function btnElim(id){
+    let button = document.getElementById("btn_eliminar_" + id);
+    let id_firmmante = button.dataset.id;
     let form = document.getElementById("form_eliminar_" + id);
-
     //motramos la advertencia
     Swal.fire({
         title: '¿Estas seguro?',
@@ -60,9 +43,7 @@ $(".elim-Firm").click(function(e){
             form.submit();
         }
     });
-
-});
-
+}
 
 //CAMBIAR TITULO EN EL CARDVIEW
 $("#btn_cancelar").click(function(e){

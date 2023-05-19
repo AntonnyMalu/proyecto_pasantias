@@ -12,7 +12,7 @@
 
 <!-- Custom styles for this template-->
 <link href="../../plantilla/css/sb-admin-2.css" rel="stylesheet">
-<link rel="icon" type="image/png" sizes="32x32" href="../../favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../favicon/favicon-32x32.png">
 
 <!-- Custom styles for this page -->
 <link href="../../plantilla/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">

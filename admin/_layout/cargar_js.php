@@ -29,6 +29,7 @@
     <!-- include summernote-ko-KR -->
     <!--<script src="lang/summernote-ko-KR.js"></script>-->
     <script src="../../plantilla/vendor/summernote/lang/summernote-es-ES.min.js"></script>
+    <script src="../../../resources/inputmask/jquery.inputmask.min.js"></script>
 <script>
     console.log("cargar_js!");
 </script>

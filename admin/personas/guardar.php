@@ -2,101 +2,77 @@
 // start a session
 session_start();
 require "../seguridad.php";
+require "../../mysql/Query.php";
 require "../../model/Persona.php";
 require "../_layout/flash_message.php";
 
+$ruta = '../personas';
 
 if ($_POST) {
-    $persona = new Persona();
-    if ($_POST['opcion'] == "guardar") {
+    $personas = new Persona();
+    $opcion = $_POST['opcion'];
+    $id = $_POST['id'];
+    $hoy = date("Y-m-d");
 
-        if (!empty($_POST['cedula']) && !empty($_POST['nombre']) && !empty($_POST['direccion'])) {
+    if (!empty($_POST['cedula']) && !empty($_POST['nombre']) && !empty($_POST['direccion'])) {
+        $cedula = $_POST['cedula'];
+        $nombre = $_POST['nombre'];
+        $direccion = $_POST['direccion'];
+        $telefono = $_POST['telefono'];
 
-            $id = $_POST['input_personas_id'];
-            $cedula = $_POST['cedula'];
-            $nombre = $_POST['nombre'];
-            $direccion = $_POST['direccion'];
-            $telefono = $_POST['telefono'];
+        $data = [
+            $cedula,
+            $nombre,
+            $direccion,
+            $telefono,
+            $hoy
+        ];
 
-            //$persona = crearPersona($id, $cedula, $nombre, $telefono, $direccion);
-            $persona = $persona->save($id, $cedula, $nombre, $telefono, $direccion);
-
-            if ($persona) {
-                $alert = "success";
-                $message = "Persona Agregada Exitosamente";
-                crearFlashMessage($alert,$message, '../personas/');
-
-            } else {
-                $alert = "warning";
-                $message = "No se puede reguistrar porque ya ese cargo esta siendo utilizado";
-                crearFlashMessage($alert, $message, '../personas/');
+        $existe = $personas->existe('cedula', '=', $cedula, $id, 1);
+        if (!$existe) {
+            if ($opcion == "guardar") {
+                $guardar = $personas->save($data);
+                if ($guardar) {
+                    $alert = "success";
+                    $message = "Persona Agregada Exitosamente";
+                } else {
+                    $alert = "danger";
+                    $message = "Error en el modelo.";
+                }
             }
 
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert,$message, '../personas/');
-        }
-    }
-
-    if ($_POST['opcion'] == "editar") {
-
-        if (!empty($_POST['personas_id']) && !empty($_POST['cedula']) && !empty($_POST['nombre']) && !empty($_POST['direccion'])) {
-
-            $id = $_POST['personas_id'];
-            $cedula = $_POST['cedula'];
-            $nombre = $_POST['nombre'];
-            $telefono = $_POST['telefono'];
-            $direccion = $_POST['direccion'];
-
-            //$persona = editarPersona($id, $cedula, $nombre, $telefono, $direccion);
-            $persona = $persona->update($id, $cedula, $nombre, $telefono, $direccion);
-
-            if ($persona) {
-                $alert = "success";
-                $message = "Cambios Guardados";
-                crearFlashMessage($alert, $message, '../personas/');
-
-            } else {
-                $alert = "warning";
-                $message = "Persona ya Registrada";
-                crearFlashMessage($alert, $message, '../personas/');
+            if ($opcion == "editar") {
+                $editar = $personas->update($id, 'cedula', $cedula);
+                $editar = $personas->update($id, 'nombre', $nombre);
+                $editar = $personas->update($id, 'telefono', $telefono);
+                $editar = $personas->update($id, 'direccion', $direccion);
+                if ($editar) {
+                    $alert = "success";
+                    $message = "Datos Actualizados.";
+                } else {
+                    $alert = "danger";
+                    $message = "Error en el modelo.";
+                }
             }
-        } else {
+        }else{
             $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert, $message, '../personas/');
+            $message = "Persona ya Registrada.";
         }
-    }
-
-    if ($_POST['opcion'] == "eliminar") {
-
-        if (!empty($_POST['personas_id'])){
-
-            $id = $_POST['personas_id'];
-
-            //$persona = eliminarPersona($id);
-            $persona = $persona->delete($id);
-
-            if ($persona) {
+    } else {
+        //opcion de eliminar
+        if ($opcion == "eliminar") {
+            $editar = $personas->update($id, 'band', 0);
+            if($editar){
                 $alert = "success";
-                $message = "Persona Eliminada";
-                crearFlashMessage($alert, $message, '../personas/');
-            } else {
-                $alert = "warning";
-                $message = "Error";
-                crearFlashMessage($alert, $message, '../personas/');
+                $message = "Persona Eliminada.";
+            }else{
+                $alert = "danger";
+                $message = "Error en el modelo.";
             }
-
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert, $message, '../personas/');
         }
-
     }
-
-
-        
+} else {
+    $alert = "danger";
+    $message = "Deben Enviarse los datos por Method POST";
 }
-?>
+crearFlashMessage($alert, $message, $ruta);

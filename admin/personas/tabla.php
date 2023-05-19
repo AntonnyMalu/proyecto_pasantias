@@ -19,7 +19,7 @@
                                     
                                     <tbody>
                                     <?php 
-                                            foreach($personas as $persona){
+                                            foreach($listarPersonas as $persona){
                                         ?>
 
                                         <td>
@@ -52,7 +52,7 @@
 
                                                 <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $persona['id']; ?>">
                                                     <input type="text" name="opcion" value="eliminar" />
-                                                    <input type="text" name="personas_id" value="<?php echo $persona['id']; ?>" />
+                                                    <input type="text" name="id" value="<?php echo $persona['id']; ?>" />
                                                 </form>
 
                                             </td>

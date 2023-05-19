@@ -7,7 +7,7 @@ require "../../model/Persona.php";
 $modulo = "personas";
 $alert = null;
 $message = null;
-$persona = new Persona();
-$personas = $persona->getAll();
+$personas = new Persona();
+$listarPersonas = $personas->getAll(1);
 
 ?>
