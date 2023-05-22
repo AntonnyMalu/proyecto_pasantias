@@ -19,16 +19,16 @@
 CREATE DATABASE IF NOT EXISTS `atencion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `atencion`;
 
--- Volcando estructura para tabla atencion.cargos
-CREATE TABLE IF NOT EXISTS `cargos` (
+-- Volcando estructura para tabla atencion.nomina_cargos
+CREATE TABLE IF NOT EXISTS `nomina_cargos` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `cargo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.cargos: ~64 rows (aproximadamente)
-INSERT INTO `cargos` (`id`, `cargo`, `band`) VALUES
+-- Volcando datos para la tabla atencion.nomina_cargos: ~64 rows (aproximadamente)
+INSERT INTO `nomina_cargos` (`id`, `cargo`, `band`) VALUES
 	(1, 'PRESIDENTE', 1),
 	(2, 'GERENTE DE OPERACIONES Y LOGISTICA', 1),
 	(3, 'GERENTE DE ADMINISTRACION Y COMERCIALIZACION', 1),
