@@ -140,8 +140,8 @@
             <button type="button" class="btn btn-warning cambiar-status" data-hola="<?php echo null; ?>">Reset Estatus</button>
         </span>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <input type="hidden" name="casos_id" value="" placeholder="casos_id" id="casos_id">
-        <input type="hidden" name="casos_status" value="" placeholder="casos_status" id="casos_status">
+        <input type="hidden" name="id" value="" placeholder="casos_id" id="casos_id">
+        <input type="hidden" name="status" value="" placeholder="casos_status" id="casos_status">
         <input type="hidden" name="opcion" value="cambiar_status" placeholder="opcion">
         </form>             
         </div>

@@ -7,56 +7,37 @@ require "../../model/Oficio.php";
 require "../_layout/flash_message.php";
 
 if ($_POST) {
-   
-    /*if ($_POST['opcion'] == "eliminar") {
+    $opcion = $_POST['opcion'];
+    $id = $_POST['id'];
+    $oficios = new Oficio();
 
-        if (!empty($_POST['oficios_id'])){
+    if (!empty($id)) {
 
-            $id = $_POST['oficios_id'];
-
-            //$persona = eliminarOficio($id);
-            $eliminar = $oficio->delete($id);
-
-            if ($eliminar) {
-                $alert = "success";
-                $message = "Oficio Eliminado";
-                crearFlashMessage($alert, $message, '../oficios/');
-            } else {
-                $alert = "warning";
-                $message = "Error";
-                crearFlashMessage($alert, $message, '../oficios/');
-            }
-
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert, $message, '../oficios/');
-        }
-
-    }*/
-
-    
-        
-}else{
-    $alert = "danger";
-    $message = "Deben enviarse los Datos por el metodo POST";
-}
-/*if ($_POST['opcion'] == "cambiar_status") {
-        $id = $_POST['casos_id'];
-        $status = $_POST['casos_status'];
-        
-        //$cambiar = editarStatus($id, $status);
-        $cambiar = $oficio->setStatus($id, $status);
-        if ($cambiar) {
+        if ($opcion == "eliminar") {
+            $eliminar = $oficios->update($id, 'band', 0);
             $alert = "success";
-            $message = "Estatus Actualizado";
-            crearFlashMessage($alert,$message, '../oficios/');
-        } else {
-            $alert = "warning";
-            $message = "Error";
-            crearFlashMessage($alert,$message, '../oficios/');
+            $message = "Oficio Eliminado.";
         }
 
-    }*/
-?>
-
+        if ($opcion == "cambiar_status") {
+            if (!empty($_POST['status'])) {
+                $status = $_POST['status'];
+                $editar = $oficios->update($id, 'status', $status);
+                $alert = "success";
+                $message = "Estatus Actualizado.";
+            }else{
+                $editar = $oficios->update($id, 'status', null);
+                $alert = "success";
+                $message = "Estatus Restablecido.";
+            }
+        }
+    } else {
+        $alert = "warning";
+        $message = "Faltan Datos.";
+    }
+} else {
+    $alert = "danger";
+    $message = "Deben enviarse los Datos por el metodo POST.";
+}
+crearFlashMessage($alert, $message, '../oficios/');
+ 
