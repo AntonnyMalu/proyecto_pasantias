@@ -24,21 +24,17 @@
 
                                         <?php 
                                         $i=0;
-                                            foreach($oficios as $oficio){
-                                                $i++;
-                                                //$institucion = getInstituciones($oficio['instituciones_id']);
-                                                $insti = new Institucion();
-                                                $institucion = $insti->getFirst($oficio['instituciones_id']);
-                                                if(!$institucion){
-                                                    $institucion = [
+                                            foreach($listarOficios as $oficio){
+                                                $i++;  
+                                                $getInstitucion = $instituciones->find($oficio['instituciones_id']);
+                                                if(!$getInstitucion){
+                                                    $getInstitucion = [
                                                         "rif" => 'NO DEFINIDO',
                                                         "nombre" => 'NO DEFINIDO'
                                                     ];
                                                    
                                                 }
-                                                //$persona = getPersona($oficio['personas_id']);
-                                                $person = new Persona();
-                                                $persona = $person->getFirst($oficio['personas_id']);
+                                                $getPersonas = $personas->find($oficio['personas_id']);
                                         ?>
 
                                         <tr>
@@ -46,13 +42,13 @@
                                                <?php echo $i; ?>
                                             </td>
                                             <td>
-                                               <?php echo strtoupper($institucion['rif']); ?>
+                                               <?php echo strtoupper($getInstitucion['rif']); ?>
                                             </td>
                                             <td>
-                                                <?php echo strtoupper($institucion['nombre']); ?>
+                                                <?php echo strtoupper($getInstitucion['nombre']); ?>
                                             </td>
                                             <td>
-                                                <?php echo strtoupper($persona['nombre']) ?>
+                                                <?php echo strtoupper($getPersonas['nombre']) ?>
                                             </td>
                                             <td class="text-center">
                                                <?php $newDate = date("d-m-Y", strtotime($oficio['fecha']));
@@ -62,16 +58,16 @@
                                             <td class="text-center">
 
                                             <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info btn-circle btn-sm show-person" 
-                                                data-id="<?php echo $oficio['id']; ?>" data-cedula="<?php echo $persona['cedula']; ?> "
-                                                data-nombre="<?php echo strtoupper($persona['nombre']); ?> " data-direccion="<?php echo strtoupper($persona['direccion']); ?> " data-telefono="<?php echo $persona['telefono']; ?> " 
-                                                data-fecha="<?php $newDate = date("d-m-Y", strtotime($oficio['fecha'])); echo $newDate; ?> " data-rif="<?php echo strtoupper($institucion['rif']); ?>" 
-                                                data-nombrei="<?php echo strtoupper($institucion['nombre']); ?>" data-requerimientos="<?php echo strtoupper($oficio['requerimientos']); ?>" data-xstatus="<?php echo $oficio['status']; ?>">
+                                                data-id="<?php echo $oficio['id']; ?>" data-cedula="<?php echo $getPersonas['cedula']; ?> "
+                                                data-nombre="<?php echo strtoupper($getPersonas['nombre']); ?> " data-direccion="<?php echo strtoupper($getPersonas['direccion']); ?> " data-telefono="<?php echo $getPersonas['telefono']; ?> " 
+                                                data-fecha="<?php $newDate = date("d-m-Y", strtotime($oficio['fecha'])); echo $newDate; ?> " data-rif="<?php echo strtoupper($getInstitucion['rif']); ?>" 
+                                                data-nombrei="<?php echo strtoupper($getInstitucion['nombre']); ?>" data-requerimientos="<?php echo strtoupper($oficio['requerimientos']); ?>" data-xstatus="<?php echo $oficio['status']; ?>">
                                                     <i class="far fa-comment-alt"></i>
                                                 </button>
 
                                                 <a href="../registraroficio/index.php?id=<?php echo $oficio['id']; ?>" type="button" class="btn btn-warning btn-circle btn-sm edit-usu"
-                                                data-id="<?php echo $oficio['id'] ?>" data-cedula="<?php echo $persona['cedula'] ?>" data-nombre="<?php echo strtoupper($persona['nombre']); ?>"
-                                                data-direccion="<?php echo $persona['direccion'] ?>" data-fecha="<?php echo $oficio['fecha'] ?>" 
+                                                data-id="<?php echo $oficio['id'] ?>" data-cedula="<?php echo $getPersonas['cedula'] ?>" data-nombre="<?php echo strtoupper($getPersonas['nombre']); ?>"
+                                                data-direccion="<?php echo $getPersonas['direccion'] ?>" data-fecha="<?php echo $oficio['fecha'] ?>" 
                                                 data-requerimientos="<?php echo $oficio['requerimientos'] ?>">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
@@ -82,7 +78,7 @@
 
                                                 <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $oficio['id']; ?>">
                                                     <input type="text" name="opcion" value="eliminar" />
-                                                    <input type="text" name="oficios_id" value="<?php echo $oficio['id']; ?>" />
+                                                    <input type="text" name="id" value="<?php echo $oficio['id']; ?>" />
                                                 </form>
 
                                             </td>

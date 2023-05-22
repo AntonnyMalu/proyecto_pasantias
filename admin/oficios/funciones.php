@@ -9,7 +9,11 @@ require "../../model/Oficio.php";
 $modulo = "oficios";
 $alert = null;
 $message = null;
-$oficio = new Oficio();
-$oficios = $oficio->getAll();
+$oficios = new Oficio();
+$instituciones = new Institucion();
+$personas = new Persona();
+
+
+$listarOficios = $oficios->getAll(1);
 
 ?>

@@ -7,8 +7,8 @@ require "../../model/Oficio.php";
 require "../_layout/flash_message.php";
 
 if ($_POST) {
-    $oficio = new Oficio();
-    if ($_POST['opcion'] == "eliminar") {
+   
+    /*if ($_POST['opcion'] == "eliminar") {
 
         if (!empty($_POST['oficios_id'])){
 
@@ -33,9 +33,15 @@ if ($_POST) {
             crearFlashMessage($alert, $message, '../oficios/');
         }
 
-    }
+    }*/
 
-    if ($_POST['opcion'] == "cambiar_status") {
+    
+        
+}else{
+    $alert = "danger";
+    $message = "Deben enviarse los Datos por el metodo POST";
+}
+/*if ($_POST['opcion'] == "cambiar_status") {
         $id = $_POST['casos_id'];
         $status = $_POST['casos_status'];
         
@@ -51,7 +57,6 @@ if ($_POST) {
             crearFlashMessage($alert,$message, '../oficios/');
         }
 
-    }
-        
-}
+    }*/
 ?>
+
