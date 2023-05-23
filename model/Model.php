@@ -1,12 +1,15 @@
 <?php
+if(isset($raiz)){
+    include_once "../../../mysql/Query.php";
+}else{
+    include_once "../../mysql/Query.php";
+}
+
+
 class Model
 {
-    public $TABLA = "";
-    public $DATA = [
-        ''
-    ];
-
-    /* ****************************************************************************************************************   */
+    public $TABLA;
+    public $DATA;
 
     public function getAll($band = null)
     {
@@ -16,6 +19,21 @@ class Model
         }
         $query = new Query();
         $sql = "SELECT * FROM `$this->TABLA` $extra  ;";
+        $rows = $query->getAll($sql);
+        return $rows;
+    }
+
+    public function paginate($limit, $offset = null, $orderBy = 'id', $opt = 'ASC', $band = null)
+    {
+        $extra = null;
+        if (!is_null($band)) {
+            $extra = "WHERE `band`= $band";
+        }
+        if (!is_null($offset)){
+            $offset = $offset.",";
+        }
+        $query = new Query();
+        $sql = "SELECT * FROM `$this->TABLA` $extra ORDER BY `$orderBy` $opt LIMIT $offset $limit;";
         $rows = $query->getAll($sql);
         return $rows;
     }

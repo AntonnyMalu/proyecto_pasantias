@@ -1,4 +1,10 @@
 <?php
+if(isset($raiz)){
+    include_once "../../../mysql/Query.php";
+}else{
+    include_once "../mysql/Query.php";
+}
+
 
 function verHora($hora)
 {
@@ -50,4 +56,20 @@ function compararFechas($fechaInicial, $fechaFinal)
 *   La diferencia entre la fecha : 2022-01-01 y 2023-01-01 es de: 365 dias.
 */
     return  round($dias, 0, PHP_ROUND_HALF_UP);
+}
+
+
+function ritTemporal()
+{
+    $rows = null;
+    $query = new Query();
+    $sql = "SELECT * FROM `instituciones` WHERE `rif` LIKE '%T-%' AND `band` = '1'";
+    $rows = $query->getAll($sql);
+    $i = 1;
+    foreach($rows as $row){
+        $i++;
+    }
+    $numero = $query->cerosIzquierda($i, 8);
+    $rif_temporal = "T-" . $numero."-0";
+    return $rif_temporal;
 }

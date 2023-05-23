@@ -52,7 +52,7 @@
                                                 </button>
 
                                                 <button type="button" class="btn btn-danger btn-circle btn-sm"
-                                                onclick="btnEditar('<?php echo $persona['id']; ?>')"
+                                                onclick="btnEliminar('<?php echo $persona['id']; ?>')"
                                                 data-id="<?php echo $persona['id']; ?>"
                                                 id="btn_eliminar_<?php echo $persona['id']; ?>">
                                                     <i class="fas fa-trash-alt"></i>

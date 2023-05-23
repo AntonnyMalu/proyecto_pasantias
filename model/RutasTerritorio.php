@@ -1,23 +1,14 @@
 <?php
+include_once "Model.php";
 
-class RutasTerritorio
+class RutasTerritorio extends Model
 {
-
-    public function getAll()
+    public function __construct()
     {
-        $query = new Query();
-        $rows = null;
-        $sql = "SELECT * FROM `rutas_territorio`;";
-        $rows = $query->getAll($sql);
-        return $rows;
-    }
-
-    public function find($id)
-    {
-        $query = new Query();
-        $rows = null;
-        $sql = "SELECT * FROM `rutas_territorio` WHERE `id`= '$id'; ";
-        $rows = $query->getfirst($sql);   
-        return $rows;  
+        $this->TABLA = "rutas_territorio";
+        $this->DATA = [
+            'municipio',
+            'parroquia'
+        ];
     }
 }

@@ -1,3 +1,9 @@
+$('#input_insti_telefono').inputmask({ "mask": "(9999) 999.99.99" });
+$('#input_insti_rif').inputmask({ "mask": "A-9{1,8}-9" });
+$('#input_telefono').inputmask({ "mask": "(9999) 999.99.99" });
+$('#input_cedula').inputmask("9{1,8}");
+
+
 //Initialize Select2 Elements
 $('.select2bs4').select2({
     theme: 'bootstrap4'

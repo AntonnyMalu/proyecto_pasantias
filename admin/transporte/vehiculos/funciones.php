@@ -1,13 +1,13 @@
 <?php
 // start a session
 session_start();
+$raiz = true;
 require "../../seguridad.php";
 require "../../../mysql/Query.php";
 require "../../../model/Empresas.php";
 require "../../../model/Vehiculos.php";
 require "../../../model/VehiculoTipo.php";
 $modulo = "vehiculos";
-$raiz = true;
 $alert = null;
 $message = null;
 

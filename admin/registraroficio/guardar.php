@@ -2,303 +2,173 @@
 // start a session
 session_start();
 require "../seguridad.php";
-require "../../mysql/Query.php";
 require "../../model/Persona.php";
 require "../../model/Institucion.php";
 require "../../model/Oficio.php";
 require "../_layout/flash_message.php";
+require "../../funciones/funciones.php";
 $modulo = "resoluciones";
 
 $alert = null;
 $message = null;
+$ruta = "../registraroficio";
 
-function existeGlobal($cedula, $id_cedula, $rif, $id_rif)
-{
-    $row = null;
-    $query = new Query();
-    $array = array(false, 'mensaje', false, 'mensaje');
-
-    if($id_cedula == -1){
-        $mensaje_cedula = 1;
-        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1'";
-    }else{
-        $mensaje_cedula = 2;
-        $sql1 = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1' AND `id` != '$id_cedula'";
-    }
-    $persona = $query->getFirst($sql1);
-    if($persona){
-        $array[0]  = true;
-        $array[1] = $mensaje_cedula;
-    }
-
-    if($id_rif == -1){
-        $mensaje_rif = 3;
-        $sql1 = "SELECT * FROM `instituciones` WHERE `rif` = '$rif' AND `band` = '1'";
-    }else{
-        $mensaje_rif = 4;
-        $sql1 = "SELECT * FROM `instituciones` WHERE `rif` = '$rif' AND `band` = '1' AND `id` != '$id_rif'";
-    }
-    $institucion = $query->getFirst($sql1);
-    if($institucion){
-        $array[2]  = true;
-        $array[3] = $mensaje_rif;
-    }
-    return $array;
-}
-
-function persona($id, $cedula, $nombre, $telefono, $direccion){
-    $row = null;
-    $query = new Query();
-    $persona = new Persona();
-    $hoy = date("Y-m-d");
-
-    if($id == -1){ 
-        //nuevo
-        $row = $persona->save($id, $cedula, $nombre, $telefono, $direccion);
-        $sql = "SELECT * FROM `personas` WHERE `cedula` = '$cedula' AND `band` = '1'; ";
-        $row = $query->getFirst($sql);
-        $array = array(true, $row['id']);
-        return $array;
-    }else{
-        //editar
-        $row = $persona->update($id,$cedula, $nombre, $telefono, $direccion);
-        $array = array(true, $id);
-        return $array;
-    
-    }
-}
-
-function instituciones($id,$rif, $nombre, $telefono, $direccion){
-    $row = null;
-    $query = new Query();
-    $institucion = new Institucion();
-    $hoy = date("Y-m-d");
-
-    if($id == -1){ 
-        //nuevo
-        $row = $institucion->save($rif, $nombre, $telefono, $direccion);
-        $sql = "SELECT * FROM `instituciones` WHERE `rif` = '$rif'  AND `band` = '1';";
-        $row = $query->getFirst($sql);
-        $array = array(true, $row['id']);
-        return $array;
-    
-    }else{
-        //editar
-        $row = $institucion->update($id, $rif, $nombre, $telefono, $direccion);
-        $array = array(true, $id);
-        return $array;
-    }
-}
-
-function crearOficio($instituciones_id, $personas_id, $persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion, 
-                        $institucion_rif,$institucion_nombre,$institucion_telefono,$institucion_direccion,$fecha, $requerimientos)
-{
-    $row = null;
-    $query = new Query();
-    $oficio = new Oficio();
-    $hoy = date("Y-m-d");
-    $existe = existeGlobal($persona_cedula, $personas_id, $institucion_rif, $instituciones_id);
-
-    if(!$existe[0] && !$existe[2]){
-        $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
-        $institucion = instituciones($instituciones_id,$institucion_rif, $institucion_nombre, $institucion_telefono, $institucion_direccion);
-        $row = $oficio->save($institucion[1], $persona[1], $fecha, $requerimientos);
-        $array = array(true, $row, true, $row);
-    }else{
-
-        if($existe[0] && !$existe[2]){
-            $array = array(false, $existe[1], true, $existe[3]);
-        }else{
-            $array = array(true, $existe[1], false, $existe[3]);
-        }
-
-        if($existe[0] && $existe[2]){
-            $array = array(false, $existe[1], false, $existe[3]);
-        }
-        
-    }
-    return $array;
-
-}
-
-function editarOficio($id, $instituciones_id, $personas_id,$persona_cedula, $persona_nombre,  $persona_telefono, $persona_direccion ,
-                    $institucion_rif,$institucion_nombre,$institucion_telefono, $institucion_direccion, $fecha, $requerimientos)
-{
-    $row = null;
-    $query = new Query();
-    $oficio = new Oficio();
-    $hoy = date("Y-m-d");
-    $existe = existeGlobal($persona_cedula, $personas_id, $institucion_rif, $instituciones_id);
-
-    if(!$existe[0] && !$existe[2]){
-
-        $persona = persona($personas_id, $persona_cedula, $persona_nombre, $persona_telefono, $persona_direccion);
-        $institucion = instituciones($instituciones_id,$institucion_rif, $institucion_nombre, $institucion_telefono, $institucion_direccion);
-        $row = $oficio->update($id, $institucion[1], $persona[1], $fecha, $requerimientos);
-        $array = array(true, $row, true, $row);
-
-    }else{
-
-        if($existe[0] && !$existe[2]){
-            $array = array(false, $existe[1], true, $existe[3]);
-        }else{
-            $array = array(true, $existe[1], false, $existe[3]);
-        }
-
-        if($existe[0] && $existe[2]){
-            $array = array(false, $existe[1], false, $existe[3]);
-        }
-        
-    }
-    return $array;
-
-}
+$oficios = new Oficio();
+$instituciones = new Institucion();
+$personas = new Persona();
+$error = false;
 
 if ($_POST) {
-    $institucion = new Institucion();
-    if ($_POST['opcion'] == "guardar") {
-        
-        if(!empty($_POST['instituciones_id']) && !empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['requerimientos'])){
+    $id = $_POST['id'];
+    $opcion = $_POST['opcion'];
+    $hoy = date('Y-m-d');
 
-            $instituciones_id = $_POST['instituciones_id'];
-            $personas_id = $_POST['personas_id'];
-            $fecha = $_POST['fecha'];
-            $requerimientos = $_POST['requerimientos'];
-            $persona_cedula = $_POST['persona_cedula'];
-            $persona_nombre = $_POST['persona_nombre'];
-            $persona_telefono = $_POST['persona_telefono'];
-            $persona_direccion = $_POST['persona_direccion'];
-            $institucion_rif = $_POST['institucion_rif'];
-            $institucion_nombre = $_POST['institucion_nombre'];
-            $institucion_telefono = $_POST['institucion_telefono'];
-            $institucion_direccion = $_POST['institucion_direccion'];
+    if (
+        !empty($_POST['instituciones_id']) &&
+        isset($_POST['institucion_rif']) &&
+        !empty($_POST['institucion_nombre']) &&
+        isset($_POST['institucion_telefono']) &&
+        isset($_POST['institucion_direccion']) &&
+        !empty($_POST['personas_id']) &&
+        !empty($_POST['persona_cedula']) &&
+        !empty($_POST['persona_nombre']) &&
+        isset($_POST['persona_telefono']) &&
+        isset($_POST['persona_direccion']) &&
+        !empty($_POST['fecha']) &&
+        !empty($_POST['requerimientos'])
+    ) {
 
-            if(empty($institucion_rif))
-            {
-                //$institucion_rif = ritTemporal();
-                $institucion_rif = $institucion->ritTemporal();
+        $instituciones_id = $_POST['instituciones_id'];
+        $institucion_rif = $_POST['institucion_rif'];
+        $institucion_nombre = $_POST['institucion_nombre'];
+        $institucion_telefono = $_POST['institucion_telefono'];
+        $institucion_direccion = $_POST['institucion_direccion'];
+        $personas_id = $_POST['personas_id'];
+        $persona_cedula = $_POST['persona_cedula'];
+        $persona_nombre = $_POST['persona_nombre'];
+        $persona_telefono = $_POST['persona_telefono'];
+        $persona_direccion = $_POST['persona_direccion'];
+        $fecha = $_POST['fecha'];
+        $requerimientos = $_POST['requerimientos'];
+
+
+        if ($personas_id == '-1') {
+            //nuevo
+            $personas_id = null;
+        }
+
+        $existePersona = $personas->existe('cedula', '=', $persona_cedula, $personas_id, 1);
+        if (!$existePersona) {
+
+            if (is_null($personas_id)) {
+                $dataPersona = [
+                    $persona_cedula,
+                    $persona_nombre,
+                    $persona_telefono,
+                    $persona_direccion,
+                    $hoy
+                ];
+                $guardarPersona = $personas->save($dataPersona);
+                $getPersona = $personas->first('cedula', '=', $persona_cedula);
+                $personas_id = $getPersona['id'];
+            } else {
+                //editar
+                $guardarPersona = $personas->update($personas_id, 'cedula', $persona_cedula);
+                $guardarPersona = $personas->update($personas_id, 'nombre', $persona_nombre);
+                $guardarPersona = $personas->update($personas_id, 'telefono', $persona_telefono);
+                $guardarPersona = $personas->update($personas_id, 'direccion', $persona_direccion);
+                $guardarPersona = $personas->update($personas_id, 'updated_at', $hoy);
             }
+        }else{
+            $error = true;
+        }
 
-            $oficio = crearOficio($instituciones_id, $personas_id, $persona_cedula,  $persona_nombre,  $persona_telefono,  
-            $persona_direccion,$institucion_rif,$institucion_nombre,$institucion_telefono,$institucion_direccion, $fecha, $requerimientos);
 
-            if ($oficio[0] && $oficio[2]) {
+        if ($instituciones_id == '-1') {
+            //nuevo
+            $instituciones_id = null;
+        }
 
+        $existeInstitucion = $instituciones->existe('rif', '=', $institucion_rif, $instituciones_id, 1);
+        if (!$existeInstitucion) {
+
+            if (is_null($instituciones_id)) {
+                if (empty($institucion_rif)) {
+                    $institucion_rif = ritTemporal();
+                }
+                $dataInstitucion = [
+                    $institucion_rif,
+                    $institucion_nombre,
+                    $institucion_telefono,
+                    $institucion_direccion,
+                    $hoy
+                ];
+                $guardarInstitucion = $instituciones->save($dataInstitucion);
+                $getInstitucion = $instituciones->first('rif', '=', $institucion_rif);
+                $instituciones_id = $getInstitucion['id'];
+            } else {
+                //editar
+                $guardarInstitucion = $instituciones->update($instituciones_id, 'rif', $institucion_rif);
+                $guardarInstitucion = $instituciones->update($institucion_id, 'nombre', $institucion_nombre);
+                $guardarInstitucion = $instituciones->update($personas_id, 'telefono', $institucion_telefono);
+                $guardarInstitucion = $instituciones->update($personas_id, 'direccion', $institucion_direccion);
+                $guardarInstitucion = $instituciones->update($personas_id, 'updated_at', $hoy);
+            }
+        }else{
+            $error = true;
+        }
+
+        
+        $dataOficio = [
+            $instituciones_id,
+            $personas_id,
+            $fecha,
+            $requerimientos
+        ];
+
+       if (!$error) {
+            if ($opcion == "guardar") {
+                $guardarOficio = $oficios->save($dataOficio);
                 $alert = "success";
-                $message = "Oficio Registrado Exitosamente";
-                crearFlashMessage($alert,$message, '../oficios/');
-
-
-            } else {
-                $alert = "warning";
-
-                if(!$oficio[0] && $oficio[2] ){
-                    if($oficio[1] == 1){
-                        $message = "El campo <strong>Cédula</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                    }else{
-                        $message = "La <strong>Cédula</strong> ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                    }
-                }
-
-                if($oficio[0]  && !$oficio[2]){
-                    if($oficio[3] == 3){
-                        $message = "El campo <strong>Rif</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos de la Institución</strong>.";
-                    }else{
-                        $message = "El <strong>Rif</strong> ya esta registrada. Busque en <strong>Datos de la Institución</strong>. ";
-                    }
-                }
-
-                if(!$oficio[0] && !$oficio[2]){
-                    $message = "Tanto el <strong>Rif</strong> como la <strong>Cédula</strong> ya estan registrados. Por favor verifique.";
-                }
-                
-                crearFlashMessage($alert, $message, '../registraroficio/');
+                $message = "Oficio Guardado Correctamente.";
             }
 
 
-        } else {
-            $alert = "danger";
-            $message = "faltan datos"; 
-            crearFlashMessage($alert,$message, '../oficios/');
-        }
-
-        }
-       
-        }
-    
-
-        if ($_POST['opcion'] == "editar") {
-
-            if(!empty($_POST['registraroficio_id']) && !empty($_POST['instituciones_id']) && !empty($_POST['personas_id']) && !empty($_POST['fecha']) && !empty($_POST['requerimientos'])){
-               
-                $id = $_POST['registraroficio_id'];
-                $instituciones_id = $_POST['instituciones_id'];
-                $personas_id = $_POST['personas_id'];
-                $fecha = $_POST['fecha'];
-                $requerimientos = $_POST['requerimientos'];
-                $persona_cedula = $_POST['persona_cedula'];
-                $persona_nombre = $_POST['persona_nombre'];
-                $persona_telefono = $_POST['persona_telefono'];
-                $persona_direccion = $_POST['persona_direccion'];
-                $institucion_rif = $_POST['institucion_rif'];
-                $institucion_nombre = $_POST['institucion_nombre'];
-                $institucion_telefono = $_POST['institucion_telefono'];
-                $institucion_direccion = $_POST['institucion_direccion'];
-
-                if(empty($institucion_rif))
-                {
-                    //$institucion_rif = ritTemporal();
-                    $institucion_rif = $institucion->ritTemporal();
-                }
-                $oficio = editarOficio($id, $instituciones_id, $personas_id,$persona_cedula,  $persona_nombre,  $persona_telefono,  
-                $persona_direccion,$institucion_rif,$institucion_nombre,$institucion_telefono,$institucion_direccion, $fecha, $requerimientos);
-                
-                if ($oficio[0] && $oficio[2]) {
-
-                    $alert = "success";
-                    $message = "Oficio Editado Exitosamente";
-                    crearFlashMessage($alert,$message, '../oficios/');
-    
-    
-                } else {
-                    $alert = "warning";
-    
-                    if(!$oficio[0] && $oficio[2] ){
-                        if($oficio[1] == 1){
-                            $message = "El campo <strong>Cédula</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                        }else{
-                            $message = "La <strong>Cédula</strong> ya esta registrada. Busque en <strong>Datos Personales</strong>. ";
-                        }
-                    }
-    
-                    if($oficio[0]  && !$oficio[2]){
-                        if($oficio[3] == 3){
-                            $message = "El campo <strong>Rif</strong> no puedes cargarlo como nuevo, porque ya esta registrada. Busque en <strong>Datos de la Institución</strong>.";
-                        }else{
-                            $message = "El <strong>Rif</strong> ya esta registrada. Busque en <strong>Datos de la Institución</strong>. ";
-                        }
-                    }
-    
-                    if(!$oficio[0] && !$oficio[2]){
-                        $message = "Tanto el <strong>Rif</strong> como la <strong>Cédula</strong> ya estan registrados. Por favor verifique.";
-                    }
-                    
-                    crearFlashMessage($alert, $message, '../registraroficio/index.php?id='.$id);
-                }
-    
-    
-    
-            } else {
-                $alert = "danger";
-                $message = "faltan datos"; 
-                crearFlashMessage($alert,$message, '../oficios/');
+            if ($opcion == "editar") {
+                $editar = $oficios->update($id, 'instituciones_id', $instituciones_id);
+                $editar = $oficios->update($id, 'personas_id', $personas_id);
+                $editar = $oficios->update($id, 'fecha', $fecha);
+                $editar = $oficios->update($id, 'requerimientos', $requerimientos);
+                $alert = "success";
+                $message = "Registro Actualizado.";
             }
-    
-            
-            }
-        
+        }else{
+            $alert = "warning";
+            $message = "El Rif o la Cédula que intestas Ingresar Ya existen.";
+        }
 
 
 
 
-?>
+    } else {
+        $alert = "warning";
+        $message = "Faltan Datos.";
+        $ruta = "../registraroficio/";
+    }
+} else {
+    $alert = "danger";
+    $message = "Se deben enviar los datos por el metodo POST.";
+    $ruta = "../registraroficio/";
+}
+
+
+
+
+
+
+
+
+
+
+
+crearFlashMessage($alert, $message, $ruta);

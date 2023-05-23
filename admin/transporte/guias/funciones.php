@@ -1,6 +1,7 @@
 <?php
 // start a session
 session_start();
+$raiz = true;
 require "../../seguridad.php";
 require "../../../mysql/Query.php";
 require "../../../model/Guia.php";
@@ -11,7 +12,6 @@ require "../../../model/VehiculoTipo.php";
 require "../../../model/Choferes.php";
 require "../../../model/RutasTerritorio.php";
 $modulo = "guias";
-$raiz = true;
 $alert = null;
 $message = null;
 

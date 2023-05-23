@@ -5,6 +5,7 @@ require "../seguridad.php";
 require "../../mysql/Query.php";
 require "../../model/Institucion.php";
 require "../_layout/flash_message.php";
+require "../../funciones/funciones.php";
 
 $ruta = '../instituciones/';
 
@@ -21,7 +22,7 @@ if ($_POST) {
         $direccion = $_POST['direccion'];
         $telefono = $_POST['telefono'];
         if (empty($rif)) {
-            $rif = $instituciones->ritTemporal();
+            $rif = ritTemporal();
         }
         $data = [
             $rif,
