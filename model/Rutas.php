@@ -7,10 +7,9 @@ class Rutas extends Model
     {
         $this->TABLA = "rutas";
         $this->DATA = [
-            'cedula',
-            'nombre',
-            'telefono',
-            'direccion',
+            'origen',
+            'destino',
+            'ruta',
             'created_at'
         ];
     }

@@ -15,7 +15,7 @@ $modulo = "guias";
 $alert = null;
 $message = null;
 
-$num_init = 159;
+$num_init = 272;
 
 $tiposGuias = new GuiaTipo();
 $guias = new Guia();

@@ -1,107 +1,90 @@
 <?php
 // start a session
 session_start();
+$raiz = true;
 require "../../seguridad.php";
 require "../../../mysql/Query.php";
 require "../../../model/Rutas.php";
 require "../../_layout/flash_message.php";
 
-if ($_POST) {
-    $rutas = new Rutas();
-    if ($_POST['opcion'] == "guardar") {
-
-        if (!empty($_POST['origen']) && !empty($_POST['contador'] && !empty($_POST['destino']))) {
-
-            $origen = $_POST['origen'];
-            $destino = $_POST['destino'];
-            $contador = $_POST['contador'];
-
-            $array = array();
-            for ($i=1; $i <= $_POST['contador'] ; $i++) { 
-                if(isset($_POST['ruta_'.$i]))
-                {
-                    $item = $_POST['ruta_'.$i];
-                    array_push($array, $item);
-                }
-            }
-
-            $ruta = json_encode($array);
-            $save = $rutas->save(null, $origen, $destino, $ruta);
-
-            if ($save) {
-                $alert = "success";
-                $message = "Ruta Agregada Exitosamente";
-                crearFlashMessage($alert,$message, '../rutas/');
-            } else {
-                $alert = "warning";
-                $message = "No se puede reguistrar porque la Ruta está duplicada";
-                crearFlashMessage($alert, $message, '../rutas/');
-            }
-        } else {
-            $alert = "danger";
-            $message = "Faltan Datos";
-            crearFlashMessage($alert,$message, '../rutas/');
-        }
+function existe($origen, $destino, $id = null)
+{
+    $extra = null;
+    if (!is_null($id)) {
+        $extra = "AND `id` != $id";
     }
-
-    if ($_POST['opcion'] == "editar") {
-
-        if (!empty($_POST['origen']) && !empty($_POST['contador'] && !empty($_POST['destino'])) && !empty($_POST['rutas_id'])) {
-
-            $origen = $_POST['origen'];
-            $destino = $_POST['destino'];
-            $contador = $_POST['contador'];
-            $id = $_POST['rutas_id'];
-
-            $array = array();
-            for ($i=1; $i <= $_POST['contador'] ; $i++) { 
-                if(isset($_POST['ruta_'.$i]))
-                {
-                    $item = $_POST['ruta_'.$i];
-                    array_push($array, $item);
-                }
-            }
-
-            $ruta = json_encode($array);
-            $save = $rutas->update($id, $origen, $destino, $ruta);
-
-            if ($save) {
-                $alert = "success";
-                $message = "Ruta Actualizada.";
-                crearFlashMessage($alert,$message, '../rutas/');
-            } else {
-                $alert = "warning";
-                $message = "No se puede registrar porque la Ruta está duplicada";
-                crearFlashMessage($alert, $message, '../rutas/');
-            }
-        } else {
-            $alert = "danger";
-            $message = "Faltan Datos";
-            crearFlashMessage($alert,$message, '../rutas/');
-        }
-    }
-
-    if ($_POST['opcion'] == "eliminar") {
-
-        if (!empty($_POST['ruta_id'])){
-
-            $id = $_POST['ruta_id'];
-            $eliminarRutas = $rutas->delete($id);
-
-            if ($eliminarRutas) {
-                $alert = "success";
-                $message = "Ruta Eliminada";
-                crearFlashMessage($alert, $message, '../rutas/');
-            } else {
-                $alert = "warning";
-                $message = "Error";
-                crearFlashMessage($alert, $message, '../rutas/');
-            }
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert, $message, '../rutas/');
-        }
-    }      
+    $query = new Query();
+    $sql = "SELECT * FROM `rutas` WHERE `origen` = $origen AND `destino` = $destino; AND `band` = 1 $extra;";
+    $row = $query->getAll($sql);
+    return $row;
 }
-?>
+
+if ($_POST) {
+
+    $rutas = new Rutas();
+    $id = $_POST['id'];
+    $opcion = $_POST['opcion'];
+    $hoy = date('Y-m-d');
+
+    if (
+        !empty($_POST['origen']) &&
+        !empty($_POST['contador'] &&
+            !empty($_POST['destino']))
+    ) {
+        $origen = $_POST['origen'];
+        $contador = $_POST['contador'];
+        $destino = $_POST['destino'];
+
+        $array = array();
+        for ($i = 1; $i <= $_POST['contador']; $i++) {
+            if (isset($_POST['ruta_' . $i])) {
+                $item = $_POST['ruta_' . $i];
+                array_push($array, $item);
+            }
+        }
+        $ruta = json_encode($array);
+
+        $data = [
+            $origen,
+            $destino,
+            $ruta,
+            $hoy
+
+        ];
+
+        $existe = existe($origen, $destino, $id = null);
+
+        if (!$existe) {
+
+            if ($opcion == "guardar") {
+                $guardar = $rutas->save($data);
+                $alert = "success";
+                $message = "Ruta Registrada Exitosamente.";
+            }
+
+            if ($opcion == "editar") {
+                $editar = $rutas->update($id, 'origen', $origen);
+                $editar = $rutas->update($id, 'destino', $destino);
+                $editar = $rutas->update($id, 'ruta', $ruta);
+                $editar = $rutas->update($id, 'updated_at', $hoy);
+                $alert = "success";
+                $message = "Cambios Guardados.";
+            }
+        } else {
+            $alert = "warning";
+            $message = "La  ruta ya está Registrada.";
+        }
+    } else {
+        if ($opcion == "eliminar") {
+            $editar = $rutas->update($id, 'band', 0);
+            $editar = $rutas->update($id, 'updated_at', $hoy);
+            $alert = "success";
+            $message = "Ruta Eliminada.";
+        }
+    }
+
+} else {
+    $alert = "danger";
+    $message = "Deben enviare los datos por el metodo POST";
+}
+crearFlashMessage($alert, $message, '../rutas/');

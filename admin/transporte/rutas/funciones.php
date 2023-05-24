@@ -13,6 +13,6 @@ $message = null;
 $territorios = new RutasTerritorio();
 $listarTerritorios = $territorios->getAll();
 $rutas = new Rutas();
-$listarRutas = $rutas->getAll();
+$listarRutas = $rutas->getAll(1);
 
 ?>

@@ -74,7 +74,7 @@
 
                             <form action="guardar.php" method="post" class="d-none"  id="form_eliminar_<?php echo $ruta['id']; ?>">
                                 <input type="text" name="opcion" value="eliminar" />
-                                <input type="text" name="ruta_id" value="<?php echo $ruta['id']; ?>" />
+                                <input type="text" name="id" value="<?php echo $ruta['id']; ?>" />
                             </form>
 
                         </td>
