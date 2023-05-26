@@ -60,11 +60,14 @@ if ($getFormato) {
                 $territorios = new RutasTerritorio();
                 $origen = $territorios->find($guia['territorios_origen']);
                 $destino = $territorios->find($guia['territorios_destino']);
-                $listarTerritorios = json_decode($guia['rutas_ruta']);
                 $ruta = "";
-                foreach ($listarTerritorios as $lugar) {
-                    $ruta .= ucfirst($lugar) . ", ";
+                if (is_array(json_decode($guia['rutas_ruta']))) {
+                    $listarTerritorios = json_decode($guia['rutas_ruta']);
+                    foreach ($listarTerritorios as $lugar) {
+                        $ruta .= ucfirst($lugar) . ", ";
+                    }
                 }
+
 
                 switch ($guia['guias_tipos_id']) {
                     case 2:

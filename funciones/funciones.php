@@ -1,13 +1,12 @@
 <?php
-if(isset($raiz)){
+if (isset($raiz)) {
     include_once "../../../mysql/Query.php";
-}else{
+} else {
     if (isset($raiz_pdf)) {
         include_once "../../../../mysql/Query.php";
-    }else{
+    } else {
         include_once "../mysql/Query.php";
     }
-    
 }
 
 
@@ -71,10 +70,26 @@ function ritTemporal()
     $sql = "SELECT * FROM `instituciones` WHERE `rif` LIKE '%T-%' AND `band` = '1'";
     $rows = $query->getAll($sql);
     $i = 1;
-    foreach($rows as $row){
+    foreach ($rows as $row) {
         $i++;
     }
     $numero = $query->cerosIzquierda($i, 8);
-    $rif_temporal = "T-" . $numero."-0";
+    $rif_temporal = "T-" . $numero . "-0";
     return $rif_temporal;
+}
+
+
+function formatoMillares($cantidad, $decimales = 0)
+{
+    return number_format($cantidad, $decimales, ',', '.');
+}
+
+function validateJSON(string $json): bool {
+	try {
+		$test = json_decode($json, null, JSON_THROW_ON_ERROR);
+		if(is_object($test)) return true;
+		return false;
+	} catch  (Exception $e) {
+		return false;
+	}
 }

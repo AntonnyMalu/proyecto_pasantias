@@ -127,7 +127,7 @@ function btnShow(id)
     modal_tipo.innerText = tipo;
     modal_codigo.innerText = codigo;
     modal_vehiculo.innerText = vehiculo;
-    modal_chofer.innerText = chofer;
+    modal_chofer.innerHTML = chofer;
     modal_origen.innerText = origen;
     modal_destino.innerText = destino;
     modal_fecha.innerText = fecha;

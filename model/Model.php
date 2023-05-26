@@ -5,7 +5,12 @@ if(isset($raiz)){
     if (isset($raiz_pdf)) {
         include_once "../../../../mysql/Query.php";
     }else{
-        include_once "../../mysql/Query.php";
+        if (isset($raiz_dashboard)) {
+            include_once "../mysql/Query.php";
+        }else{
+            include_once "../../mysql/Query.php";
+        }
+        
     }
     
 }
