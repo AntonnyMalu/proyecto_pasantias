@@ -5,6 +5,15 @@
         <i class="far fa-file-alt"></i>
         Descargar Excel
     </a>-->
+    <form action="guardar.php" method="post" id="formulari_guia_init">
+        <div class="input-group  is-invalid">
+        <input type="text" class="form-control" name="guias_num_init" value="<?php echo $num_init; ?>" size="6" placeholder="Num. Sig." id="guias_num_init">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-save"></i></button>
+            </div>
+        </div>
+        <input type="hidden" name="opcion" value="incrementar_contador">
+    </form>
 </div>
 
 <div class="row">

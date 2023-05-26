@@ -1,6 +1,7 @@
 <?php
 require '../../../../fpdf/WriteTag.php';
 
+
 // Creación del objeto de la clase heredada ******************************************
 $pdf = new PDF_WriteTag();
 $pdf->AliasNbPages();
@@ -23,7 +24,7 @@ $pdf->SetStyle("p", "times", "N", 10, "0,0,0", 15);
 $pdf->SetStyle("vb", "times", "B", 0, "0,0,0");
 $pdf->Ln(14);
 $pdf->WriteTag(0, 5, utf8_decode($texto), 0, "J", 0, 0);
-$pdf->Ln(7);
+$pdf->Ln(2);
 
 //CARGA *******************************************************************************
 $pdf->SetFillColor($r, $g, $b);
@@ -42,7 +43,7 @@ foreach ($listarCargamento as $carga) {
 }
 
 // notas ********************************************************************************************
-$pdf->Ln(5);
+$pdf->Ln(2);
 
 $texto2 = "               Así mismo se expresa que los productos alimenticios identificados no podrán ser desviados por ningún concepto al destino señalado, sin la autorización expresa del Presidente de ALGUARISA.";
 $texto3 = "Nota: Se agradece a las autoridades Civiles y Militares de la República Bolivariana de Venezuela la mayor colaboración posible al portador de esta autorización en el traslado respectivo.";
@@ -96,6 +97,6 @@ $pdf->Cell(37, 5, utf8_decode('____________________'), 0, 1, 'C');
 $pdf->Cell(62, 5, utf8_decode('TELEFONO:'), 0, 0, 'R');
 $pdf->Cell(40, 5, utf8_decode('____________________'), 0, 0, 'C');
 $pdf->Cell(55, 5, utf8_decode('TELEFONO:'), 0, 0, 'R');
-$pdf->Cell(37, 5, utf8_decode('____________________'), 0, 1, 'C');
+$pdf->Cell(37, 5, utf8_decode($guia['choferes_telefono']), 0, 1, 'C');
 
-$pdf->Output('D', "Guia-" . $guia['codigo'], true,);
+$pdf->Output('D', 'Guia- '.$guia['codigo'].'.pdf', true,);

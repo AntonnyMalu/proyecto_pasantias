@@ -42,11 +42,11 @@
 
         <div class="form-group">
             <label>Teléfono</label>
-            <input type="text" class="form-control" name="telefono" placeholder="Ingrese el Teléfono" id="input_telefono" />
+            <input type="text" class="form-control" name="telefono" placeholder="Ingrese el Teléfono" id="input_telefono" require/>
         </div>
 
         <input type="hidden" name="opcion" value="guardar" id="input_opcion" />
-        <input type="hidden" name="choferes_id" id="input_choferes_id" />
+        <input type="hidden" name="id" id="input_choferes_id" />
 
         <button type="reset" class="btn btn-secondary" id="btn_cancelar">Cancelar</button>
         <button type="submit" class="btn btn-primary float-right">Guardar</button>

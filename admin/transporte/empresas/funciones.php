@@ -9,6 +9,6 @@ $modulo = "empresas";
 $alert = null;
 $message = null;
 $empresa = new Empresas();
-$empresas = $empresa->getAll();
+$empresas = $empresa->getAll(1);
 
 ?>

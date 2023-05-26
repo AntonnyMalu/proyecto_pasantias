@@ -62,7 +62,7 @@
         <div class="col-12">
         <form action="guardar.php" method="post">
           <input type="hidden" name="id" id="modal_input_id">
-          <input type="hidden" name="opcion" id="modal_input_opcion" value="anular">
+          <input type="hidden" name="opcion" value="anular" id="modal_input_opcion">
           <span class="btn d-none" id="span_modal_anulado">Guía Anulada <i class="fas fa-backspace text-danger"></i></span>
           <button type="submit" class="btn btn-danger" id="btn_anular_guia"> 
           <i class="fas fa-ban"></i> Anular Guía

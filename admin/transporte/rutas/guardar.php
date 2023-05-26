@@ -10,11 +10,11 @@ require "../../_layout/flash_message.php";
 function existe($origen, $destino, $id = null)
 {
     $extra = null;
-    if (!is_null($id)) {
+    if (!empty($id)) {
         $extra = "AND `id` != $id";
     }
     $query = new Query();
-    $sql = "SELECT * FROM `rutas` WHERE `origen` = $origen AND `destino` = $destino; AND `band` = 1 $extra;";
+    $sql = "SELECT * FROM `rutas` WHERE `origen` = '$origen' AND `destino` = '$destino' AND `band` = 1 $extra;";
     $row = $query->getAll($sql);
     return $row;
 }
@@ -51,8 +51,8 @@ if ($_POST) {
             $hoy
 
         ];
-
-        $existe = existe($origen, $destino, $id = null);
+        
+        $existe = existe($origen, $destino, $id);
 
         if (!$existe) {
 

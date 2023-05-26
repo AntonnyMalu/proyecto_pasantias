@@ -42,7 +42,6 @@
 
                          <td>
                              <?php 
-                             //echo strtoupper($label_vehiculo_input);
                              echo strtoupper($choferes['telefono']); 
                              ?>
                          </td>
@@ -80,7 +79,7 @@
 
                              <form action="guardar.php" method="post" class="d-none" id="form_eliminar_<?php echo $choferes['id']; ?>">
                                  <input type="text" name="opcion" value="eliminar" />
-                                 <input type="text" name="choferes_id" value="<?php echo $choferes['id']; ?>" />
+                                 <input type="text" name="id" value="<?php echo $choferes['id']; ?>" />
                              </form>
 
                          </td>

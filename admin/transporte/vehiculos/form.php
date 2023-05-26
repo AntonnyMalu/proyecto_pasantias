@@ -54,7 +54,7 @@
 
 
         <input type="hidden" name="opcion" value="guardar" id="input_opcion" />
-        <input type="hidden" name="vehiculos_id" id="input_vehiculos_id" />
+        <input type="hidden" name="id" id="input_vehiculos_id" />
 
         <button type="reset" class="btn btn-secondary" id="btn_cancelar">Cancelar</button>
         <button type="submit" class="btn btn-primary float-right">Guardar</button>

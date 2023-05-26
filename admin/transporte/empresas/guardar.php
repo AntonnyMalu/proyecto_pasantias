@@ -1,102 +1,74 @@
 <?php
 // start a session
 session_start();
+$raiz = true;
 require "../../seguridad.php";
 require "../../../mysql/Query.php";
 require "../../../model/Empresas.php";
 require "../../_layout/flash_message.php";
 
 if ($_POST) {
-    $empre = new Empresas();
-    if ($_POST['opcion'] == "guardar") {
 
-        if (!empty($_POST['rif']) &&!empty($_POST['nombre'])) {
+    $empresas = new Empresas();
+    $id = $_POST['id'];
+    $opcion = $_POST['opcion'];
+    $hoy = date('Y-m-d');
 
-            $rif = $_POST['rif'];
-            $nombre = $_POST['nombre'];
-            $responsable = $_POST['responsable'];
-            $telefono = $_POST['telefono'];
+    if (
+        !empty($_POST['rif']) &&
+        !empty($_POST['nombre'])
+    ) {
+        $rif = $_POST['rif'];
+        $nombre = $_POST['nombre'];
+        $responsable = $_POST['responsable'];
+        $telefono = $_POST['telefono'];
 
-            $empresa = $empre->save($id, $rif, $nombre, $responsable, $telefono);
+        $data = [
+            $rif,
+            $nombre,
+            $responsable,
+            $telefono,
+            $hoy
+        ];
 
-            if ($empresa) {
+        $existe = $empresas->existe('rif', '=', $rif, $id, 1);
 
+        if (!$existe) {
+
+            if ($opcion == "guardar") {
+                $guardar = $empresas->save($data);
                 $alert = "success";
-                $message = "Empresa Agregada Exitosamente";
-                crearFlashMessage($alert,$message, '../empresas/');
-
-
-            } else {
-                $alert = "warning";
-                $message = "No se puede registrar porque esa Empresa ya está Registrada";
-                crearFlashMessage($alert, $message, '../empresas/');
+                $message = "Empresa Registrada Exitosamente.";
             }
 
-
-        } else {
-            $alert = "danger";
-            $message = "Faltan Datos";
-            crearFlashMessage($alert,$message, '../empresas/');
-        }
-
-    }
-
-    if ($_POST['opcion'] == "editar") {
-
-        if (!empty($_POST['empresas_id']) && !empty($_POST['rif']) && !empty($_POST['nombre'])) {
-
-            $id = $_POST['empresas_id'];
-            $rif = $_POST['rif'];
-            $nombre = $_POST['nombre'];
-            $responsable = $_POST['responsable'];
-            $telefono = $_POST['telefono'];
-            
-            $empresa = $empre->update($id, $rif, $nombre, $responsable, $telefono);
-
-            if ($empresa) {
+            if ($opcion == "editar") {
+                $editar = $empresas->update($id, 'rif', $rif);
+                $editar = $empresas->update($id, 'nombre', $nombre);
+                $editar = $empresas->update($id, 'responsable', $responsable);
+                $editar = $empresas->update($id, 'telefono', $telefono);
+                $editar = $empresas->update($id, 'created_at', $hoy);
                 $alert = "success";
-                $message = "Cambios Guardados";
-                crearFlashMessage($alert, $message, '../empresas/');
-            } else {
-                $alert = "warning";
-                $message = "Empresa ya Registrada";
-                crearFlashMessage($alert, $message, '../empresas/');
+                $message = "Cambios Guardados.";
             }
-
         } else {
-            $alert = "danger";
-            $message = "Faltan Datos";
-            crearFlashMessage($alert, $message, '../empresas/');
+            $alert = "warning";
+            $message = "La empresa ya esta Registrada.";
         }
-    }
-
-    if ($_POST['opcion'] == "eliminar") {
-
-        if (!empty($_POST['empresas_id'])){
-
-            $id = $_POST['empresas_id'];
-            
-            $empresa = $empre->delete($id);
-
-            if ($empresa) {
+    } else {
+        if ($opcion == "eliminar") {
+            $eliminar = $empresas->update($id, 'band', 0);
+            $eliminar = $empresas->update($id, 'updated_at', $hoy);
+            if ($eliminar) {
                 $alert = "success";
-                $message = "Empresa Eliminada";
-                crearFlashMessage($alert, $message, '../empresas/');
-            } else {
+                $message = "Eliminado Exitosamente.";
+            }else{
                 $alert = "warning";
-                $message = "Error";
-                crearFlashMessage($alert, $message, '../empresas/');
+                $message = "Faltan Datos.";
             }
-
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert, $message, '../empresas/');
-        }
-
+        } 
     }
-
-
-        
+} else {
+    $alert = "danger";
+    $message = "Deben enviarse los datos por el metodo POST";
 }
-?>
+crearFlashMessage($alert, $message, '../empresas/');

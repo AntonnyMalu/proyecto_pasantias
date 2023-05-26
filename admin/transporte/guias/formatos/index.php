@@ -1,12 +1,12 @@
 <?php
 // start a session
 session_start();
+$raiz_pdf = true;
+require "../../../../funciones/funciones.php";
 require "../../../seguridad.php";
 require "../../../_layout/flash_message.php";
 include('../../../../phpqrcode/qrlib.php');
-require "../../../../funciones/funciones.php";
-require "../../../../mysql/Query.php";
-require "../../../../model/Guia.php";
+include_once "../../../../model/Guia.php";
 require "../../../../model/RutasTerritorio.php";
 require "../../../../model/GuiaCargamento.php";
 

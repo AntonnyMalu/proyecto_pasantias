@@ -14,13 +14,13 @@ $alert = null;
 $message = null;
 
 $choferes = new Choferes();
-$listarChoferes = $choferes->getAll();
+$listarChoferes = $choferes->getAll(1);
 
 $empresas = new Empresas();
-$listarEmpresas = $empresas->getAll();
+$listarEmpresas = $empresas->getAll(1);
 
 $vehiculos = new Vehiculos();
-$listarVehiculos = $vehiculos->getAll();
+$listarVehiculos = $vehiculos->getAll(1);
 
 $tipos = new VehiculoTipo();
 

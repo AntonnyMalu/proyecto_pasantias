@@ -1,3 +1,5 @@
+$('#guias_num_init').inputmask("9{1,5}");
+
 //Initialize Select2 Elements
 $('.select2bs4').select2({
     theme: 'bootstrap4'
@@ -217,6 +219,26 @@ function btnEliminar(id) {
         }
     });
 }
+
+$('#formulari_guia_init').submit(function (e) { 
+    e.preventDefault();
+      //motramos la advertencia
+      Swal.fire({
+        title: '¿Estas seguro?',
+        text: "¡El Número que intentas establecer, NO podra cambiarse en un futuro a uno menor.!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, continuar!'
+    }).then((result) => {
+        //validamos que la respues sea si
+        if (result.isConfirmed) {
+            //mandamos a enviar el formulario
+            this.submit();
+        }
+    });
+});
 
 
 console.log('guias_js');

@@ -85,7 +85,7 @@
 
                  <form action="guardar.php" method="post" class="d-none" id="form_eliminar_<?php echo $vehiculos['id']; ?>">
                    <input type="text" name="opcion" value="eliminar" />
-                   <input type="text" name="vehiculos_id" value="<?php echo $vehiculos['id']; ?>" />
+                   <input type="text" name="id" value="<?php echo $vehiculos['id']; ?>" />
                  </form>
 
                </td>

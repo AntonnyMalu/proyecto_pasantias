@@ -13,7 +13,7 @@
              <!--<th style="width: 10%;">#</th>-->
              <th>Fecha</th>
              <th>N° Guia</th>
-             <th>Placa</th>
+             <th>Chofer</th>
              <th>Lugar de Destino</th>
              <th style="width: 20%;"></th>
            </tr>
@@ -24,6 +24,7 @@
             $i = 0;
             foreach ($listarGuias as $guia) {
               $i++;
+              if (!$guia['estatus']){ $disabled_editar = "disabled"; }else{ $disabled_editar = null; }
               if ($guia['pdf_impreso'] || !$guia['estatus']) { $disable = "disabled"; $label = "Descargar Guía"; }else{ $disable = null; $label = "Generar Guía"; }
               $listarCargamento = $cargamento->getList('guias_id', '=', $guia['id']);
               $html = "";
@@ -60,6 +61,7 @@
                   
                 }
               }else{
+                $j = 0;
                 $html = '<tr><td colspan="2" class="text-center text-danger"><i class="fas fa-exclamation-triangle"></i> Sin Carga Definidad.</td></tr>';
               }
             ?>
@@ -82,12 +84,12 @@
                  
                </td>
                <td>
-                <?php echo strtoupper($guia['vehiculos_placa_batea']); ?>
+                <?php echo strtoupper($guia['choferes_nombre']); ?>
                 <input type="hidden" value="<?php echo htmlentities($html); ?>" id="data_carga_guia_<?php echo $guia['id'];  ?>">
                 <input type="hidden" value="<?php echo htmlentities($editCarga); ?>" id="edit_carga_guia_<?php echo $guia['id'];  ?>">
               </td>
                <td>
-                 <?php echo $guia['rutas_destino'] ?>
+                 <?php echo strtoupper($guia['rutas_destino']) ?>
                </td>
                <td class="text-center">
 
@@ -117,7 +119,7 @@
                  data-territorios_destino="<?php echo $guia['territorios_destino']; ?>"
                  data-fecha="<?php echo $guia['fecha'] ?>"
                  data-contador="<?php echo $j ?>" 
-                 id="btn_editar_<?php echo $guia['id']; ?>" <?php echo $disable; ?> >
+                 id="btn_editar_<?php echo $guia['id']; ?>"  <?php echo $disabled_editar ?> >
                    <i class="fas fa-edit"></i>
                  </button>
 

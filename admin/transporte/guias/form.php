@@ -104,6 +104,7 @@
 
             <input type="hidden" name="opcion" value="guardar" placeholder="input_opcion" id="input_opcion"/>
             <input type="hidden" name="id" id="input_form_id" placeholder="input_form_id" />
+            <input type="hidden" name="guias_num_init" value="<?php echo $num_init; ?>" placeholder="Num. Sig.">
 
             <button type="reset" class="btn btn-secondary" id="btn_cancelar">Cancelar</button>
             <button type="submit" class="btn btn-primary float-right">Guardar</button>

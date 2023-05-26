@@ -1,112 +1,81 @@
 <?php
 // start a session
 session_start();
+$raiz = true;
 require "../../seguridad.php";
 require "../../../mysql/Query.php";
 require "../../../model/Choferes.php";
 require "../../_layout/flash_message.php";
 
 if ($_POST) {
+
     $choferes = new Choferes();
-    if ($_POST['opcion'] == "guardar") {
+    $id = $_POST['id'];
+    $opcion = $_POST['opcion'];
+    $hoy = date('Y-m-d');
 
-        if (!empty($_POST['empresas_id']) && !empty($_POST['cedula']) && !empty($_POST['nombre']) && !empty($_POST['telefono'])) {
-
+    if (
+        !empty($_POST['empresas_id']) && 
+        !empty($_POST['cedula']) && 
+        !empty($_POST['nombre']) && 
+        !empty($_POST['telefono'])
+        ){
             $empresas_id = $_POST['empresas_id'];
+            $vehiculos_id = $_POST['vehiculos_id'];
             $cedula = $_POST['cedula'];
             $nombre = $_POST['nombre'];
             $telefono = $_POST['telefono'];
-            $vehiculos_id = $_POST['vehiculos_id'];
 
-            $guardarChoferes = $choferes->save($id, $empresas_id, $vehiculos_id, $cedula, $nombre, $telefono);
+            $data = [
+                $empresas_id,
+                $vehiculos_id,
+                $cedula,
+                $nombre,
+                $telefono,
+                $hoy
+            ];
 
-            if ($guardarChoferes) {
+            $existe = $choferes->existe('cedula', '=', $cedula, $id, 1);
 
-                $alert = "success";
-                $message = "Chofer Agregado Exitosamente";
-                crearFlashMessage($alert,$message, '../choferes/');
+            if (!$existe) {
+                
+                if ($opcion == "guardar") {
+                    $guardar = $choferes->save($data);
+                    $alert = "success";
+                    $message = "Guardado Exitosamente.";
+                }
 
-
-            } else {
+                if ($opcion == "editar") {
+                    $editar = $choferes->update($id, 'empresas_id', $empresas_id);
+                    $editar = $choferes->update($id, 'vehiculos_id', $vehiculos_id);
+                    $editar = $choferes->update($id, 'cedula', $cedula);
+                    $editar = $choferes->update($id, 'nombre', $nombre);
+                    $editar = $choferes->update($id, 'telefono', $telefono);
+                    $editar = $choferes->update($id, 'updated_at', $hoy);
+                    $alert = "success";
+                    $message = "Cambios Guardados.";
+                }
+            }else{
                 $alert = "warning";
-                $message = "Chofer ya Registrado";
-                crearFlashMessage($alert, $message, '../choferes/');
+                $message = "Chofer ya Registrado.";
             }
-
-
-        } else {
-            $alert = "danger";
-            $message = "Faltan Datos";
-            crearFlashMessage($alert,$message, '../choferes/');
-        }
-
-    }
-
-    if ($_POST['opcion'] == "editar") {
-
-        if (!empty($_POST['choferes_id']) && !empty($_POST['empresas_id']) && !empty($_POST['cedula']) && !empty($_POST['nombre']) && !empty($_POST['telefono'])) {
-
-            $id = $_POST['choferes_id'];
-            $empresas_id = $_POST['empresas_id'];
-            $cedula = $_POST['cedula'];
-            $nombre = $_POST['nombre'];
-            $telefono = $_POST['telefono'];
-            $vehiculos_id = $_POST['vehiculos_id'];
-
-            $editarChoferes = $choferes->update($id, $empresas_id, $vehiculos_id, $cedula, $nombre, $telefono);
-
-            if ($editarChoferes) {
-
-
+    }else{
+        if ($opcion == "eliminar") {
+            $editar = $choferes->update($id, 'band', 0);
+            $editar = $choferes->update($id, 'updated_at', $hoy);
+            if ($editar) {
                 $alert = "success";
-                $message = "Cambios Guardados";
-                crearFlashMessage($alert, $message, '../choferes/');
-
-
-            } else {
+                $message = "Eliminado Exitosamente.";
+            }else{
                 $alert = "warning";
-                $message = "Chofer ya Registrado";
-                crearFlashMessage($alert, $message, '../choferes/');
+                $message = "Faltan Datos.";
             }
-
-
-        } else {
-            $alert = "danger";
-            $message = "Faltan Datos";
-            crearFlashMessage($alert, $message, '../choferes/');
         }
-
-
-
+       
     }
-
-    if ($_POST['opcion'] == "eliminar") {
-
-        if (!empty($_POST['choferes_id'])){
-
-            $id = $_POST['choferes_id'];
-            
-            $eliminarChoferes = $choferes->delete($id);
-
-            if ($eliminarChoferes) {
-                $alert = "success";
-                $message = "Chofer Eliminado";
-                crearFlashMessage($alert, $message, '../choferes/');
-            } else {
-                $alert = "warning";
-                $message = "Error";
-                crearFlashMessage($alert, $message, '../choferes/');
-            }
-
-        } else {
-            $alert = "danger";
-            $message = "faltan datos";
-            crearFlashMessage($alert, $message, '../choferes/');
-        }
-
-    }
-
-
         
+}else {
+    $alert = "danger";
+    $message = "Deben enviarse por el metodo POST";
 }
-?>
+crearFlashMessage($alert,$message, '../choferes/');

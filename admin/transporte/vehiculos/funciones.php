@@ -12,10 +12,10 @@ $alert = null;
 $message = null;
 
 $empresas = new Empresas();
-$listarEmpresas = $empresas->getAll();
+$listarEmpresas = $empresas->getAll(1);
 
 $vehiculos = new Vehiculos();
-$listarVehiculos = $vehiculos->getAll();
+$listarVehiculos = $vehiculos->getAll(1);
 
 $tipos = new VehiculoTipo();
 

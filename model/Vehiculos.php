@@ -11,6 +11,7 @@ class Vehiculos extends Model
             'tipo',
             'marca',
             'placa_batea',
+            'placa_chuto',
             'color',
             'capacidad',
             'created_at'
