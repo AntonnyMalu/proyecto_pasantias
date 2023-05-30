@@ -9,11 +9,11 @@
         </button>
       </div>
       <div class="modal-body">
-      <div class="text-center">
-        <img src="../../../img/img_placeolder.png" class="rounded w-50 rounded-circle" id="modal_imagen">
-      </div>
+        <div class="text-center">
+          <img src="../../../img/img_placeolder.png" class="rounded w-50 rounded-circle" id="modal_imagen">
+        </div>
 
-      <div class="mt-3">
+        <div class="mt-3">
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               Ubicación Administrativa
@@ -27,21 +27,15 @@
               Estatus del Carnet
               <span class="font-weight-bold text-primary" id="modal_estatus_carnet">NO DEFINIDO</span>
             </li>
-      </ul>
-</div>
-
-
-
-
-
-
-
+          </ul>
+        </div>
 
 
 
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" href="#" id="link_modal_id">Cambiar Foto</a>
+        <a href="#" class="btn btn-success" download="" id="btn_descargar"> <i class="fas fa-download"></i> Descargar Imagen </a>
+        <a class="btn btn-primary" href="#" id="link_modal_id"> <i class="fas fa-images"></i> Cambiar Foto</a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>

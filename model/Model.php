@@ -21,14 +21,18 @@ class Model
     public $TABLA;
     public $DATA;
 
-    public function getAll($band = null)
+    public function getAll($band = null, $orderBy = null, $opt ='ASC')
     {
         $extra = null;
+        $order = null;
         if (!is_null($band)) {
             $extra = "WHERE `band`= $band";
         }
+        if (!is_null($orderBy)) {
+            $order = "ORDER BY `$orderBy` $opt";
+        }
         $query = new Query();
-        $sql = "SELECT * FROM `$this->TABLA` $extra  ;";
+        $sql = "SELECT * FROM `$this->TABLA` $extra  $order;";
         $rows = $query->getAll($sql);
         return $rows;
     }
@@ -48,14 +52,18 @@ class Model
         return $rows;
     }
 
-    public function getList($campo, $operador, $valor, $band = null)
+    public function getList($campo, $operador, $valor, $band = null, $orderBy = null, $opt ='ASC')
     {
         $extra = null;
+        $order = null;
         if (!is_null($band)) {
             $extra = "AND `band`= $band";
         }
+        if (!is_null($orderBy)) {
+            $order = "ORDER BY `$orderBy` $opt";
+        }
         $query = new Query();
-        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra; ";
+        $sql = "SELECT * FROM `$this->TABLA` WHERE `$campo` $operador '$valor' $extra $order; ";
         $rows = $query->getAll($sql);
         return $rows;
     }

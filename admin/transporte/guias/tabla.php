@@ -10,7 +10,7 @@
        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
          <thead class="thead-dark">
            <tr class="text-center">
-             <!--<th style="width: 10%;">#</th>-->
+             <th style="width: 5%;">#</th>
              <th>Fecha</th>
              <th>N° Guia</th>
              <th>Chofer</th>
@@ -66,9 +66,9 @@
               }
             ?>
              <tr>
-               <!--<td class="text-center">
+               <td class="text-center">
                  <?php echo $i; ?>
-               </td>-->
+               </td>
                <td class="text-center">
                  <?php echo verFecha($guia['fecha']); ?>
                </td>

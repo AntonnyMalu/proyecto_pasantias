@@ -6,7 +6,7 @@
 
     <div class="card-body">
         <div class="text-center">
-            <img src="<?php echo $foto; ?>" class="rounded w-50 rounded-circle" id="modal_imagen">
+            <img src="<?php echo $foto; ?>" class="rounded w-50 rounded-circle img-thumbnail" id="modal_imagen">
         </div>
 
         <div class="mt-3">

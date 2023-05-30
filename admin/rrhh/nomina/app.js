@@ -92,6 +92,9 @@ function btnShow(id)
     modal_geografica.innerText = geografica_id;
     $('#link_modal_id').attr('href', '../foto/?id=' + id);
     $("#modal_imagen").attr("src", path);
+    //$('#btn_descargar').attr('href', '../../../img/fotos_carnet/nomina_id_1/001_19160501.png');
+    $('#btn_descargar').attr('href', path);
+    $('#btn_descargar').attr('download','CI_'+ cedula);
 }
 
 console.log('nomina-app.js');
