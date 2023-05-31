@@ -28,11 +28,17 @@
                             if ($nomina['path']) {
                                 if (file_exists('../../../'.$nomina['path'])) {
                                     $path = '../../../'.$nomina['path'];
+                                    $boton_descargar = "SI";
+                                    
                                 }else{
                                     $path = '../../../img/img_placeolder.png';
+                                    $boton_descargar = "NO";
+                                    
                                 }
                             }else {
                                 $path = '../../../img/img_placeolder.png';
+                                $boton_descargar = "NO";
+                                
                             }
                             
                         ?>
@@ -81,6 +87,8 @@
                                  data-geografica_id="<?php echo $label_geo; ?>"
                                  data-administrativa_id="<?php echo $label_admin; ?>"
                                  data-path="<?php echo $path; ?>"
+                                 data-descargar="<?php echo $boton_descargar ?>"
+                                 data-pdf="<?php echo $btn_pdf ?>";
                                  onclick="btnShow(<?php echo $nomina['id'] ?>)"
                                  id="btn_show_<?php echo $nomina['id'] ?>">
                                      <i class="far fa-comment-alt"></i>

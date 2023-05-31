@@ -37,8 +37,8 @@ if ($_POST) {
             $marca,
             $placa,
             $chuto,
-            $capacidad,
             $color,
+            $capacidad,
             $hoy
         ];
 
@@ -59,6 +59,7 @@ if ($_POST) {
                 $editar = $vehiculos->update($id, 'placa_batea', $placa);
                 $editar = $vehiculos->update($id, 'placa_chuto', $chuto);
                 $editar = $vehiculos->update($id, 'color', $color);
+                $editar = $vehiculos->update($id, 'capacidad', $capacidad);
                 $editar = $vehiculos->update($id, 'updated_at', $hoy);
                 $alert = "success";
                 $message = "Cambios Guardados";

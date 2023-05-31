@@ -34,9 +34,10 @@
 
       </div>
       <div class="modal-footer">
-        <a href="#" class="btn btn-success" download="" id="btn_descargar"> <i class="fas fa-download"></i> Descargar Imagen </a>
+        <a href="carnet_pdf.php" class="btn btn-danger" id="btn_pdf"> <i class="fas fa-file-pdf "></i> PDF </a>
+        <a href="#" class="btn btn-success d-none m-0" download="" id="btn_descargar"> <i class="fas fa-download"></i> Descargar Foto </a>
         <a class="btn btn-primary" href="#" id="link_modal_id"> <i class="fas fa-images"></i> Cambiar Foto</a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary m-0" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

@@ -76,6 +76,7 @@ function btnShow(id)
     let geografica_id = button.dataset.geografica_id;
     let administrativa_id  = button.dataset.administrativa_id;
     let path = button.dataset.path;
+    let descargar= button.dataset.descargar;
 
 
     //identificamos los input
@@ -92,9 +93,15 @@ function btnShow(id)
     modal_geografica.innerText = geografica_id;
     $('#link_modal_id').attr('href', '../foto/?id=' + id);
     $("#modal_imagen").attr("src", path);
-    //$('#btn_descargar').attr('href', '../../../img/fotos_carnet/nomina_id_1/001_19160501.png');
     $('#btn_descargar').attr('href', path);
     $('#btn_descargar').attr('download','CI_'+ cedula);
+    if (descargar === "NO") {
+        $('#btn_descargar').addClass('d-none');
+        $('#btn_pdf').addClass('d-none');
+    }else{
+        $('#btn_descargar').removeClass('d-none');
+        $('#btn_pdf').removeClass('d-none');
+    }
 }
 
 console.log('nomina-app.js');
