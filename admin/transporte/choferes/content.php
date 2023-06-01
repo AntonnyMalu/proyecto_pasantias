@@ -8,7 +8,7 @@
             Descargar Excel
         </a>
 
-        <a href="choferes_pdf.php" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm ">
+        <a href="choferes_pdf.php" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm" target="_blank">
             <i class=" fa-sm text-white-50"></i>
             Choferes QR
         </a>

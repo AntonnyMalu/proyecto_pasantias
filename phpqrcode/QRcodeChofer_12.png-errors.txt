@@ -1,4 +1,4 @@
-2023-05-31 18:13:57: <br />
+2023-06-01 09:58:49: <br />
 <b>Deprecated</b>:  Implicit conversion from float 0.5 to int loses precision in <b>D:\laragon\www\alguarisa\phpqrcode\qrencode.php</b> on line <b>140</b><br />
 <br />
 <b>Deprecated</b>:  Implicit conversion from float 1.5 to int loses precision in <b>D:\laragon\www\alguarisa\phpqrcode\qrencode.php</b> on line <b>140</b><br />
