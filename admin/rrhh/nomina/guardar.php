@@ -16,6 +16,7 @@ if ($_POST) {
     if (
         !empty($_POST['cedula']) &&
         !empty($_POST['nombre']) &&
+        !empty($_POST['apellido']) &&
         !empty($_POST['geografica_id']) &&
         !empty($_POST['administrativa_id']) &&
         !empty($_POST['cargos_id'])
@@ -23,6 +24,7 @@ if ($_POST) {
         //procesar
         $cedula = $_POST['cedula'];
         $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
         $geografica_id = $_POST['geografica_id'];
         $administrativa_id = $_POST['administrativa_id'];
         $cargos_id = $_POST['cargos_id'];
@@ -30,6 +32,7 @@ if ($_POST) {
         $data = [
             $cedula,
             $nombre,
+            $apellido,
             $cargos_id,
             $administrativa_id,
             $geografica_id,
@@ -54,6 +57,7 @@ if ($_POST) {
             if($opcion == "editar"){
                 $editar = $nomina->update($id, 'cedula', $cedula);
                 $editar = $nomina->update($id, 'nombre', $nombre);
+                $editar = $nomina->update($id, 'apellido', $apellido);
                 $editar = $nomina->update($id, 'cargos_id', $cargos_id);
                 $editar = $nomina->update($id, 'administrativa_id', $administrativa_id);
                 $editar = $nomina->update($id, 'geografica_id', $geografica_id);

@@ -9,6 +9,7 @@ class Nomina extends Model
         $this->DATA = [
             'cedula',
             'nombre',
+            'apellido',
             'cargos_id',
             'administrativa_id',
             'geografica_id',

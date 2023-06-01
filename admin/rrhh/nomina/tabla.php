@@ -51,7 +51,7 @@
                                  <span class="text-small"><?php echo $nomina['cedula']; ?></span>
                              </td>
                              <td>
-                                 <span class="text-small"><?php echo strtoupper($nomina['nombre']); ?></span>
+                                 <span class="text-small"><?php echo strtoupper($nomina['nombre']." ".$nomina['apellido']); ?></span>
                              </td>
                              <td>
                                  <span class="text-small"><?php echo $getCargo['cargo']; ?></span>
@@ -84,6 +84,7 @@
                                  <button type="button" class="btn btn-info btn-circle btn-sm show-nomina" data-toggle="modal" data-target="#modal_show" 
                                  data-cedula="<?php echo $nomina['cedula']; ?>"
                                  data-nombre="<?php echo $nomina['nombre']; ?>"
+                                 data-apellido="<?php echo $nomina['apellido']; ?>"
                                  data-geografica_id="<?php echo $label_geo; ?>"
                                  data-administrativa_id="<?php echo $label_admin; ?>"
                                  data-path="<?php echo $path; ?>"
@@ -97,6 +98,7 @@
                                  <button type="button" class="btn btn-warning btn-circle btn-sm" data-toggle="modal" data-target="#modal_form"
                                  data-cedula="<?php echo $nomina['cedula']; ?>"
                                  data-nombre="<?php echo $nomina['nombre']; ?>"
+                                 data-apellido="<?php echo $nomina['apellido']; ?>"
                                  data-geografica_id="<?php echo $nomina['geografica_id']; ?>"
                                  data-administrativa_id="<?php echo $nomina['administrativa_id']; ?>"
                                  data-cargos_id="<?php echo $nomina['cargos_id']; ?>"

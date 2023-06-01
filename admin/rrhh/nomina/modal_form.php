@@ -17,8 +17,13 @@
         </div>
 
         <div class="form-group">
-            <label>Nombre Completo:</label>
-            <input type="text" class="form-control" name="nombre" placeholder="Nombre Completo" id="input_nombre" required />
+            <label>Nombres:</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Nombres" id="input_nombre" required />
+        </div>
+
+        <div class="form-group">
+            <label>Apellidos:</label>
+            <input type="text" class="form-control" name="apellido" placeholder="Apellidos" id="input_apellido" required />
         </div>
 
         <div class="form-group">

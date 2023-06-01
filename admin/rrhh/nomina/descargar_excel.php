@@ -32,12 +32,12 @@ $listarNomina = $dataNomina->getAll(1);
             <th>#</th>
             <th>Cédula</th>
             <th>Nombre</th>
-            <th>Cargo Original</th>
-            <th>Cargo database</th>
-            <th>Ubicación Geográfica</th>
-            <th>Database Geográfica </th>
+            <!--<th>Cargo Original</th>-->
+            <th>Cargo</th>
+            <!--<th>Ubicación Geográfica</th>-->
+            <th>Ubicación Geográfica </th>
+            <!--<th>Ubicación Administrativa</th>-->
             <th>Ubicación Administrativa</th>
-            <th>Database Administrativa</th>
         </tr>
         <?php
         $i = 0;
@@ -64,23 +64,23 @@ $listarNomina = $dataNomina->getAll(1);
                     <?php echo $nomina['cedula']; ?>
                 </td>
                 <td>
-                    <?php echo strtoupper($nomina['nombre']); ?>
+                    <?php echo strtoupper($nomina['nombre']." ".$nomina['apellido']); ?>
                 </td>
-                <td>
+               <!-- <td>
                     <?php echo strtoupper($nomina['cargo'])  ?>
-                </td>
+                </td>-->
                 <td>
                     <?php echo strtoupper($getCargo['cargo'])  ?>
                 </td>
-                <td>
+                <!--<td>
                 <?php echo strtoupper($nomina['ubicacion_geografica'])  ?>
-                </td>
+                </td>-->
                 <td>
                 <?php echo strtoupper($label_geo)  ?>
                 </td>
-                <td>
+                <!--<td>
                 <?php echo strtoupper($nomina['ubicacion_administrativa'])  ?>
-                </td>
+                </td>-->
                 <td>
                 <?php echo strtoupper($label_admin)  ?>
                 </td>

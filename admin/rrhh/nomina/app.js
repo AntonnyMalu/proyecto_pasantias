@@ -28,12 +28,14 @@ function btnEditar(id)
     let button = document.getElementById('btn_editar_' + id);
     let cedula = button.dataset.cedula;
     let nombre = button.dataset.nombre;
+    let apellido = button.dataset.apellido;
     let geografica_id = button.dataset.geografica_id;
     let administrativa_id  = button.dataset.administrativa_id;
     let cargos_id = button.dataset.cargos_id;
 
     $('#input_cedula').val(cedula);
     $('#input_nombre').val(nombre);
+    $('#input_apellido').val(apellido);
     $('#select_geografica').val(geografica_id);
     $('#select_geografica').trigger('change');
     $('#select_administrativa').val(administrativa_id);
@@ -73,6 +75,7 @@ function btnShow(id)
     let button = document.getElementById('btn_show_' + id);
     let cedula = button.dataset.cedula;
     let nombre = button.dataset.nombre;
+    let apellido = button.dataset.apellido;
     let geografica_id = button.dataset.geografica_id;
     let administrativa_id  = button.dataset.administrativa_id;
     let path = button.dataset.path;
@@ -88,7 +91,7 @@ function btnShow(id)
 
 
     //cambiamos el valor de los input y el titulo del CARDVIEW
-    modal_nombre.innerText = nombre;
+    modal_nombre.innerText = nombre + " " +apellido;
     modal_administrativa.innerText = administrativa_id;
     modal_geografica.innerText = geografica_id;
     $('#link_modal_id').attr('href', '../foto/?id=' + id);
