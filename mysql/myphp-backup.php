@@ -1,4 +1,5 @@
 <?php 
+require "env.php";
 /**
  * This file contains the Backup_Database class wich performs
  * a partial or complete backup of any given MySQL database
@@ -9,10 +10,10 @@
 /**
  * Define database parameters here
  */
-define("DB_USER", 'root');
-define("DB_PASSWORD", '');
-define("DB_NAME", 'atencion');
-define("DB_HOST", 'localhost');
+define("DB_USER", DATABASE_USERNAME);
+define("DB_PASSWORD", DATABASE_PASSWORD);
+define("DB_NAME", DATABASE_NAME);
+define("DB_HOST", DATABASE_HOST);
 define("BACKUP_DIR", 'myphp-backup-files'); // Comment this line to use same script's directory ('.')
 define("TABLES", '*'); // Full backup
 //define("TABLES", 'table1, table2, table3'); // Partial backup
@@ -277,7 +278,7 @@ class Backup_Database {
             if ($this->gzipBackupFile) {
                 $this->gzipBackupFile();
             } else {
-                $this->obfPrint('Backup file succesfully saved to ' . $this->backupDir.'/'.$this->backupFile, 1, 1);
+                $this->obfPrint('Backup file succesfully saved to <a href="' . $this->backupDir.'/'.$this->backupFile.'">' . $this->backupDir.'/'.$this->backupFile.'</a>', 1, 1);
             }
         } catch (Exception $e) {
             print_r($e->getMessage());
@@ -489,3 +490,4 @@ $output = $backupDatabase->getOutput();
 if (php_sapi_name() != "cli") {
     echo '</div>';
 }
+
