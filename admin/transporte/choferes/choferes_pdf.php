@@ -121,7 +121,12 @@ foreach ($listarChoferes as $chofer) {
 
 
 
+//elimino los capturados restantes
+$files = glob('../../../phpqrcode' . '/*.png-errors.txt'); //obtenemos todos los nombres de los ficheros
+foreach ($files as $file) {
+    if (is_file($file))
+        unlink($file); //elimino el fichero
+}
 
 
-
-$pdf->Output('I', 'Choferes.pdf', true,);
+$pdf->Output('D', 'Choferes.pdf', true,);
