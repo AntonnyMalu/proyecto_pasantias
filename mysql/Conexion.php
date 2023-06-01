@@ -1,4 +1,5 @@
 <?php
+include_once ('env.php');
 header("Access-Control-Allow-Origin: *");
 date_default_timezone_set('America/Caracas');
 
@@ -9,12 +10,12 @@ class Conexion{
     Public function __construct()
     {
 
-        $db_conexion = "mysql";
-        $db_host = "127.0.0.1";
-        $db_port = "3306";
-        $db_database = "atencion";
-        $db_username = "root";
-        $db_password = "";
+        $db_conexion = DATABASE_CONEXION;
+        $db_host = DATABASE_HOST;
+        $db_port = DATABASE_PORT;
+        $db_database = DATABASE_NAME;
+        $db_username = DATABASE_USERNAME;
+        $db_password = DATABASE_PASSWORD;
         $this->CONEXION = new PDO("$db_conexion:host=$db_host;dbname=$db_database", $db_username, $db_password);
  
     }

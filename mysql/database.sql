@@ -15,11 +15,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Volcando estructura de base de datos para atencion
-CREATE DATABASE IF NOT EXISTS `atencion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `atencion`;
+-- Volcando estructura de base de datos para alguarisa
+CREATE DATABASE IF NOT EXISTS `alguarisa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `alguarisa`;
 
--- Volcando estructura para tabla atencion.casos
+-- Volcando estructura para tabla alguarisa.casos
 CREATE TABLE IF NOT EXISTS `casos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `personas_id` int NOT NULL,
@@ -35,40 +35,40 @@ CREATE TABLE IF NOT EXISTS `casos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.casos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.casos: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.choferes
+-- Volcando estructura para tabla alguarisa.choferes
 CREATE TABLE IF NOT EXISTS `choferes` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `empresas_id` int NOT NULL,
   `vehiculos_id` int DEFAULT NULL,
-  `cedula` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `telefono` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `cedula` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `telefono` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.choferes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.choferes: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.empresas
+-- Volcando estructura para tabla alguarisa.empresas
 CREATE TABLE IF NOT EXISTS `empresas` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `rif` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `nombre` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `responsable` varchar(100) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `telefono` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `rif` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `responsable` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `telefono` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.empresas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.empresas: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.firmantes
+-- Volcando estructura para tabla alguarisa.firmantes
 CREATE TABLE IF NOT EXISTS `firmantes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -79,36 +79,36 @@ CREATE TABLE IF NOT EXISTS `firmantes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.firmantes: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.firmantes: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.guias
+-- Volcando estructura para tabla alguarisa.guias
 CREATE TABLE IF NOT EXISTS `guias` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `codigo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `codigo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `guias_tipos_id` int NOT NULL,
-  `tipos_nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tipos_nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `vehiculos_id` int NOT NULL,
-  `vehiculos_tipo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `vehiculos_marca` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `vehiculos_placa_batea` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `vehiculos_placa_chuto` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `vehiculos_color` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `vehiculos_capacidad` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_placa_batea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_placa_chuto` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_color` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `vehiculos_capacidad` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `choferes_id` int NOT NULL,
-  `choferes_cedula` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `choferes_nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `choferes_telefono` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `choferes_cedula` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `choferes_nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `choferes_telefono` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `territorios_origen` int NOT NULL,
   `territorios_destino` int NOT NULL,
   `rutas_id` int NOT NULL,
-  `rutas_origen` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `rutas_destino` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `rutas_origen` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `rutas_destino` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `rutas_ruta` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `fecha` date NOT NULL,
   `users_id` int NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   `created_at` date DEFAULT NULL,
-  `auditoria` text COLLATE utf8mb4_spanish_ci,
+  `auditoria` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci,
   `deleted_at` date DEFAULT NULL,
   `pdf_id` int DEFAULT '1',
   `pdf_impreso` int DEFAULT '0',
@@ -116,44 +116,44 @@ CREATE TABLE IF NOT EXISTS `guias` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.guias: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.guias: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.guias_carga
+-- Volcando estructura para tabla alguarisa.guias_carga
 CREATE TABLE IF NOT EXISTS `guias_carga` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `guias_id` int NOT NULL,
-  `cantidad` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `descripcion` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `cantidad` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `descripcion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.guias_carga: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.guias_carga: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.guias_formatos_pdf
+-- Volcando estructura para tabla alguarisa.guias_formatos_pdf
 CREATE TABLE IF NOT EXISTS `guias_formatos_pdf` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.guias_formatos_pdf: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.guias_formatos_pdf: ~0 rows (aproximadamente)
 INSERT INTO `guias_formatos_pdf` (`id`, `nombre`) VALUES
 	(1, 'guia_1.php');
 
--- Volcando estructura para tabla atencion.guias_tipos
+-- Volcando estructura para tabla alguarisa.guias_tipos
 CREATE TABLE IF NOT EXISTS `guias_tipos` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `codigo` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `codigo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.guias_tipos: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.guias_tipos: ~2 rows (aproximadamente)
 INSERT INTO `guias_tipos` (`id`, `nombre`, `codigo`) VALUES
 	(1, 'BOLSAS CLAP', 'BC'),
 	(2, 'RUBROS', 'RB');
 
--- Volcando estructura para tabla atencion.instituciones
+-- Volcando estructura para tabla alguarisa.instituciones
 CREATE TABLE IF NOT EXISTS `instituciones` (
   `id` int NOT NULL AUTO_INCREMENT,
   `rif` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -166,9 +166,9 @@ CREATE TABLE IF NOT EXISTS `instituciones` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.instituciones: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.instituciones: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.nomina
+-- Volcando estructura para tabla alguarisa.nomina
 CREATE TABLE IF NOT EXISTS `nomina` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `cedula` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -188,11 +188,11 @@ CREATE TABLE IF NOT EXISTS `nomina` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.nomina: ~269 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.nomina: ~269 rows (aproximadamente)
 INSERT INTO `nomina` (`id`, `cedula`, `nombre`, `cargos_id`, `administrativa_id`, `geografica_id`, `cargo`, `ubicacion_administrativa`, `ubicacion_geografica`, `band`, `carnet`, `path`, `mini`, `created_at`, `updated_at`) VALUES
-	(1, '19160501', 'ALBANI CORTEZ HUMBERTO ENRIQUE', 1, 9, 2, 'PRESIDENTE', 'PRESIDENTE', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
-	(2, '15300194', 'SANDOVAL JASPE ORLANDO JOSE', 2, 10, 2, 'GERENTE DE OPERACIONES Y LOGISTICA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
-	(3, '15081977', 'CASTRO OCHOA ANAKARI', 3, 11, 2, 'GERENTE DE ADMINISTRACION Y COMERCIALIZACION', 'ADMINISTRACION Y COMERCIALIZACION', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
+	(1, '19160501', 'ALBANI CORTEZ HUMBERTO ENRIQUE', 1, 9, 2, 'PRESIDENTE', 'PRESIDENTE', 'SEDE', 1, '', 'img/fotos_carnet/nomina_id_1/001_19160501.png', '', '0000-00-00', '2023-05-29'),
+	(2, '15300194', 'SANDOVAL JASPE ORLANDO JOSE', 2, 10, 2, 'GERENTE DE OPERACIONES Y LOGISTICA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', 'img/fotos_carnet/nomina_id_2/logo_ws.png', '', '0000-00-00', '2023-05-30'),
+	(3, '15081977', 'CASTRO OCHOA ANAKARI', 3, 11, 2, 'GERENTE DE ADMINISTRACION Y COMERCIALIZACION', 'ADMINISTRACION Y COMERCIALIZACION', 'SEDE', 1, '', NULL, '', '0000-00-00', '2023-05-19'),
 	(4, '8788511', 'ESPINOZA ALVARADO CARLOS JOSE ', 4, 12, 2, 'INSPECTOR DE GESTION', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(5, '10490260', 'LEDEZMA CUMARIN YILDA COROMOTO', 5, 13, 2, 'JEFE DE BIENES', 'BIENES', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(6, '10671160', 'AGUILAR PUERTA CARLOS JAVIER', 4, 10, 2, 'INSPECTOR DE GESTION', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
@@ -242,7 +242,7 @@ INSERT INTO `nomina` (`id`, `cedula`, `nombre`, `cargos_id`, `administrativa_id`
 	(50, '18519876', 'PAEZ BALZA RUSMARY CAROLINA', 36, 18, 2, 'DIRECTOR DE TIENDA', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(51, '18804305', 'ZANOTTI ABREU CARLOS ROBERTO', 33, 18, 2, 'JEFE DE CAJA', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(52, '18993125', 'CADENAS ACOSTA CARMEN YOLANDA', 33, 18, 7, 'JEFE DE CAJA', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '2023-05-19'),
-	(53, '20.521.330', 'CASTRO ACEVEDO ALEXIS YOHAN', 9, NULL, NULL, 'JEFE DE ALMACEN', '', '', 1, '', '', '', '0000-00-00', '0000-00-00'),
+	(53, '20521330', 'CASTRO ACEVEDO ALEXIS YOHAN', 9, 18, 7, 'JEFE DE ALMACEN', '', '', 1, '', '', '', '0000-00-00', '2023-05-25'),
 	(54, '24967773', 'PAEZ SANCHEZ ANA MERCEDES', 37, 18, 3, 'SUPERVISOR DE TIENDA (MUN MIRANDA)', 'TIENDA', 'MIRANDA', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(55, '25133850', 'FLORES OJEDA MARIEURIS YOSELYN ', 37, 18, 1, 'SUPERVISOR DE TIENDA (MUN CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(56, '25931544', 'QUIÑONES CUNEMO CARMEN ROSALIA ', 33, 18, 1, 'JEFE DE CAJA (MUN CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-19'),
@@ -329,7 +329,7 @@ INSERT INTO `nomina` (`id`, `cedula`, `nombre`, `cargos_id`, `administrativa_id`
 	(137, '8778133', 'AZUAJE VIÑA RUBEN SALVADOR', 58, 32, 2, 'SEGURIDAD (SEDE)', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(138, '8822768', 'PAREDES AQUILINO JOSE', 59, 32, 2, 'VIGILANTE', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(139, '8995401', 'SEIJAS ALVAREZ ROGER RAFAEL', 59, 32, 2, 'VIGILANTE', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
-	(140, '8.995.503', 'BARRADES MACHUCA PEDRO ALEJANDRO', 59, NULL, NULL, 'VIGILANTE', 'SEGURIDAD', 'COMISION', 1, '', '', '', '0000-00-00', '0000-00-00'),
+	(140, '8995503', 'BARRADES MACHUCA PEDRO ALEJANDRO', 59, 32, 2, 'VIGILANTE', 'SEGURIDAD', 'COMISION', 1, '', '', '', '0000-00-00', '2023-05-22'),
 	(141, '9884662', 'SEIJAS MARIA ERNESTINA', 60, 17, 2, 'OBRERO(A)', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(142, '9916634', 'BALZA ROMERO FREDDY DAVID', 60, 12, 2, 'OBRERO', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(143, '10352893', 'GARCIA PANTOJA LUIS ENRIQUE', 61, 15, 1, 'OBRERO CHOFER', 'GMAS', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-19'),
@@ -399,68 +399,68 @@ INSERT INTO `nomina` (`id`, `cedula`, `nombre`, `cargos_id`, `administrativa_id`
 	(207, '25887919', 'ZAPATA RATIA ANGEL GONZALO', 62, 10, 2, 'CARGA Y DESCARGA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(208, '25931485', 'LOVERA MOLINA KARIMETH ELIANIS', 64, 18, 2, 'PASILLERO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-19'),
 	(209, '26179648', 'BOLIVAR ANYEL ALEXANDER', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-19'),
-	(210, '26179651', 'ROJAS BOLIVAR MIGUEL ANGEL', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-19'),
-	(211, '26.495.659', 'ALVARADO CORTEZ ALI RAMON', 62, NULL, NULL, 'CARGA Y DESCARGA', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(212, '26.848.025', 'PEREZ URBAEZ JOSE MANUEL', 59, NULL, NULL, 'VIGILANTE', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(213, '26.848.165', 'HERNANDES PONCE ALEXIS JOSE', 62, NULL, NULL, 'CARGA Y DESCARGA (SIN CUENTA)', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(214, '26.975.354', 'RODRIGUEZ VILLEGAS SAMUEL ENRIQUE', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(215, '27.156.255', 'UTRERA BOLIVAR LIDIO RAFAEL', 62, NULL, NULL, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(216, '27.171.712', 'SIFONTES GONZALEZ ANTHONY JOSE ', 64, NULL, NULL, 'PASILLERO (A)', 'TIENDA', 'RIBAS', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(217, '27.612.557', 'MOTA RONDON JACKSON JOSE ', 62, NULL, NULL, 'CARGA Y DESCARGA (MUN GUARIBE)', 'GMAS', 'GUARIBE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(218, '27.992.798', 'VILLASANA JIMENEZ JOSE GREGORIO', 62, NULL, NULL, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(219, '28.408.162', 'ROJAS BOLIVAR MARBELLA ELIBETH', 60, NULL, NULL, 'OBRERO(A)', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(220, '28.482.981', 'SOJO HERNANDEZ SCARLET NATALIE', 60, NULL, NULL, 'OBRERO(A)', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(221, '29.671.035', 'GUACARAO FARIAS KENDY ISAAC', 62, NULL, NULL, 'CARGA Y DESCARGA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(222, '29.858.432', 'GRATEROL CONTRERAS RONALD ALEJANDRO', 62, NULL, NULL, 'CARGA Y DESCARGA', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(223, '29.858.843', 'ORTA MUÑOZ ANTHONY GABRIEL', 62, NULL, NULL, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(224, '31.415.403', 'MONTERO VASQUEZ TOMAS GABRIEL', 59, NULL, NULL, 'VIGILANTE', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(225, '5.161.574', 'UTRERA CABRERA NELSON JESUS', 58, NULL, NULL, 'SEGURIDAD ', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(226, '5.450.638', 'PARACO MORALES RENE ANTONIO', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(227, '9.599.082', 'HERNANDEZ MUJICA MARCO ANTONIO', 58, NULL, NULL, 'SEGURIDAD ( TIENDA CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(228, '9.888.966', 'VEGAS HERIBERTO RAFAEL', 60, NULL, NULL, 'OBRERO(A)', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(229, '10.666.317', 'CORDERO MONTERO DOMINGO RAFAEL', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(230, '10.667.379', 'RODRIGUEZ DE ROJAS ROSA MARIA', 58, NULL, NULL, 'SEGURIDAD ', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(231, '11.121.669', 'GALINDO BLANCO JOSE ALEXANDER', 58, NULL, NULL, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(232, '11.123.969', 'HERNANDEZ LOBO WILLY JOSE', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(233, '11.846.653', 'TADERMO MARIA LORENZA', 63, NULL, NULL, 'MANTENIMIENTO (RIBAS)', 'TIENDA', 'RIBAS', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(234, '12.842.705', 'HERNANDEZ DANIEL ALEXANDER ', 62, NULL, NULL, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(235, '12.899.959', 'FAJARDO LUIS ENRIQUE', 58, NULL, NULL, 'SEGURIDAD', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(236, '12.903.178', 'RAMIREZ MOLINA JESUS ALBERTO ', 58, NULL, NULL, 'SEGURIDAD ( TIENDA CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(237, '13.571.225', 'ASCANIO CASTILLO MANUEL YSMAEL', 63, NULL, NULL, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(238, '14.395.081', 'ESTABA MORGADO JOSE ALEJANDRO', 58, NULL, NULL, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(239, '14.521.044', 'GONZALEZ ROMERO CARMEN ABIGAIL', 64, NULL, NULL, 'PASILLERO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(240, '14.925.711', 'SALAS GUSTAVO EDUARDO', 60, NULL, NULL, 'OBRERO(A)', 'TIENDA', 'MIRANDA', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(241, '15.811.530', 'RUBIO CADENAS PEDRO RAMON', 60, NULL, NULL, 'OBRERO(A)', 'TIENDA', 'MIRANDA', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(242, '16.076.847', 'CORDOVA FERMIN ALEXANDER', 62, NULL, NULL, 'CARGA Y DESCARGA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(243, '17.001.277', 'ZAMORA RENGIFO YARIGMA IRENE', 63, NULL, NULL, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(244, '18.044.997', 'MORENO FIGUEROA ELILUZ CLARET', 64, NULL, NULL, 'PASILLERO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(245, '18.972.624', 'GONZALEZ ARROYO ANTONIO JOSE', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(246, '19.473.879', 'CARRASQUEL SANDY STEVEN', 62, NULL, NULL, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(247, '19.943.604', 'RIVAS SALAZAR LUIS GUILLERMO', 58, NULL, NULL, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(248, '20.184.733', 'LANDAETA COLMENARES ISAIAS GREGORIO', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(249, '20.907.503', 'GARCIA SOLORZANO RENYS ANIBAL', 63, NULL, NULL, 'MANTENIMIENTO (TIENDA CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(250, '21.004.623', 'ROMERO CASTILLO MARIELA DEL CARMEN', 63, NULL, NULL, 'MANTENIMIENTO', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(251, '25.133.313', 'ARAUJO ARAUJO FREDDY ANTONIO', 63, NULL, NULL, 'MANTENIMIENTO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(252, '25.133.316', 'ORTA MONSERRATTE JESSICA GABRIELA', 63, NULL, NULL, 'MANTENIMIENTO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(253, '25.573.672', 'BOLIVAR ORTELANO ELIMAR NAZARETH', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(254, '25.717.537', 'GOMEZ RODRIGUEZ EDHUAR ANTHONIO', 63, NULL, NULL, 'MANTENIMIENTO', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(255, '25.775.849', 'VELASQUEZ TEJADA OMAR ALEXANDER', 58, NULL, NULL, 'SEGURIDAD', 'SEGURIDAD', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(256, '26.179.203', 'MENDEZ DIAS ALEXA DE LA CHIQUINQUIRA', 63, NULL, NULL, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(257, '26.615.945', 'BLANCO GARCIA ROSO RAFAEL', 64, NULL, NULL, 'PASILLERO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(258, '27.613.880', 'CAVANERIO RICO MOISES ABRAHAM', 58, NULL, NULL, 'SEGURIDAD', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(259, '28.408.387', 'TORREALBA GARCIA GENESIS YOLIANA', 63, NULL, NULL, 'MANTENIMIENTO', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(260, '28.408.977', 'BEQUEL MUÑOZ FREDERICK YOVHANNY', 62, NULL, NULL, 'CARGA Y DESCARGA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(261, '25.432.859', 'OROPEZA GONZALEZ MOISES NEPTALI', 58, NULL, NULL, 'SEGURIDAD', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(262, '28.482.281', 'SALAZAR QUIROZ LUISSETH DEL CARMEN', 64, NULL, NULL, 'PASILLERO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(263, '28.616.618', 'SIFONTES GONZALEZ MIGUEL EDUARDO', 64, NULL, NULL, 'PASILLLERO (RIBAS))', 'TIENDA', 'RIBAS', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(264, '29.781.339', 'ALVAREZ CABEZA JOSE GUILLERMO', 58, NULL, NULL, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(265, '29.858.025', 'CASTILLO HERRERA WINDER  JOSE', 58, NULL, NULL, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(266, '30.160.596', 'BELLO RIVAS MAYRENE ALEXANDRA', 64, NULL, NULL, 'PASILLERO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(267, '30.276.005', 'VASQUEZ ROJAS CARLOS JAVIER', 63, NULL, NULL, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(268, '30.439.081', 'APARICIO FARFAN MARIANGEL NAZARETH', 64, NULL, NULL, 'PASILLERO (MUN CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '0000-00-00'),
-	(269, '30.961.469', 'HERNANDEZ PEREZ JOSE RAFAEL ', 58, NULL, NULL, 'SEGURIDAD', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '0000-00-00');
+	(210, '26179651', 'ROJAS BOLIVAR MIGUEL ANGEL', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(211, '26495659', 'ALVARADO CORTEZ ALI RAMON', 62, 12, 2, 'CARGA Y DESCARGA', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(212, '26848025', 'PEREZ URBAEZ JOSE MANUEL', 59, 32, 2, 'VIGILANTE', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(213, '26848165', 'HERNANDES PONCE ALEXIS JOSE', 62, 17, 2, 'CARGA Y DESCARGA (SIN CUENTA)', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(214, '26975354', 'RODRIGUEZ VILLEGAS SAMUEL ENRIQUE', 58, 32, 2, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(215, '27156255', 'UTRERA BOLIVAR LIDIO RAFAEL', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(216, '27171712', 'SIFONTES GONZALEZ ANTHONY JOSE ', 64, 18, 5, 'PASILLERO (A)', 'TIENDA', 'RIBAS', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(217, '27612557', 'MOTA RONDON JACKSON JOSE ', 62, 15, 8, 'CARGA Y DESCARGA (MUN GUARIBE)', 'GMAS', 'GUARIBE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(218, '27992798', 'VILLASANA JIMENEZ JOSE GREGORIO', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(219, '28408162', 'ROJAS BOLIVAR MARBELLA ELIBETH', 60, 10, 2, 'OBRERO(A)', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(220, '28482981', 'SOJO HERNANDEZ SCARLET NATALIE', 60, 17, 2, 'OBRERO(A)', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(221, '29671035', 'GUACARAO FARIAS KENDY ISAAC', 62, 10, 2, 'CARGA Y DESCARGA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(222, '29858432', 'GRATEROL CONTRERAS RONALD ALEJANDRO', 62, 18, 2, 'CARGA Y DESCARGA', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(223, '29858843', 'ORTA MUÑOZ ANTHONY GABRIEL', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(224, '31415403', 'MONTERO VASQUEZ TOMAS GABRIEL', 59, 32, 2, 'VIGILANTE', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(225, '5161574', 'UTRERA CABRERA NELSON JESUS', 58, 32, 2, 'SEGURIDAD ', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(226, '5450638', 'PARACO MORALES RENE ANTONIO', 58, 32, 2, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(227, '9599082', 'HERNANDEZ MUJICA MARCO ANTONIO', 58, 18, 1, 'SEGURIDAD ( TIENDA CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(228, '9888966', 'VEGAS HERIBERTO RAFAEL', 60, 17, 2, 'OBRERO(A)', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(229, '10666317', 'CORDERO MONTERO DOMINGO RAFAEL', 58, 32, 2, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(230, '10667379', 'RODRIGUEZ DE ROJAS ROSA MARIA', 58, 32, 2, 'SEGURIDAD ', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(231, '11121669', 'GALINDO BLANCO JOSE ALEXANDER', 58, 34, 2, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(232, '11123969', 'HERNANDEZ LOBO WILLY JOSE', 58, 32, 2, 'SEGURIDAD', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(233, '11846653', 'TADERMO MARIA LORENZA', 63, 18, 5, 'MANTENIMIENTO (RIBAS)', 'TIENDA', 'RIBAS', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(234, '12842705', 'HERNANDEZ DANIEL ALEXANDER ', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(235, '12899959', 'FAJARDO LUIS ENRIQUE', 58, 18, 2, 'SEGURIDAD', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(236, '12903178', 'RAMIREZ MOLINA JESUS ALBERTO ', 58, 18, 1, 'SEGURIDAD ( TIENDA CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(237, '13571225', 'ASCANIO CASTILLO MANUEL YSMAEL', 63, 18, 2, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(238, '14395081', 'ESTABA MORGADO JOSE ALEJANDRO', 58, 34, 2, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(239, '14521044', 'GONZALEZ ROMERO CARMEN ABIGAIL', 64, 18, 7, 'PASILLERO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(240, '14925711', 'SALAS GUSTAVO EDUARDO', 60, 18, 3, 'OBRERO(A)', 'TIENDA', 'MIRANDA', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(241, '15811530', 'RUBIO CADENAS PEDRO RAMON', 60, 18, 3, 'OBRERO(A)', 'TIENDA', 'MIRANDA', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(242, '16076847', 'CORDOVA FERMIN ALEXANDER', 62, 10, 2, 'CARGA Y DESCARGA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(243, '17001277', 'ZAMORA RENGIFO YARIGMA IRENE', 63, 18, 2, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(244, '18044997', 'MORENO FIGUEROA ELILUZ CLARET', 64, 18, 2, 'PASILLERO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(245, '18972624', 'GONZALEZ ARROYO ANTONIO JOSE', 58, 32, 2, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(246, '19473879', 'CARRASQUEL SANDY STEVEN', 62, 17, 2, 'CARGA Y DESCARGA', 'CEAC', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(247, '19943604', 'RIVAS SALAZAR LUIS GUILLERMO', 58, 34, 2, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(248, '20184733', 'LANDAETA COLMENARES ISAIAS GREGORIO', 58, 32, 2, 'SEGURIDAD', 'SEGURIDAD', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(249, '20907503', 'GARCIA SOLORZANO RENYS ANIBAL', 63, 18, 1, 'MANTENIMIENTO (TIENDA CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(250, '21004623', 'ROMERO CASTILLO MARIELA DEL CARMEN', 63, 18, 1, 'MANTENIMIENTO', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(251, '25133313', 'ARAUJO ARAUJO FREDDY ANTONIO', 63, 18, 7, 'MANTENIMIENTO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(252, '25133316', 'ORTA MONSERRATTE JESSICA GABRIELA', 63, 18, 7, 'MANTENIMIENTO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(253, '25573672', 'BOLIVAR ORTELANO ELIMAR NAZARETH', 58, 32, 2, 'SEGURIDAD', 'SEGURIDAD', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(254, '25717537', 'GOMEZ RODRIGUEZ EDHUAR ANTHONIO', 63, 12, 2, 'MANTENIMIENTO', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(255, '25775849', 'VELASQUEZ TEJADA OMAR ALEXANDER', 58, 32, 1, 'SEGURIDAD', 'SEGURIDAD', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(256, '26179203', 'MENDEZ DIAS ALEXA DE LA CHIQUINQUIRA', 63, 18, 2, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(257, '26615945', 'BLANCO GARCIA ROSO RAFAEL', 64, 18, 7, 'PASILLERO', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(258, '27613880', 'CAVANERIO RICO MOISES ABRAHAM', 58, 18, 7, 'SEGURIDAD', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(259, '28408387', 'TORREALBA GARCIA GENESIS YOLIANA', 63, 12, 2, 'MANTENIMIENTO', 'SERVICIO GENERALES ', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(260, '28408977', 'BEQUEL MUÑOZ FREDERICK YOVHANNY', 62, 10, 2, 'CARGA Y DESCARGA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(261, '25432859', 'OROPEZA GONZALEZ MOISES NEPTALI', 58, 18, 7, 'SEGURIDAD', 'TIENDA', 'GUAYABAL', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(262, '28482281', 'SALAZAR QUIROZ LUISSETH DEL CARMEN', 64, 18, 2, 'PASILLERO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(263, '28616618', 'SIFONTES GONZALEZ MIGUEL EDUARDO', 64, 18, 5, 'PASILLLERO (RIBAS))', 'TIENDA', 'RIBAS', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(264, '29781339', 'ALVAREZ CABEZA JOSE GUILLERMO', 58, 34, 2, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(265, '29858025', 'CASTILLO HERRERA WINDER  JOSE', 58, 34, 2, 'SEGURIDAD', 'SEDE', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(266, '30160596', 'BELLO RIVAS MAYRENE ALEXANDRA', 64, 18, 2, 'PASILLERO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(267, '30276005', 'VASQUEZ ROJAS CARLOS JAVIER', 63, 18, 2, 'MANTENIMIENTO', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(268, '30439081', 'APARICIO FARFAN MARIANGEL NAZARETH', 64, 18, 1, 'PASILLERO (MUN CAMAGUAN)', 'TIENDA', 'CAMAGUAN', 1, '', '', '', '0000-00-00', '2023-05-22'),
+	(269, '30961469', 'HERNANDEZ PEREZ JOSE RAFAEL ', 58, 18, 2, 'SEGURIDAD', 'TIENDA', 'ROSCIO', 1, '', '', '', '0000-00-00', '2023-05-22');
 
--- Volcando estructura para tabla atencion.nomina_cargos
+-- Volcando estructura para tabla alguarisa.nomina_cargos
 CREATE TABLE IF NOT EXISTS `nomina_cargos` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `cargo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -468,7 +468,7 @@ CREATE TABLE IF NOT EXISTS `nomina_cargos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.nomina_cargos: ~65 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.nomina_cargos: ~64 rows (aproximadamente)
 INSERT INTO `nomina_cargos` (`id`, `cargo`, `band`) VALUES
 	(1, 'PRESIDENTE', 1),
 	(2, 'GERENTE DE OPERACIONES Y LOGISTICA', 1),
@@ -533,19 +533,18 @@ INSERT INTO `nomina_cargos` (`id`, `cargo`, `band`) VALUES
 	(61, 'OBRERO CHOFER', 1),
 	(62, 'CARGA Y DESCARGA', 1),
 	(63, 'MANTENIMIENTO', 1),
-	(64, 'PASILLERO (A)', 1),
-	(65, 'www', 0);
+	(64, 'PASILLERO (A)', 1);
 
--- Volcando estructura para tabla atencion.nomina_ubicaciones
+-- Volcando estructura para tabla alguarisa.nomina_ubicaciones
 CREATE TABLE IF NOT EXISTS `nomina_ubicaciones` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `tipo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `nombre` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.nomina_ubicaciones: ~34 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.nomina_ubicaciones: ~34 rows (aproximadamente)
 INSERT INTO `nomina_ubicaciones` (`id`, `tipo`, `nombre`, `band`) VALUES
 	(1, 'geografica', 'CAMAGUAN', 1),
 	(2, 'geografica', 'ROSCIO', 1),
@@ -582,21 +581,34 @@ INSERT INTO `nomina_ubicaciones` (`id`, `tipo`, `nombre`, `band`) VALUES
 	(33, 'administrativa', 'COCINA', 1),
 	(34, 'administrativa', 'SEDE', 1);
 
--- Volcando estructura para tabla atencion.oficios
+-- Volcando estructura para tabla alguarisa.oficios
 CREATE TABLE IF NOT EXISTS `oficios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `instituciones_id` int NOT NULL,
   `personas_id` int NOT NULL,
   `fecha` date NOT NULL,
-  `requerimientos` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `requerimientos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `status` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `band` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.oficios: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.oficios: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.personas
+-- Volcando estructura para tabla alguarisa.parametros
+CREATE TABLE IF NOT EXISTS `parametros` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tabla_id` int DEFAULT NULL,
+  `valor` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- Volcando datos para la tabla alguarisa.parametros: ~0 rows (aproximadamente)
+INSERT INTO `parametros` (`id`, `nombre`, `tabla_id`, `valor`) VALUES
+	(1, 'guias_num_init', 0, '223');
+
+-- Volcando estructura para tabla alguarisa.personas
 CREATE TABLE IF NOT EXISTS `personas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cedula` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -607,11 +619,14 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.personas: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.personas: ~2 rows (aproximadamente)
+INSERT INTO `personas` (`id`, `cedula`, `nombre`, `telefono`, `direccion`, `band`, `created_at`, `updated_at`) VALUES
+	(1, '27613025', 'ANTONNY2', '(0412) 199.56.47', 'SAN JUAN', 0, '2023-05-23', '2023-05-23'),
+	(2, '27613025', 'ANTONNY MALUENGA2', '(0412) 188.29.92', 'SAN JAUN', 1, '2023-05-23', '2023-05-23');
 
--- Volcando estructura para tabla atencion.productos
+-- Volcando estructura para tabla alguarisa.productos
 CREATE TABLE IF NOT EXISTS `productos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `casos_id` int NOT NULL,
@@ -621,33 +636,33 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.productos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.productos: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.rutas
+-- Volcando estructura para tabla alguarisa.rutas
 CREATE TABLE IF NOT EXISTS `rutas` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `origen` int unsigned NOT NULL,
   `destino` int unsigned NOT NULL,
-  `ruta` text COLLATE utf8mb4_spanish_ci,
+  `ruta` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci,
   `band` int DEFAULT '1',
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.rutas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.rutas: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.rutas_territorio
+-- Volcando estructura para tabla alguarisa.rutas_territorio
 CREATE TABLE IF NOT EXISTS `rutas_territorio` (
   `id` int NOT NULL AUTO_INCREMENT,
   `municipio` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `parroquia` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `parroquia` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.rutas_territorio: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.rutas_territorio: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.users
+-- Volcando estructura para tabla alguarisa.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
@@ -660,24 +675,24 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
--- Volcando datos para la tabla atencion.users: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.users: ~6 rows (aproximadamente)
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created_at`, `updated_at`) VALUES
 	(1, 'leothan522@gmail.com', '$2y$10$Vuukyxuv6haC.nQhAWK3oeGLwAq8POECeyx0eQOAO3JpVuw97pFHm', 'Yonathan Castillo', 100, 1, '2023-01-22', '2023-01-22'),
 	(2, 'gabrielmalu15@gmail.com', '$2y$10$tNST6nHuXNdeT/v3j/WCPeJvaBPGBgdRgNUCHk2QFJ7vJ79hv6PPi', ' Antonny Maluenga', 100, 1, '2023-01-22', '2023-04-14'),
 	(3, 'milexitorrealba536@gmail.com', '$2y$10$kOKftSQUdcGWHFwjou.t1OjHBx1l10SjME65dbKnQlyE.p.2xhDBK', 'Milexi Torrealba', 2, 1, '2023-03-31', '2023-03-31'),
 	(4, 'karleidysalazar@gmail.com', '$2y$10$9Qse5RDa4LaTNQub/COk3eI2LX7pgxzfRvFtQMWLbQyrTprnmSek2', 'Karleidy Salazar', 2, 1, '2023-03-31', '2023-03-31'),
-	(5, 'transporte@alguarisa.com', '$2y$10$9rZRbJMgs1AZJecm63pSCOIUw1QGbZmPW/llS7SLW8VdRGQqfKPba', 'Transporte', 3, 1, '2023-05-03', '2023-05-15'),
+	(5, 'transporte@alguarisa.com', '$2y$10$lFIbBHQIq6wZcSrTY9iIuugoBKV89nN.RLJLtebmdKXfCwLcjrY0m', 'Transporte', 3, 1, '2023-05-03', '2023-05-15'),
 	(6, 'rrhh@alguarisa.com', '$2y$10$DYXH5kf1x5Q.IBmumtBoE.oOKEsgWkOMfleP.tjyM/AadVW7J/nnS', 'RRHH', 2, 1, '2023-05-03', NULL);
 
--- Volcando estructura para tabla atencion.vehiculos
+-- Volcando estructura para tabla alguarisa.vehiculos
 CREATE TABLE IF NOT EXISTS `vehiculos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `empresas_id` int NOT NULL,
-  `tipo` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
-  `marca` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `marca` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `placa_batea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `placa_chuto` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `color` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `placa_chuto` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `color` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `capacidad` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `band` int NOT NULL DEFAULT '1',
   `created_at` date DEFAULT NULL,
@@ -685,16 +700,16 @@ CREATE TABLE IF NOT EXISTS `vehiculos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.vehiculos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.vehiculos: ~0 rows (aproximadamente)
 
--- Volcando estructura para tabla atencion.vehiculos_tipo
+-- Volcando estructura para tabla alguarisa.vehiculos_tipo
 CREATE TABLE IF NOT EXISTS `vehiculos_tipo` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.vehiculos_tipo: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.vehiculos_tipo: ~3 rows (aproximadamente)
 INSERT INTO `vehiculos_tipo` (`id`, `nombre`) VALUES
 	(1, 'GANDOLA PLATAFORMA'),
 	(2, 'CAMIÓN PLATAFORMA'),
