@@ -15,11 +15,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Volcando estructura de base de datos para atencion
-CREATE DATABASE IF NOT EXISTS `atencion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `atencion`;
+-- Volcando estructura de base de datos para alguarisa
+CREATE DATABASE IF NOT EXISTS `alguarisa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `alguarisa`;
 
--- Volcando estructura para tabla atencion.nomina
+-- Volcando estructura para tabla alguarisa.nomina
 CREATE TABLE IF NOT EXISTS `nomina` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `cedula` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `nomina` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=270 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.nomina: ~269 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.nomina: ~269 rows (aproximadamente)
 INSERT INTO `nomina` (`id`, `cedula`, `nombre`, `cargos_id`, `administrativa_id`, `geografica_id`, `cargo`, `ubicacion_administrativa`, `ubicacion_geografica`, `band`, `carnet`, `path`, `mini`, `created_at`, `updated_at`) VALUES
 	(1, '19160501', 'ALBANI CORTEZ HUMBERTO ENRIQUE', 1, 9, 2, 'PRESIDENTE', 'PRESIDENTE', 'SEDE', 1, '', NULL, '', '0000-00-00', '2023-05-23'),
 	(2, '15300194', 'SANDOVAL JASPE ORLANDO JOSE', 2, 10, 2, 'GERENTE DE OPERACIONES Y LOGISTICA', 'OPERACIONES Y LOGISTICA', 'SEDE', 1, '', NULL, '', '0000-00-00', '2023-05-26'),

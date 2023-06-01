@@ -15,11 +15,11 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Volcando estructura de base de datos para atencion
-CREATE DATABASE IF NOT EXISTS `atencion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `atencion`;
+-- Volcando estructura de base de datos para alguarisa
+CREATE DATABASE IF NOT EXISTS `alguarisa` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `alguarisa`;
 
--- Volcando estructura para tabla atencion.nomina_cargos
+-- Volcando estructura para tabla alguarisa.nomina_cargos
 CREATE TABLE IF NOT EXISTS `nomina_cargos` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `cargo` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `nomina_cargos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla atencion.nomina_cargos: ~64 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa.nomina_cargos: ~64 rows (aproximadamente)
 INSERT INTO `nomina_cargos` (`id`, `cargo`, `band`) VALUES
 	(1, 'PRESIDENTE', 1),
 	(2, 'GERENTE DE OPERACIONES Y LOGISTICA', 1),
