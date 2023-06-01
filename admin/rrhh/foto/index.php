@@ -1,6 +1,5 @@
 <?php
-require "funciones.php";
-require "../../_layout/flash_message.php";
+require "indexController.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">

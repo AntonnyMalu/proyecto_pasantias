@@ -4,10 +4,21 @@ session_start();
 $raiz = true;
 require "../../seguridad.php";
 require "../../../mysql/Query.php";
+require "../../_layout/flash_message.php";
 require "../../../model/Nomina.php";
 require "../../../model/NominaCargo.php";
 require "../../../model/NominaUbicaciones.php";
+require_once "../../../funciones/funciones.php";
 $modulo = "nomina";
+
+
+$adsoluta_url = full_url($_SERVER);
+$explode = explode('://', $adsoluta_url);
+if ($explode[0] != "https") {
+    # code...
+    $url = 'https://'.$explode[1];
+    header('location: '.$url);
+}
 
 
 
