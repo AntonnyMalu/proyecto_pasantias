@@ -8,13 +8,19 @@ include_once '../../../../model/NominaUbicaciones.php';
 include_once '../../../../funciones/funciones.php';
 
 $nomina = new Nomina();
-$NominaCargos = new NominaCargo();
+$nominaCargos = new NominaCargo();
 $nominaUbicaciones = new NominaUbicaciones();
+
 $id = $_GET['id'];
-
 $trabajador = $nomina->find($id);
+$getCargo = $nominaCargos->find($trabajador['cargos_id']);
+if ($trabajador['mini'] == 0) {
+    $estatus = "INACTIVO";
+}else{
+    $estatus = "ACTIVO";
+}
 
-$qr_texto = "ALIMENTOS DEL GUARICO S.A (ALGUARISA)  \nTrabajador: ".$trabajador['nombre']."  \nCedula: ".$trabajador['cedula']." \nCargo: ".$trabajador['cargo']." ";
+$qr_texto = "ALIMENTOS DEL GUARICO S.A (ALGUARISA)  \nTrabajador: ".$trabajador['nombre']."  \nCedula: ".formatoMillares($trabajador['cedula'])." \nCargo: ".$getCargo['cargo']." \nEstatus: ".$estatus." ";
 
 QRcode::png($qr_texto, 'QRcodeCarnet.png', '', 2);
 
@@ -52,21 +58,21 @@ $pdf->Image('QRcodeCarnet.png',$xQR,$yQR,19,19);
 $pdf->SetFont('Times', '', 12);
 $xNombre = $pdf->GetX();
 $pdf->Cell(63,5,'',0,0);
-$pdf->Cell(52,5,'Antonny Gabriel',0,0,'C');
+$pdf->Cell(52,5,$trabajador['nombre'],0,0,'C');
 $yNombre = $pdf->GetY();
 $pdf->Cell(81,5,'',0,1);
 
 $pdf->SetFont('Times', 'B', 12);
 $xNombre = $pdf->GetX();
 $pdf->Cell(63,5,'',0,0);
-$pdf->Cell(52,5,'Maluenga Landaeta',0,0,'C');
+$pdf->Cell(52,5,$trabajador['apellido'],0,0,'C');
 $yNombre = $pdf->GetY();
 $pdf->Cell(81,5,'',0,1);
 
 
 $xNombre = $pdf->GetX();
 $pdf->Cell(63,7,'',0,0);
-$pdf->Cell(52,7,'27613025',0,0,'C');
+$pdf->Cell(52,7,formatoMillares($trabajador['cedula']),0,0,'C');
 $yNombre = $pdf->GetY();
 $pdf->Cell(81,7,'',0,1);
 
@@ -77,9 +83,43 @@ $yNombre = $pdf->GetY();
 $pdf->Cell(81,2,'',0,1);
 
 $pdf->SetTextColor(255,255,255);
+
+$cargo = $getCargo['cargo'];
+//$cargo = 'WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW';
+$caracteres = strlen($cargo);
+
+
+if ($caracteres > 18 && $caracteres <= 27) {
+    $pdf->SetFont('times','',9);
+}
+
+if ($caracteres > 27 && $caracteres <= 31) {
+    $pdf->SetFont('times','',8);
+}
+
+if ($caracteres > 31 && $caracteres <= 35) {
+    $pdf->SetFont('times','',7);
+}
+
+
+if ($caracteres > 35 && $caracteres <= 43) {
+    $pdf->SetFont('times','',6);
+}
+
+if ($caracteres > 43 && $caracteres <= 56) {
+    $pdf->SetFont('times','',5);
+}
+
+
+if ($caracteres > 57) {
+    $pdf->SetFont('times','',4);
+}
+
 $xNombre = $pdf->GetX();
 $pdf->Cell(63,7,'',0,0);
-$pdf->Cell(52,7,'CARGA Y DESCARGA',0,0,'C');
+//$pdf->Cell(52,7,$cargo,0,0,'C');
+$pdf->Cell(52,7,$cargo,0,0,'C');
+
 $yNombre = $pdf->GetY();
 $pdf->Cell(81,7,'',0,1);
 

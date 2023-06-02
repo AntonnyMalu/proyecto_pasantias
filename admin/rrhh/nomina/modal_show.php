@@ -24,9 +24,13 @@
               <span class="font-weight-bold text-primary" id="modal_ubicacion_geografica">Camagua</span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
+              Estatus del trabajador
+              <span class="font-weight-bold text-primary" id="modal_estatus_trabajador">Camagua</span>
+            </li>
+            <!--<li class="list-group-item d-flex justify-content-between align-items-center">
               Estatus del Carnet
               <span class="font-weight-bold text-primary" id="modal_estatus_carnet">NO DEFINIDO</span>
-            </li>
+            </li>-->
           </ul>
         </div>
 

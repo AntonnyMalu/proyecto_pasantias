@@ -40,7 +40,11 @@
                                 $boton_descargar = "NO";
                                 
                             }
-                            
+                            if ($nomina['mini'] == 0) {
+                                $estatus = 0;
+                            }else{
+                                $estatus = 1;
+                            }
                         ?>
 
                          <tr>
@@ -85,6 +89,7 @@
                                  data-cedula="<?php echo $nomina['cedula']; ?>"
                                  data-nombre="<?php echo $nomina['nombre']; ?>"
                                  data-apellido="<?php echo $nomina['apellido']; ?>"
+                                 data-estatus="<?php if($nomina['mini'] == 0){ echo 'INACTIVO'; }else{ echo 'ACTIVO'; } ?>"
                                  data-geografica_id="<?php echo $label_geo; ?>"
                                  data-administrativa_id="<?php echo $label_admin; ?>"
                                  data-path="<?php echo $path; ?>"
@@ -102,6 +107,7 @@
                                  data-geografica_id="<?php echo $nomina['geografica_id']; ?>"
                                  data-administrativa_id="<?php echo $nomina['administrativa_id']; ?>"
                                  data-cargos_id="<?php echo $nomina['cargos_id']; ?>"
+                                 data-estatus="<?php echo $estatus ?>"
                                  onclick="btnEditar(<?php echo $nomina['id'] ?>)"
                                  id="btn_editar_<?php echo $nomina['id'] ?>">
                                      <i class="fas fa-user-edit"></i>

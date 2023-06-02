@@ -28,6 +28,7 @@ if ($_POST) {
         $geografica_id = $_POST['geografica_id'];
         $administrativa_id = $_POST['administrativa_id'];
         $cargos_id = $_POST['cargos_id'];
+        $estatus = $_POST['estatus'];
         
         $data = [
             $cedula,
@@ -62,6 +63,7 @@ if ($_POST) {
                 $editar = $nomina->update($id, 'administrativa_id', $administrativa_id);
                 $editar = $nomina->update($id, 'geografica_id', $geografica_id);
                 $editar = $nomina->update($id, 'updated_at', $hoy);
+                $editar = $nomina->update($id, 'mini', $estatus);
 
                 if ($editar) {
                     $alert = "success";

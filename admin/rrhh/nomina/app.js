@@ -32,6 +32,7 @@ function btnEditar(id)
     let geografica_id = button.dataset.geografica_id;
     let administrativa_id  = button.dataset.administrativa_id;
     let cargos_id = button.dataset.cargos_id;
+    let estatus = button.dataset.estatus;
 
     $('#input_cedula').val(cedula);
     $('#input_nombre').val(nombre);
@@ -44,6 +45,8 @@ function btnEditar(id)
     $('#select_cargos').trigger('change');
     $('#input_opcion').val("editar");
     $('#input_form_id').val(id);
+    $('#estatus').val(estatus);
+    $('#estatus').trigger('change ');
 }
 
 //ELIMINAR USUARIO
@@ -80,6 +83,7 @@ function btnShow(id)
     let administrativa_id  = button.dataset.administrativa_id;
     let path = button.dataset.path;
     let descargar= button.dataset.descargar;
+    let estatus = button.dataset.estatus;
 
 
     //identificamos los input
@@ -87,6 +91,7 @@ function btnShow(id)
     let modal_administrativa = document.getElementById("modal_ubicacion_administrativa");
     let modal_geografica = document.getElementById("modal_ubicacion_geografica");
     let modal_estatus = document.getElementById("modal_estatus_carnet");
+    let modal_estatus_trabajador = document.getElementById("modal_estatus_trabajador");
     
 
 
@@ -94,6 +99,7 @@ function btnShow(id)
     modal_nombre.innerText = nombre + " " +apellido;
     modal_administrativa.innerText = administrativa_id;
     modal_geografica.innerText = geografica_id;
+    modal_estatus_trabajador.innerText = estatus;
     $('#link_modal_id').attr('href', '../foto/?id=' + id);
     $('#btn_pdf').attr('href', 'pdf/?id=' + id);
     $("#modal_imagen").attr("src", path);

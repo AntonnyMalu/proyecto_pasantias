@@ -58,7 +58,14 @@
               <?php } ?>
             </select>
         </div>
-
+        
+        <div class="form-group">
+          <label>Estatus:</label>
+          <select class="form-control" name="estatus" id="estatus">
+            <option value="1">ACTIVO</option>
+            <option value="0">INACTIVO</option>
+          </select>
+        </div>
         
 
         <input type="hidden" name="opcion" value="guardar" id="input_opcion" />
