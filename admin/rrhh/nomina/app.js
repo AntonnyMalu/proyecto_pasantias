@@ -114,4 +114,20 @@ function btnShow(id)
     }
 }
 
+function restablecerFormulario(){
+    $('#input_cedula').val('');
+    $('#input_nombre').val('');
+    $('#input_apellido').val('');
+    $('#select_geografica').val('');
+    $('#select_geografica').trigger('change');
+    $('#select_administrativa').val('');
+    $('#select_administrativa').trigger('change');
+    $('#select_cargos').val('');
+    $('#select_cargos').trigger('change');
+    $('#input_opcion').val('guardar');
+    $('#input_form_id').val('');
+    
+
+}
+
 console.log('nomina-app.js');

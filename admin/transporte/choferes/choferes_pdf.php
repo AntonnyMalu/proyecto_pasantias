@@ -38,7 +38,7 @@ foreach ($listarChoferes as $chofer) {
     $i++;
     $getVehiculo = $vehiculos->find($chofer['vehiculos_id']);
     $getTipo = $vehiculosTipo->find($getVehiculo['tipo']);
-    $qr_texto = "C.I: ".formatoMillares($chofer['cedula'])."  \nConductor: ".strtoupper($chofer['nombre'])." \nVehiculo: ".strtoupper($getTipo['nombre'])." \nModelo: ".strtoupper($getVehiculo['marca'])."  \nPlaca: ".strtoupper($getVehiculo['placa_batea'])." \nColor: ".strtoupper($getVehiculo['color'])." \nTlf: ".strtolower($chofer['telefono'])." \nModulos: ".strtoupper($getVehiculo['capacidad'])." ";
+    $qr_texto = "Conductor: ".strtoupper($chofer['nombre'])." \nC.I: ".formatoMillares($chofer['cedula'])." \nVehiculo: ".strtoupper($getTipo['nombre'])." \nModelo: ".strtoupper($getVehiculo['marca'])."  \nPlaca: ".strtoupper($getVehiculo['placa_batea'])." \nColor: ".strtoupper($getVehiculo['color'])." \nTlf: ".strtolower($chofer['telefono'])." \nModulos: ".strtoupper($getVehiculo['capacidad'])." ";
     QRcode::png(utf8_decode($qr_texto), 'formatos/QRcodeChofer_'.$chofer['id'].'.png', '', 2);
 
     if (($i % 2) == 0) {
