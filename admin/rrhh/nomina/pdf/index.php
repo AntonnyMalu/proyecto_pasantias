@@ -44,7 +44,7 @@ $xFoto = $pdf->GetX();
 $yFoto = $pdf->GetY() -2;
 $pdf->Cell(108,5,'hola2',0,1);
 
-$pdf->Image('../../../../img/fotos_carnet/nomina_id_1/carnet.png',$xFoto,$yFoto,27,48);
+$pdf->Image('../../../../'.$trabajador['path'],$xFoto,$yFoto,27,48);
 
 $pdf->Cell(0,22,'',0,1);
 $pdf->Cell(0,19,'',0,1);
