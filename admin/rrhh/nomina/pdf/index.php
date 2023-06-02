@@ -20,9 +20,9 @@ if ($trabajador['mini'] == 0) {
     $estatus = "ACTIVO";
 }
 
-$qr_texto = "ALIMENTOS DEL GUARICO S.A (ALGUARISA)  \nTrabajador: ".$trabajador['nombre']."  \nCedula: ".formatoMillares($trabajador['cedula'])." \nCargo: ".$getCargo['cargo']." \nEstatus: ".$estatus." ";
+$qr_texto = "ALIMENTOS DEL GUARICO S.A (ALGUARISA) \n\nC.I: ".formatoMillares($trabajador['cedula'])."  \nNombre(s): ".$trabajador['nombre']." \nApellido(s): ".$trabajador['apellido']."  \nCargo: ".$getCargo['cargo']." \nEstatus: ".$estatus." ";
 
-QRcode::png($qr_texto, 'QRcodeCarnet.png', '', 2);
+QRcode::png(strtoupper($qr_texto), 'QRcodeCarnet.png', '', 2);
 
 // Creación del objeto de la clase heredada ******************************************
 $pdf = new PDF_WriteTag();
