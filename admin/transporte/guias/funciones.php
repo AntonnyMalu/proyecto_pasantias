@@ -34,7 +34,7 @@ if ($existeParametro) {
 }
 
 $listarTiposGuias = $tiposGuias->getAll();
-$listarGuias = $guias->getAll(1,'fecha', 'DESC');
+$listarGuias = $guias->getAll(1,'id', 'DESC');
 $listarVehiculos = $vehiculos->getAll(1);
 $listarChoferes = $choferes->getAll(1);
 $listarTerritorios = $territorios->getAll();
