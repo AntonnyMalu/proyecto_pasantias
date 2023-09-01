@@ -135,7 +135,8 @@ if ($_POST) {
         !empty($_POST['choferes_id']) &&
         !empty($_POST['origen']) &&
         !empty($_POST['destino']) &&
-        !empty($_POST['fecha'])
+        !empty($_POST['fecha']) &&
+        isset($_POST['precinto'])
     ) {
         $guias_tipos_id = $_POST['guias_tipos_id'];
         $codigo = $_POST['codigo'];
@@ -147,6 +148,13 @@ if ($_POST) {
         $users_id = $_SESSION['id'];
         $id = $_POST['id'];
         $contador = $_POST['contador'];
+
+        //precinto nuevo
+        if (empty($_POST['precinto'])){
+            $precinto = null;
+        }else{
+            $precinto = $_POST['precinto'];
+        }
 
         $guiasTipos = new GuiaTipo();
         $guiasCargas = new GuiaCargamento();
@@ -214,7 +222,8 @@ if ($_POST) {
                     $fecha,
                     $users_id,
                     $hoy,
-                    $pdf_id
+                    $pdf_id,
+                    $precinto
                 ];
 
                 $existeGuia = existeGuia($id, $guias_tipos_id, $codigo, $vehiculos_id, $choferes_id, $territorios_origen, $territorios_destino, $fecha);
@@ -325,6 +334,11 @@ if ($_POST) {
 
                         if ($database['fecha'] != $fecha) {
                             $editar = $guias->update($id, 'fecha', $fecha);
+                            $seEdito = true;
+                        }
+
+                        if ($database['precinto'] != $precinto) {
+                            $editar = $guias->update($id, 'precinto', $precinto);
                             $seEdito = true;
                         }
 

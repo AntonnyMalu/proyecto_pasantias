@@ -31,18 +31,38 @@ $pdf->Ln(2);
 //CARGA *******************************************************************************
 $pdf->SetFillColor($r, $g, $b);
 $pdf->SetFont('times', 'B', 10);
-$pdf->Cell(30, 7, "", 0, 0, 'C');
-$pdf->Cell(47, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
-$pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 0, 'C', 1);
-$pdf->Cell(30, 7, "", 0, 1, 'C');
-$pdf->SetFont('times', '', 10);
-
-foreach ($listarCargamento as $carga) {
+if (!$guia['precinto']){
     $pdf->Cell(30, 7, "", 0, 0, 'C');
-    $pdf->Cell(47, 7, utf8_decode(strtoupper($carga['cantidad'])), 1, 0, 'C');
-    $pdf->Cell(83, 7, utf8_decode(strtoupper($carga['descripcion'])), 1, 0, 'C');
+    $pdf->Cell(47, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
+    $pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 0, 'C', 1);
     $pdf->Cell(30, 7, "", 0, 1, 'C');
+    $pdf->SetFont('times', '', 10);
+
+    foreach ($listarCargamento as $carga) {
+        $pdf->Cell(30, 7, "", 0, 0, 'C');
+        $pdf->Cell(47, 7, utf8_decode(strtoupper($carga['cantidad'])), 1, 0, 'C');
+        $pdf->Cell(83, 7, utf8_decode(strtoupper($carga['descripcion'])), 1, 0, 'C');
+        $pdf->Cell(30, 7, "", 0, 1, 'C');
+    }
+}else{
+    //con precinto
+    $pdf->Cell(22, 7, "PRECINTO:", 1, 0, 'C',1);
+    $pdf->Cell(50, 7, utf8_decode(strtoupper($guia['precinto'])), 1, 0, 'C');
+    $pdf->Cell(5, 7, "", 0, 0, 'C');
+
+    $pdf->Cell(30, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
+    $pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 1, 'C', 1);
+    $pdf->SetFont('times', '', 10);
+
+    foreach ($listarCargamento as $carga) {
+        $pdf->Cell(70, 7, "", 0, 0, 'C');
+        $pdf->Cell(7, 7, "", 0, 0, 'C');
+        $pdf->Cell(30, 7, utf8_decode(strtoupper($carga['cantidad'])), 1, 0, 'C');
+        $pdf->Cell(83, 7, utf8_decode(strtoupper($carga['descripcion'])), 1, 1, 'C');
+
+    }
 }
+
 
 // notas ********************************************************************************************
 $pdf->Ln(2);

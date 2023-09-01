@@ -123,7 +123,11 @@ class Model
         $campos = str_replace(", )exit", ")", $campos);
         $values = "(";
         foreach ($data as $input) {
-            $values .= "'$input', ";
+            if (is_null($input)){
+                $values .= "NULL, ";
+            }else{
+                $values .= "'$input', ";
+            }
         }
         $values .= ")exit";
         $values = str_replace(", )exit", ")", $values);

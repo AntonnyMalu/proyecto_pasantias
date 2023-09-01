@@ -74,6 +74,11 @@
                 <input type="date" class="form-control" name="fecha" id="input_fecha" required  />
             </div>
 
+            <div class="form-group">
+                <label>Precinto (Opcional):</label>
+                <input type="text" class="form-control" name="precinto" placeholder="Precinto Maizal (Opcional)" id="input_precinto" />
+            </div>
+
             <hr>
 
             <div class="form-group">

@@ -30,7 +30,8 @@ class Guia extends Model
             'fecha',
             'users_id',
             'created_at',
-            'pdf_id'
+            'pdf_id',
+            'precinto'
         ];
     }
 }
