@@ -79,6 +79,12 @@
                 <input type="text" class="form-control" name="precinto" placeholder="Precinto Maizal (Opcional)" id="input_precinto" />
             </div>
 
+            <div class="form-group">
+                <label>Precinto 2 (Opcional):</label>
+                <input type="text" class="form-control" name="precinto_2" placeholder="Precinto 2 Maizal (Opcional)" id="input_precinto_2" />
+            </div>
+
+
             <hr>
 
             <div class="form-group">

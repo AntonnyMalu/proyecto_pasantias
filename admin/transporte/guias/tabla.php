@@ -26,6 +26,7 @@
               $i++;
               if (!$guia['estatus']){ $disabled_editar = "disabled"; }else{ $disabled_editar = null; }
               if ($guia['precinto']){ $precinto = $guia['precinto']; }else{ $precinto = null; }
+              if ($guia['precinto_2']){ $precinto_2 = $guia['precinto_2']; }else{ $precinto_2 = null; }
               if ($guia['pdf_impreso'] || !$guia['estatus']) { $disable = "disabled"; $label = "Descargar Guía"; }else{ $disable = null; $label = "Generar Guía"; }
               $listarCargamento = $cargamento->getList('guias_id', '=', $guia['id']);
               $html = "";
@@ -107,7 +108,8 @@
                  data-label="<?php echo $label; ?>"
                  data-estatus="<?php echo $guia['estatus']; ?>"
                  data-precinto="<?php echo $precinto ?>"
-                 onclick="btnShow('<?php echo $guia['id']; ?>')" 
+                 data-precinto2="<?php echo $precinto_2 ?>"
+                 onclick="btnShow('<?php echo $guia['id']; ?>')"
                  id="btn_show_<?php echo $guia['id']; ?>">
                    <i class="far fa-comment-alt"></i>
                  </button>
@@ -123,6 +125,7 @@
                  data-fecha="<?php echo $guia['fecha'] ?>"
                  data-contador="<?php echo $j ?>" 
                  data-precinto="<?php echo $precinto ?>"
+                 data-precinto2="<?php echo $precinto_2 ?>"
                  id="btn_editar_<?php echo $guia['id']; ?>"  <?php echo $disabled_editar ?> >
                    <i class="fas fa-edit"></i>
                  </button>

@@ -114,6 +114,7 @@ function btnShow(id)
     let label = button.dataset.label;
     let estatus = button.dataset.estatus;
     let precinto = button.dataset.precinto;
+    let precinto2 = button.dataset.precinto2;
 
 
     let modal_tipo = document.getElementById("modal_tipo");
@@ -127,6 +128,8 @@ function btnShow(id)
     let btn_pdf = document.getElementById("btn_generar_pdf");
     let li_precinto = $('#li_precinto');
     let modal_precinto = $('#modal_precinto');
+    let li_precinto_2 = $('#li_precinto_2');
+    let modal_precinto_2 = $('#modal_precinto_2');
 
     modal_tipo.innerText = tipo;
     modal_codigo.innerText = codigo;
@@ -165,6 +168,15 @@ function btnShow(id)
         modal_precinto.text("");
     }
 
+    if (precinto2 !== ""){
+        li_precinto_2.removeClass('d-none');
+        modal_precinto_2.text(precinto2);
+    }else{
+        li_precinto_2.addClass('d-none');
+        modal_precinto_2.text("");
+    }
+console.log(precinto2);
+
 
 }
 
@@ -183,6 +195,7 @@ function btnEdit(id)
     let id_guia = button.dataset.id_guia;
     let contador = button.dataset.contador;
     let precinto = button.dataset.precinto;
+    let precinto2 = button.dataset.precinto2;
 
     let items = document.getElementById("items");
     let select_tipo_guia = document.getElementById("seleccionar_tipo_guia");
@@ -206,6 +219,7 @@ function btnEdit(id)
     $("#input_opcion").val("editar");
     $('#contador').val(contador);
     $('#input_precinto').val(precinto);
+    $('#input_precinto_2').val(precinto2);
 }
 
 function btnEliminar(id) {
@@ -256,4 +270,4 @@ $('#formulari_guia_init').submit(function (e) {
 });
 
 
-console.log('hala');
+console.log('hala 2');

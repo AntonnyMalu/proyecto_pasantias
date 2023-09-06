@@ -27,6 +27,7 @@
                 <li class="list-group-item">Lugar de Destino: <br><span class="text-primary" id="modal_destino"> jefe </span></li>
                 <li class="list-group-item">Fecha Guía: <br><span class="text-primary" id="modal_fecha"> jefe </span></li>
                 <li class="list-group-item d-none" id="li_precinto">Precinto: <br><span class="text-primary" id="modal_precinto"> jefe </span></li>
+                <li class="list-group-item d-none" id="li_precinto_2">Precinto 2: <br><span class="text-primary" id="modal_precinto_2"> jefe </span></li>
               </ul>
             </div>
           </div>
