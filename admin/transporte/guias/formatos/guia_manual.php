@@ -9,6 +9,13 @@ QRcode::png($qr_texto, 'QRcodeManual.png', '', 2);
 // Creación del objeto de la clase heredada ******************************************
 $pdf = new PDF_WriteTag();
 $pdf->AliasNbPages();
+//color azul RGB (0,0,128)
+$rojo = 0;
+$verde = 0;
+$negro = 128;
+$pdf->SetTextColor($rojo, $verde, $negro); //color azul
+//color negro
+/*$pdf->SetTextColor(0, 0, 0);*/
 
 //CABECERA ****************************************************************************
 $pdf->AddPage('P', 'Letter');
@@ -24,27 +31,52 @@ $pdf->Cell(0, 4, utf8_decode('AUTORIZACIÓN DE TRASLADO'), 0, 1, 'C');
 
 $texto = "<p>Quien suscribe, <vb>LCDO. HUMBERTO ENRIQUE ALBANI CORTEZ</vb>, venezolano, mayor de edad, titular de la cedula de identidad <vb>Nº V- 19.160.501</vb>, en mi condición de Presidente de <vb>ALIMENTOS DEL GUÁRICO S.A (ALGUARISA) RIF: G-20012864-0</vb>, tal y como consta en Acta de Asamblea Extraordinaria, debidamente registrada de fecha 23 de agosto de 2.021, ante el Registro Mercantil 1ero del Estado Bolivariano Guárico, bajo el número 53 del año 2018,  Tomo 18-A, en el Segundo trimestre del año 2.018, <vb>EMPRESA ADSCRITA A LA SECRETARIA DE DESARROLLO AGROALIMENTARIA DEL ESTADO BOLIVARIANO DE GUÁRICO, QUE SE PRESENTA COMO UNO DE LOS RECURSOS DE ESENCIAL IMPORTANCIA Y VALOR CON LOS QUE CUENTA EL EJECUTIVO REGIONAL, PARA ASÍ GARANTIZAR LA DISTRIBUCIÓN, Y DE ESTA FORMA OFRECER LOS PRODUCTOS QUE INTEGRAN LA CANASTA ALIMENTARIA, ADEMÁS DE AQUELLOS DECLARADOS DE PRIMERA NECESIDAD Y LA ADQUISICIÓN DE LOS MISMOS A PRECIOS JUSTOS Y ACCESIBLES Y A UN TRATO EQUITATIVO Y DIGNO ASÍ COMO LA DEFENSA CONTRA LA ESPECULACIÓN Y EL ACAPARAMIENTO DE LA CESTA BÁSICA</vb>, es por ello que por medio del presente Instrumento se <vb>AUTORIZA</vb>  al  Ciudadano <vb>__________________________________________________________</vb>, venezolano, mayor de edad, titular de la cédula de identidad <vb>Nº_________________________</vb>, conductor de un vehículo identificado con las siguientes características:  <vb>TIPO:______________________, MARCA:_________________, COLOR:_____________, PLACA N°:____________________. Para que se TRASLADE DESDE LA CIUDAD DE SAN JUAN DE LOS MORROS, MUNICIPIO JUAN GERMÁN ROSCIO NIEVES CAPITAL DEL ESTADO BOLIVARIANO DE GUÁRICO, HASTA LA POBLACIÓN DE:_______________________________________________________________________________ DEL MISMO ESTADO</vb>, con el producto alimenticio que presenta las siguientes características:</p>";
 
-$pdf->SetStyle("p", "times", "N", 10, "0,0,0", 15);
-$pdf->SetStyle("vb", "times", "B", 0, "0,0,0");
+//color negro
+/*$pdf->SetStyle("p", "times", "N", 10, "0,0,0", 15);
+$pdf->SetStyle("vb", "times", "B", 0, "0,0,0");*/
+
+//color azul
+$pdf->SetStyle("p", "times", "N", 10, "$rojo,$verde,$negro", 15);
+$pdf->SetStyle("vb", "times", "B", 0, "$rojo,$verde,$negro");
+
 $pdf->Ln(14);
 $pdf->WriteTag(0, 5, utf8_decode($texto), 0, "J", 0, 0);
 $pdf->Ln(2);
 
 //CARGA *******************************************************************************
-$pdf->SetFillColor(51, 246, 255);
+
+//CARGA *******************************************************************************
+$r = 51;
+$g = 246;
+$b = 255;
+$pdf->SetFillColor($r, $g, $b);
 $pdf->SetFont('times', 'B', 10);
-$pdf->Cell(30, 7, "", 0, 0, 'C');
-$pdf->Cell(47, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
-$pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 0, 'C', 1);
-$pdf->Cell(30, 7, "", 0, 1, 'C');
+//con precinto
+$pdf->Cell(24, 7, "", 0, 0, 'L');
+$pdf->Cell(48, 7, "", 0, 0, 'C');
+$pdf->Cell(5, 7, "", 0, 0, 'C');
+
+$pdf->Cell(30, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
+$pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 1, 'C', 1);
 $pdf->SetFont('times', '', 10);
 
-for ($x = 1; $x <= 2; $x++) {
-    $pdf->Cell(30, 7, "", 0, 0, 'C');
-    $pdf->Cell(47, 7, '', 1, 0, 'C');
-    $pdf->Cell(83, 7, '', 1, 0, 'C');
-    $pdf->Cell(30, 7, "", 0, 1, 'C');
-}
+$pdf->SetFont('times', 'B', 10);
+$pdf->Cell(24, 7, "PRECINTO 1:", 1, 0, 'L', 1);
+$pdf->Cell(48, 7, "", 1, 0, 'C');
+$pdf->Cell(5, 7, "", 0, 0, 'C');
+
+$pdf->SetFont('times', '', 10);
+$pdf->Cell(30, 7, "", 1, 0, 'C');
+$pdf->Cell(83, 7, "", 1, 1, 'C');
+
+$pdf->SetFont('times', 'B', 10);
+$pdf->Cell(24, 7, "PRECINTO 2:", 1, 0, 'L', 1);
+$pdf->Cell(48, 7, "", 1, 0, 'C');
+$pdf->Cell(5, 7, "", 0, 0, 'C');
+
+$pdf->SetFont('times', '', 10);
+$pdf->Cell(30, 7, "", 1, 0, 'C');
+$pdf->Cell(83, 7, "", 1, 1, 'C');
 
 // notas ********************************************************************************************
 $pdf->Ln(2);
