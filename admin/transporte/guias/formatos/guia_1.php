@@ -139,4 +139,4 @@ $pdf->Cell(40, 5, textoUTF8('____________________'), 0, 0, 'C');
 $pdf->Cell(55, 5, textoUTF8('TELÉFONO:'), 0, 0, 'R');
 $pdf->Cell(37, 5, textoUTF8($guia['choferes_telefono']), 0, 1, 'C');
 
-$pdf->Output('I', 'Guia- '.$guia['codigo'].'.pdf', true,);
+$pdf->Output('D', 'Guia- '.$guia['codigo'].'.pdf', true,);
