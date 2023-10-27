@@ -17,9 +17,10 @@ $pdf->SetFont('Times', 'BU', 12);
 $pdf->Image('../../../../img/hoja_membretada.png', 0, 0, 210, 280);
 $pdf->Image('QRcode.png', 10, 28, 30, 30);
 $pdf->ln(20);
-$pdf->Cell(0, 4, utf8_decode($guia['codigo']), 0, 1, 'R');
+$pdf->Cell(0, 4,textoUTF8($guia['codigo']), 0, 1, 'R');
 $pdf->Ln(5);
-$pdf->Cell(0, 4, utf8_decode('AUTORIZACIÓN DE TRASLADO'), 0, 1, 'C');
+$pdf->Cell(0, 4, textoUTF8('AUTORIZACIÓN DE TRASLADO'), 0, 1, 'C');
+
 
 // TEXTO *****************************************************************************
 
@@ -29,47 +30,48 @@ $pdf->SetStyle("p", "times", "N", 10, "$rojo,$verde,$negro", 15);
 $pdf->SetStyle("vb", "times", "B", 0, "$rojo,$verde,$negro");
 $pdf->Ln(14);
 //$pdf->SetDrawColor(102,0,102);
-$pdf->WriteTag(0, 5, utf8_decode($texto), 0, "J", 0, 0);
+$pdf->WriteTag(0, 5, textoUTF8($texto), 0, "J", 0, 0);
 $pdf->Ln(2);
 
 //CARGA *******************************************************************************
+
 $pdf->SetFillColor($r, $g, $b);
 $pdf->SetFont('times', 'B', 10);
 if (!$guia['precinto'] && !$guia['precinto_2']){
     $pdf->Cell(30, 7, "", 0, 0, 'C');
-    $pdf->Cell(47, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
-    $pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 0, 'C', 1);
+    $pdf->Cell(47, 7, textoUTF8('CANTIDAD'), 1, 0, 'C', 1);
+    $pdf->Cell(83, 7, textoUTF8('DESCRIPCIÓN DEL RUBRO'), 1, 0, 'C', 1);
     $pdf->Cell(30, 7, "", 0, 1, 'C');
     $pdf->SetFont('times', '', 10);
 
     foreach ($listarCargamento as $carga) {
         $pdf->Cell(30, 7, "", 0, 0, 'C');
-        $pdf->Cell(47, 7, utf8_decode(strtoupper($carga['cantidad'])), 1, 0, 'C');
-        $pdf->Cell(83, 7, utf8_decode(strtoupper($carga['descripcion'])), 1, 0, 'C');
+        $pdf->Cell(47, 7, textoUTF8(strtoupper($carga['cantidad'])), 1, 0, 'C');
+        $pdf->Cell(83, 7, textoUTF8(strtoupper($carga['descripcion'])), 1, 0, 'C');
         $pdf->Cell(30, 7, "", 0, 1, 'C');
     }
 }else{
     //con precinto
     $pdf->Cell(24, 7, "PRECINTO:", 1, 0, 'L',1);
-    $pdf->Cell(48, 7, utf8_decode(strtoupper($guia['precinto'])), 1, 0, 'C');
+    $pdf->Cell(48, 7, textoUTF8(strtoupper($guia['precinto'])), 1, 0, 'C');
     $pdf->Cell(5, 7, "", 0, 0, 'C');
 
-    $pdf->Cell(30, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
-    $pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 1, 'C', 1);
+    $pdf->Cell(30, 7, textoUTF8('CANTIDAD'), 1, 0, 'C', 1);
+    $pdf->Cell(83, 7, textoUTF8('DESCRIPCIÓN DEL RUBRO'), 1, 1, 'C', 1);
     $pdf->SetFont('times', '', 10);
 
     foreach ($listarCargamento as $carga) {
         if ($guia['precinto_2']){
             $pdf->SetFont('times', 'B', 10);
             $pdf->Cell(24, 7, "PRECINTO 2:", 1, 0, 'L',1);
-            $pdf->Cell(48, 7, utf8_decode(strtoupper($guia['precinto_2'])), 1, 0, 'C');
+            $pdf->Cell(48, 7, textoUTF8(strtoupper($guia['precinto_2'])), 1, 0, 'C');
             $pdf->Cell(5, 7, "", 0, 0, 'C');
         }else{
             $pdf->Cell(77, 7, "", 0, 0, 'C');
         }
         $pdf->SetFont('times', '', 10);
-        $pdf->Cell(30, 7, utf8_decode(strtoupper($carga['cantidad'])), 1, 0, 'C');
-        $pdf->Cell(83, 7, utf8_decode(strtoupper($carga['descripcion'])), 1, 1, 'C');
+        $pdf->Cell(30, 7, textoUTF8(strtoupper($carga['cantidad'])), 1, 0, 'C');
+        $pdf->Cell(83, 7, textoUTF8(strtoupper($carga['descripcion'])), 1, 1, 'C');
 
     }
 }
@@ -81,55 +83,55 @@ $pdf->Ln(2);
 $texto2 = "               Así mismo se expresa que los productos alimenticios identificados no podrán ser desviados por ningún concepto al destino señalado, sin la autorización expresa del Presidente de ALGUARISA.";
 $texto3 = "Nota: Se agradece a las autoridades Civiles y Militares de la República Bolivariana de Venezuela la mayor colaboración posible al portador de esta autorización en el traslado respectivo.";
 
-$pdf->MultiCell(0, 5, utf8_decode($texto2), 0, 1);
-$pdf->MultiCell(0, 5, utf8_decode($texto3), 0, 1,);
+$pdf->MultiCell(0, 5, textoUTF8($texto2), 0, 1);
+$pdf->MultiCell(0, 5, textoUTF8($texto3), 0, 1,);
 $pdf->SetFont('times', 'B', 10);
-//$pdf->Cell(0, 5, utf8_decode('A los VEINTITRES (23) DIAS DEL MES DE MARZO DEL AÑO 2023.'), 0, 1, 'L');
-$pdf->Cell(0, 5, utf8_decode(verFechaGuia($guia['fecha'])), 0, 1, 'L');
+//$pdf->Cell(0, 5, textoUTF8('A los VEINTITRES (23) DIAS DEL MES DE MARZO DEL AÑO 2023.'), 0, 1, 'L');
+$pdf->Cell(0, 5, textoUTF8(verFechaGuia($guia['fecha'])), 0, 1, 'L');
 $pdf->SetFont('times', '', 10);
 $pdf->Ln(15);
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('______________________________'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('______________________________'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('______________________________'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('______________________________'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('ECON. ORLANDO SANDOVAL'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('JESUS CASTILLO'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('ECON. ORLANDO SANDOVAL'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('JESUS CASTILLO'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('C.I: 15.300.194'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('C.I: 16.100.266'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('C.I: 15.300.194'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('C.I: 16.100.266'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('Gerente de Operaciones y Logística'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('Jefe de la Unidad de Trasporte'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('Gerente de Operaciones y Logística'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('Jefe de la Unidad de Trasporte'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
 $pdf->Ln(5);
 
-$pdf->Cell(62, 5, utf8_decode('FIRMA SUPERVISOR DE ALGUARISA:'), 0, 0, 'R');
-$pdf->Cell(40, 5, utf8_decode('____________________'), 0, 0, 'C');
-$pdf->Cell(55, 5, utf8_decode('FIRMA DEL CONDUCTOR:'), 0, 0, 'R');
-$pdf->Cell(37, 5, utf8_decode('____________________'), 0, 1, 'C');
+$pdf->Cell(62, 5, textoUTF8('FIRMA SUPERVISOR DE ALGUARISA:'), 0, 0, 'R');
+$pdf->Cell(40, 5, textoUTF8('____________________'), 0, 0, 'C');
+$pdf->Cell(55, 5, textoUTF8('FIRMA DEL CONDUCTOR:'), 0, 0, 'R');
+$pdf->Cell(37, 5, textoUTF8('____________________'), 0, 1, 'C');
 
-$pdf->Cell(62, 5, utf8_decode('TELÉFONO:'), 0, 0, 'R');
-$pdf->Cell(40, 5, utf8_decode('____________________'), 0, 0, 'C');
-$pdf->Cell(55, 5, utf8_decode('TELÉFONO:'), 0, 0, 'R');
-$pdf->Cell(37, 5, utf8_decode($guia['choferes_telefono']), 0, 1, 'C');
+$pdf->Cell(62, 5, textoUTF8('TELÉFONO:'), 0, 0, 'R');
+$pdf->Cell(40, 5, textoUTF8('____________________'), 0, 0, 'C');
+$pdf->Cell(55, 5, textoUTF8('TELÉFONO:'), 0, 0, 'R');
+$pdf->Cell(37, 5, textoUTF8($guia['choferes_telefono']), 0, 1, 'C');
 
 $pdf->Output('D', 'Guia- '.$guia['codigo'].'.pdf', true,);
