@@ -60,18 +60,23 @@ if (!$guia['precinto'] && !$guia['precinto_2']){
     $pdf->Cell(83, 7, textoUTF8('DESCRIPCIÓN DEL RUBRO'), 1, 1, 'C', 1);
     $pdf->SetFont('times', '', 10);
 
+
+    $mostrar_precinto_2 = true;
     foreach ($listarCargamento as $carga) {
-        if ($guia['precinto_2']){
+        if ($guia['precinto_2'] && $mostrar_precinto_2){
             $pdf->SetFont('times', 'B', 10);
             $pdf->Cell(24, 7, "PRECINTO 2:", 1, 0, 'L',1);
             $pdf->Cell(48, 7, textoUTF8(strtoupper($guia['precinto_2'])), 1, 0, 'C');
             $pdf->Cell(5, 7, "", 0, 0, 'C');
+            $mostrar_precinto_2 = false;
         }else{
             $pdf->Cell(77, 7, "", 0, 0, 'C');
         }
         $pdf->SetFont('times', '', 10);
         $pdf->Cell(30, 7, textoUTF8(strtoupper($carga['cantidad'])), 1, 0, 'C');
         $pdf->Cell(83, 7, textoUTF8(strtoupper($carga['descripcion'])), 1, 1, 'C');
+
+
 
     }
 }
@@ -134,4 +139,4 @@ $pdf->Cell(40, 5, textoUTF8('____________________'), 0, 0, 'C');
 $pdf->Cell(55, 5, textoUTF8('TELÉFONO:'), 0, 0, 'R');
 $pdf->Cell(37, 5, textoUTF8($guia['choferes_telefono']), 0, 1, 'C');
 
-$pdf->Output('D', 'Guia- '.$guia['codigo'].'.pdf', true,);
+$pdf->Output('I', 'Guia- '.$guia['codigo'].'.pdf', true,);
