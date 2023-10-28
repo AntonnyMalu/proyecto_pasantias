@@ -1,6 +1,12 @@
 <?php
+function textoUTF8($string)
+{
+    return mb_convert_encoding($string, 'ISO-8859-1', 'UTF-8');
+}
 include('../../../../phpqrcode/qrlib.php');
 require '../../../../fpdf/WriteTag.php';
+
+
 
 $qr_texto = "GUIA DE TRASLADO MANUAL\nALIMENTOS DEL GUARICO S.A (ALGUARISA)  \nELABORADA POR EVENTUALIDAD EN EL \nDEPARTAMENTO DE TRANSPORTE  \nESTE DOCUMENTO SIN FIRMA Y SELLO \nNO TIENE VALIDEZ ";
 QRcode::png($qr_texto, 'QRcodeManual.png', '', 2);
@@ -23,9 +29,9 @@ $pdf->SetFont('Times', 'BU', 12);
 $pdf->Image('../../../../img/hoja_membretada.png', 0, 0, 210, 280);
 $pdf->Image('QRcodeManual.png', 10, 28, 30, 30);
 $pdf->ln(20);
-$pdf->Cell(0, 4, utf8_decode("N°________________________-" . date('Y')), 0, 1, 'R');
+$pdf->Cell(0, 4, textoUTF8("N°________________________-" . date('Y')), 0, 1, 'R');
 $pdf->Ln(5);
-$pdf->Cell(0, 4, utf8_decode('AUTORIZACIÓN DE TRASLADO'), 0, 1, 'C');
+$pdf->Cell(0, 4, textoUTF8('AUTORIZACIÓN DE TRASLADO'), 0, 1, 'C');
 
 // TEXTO *****************************************************************************
 
@@ -40,7 +46,7 @@ $pdf->SetStyle("p", "times", "N", 10, "$rojo,$verde,$negro", 15);
 $pdf->SetStyle("vb", "times", "B", 0, "$rojo,$verde,$negro");
 
 $pdf->Ln(14);
-$pdf->WriteTag(0, 5, utf8_decode($texto), 0, "J", 0, 0);
+$pdf->WriteTag(0, 5, textoUTF8($texto), 0, "J", 0, 0);
 $pdf->Ln(2);
 
 //CARGA *******************************************************************************
@@ -56,8 +62,8 @@ $pdf->Cell(24, 7, "", 0, 0, 'L');
 $pdf->Cell(48, 7, "", 0, 0, 'C');
 $pdf->Cell(5, 7, "", 0, 0, 'C');
 
-$pdf->Cell(30, 7, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
-$pdf->Cell(83, 7, utf8_decode('DESCRIPCIÓN DEL RUBRO'), 1, 1, 'C', 1);
+$pdf->Cell(30, 7, textoUTF8('CANTIDAD'), 1, 0, 'C', 1);
+$pdf->Cell(83, 7, textoUTF8('DESCRIPCIÓN DEL RUBRO'), 1, 1, 'C', 1);
 $pdf->SetFont('times', '', 10);
 
 $pdf->SetFont('times', 'B', 10);
@@ -84,55 +90,55 @@ $pdf->Ln(2);
 $texto2 = "               Así mismo se expresa que los productos alimenticios identificados no podrán ser desviados por ningún concepto al destino señalado, sin la autorización expresa del Presidente de ALGUARISA.";
 $texto3 = "Nota: Se agradece a las autoridades Civiles y Militares de la República Bolivariana de Venezuela la mayor colaboración posible al portador de esta autorización en el traslado respectivo.";
 
-$pdf->MultiCell(0, 5, utf8_decode($texto2), 0, 1);
-$pdf->MultiCell(0, 5, utf8_decode($texto3), 0, 1,);
+$pdf->MultiCell(0, 5, textoUTF8($texto2), 0, 1);
+$pdf->MultiCell(0, 5, textoUTF8($texto3), 0, 1,);
 $pdf->SetFont('times', 'B', 10);
-//$pdf->Cell(0, 5, utf8_decode('A los VEINTITRES (23) DIAS DEL MES DE MARZO DEL AÑO 2023.'), 0, 1, 'L');
-$pdf->Cell(0, 5, utf8_decode('A los _________________ DÍAS DEL MES DE ___________________ DEL AÑO' . date(' Y')), 0, 1, 'L');
+//$pdf->Cell(0, 5, textoUTF8('A los VEINTITRES (23) DIAS DEL MES DE MARZO DEL AÑO 2023.'), 0, 1, 'L');
+$pdf->Cell(0, 5, textoUTF8('A los _________________ DÍAS DEL MES DE ___________________ DEL AÑO' . date(' Y')), 0, 1, 'L');
 $pdf->SetFont('times', '', 10);
 $pdf->Ln(15);
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('______________________________'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('______________________________'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('______________________________'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('______________________________'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('ECON. ORLANDO SANDOVAL'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('JESUS CASTILLO'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('ECON. ORLANDO SANDOVAL'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('JESUS CASTILLO'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('C.I: 15.300.194'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('C.I: 16.100.266'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('C.I: 15.300.194'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('C.I: 16.100.266'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('Gerente de Operaciones y Logística'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('Jefe de la Unidad de Trasporte'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('Gerente de Operaciones y Logística'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('Jefe de la Unidad de Trasporte'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
-$pdf->Cell(10, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
-$pdf->Cell(18, 5, utf8_decode(''), 0, 0, 'C');
-$pdf->Cell(76, 5, utf8_decode('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
-$pdf->Cell(10, 5, utf8_decode(''), 0, 1, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
+$pdf->Cell(18, 5, textoUTF8(''), 0, 0, 'C');
+$pdf->Cell(76, 5, textoUTF8('ALIMENTOS DEL GUÁRICO S.A(ALGUARISA)'), 0, 0, 'C');
+$pdf->Cell(10, 5, textoUTF8(''), 0, 1, 'C');
 
 $pdf->Ln(5);
 
-$pdf->Cell(62, 5, utf8_decode('FIRMA SUPERVISOR DE ALGUARISA:'), 0, 0, 'R');
-$pdf->Cell(40, 5, utf8_decode('____________________'), 0, 0, 'C');
-$pdf->Cell(55, 5, utf8_decode('FIRMA DEL CONDUCTOR:'), 0, 0, 'R');
-$pdf->Cell(37, 5, utf8_decode('____________________'), 0, 1, 'C');
+$pdf->Cell(62, 5, textoUTF8('FIRMA SUPERVISOR DE ALGUARISA:'), 0, 0, 'R');
+$pdf->Cell(40, 5, textoUTF8('____________________'), 0, 0, 'C');
+$pdf->Cell(55, 5, textoUTF8('FIRMA DEL CONDUCTOR:'), 0, 0, 'R');
+$pdf->Cell(37, 5, textoUTF8('____________________'), 0, 1, 'C');
 
-$pdf->Cell(62, 5, utf8_decode('TELÉFONO:'), 0, 0, 'R');
-$pdf->Cell(40, 5, utf8_decode('____________________'), 0, 0, 'C');
-$pdf->Cell(55, 5, utf8_decode('TELÉFONO:'), 0, 0, 'R');
-$pdf->Cell(37, 5, utf8_decode('____________________'), 0, 1, 'C');
+$pdf->Cell(62, 5, textoUTF8('TELÉFONO:'), 0, 0, 'R');
+$pdf->Cell(40, 5, textoUTF8('____________________'), 0, 0, 'C');
+$pdf->Cell(55, 5, textoUTF8('TELÉFONO:'), 0, 0, 'R');
+$pdf->Cell(37, 5, textoUTF8('____________________'), 0, 1, 'C');
 
 $pdf->Output('D', 'Guia_Manual.pdf', true,);

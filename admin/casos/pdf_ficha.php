@@ -13,9 +13,9 @@ function Header()
     $this->SetX(-53);
     //$this->Image('../../img/logo_alguarisa.png', null, 2, 30, 15);
     $this->SetXY(10,15);
-    $this->Cell(0,4,utf8_decode('FICHA DE CARACTERIZACION'),0,1, 'C');
+    $this->Cell(0,4,textoUTF8('FICHA DE CARACTERIZACION'),0,1, 'C');
     $this->SetFont('Times','B',10);
-    $this->Cell(0,10,utf8_decode('CASO SOCIAL'),0,1, 'C');
+    $this->Cell(0,10,textoUTF8('CASO SOCIAL'),0,1, 'C');
     //$this->Ln(5);
 }
 
@@ -130,34 +130,34 @@ $pdf->Cell(0,0,"HORA: ".$newHora,0,1,'');
 $pdf->SetXY(15,45);
 $pdf->Cell(0,0,"TLF: ".$get_persona['telefono'],0,1,'');
 $pdf->SetXY(15,50);
-$pdf->Cell(0,0,"DIRECCION: ".utf8_decode(strtoupper($get_persona['direccion'])),0,1,'');
+$pdf->Cell(0,0,"DIRECCION: ".textoUTF8(strtoupper($get_persona['direccion'])),0,1,'');
 $pdf->LN(5);
 
 $pdf->SetFont('Times','B',13);
-$pdf->Cell(0,4,utf8_decode('STATUS SOCIAL DE LA PERSONA'),0,1, 'C');
+$pdf->Cell(0,4,textoUTF8('STATUS SOCIAL DE LA PERSONA'),0,1, 'C');
 $pdf->SetFont('Times','B',9);
 $pdf->SetXY(17, 63);
-$pdf->Cell(52, 5, utf8_decode('NOMBRE Y APELLIDO'), 1, 0, 'C');
-$pdf->Cell(37, 5, utf8_decode('CÉDULA'), 1, 0, 'C');
-$pdf->Cell(47, 5, utf8_decode('TIPO DE ATENCIÓN'), 1, 0, 'C');
-$pdf->Cell(37, 5, utf8_decode('DONATIVO'), 1, 0, 'C');
+$pdf->Cell(52, 5, textoUTF8('NOMBRE Y APELLIDO'), 1, 0, 'C');
+$pdf->Cell(37, 5, textoUTF8('CÉDULA'), 1, 0, 'C');
+$pdf->Cell(47, 5, textoUTF8('TIPO DE ATENCIÓN'), 1, 0, 'C');
+$pdf->Cell(37, 5, textoUTF8('DONATIVO'), 1, 0, 'C');
 $pdf->Ln(5);
 
 $pdf->SetXY(17, 68);
-$pdf->Cell(52, 5, utf8_decode(strtoupper($get_persona['nombre'])), 1, 0, 'C');
-$pdf->Cell(37, 5, utf8_decode(strtoupper($get_persona['cedula'])), 1, 0, 'C');
-$pdf->Cell(47, 5, utf8_decode(strtoupper($get_caso['tipo'])), 1, 0, 'C');
-$pdf->Cell(37, 5, utf8_decode(strtoupper($get_caso['donativo'])), 1, 0, 'C');
+$pdf->Cell(52, 5, textoUTF8(strtoupper($get_persona['nombre'])), 1, 0, 'C');
+$pdf->Cell(37, 5, textoUTF8(strtoupper($get_persona['cedula'])), 1, 0, 'C');
+$pdf->Cell(47, 5, textoUTF8(strtoupper($get_caso['tipo'])), 1, 0, 'C');
+$pdf->Cell(37, 5, textoUTF8(strtoupper($get_caso['donativo'])), 1, 0, 'C');
 $pdf->Ln(10);
 
 $pdf->SetFont('Times','B',9);
 $pdf->SetXY(17, 78);
-$pdf->Cell(20, 5, utf8_decode('N°'), 1, 0, 'C');
-$pdf->Cell(69, 5, utf8_decode('PRODUCTO'), 1, 0, 'C');
-$pdf->Cell(47, 5, utf8_decode('CANTIDAD'), 1, 0, 'C');
+$pdf->Cell(20, 5, textoUTF8('N°'), 1, 0, 'C');
+$pdf->Cell(69, 5, textoUTF8('PRODUCTO'), 1, 0, 'C');
+$pdf->Cell(47, 5, textoUTF8('CANTIDAD'), 1, 0, 'C');
 $x = $pdf->GetX();
 $y = $pdf->GetY();
-$pdf->Cell(37, 5, utf8_decode('OBERVACIONES'), 1, 1, 'C');
+$pdf->Cell(37, 5, textoUTF8('OBERVACIONES'), 1, 1, 'C');
 $pdf->Rect($x, $y + 5, 37, 35);
 $pdf->SetFont('Times','',9);
 $pdf->SetX(17, $y + 5);
@@ -169,16 +169,16 @@ foreach($personas as $persona){
 
     if($i == 1){
         $pdf->Cell(20, 5, $i, 1, 0, 'C');
-        $pdf->Cell(69, 5, utf8_decode(strtoupper($persona['producto'])), 1, 0, 'C');
-        $pdf->Cell(47, 5, utf8_decode($persona['cantidad']), 1, 0, 'C');
-        $pdf->MultiCell(37, 3, utf8_decode(strtoupper($get_caso['observacion'])), 'LRT',);
+        $pdf->Cell(69, 5, textoUTF8(strtoupper($persona['producto'])), 1, 0, 'C');
+        $pdf->Cell(47, 5, textoUTF8($persona['cantidad']), 1, 0, 'C');
+        $pdf->MultiCell(37, 3, textoUTF8(strtoupper($get_caso['observacion'])), 'LRT',);
         $pdf->Ln(5);
     }else{
 
         $pdf->SetXY(17, $j);
         $pdf->Cell(20, 5, $i, 1, 0, 'C');
-        $pdf->Cell(69, 5, utf8_decode(strtoupper($persona['producto'])), 1, 0, 'C');
-        $pdf->Cell(47, 5, utf8_decode($persona['cantidad']), 1, 0, 'C');
+        $pdf->Cell(69, 5, textoUTF8(strtoupper($persona['producto'])), 1, 0, 'C');
+        $pdf->Cell(47, 5, textoUTF8($persona['cantidad']), 1, 0, 'C');
         $pdf->Ln(5);
         $j = $j + 5;
 
@@ -231,11 +231,11 @@ if(empty($get_persona)){
 $pdf->SetFont('Times','',7);
 
 $pdf->SetXY(17, 118);
-$pdf->Cell(65,20,utf8_decode(strtoupper($atencion_nombre)), 0, 0, 'C');
+$pdf->Cell(65,20,textoUTF8(strtoupper($atencion_nombre)), 0, 0, 'C');
 
-$pdf->Cell(55,20,utf8_decode(strtoupper($almacen_nombre)), 0, 0, 'C');
+$pdf->Cell(55,20,textoUTF8(strtoupper($almacen_nombre)), 0, 0, 'C');
 
-$pdf->Cell(70,20,utf8_decode(strtoupper($persona_nombre)), 0, 0, 'C');
+$pdf->Cell(70,20,textoUTF8(strtoupper($persona_nombre)), 0, 0, 'C');
 
 $pdf->SetXY(17, 123);
 $pdf->Cell(65,2,'__________________________', 0, 0, 'C');
@@ -245,11 +245,11 @@ $pdf->Cell(55,2,'__________________________', 0, 0, 'C');
 $pdf->Cell(70,2,'__________________________', 0, 0, 'C');
 
 $pdf->SetXY(17, 128);
-$pdf->Cell(65,7,utf8_decode(strtoupper($atencion_cargo)), 0, 0, 'C');
+$pdf->Cell(65,7,textoUTF8(strtoupper($atencion_cargo)), 0, 0, 'C');
 
-$pdf->Cell(55,7,utf8_decode(strtoupper($almacen_cargo)), 0, 0, 'C');
+$pdf->Cell(55,7,textoUTF8(strtoupper($almacen_cargo)), 0, 0, 'C');
 
-$pdf->Cell(70,7,'C.I:'.utf8_decode(strtoupper($persona_cedula)), 0, 0, 'C');
+$pdf->Cell(70,7,'C.I:'.textoUTF8(strtoupper($persona_cedula)), 0, 0, 'C');
 
 
 $pdf->Output('I', "FICHA ", true);

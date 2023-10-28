@@ -37,7 +37,7 @@ $listarUser = $users->getAll(1);
                 if($usuario['role']){
                     echo "Administrador";
                 }else{
-                    echo utf8_decode("Atención al Ciudadano");
+                    echo textoUTF8("Atención al Ciudadano");
                 }
                 
                 ?>

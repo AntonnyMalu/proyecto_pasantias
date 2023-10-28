@@ -6,7 +6,7 @@ require "../../_layout/flash_message.php";
 <html lang="es">
 
 <head>
-    <title>ALGUARISA - Empresas</title>
+    <title>ALGUARISA - RUTAS</title>
     <?php require('../../_layout/admin_css.php'); ?>
 
 </head>

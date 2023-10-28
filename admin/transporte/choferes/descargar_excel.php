@@ -1,5 +1,6 @@
 <?php
-session_start();  
+session_start();
+$raiz = true;
 header("Pragma: public");
 header("Expires: 0");
 $filename = "Choferes.xls";
