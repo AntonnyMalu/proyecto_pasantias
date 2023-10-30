@@ -6,7 +6,7 @@
 
 
 <!-- Content Atencion al Ciudadano -->
-<?php if($_SESSION['role'] == 1 || $_SESSION['role'] > 98){ ?>
+<?php if($_SESSION['role'] == 1/* || $_SESSION['role'] > 98*/){ ?>
 <div class="row">
 
     <!-- Earnings (Monthly) Card Example -->

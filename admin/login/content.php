@@ -10,7 +10,9 @@
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                         <div class="col-lg-6 d-none d-lg-block ">
+                            <a href="../../">
                                 <img src="../../img/logo_alguarisa.png" alt="" class="img-fluid">
+                            </a>
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
