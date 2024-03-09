@@ -70,7 +70,7 @@
           <i class="fas fa-ban"></i> Anular Guía
         </button>
         <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Cerrar</button>
-        <a href="#" type="button" class="btn float-right mr-1" id="btn_generar_pdf">
+        <a href="#" type="button" class="btn float-right mr-1" id="btn_generar_pdf" target="_blank">
           Ver Guía
         </a>
         </form>

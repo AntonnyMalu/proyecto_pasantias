@@ -48,6 +48,30 @@ $getFormato = getFormato();
 if ($getFormato) {
 
     $formato = $getFormato['nombre'];
+	$color = $getFormato['text_color'];
+	
+	switch($color)
+	{
+		case 'blue';
+			$rojo = 0;
+			$verde = 0;
+			$negro = 128;
+		break;
+		
+		case 'black':
+			$rojo = 0;
+			$verde = 0;
+			$negro = 0;
+		break;
+		
+		default:
+		$color = explode(',', $color);
+		$rojo = $color[0];
+		$verde = $color[1];
+		$negro = $color[2];
+		break;
+	}
+	
 
     if (file_exists($formato)) {
 
