@@ -172,30 +172,37 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
 
                     <a class="collapse-item <?php if ($modulo == "casos") {
                                                 echo "active";
-                                            } ?>" href="<?php echo $url . "casos"; ?>">
+                                            } ?>" href="<?php echo $url . "atencion/casos"; ?>">
                         <i class="fas fa-user-friends"></i>
                         Casos Sociales
                     </a>
 
                     <a class="collapse-item <?php if ($modulo == "oficios") {
                                                 echo "active";
-                                            } ?>" href="<?php echo $url . "oficios"; ?>">
+                                            } ?>" href="<?php echo $url . "atencion/oficios"; ?>">
                         <i class="fas fa-clipboard-list"></i>
                         Oficios
                     </a>
 
                     <a class="collapse-item <?php if ($modulo == "personas") {
                                                 echo "active";
-                                            } ?>" href="<?php echo $url . "personas"; ?>">
+                                            } ?>" href="<?php echo $url . "atencion/personas"; ?>">
                         <i class="fas fa-user-alt"></i>
                         Personas
                     </a>
 
                     <a class="collapse-item <?php if ($modulo == "instituciones") {
                                                 echo "active";
-                                            } ?>" href="<?php echo $url . "instituciones"; ?>">
+                                            } ?>" href="<?php echo $url . "atencion/instituciones"; ?>">
                         <i class="fas fa-university"></i>
                         Intituciones
+                    </a>
+
+                    <a class="collapse-item <?php if ($modulo == "firmantes") {
+                                                echo "active";
+                                            } ?>" href="<?php echo $url . "atencion/firmantes";  ?>">
+                        <i class="fas fa-pen-fancy"></i>
+                        Firmantes
                     </a>
 
                 </div>
@@ -234,12 +241,7 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
                         Usuarios
                     </a>
 
-                    <a class="collapse-item <?php if ($modulo == "firmantes") {
-                                                echo "active";
-                                            } ?>" href="<?php echo $url . "firmantes";  ?>">
-                        <i class="fas fa-pen-fancy"></i>
-                        Firmantes
-                    </a>
+                
                     <?php if ($_SESSION['role'] == 100) {  ?>
                         <h6 class="collapse-header">Backup:</h6>
                         <a class="collapse-item" target="blank" href="<?php echo $url . "../mysql/myphp-backup.php"; ?>">

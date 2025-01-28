@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `casos` (
 
 -- Volcando datos para la tabla alguarisa_old.casos: ~281 rows (aproximadamente)
 INSERT INTO `casos` (`id`, `personas_id`, `fecha`, `hora`, `donativo`, `tipo`, `status`, `observacion`, `band`, `created_at`, `updated_at`) VALUES
-	(1, 1, '2022-12-10', '10:00', 'Si', 'CASO VULNERABLE', 'Aprobado', '', 1, '2023-03-20', '2023-03-20'),
+	(1, 1, '2022-12-10', '10:00', 'Si', 'CASO VULNERABLE', '', '', 1, '2023-03-20', '2023-03-20'),
 	(2, 2, '2022-01-19', '09:30', 'Si', 'CASO VULNERABLE', NULL, '', 1, '2023-03-20', NULL),
 	(3, 3, '2022-01-28', '11:38', 'Si', 'CASO VULNERABLE', NULL, '', 1, '2023-03-20', NULL),
 	(4, 4, '2022-01-31', '09:30', 'Si', 'CASO VULNERABLE', NULL, '', 1, '2023-03-20', NULL),
@@ -2413,11 +2413,11 @@ INSERT INTO `guias_carga` (`id`, `guias_id`, `cantidad`, `descripcion`) VALUES
 CREATE TABLE IF NOT EXISTS `guias_formatos_pdf` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
-  `text_color` text COLLATE utf8mb4_spanish_ci,
+  `text_color` text CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
--- Volcando datos para la tabla alguarisa_old.guias_formatos_pdf: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla alguarisa_old.guias_formatos_pdf: ~0 rows (aproximadamente)
 INSERT INTO `guias_formatos_pdf` (`id`, `nombre`, `text_color`) VALUES
 	(1, 'guia_1.php', 'blue');
 
@@ -3182,12 +3182,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` date DEFAULT NULL,
   `updated_at` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- Volcando datos para la tabla alguarisa_old.users: ~10 rows (aproximadamente)
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created_at`, `updated_at`) VALUES
 	(1, 'leothan522@gmail.com', '$2y$10$Vuukyxuv6haC.nQhAWK3oeGLwAq8POECeyx0eQOAO3JpVuw97pFHm', 'Yonathan Castillo', 100, 1, '2023-01-22', '2023-01-22'),
-	(2, 'gabrielmalu15@gmail.com', '$2y$10$AOYgEPj4Zt3sTXCIaSU1LO7B5ljKYpInm9.uVVujZSvFJMhGWBGCa', ' antonny maluenga', 100, 1, '2023-01-22', '2023-01-22'),
+	(2, 'gabrielmalu15@gmail.com', '$2y$10$JHTVKbVz5trh26zEBSIOlu0WMmP6MOnsGIyexZ0pcUXoqwDqRhika', ' antonny maluenga', 100, 1, '2023-01-22', '2023-01-22'),
 	(3, 'hola@gmail.com', '20025623', 'hola', 0, 0, '2023-02-16', '2023-03-20'),
 	(4, 'zorelbisvillegas@gmail.com', '$2y$10$syzr9a1M5.ew2OkXF1q8B.uHMcQZcNO0PnykAjWDuD7B5dOd0VUnC', 'zorelbis villegas', 1, 1, '2023-03-20', '2023-04-17'),
 	(5, 'karleidysalazar@gmail.com', '$2y$10$LSh0RNXzLYjmfZBlCjLKt.IGikJV/mrJST1KrIDKDeLbgAQbmMxCO', 'Karleidy Salazar', 2, 1, '2023-04-24', '2023-04-24'),
@@ -3195,7 +3195,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `name`, `role`, `band`, `created
 	(7, 'sheila@gmail.com', '$2y$10$fTrsBfXTDyA/wsW3lG6e.uU7.FCO4xnNk6ySQvW4Xi5PBrfUvXPeS', 'sheila', 0, 0, '2023-04-24', '2023-04-24'),
 	(8, 'transporte@alguarisa.com', '$2y$10$O64FAS3CrTIw5y/wDMr1feRLim3uey1LQN5oExJnDONyqYex7uiRu', 'Trasporte Alguarisa', 3, 1, '2023-05-16', '2023-05-16'),
 	(9, 'talentohumano.alguarisa@gmail.com', '$2y$10$bHzNweuhA11oOBvC7trS9ujOd3egmLWqpPFoDHvlpF93YJLlc1Hxy', 'Recursos Humanos', 2, 1, '2023-06-05', NULL),
-	(10, 'cesargamboa.86@gmail.com', '$2y$10$tp1I8nZ/pxRaXIyarBASx.ghRBP3VnMSgk/48IwcM1Io/cAfZ8hNm', 'cesar gamboa', 3, 1, '2023-09-22', NULL);
+	(10, 'cesargamboa.86@gmail.com', '$2y$10$tp1I8nZ/pxRaXIyarBASx.ghRBP3VnMSgk/48IwcM1Io/cAfZ8hNm', 'cesar gamboa', 3, 1, '2023-09-22', NULL),
+	(11, 'infantelarajosealejandro@gmail.com', '$2y$10$/AScQLkHPcGsrMG9H7WDN.dWIxiz6wCpLKdN/7Wxuq4wIKS4p6cLK', 'Jose Infante', 1, 1, '2025-01-27', NULL);
 
 -- Volcando estructura para tabla alguarisa_old.vehiculos
 CREATE TABLE IF NOT EXISTS `vehiculos` (
