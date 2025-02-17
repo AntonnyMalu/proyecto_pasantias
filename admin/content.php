@@ -11,14 +11,14 @@
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <a class="text-decoration-none" href="casos/">
-            <div class="card border-left-primary shadow h-100 py-2">
+        <a class="text-decoration-none" href="atencion/casos/">
+            <div class="card shadow h-100 py-2 bg-gradient-primary">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" style="font-family: optima;">
+                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1" style="font-family: optima;">
                                 Casos Sociales</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="h5 mb-0 font-weight-bold text-white">
                                 <?php echo $countCasos; ?>
                             </div>
                         </div>
@@ -33,14 +33,14 @@
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <a href="oficios/" class="text-decoration-none">
-            <div class="card border-left-success shadow h-100 py-2">
+        <a href="atencion/oficios/" class="text-decoration-none">
+            <div class="card bg-gradient-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1" style="font-family: optima;">
+                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1" style="font-family: optima;">
                                 Oficios</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="h5 mb-0 font-weight-bold text-white">
                                 <?php echo $countOficios; ?>
                             </div>
                         </div>
@@ -55,16 +55,16 @@
 
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <a href="personas/" class="text-decoration-none">
-            <div class="card border-left-info shadow h-100 py-2">
+        <a href="atencion/personas/" class="text-decoration-none">
+            <div class="card bg-gradient-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="font-family: optima;">Personas
+                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1" style="font-family: optima;">Personas
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-white">
                                         <?php echo $countPersonas; ?>
                                     </div>
                                 </div>
@@ -89,14 +89,14 @@
             <!-- Heading -->
     <!-- Pending Requests Card Example -->
     <div class="col-xl-3 col-md-6 mb-4">
-        <a href="instituciones/" class="text-decoration-none">
-            <div class="card border-left-warning shadow h-100 py-2">
+        <a href="atencion/instituciones/" class="text-decoration-none">
+            <div class="card bg-gradient-danger shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1" style="font-family: optima;">
+                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1" style="font-family: optima;">
                                 Intituciones</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <div class="h5 mb-0 font-weight-bold text-white">
                                 <?php echo $countInstituciones; ?>
                             </div>
                         </div>

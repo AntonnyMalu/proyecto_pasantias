@@ -1,7 +1,7 @@
 <ul class="navbar-nav sidebar sidebar-dark accordion <?php if ($modulo == "dashboard") {
                                                             echo "toggled";
-                                                        } ?>" id="accordionSidebar" style="
-background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%);">
+                                                        } ?>" id="accordionSidebar" style="background: rgb(2,0,36);
+background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 71%, rgba(49,148,168,1) 100%);">
 
     <!-- Sidebar - Brand -->
     <?php
@@ -21,7 +21,8 @@ background: linear-gradient(0deg, rgba(208,200,25,1) -20%, rgba(14,87,17,1) 24%)
     ?>
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo $url; ?>">
         <div class="sidebar-brand-icon">
-            <i class="fas fa-laugh-wink"></i>
+            <!--<i class="fas fa-laugh-wink"></i>-->
+            <img src="<?= $url ?>../../img/preloader_171x171.png" class="img-fluid" alt="" srcset="">
 
         </div>
         <div class="sidebar-brand-text mx-3">
