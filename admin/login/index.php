@@ -98,7 +98,8 @@ $modulo = "login";
                 left: 50%;
                 width: 100px;
                 height: 100px;
-                background: url('https://tecnologia.alguarisa.com/laravel/public/img/logo_alguarisa.png') no-repeat center center;
+                /*background: url('https://tecnologia.alguarisa.com/laravel/public/img/logo_alguarisa.png') no-repeat center center;*/
+                background: url('../../img/preloader_171x171.png') no-repeat center center;
                 background-size: contain;
                 transform: translate(-50%, -50%);
                 animation: pulse 2s infinite;
@@ -140,7 +141,7 @@ $modulo = "login";
 
                             <div class="col-12 col-md-6 d-none d-lg-flex gradient-custom-2">
                                 <img class="img-fluid rounded-start w-100 h-100 object-fit-fill" loading="lazy"
-                                     src="https://tecnologia.alguarisa.com/laravel/public/img/logo_tecnologia.png" alt="Logo tecnologia">
+                                     src="../../img/logo_tecnologia.png" alt="Logo tecnologia">
                             </div>
 
 
@@ -148,13 +149,13 @@ $modulo = "login";
                                 <div class="col-12 col-lg-11 col-xl-10">
                                     <div class="card-body p-3 p-md-4 p-xl-5">
 
-                                        <img class="gobernacion_start d-sm-none" src="https://alguarisa.com/inventario/public/img/logo-gobernacion.svg" alt="Logo Gobernacion">
+                                        <img class="gobernacion_start d-sm-none" src="../../img/logo-gobernacion.svg" alt="Logo Gobernacion">
 
                                         <div class="row">
                                             <div class="col-12 text-center">
                                                 <a href="">
-                                                    <img class="img-fluid d-none d-lg-inline-flex w-50 mb-3" src="https://alguarisa.com/inventario/public/img/logo-gobernacion.svg" alt="Logo Gobernacion">
-                                                    <img class="img-fluid d-lg-none mt-5 mb-5" src="" alt="Logo Alguarisa">
+                                                    <img class="img-fluid d-none d-lg-inline-flex w-50 mb-3" src="../../img/logo_gobernacion.svg" alt="Logo Gobernacion">
+                                                    <img class="img-fluid d-lg-none mt-5 mb-5" src="../../img/logo_alguarisa.png" alt="Logo Alguarisa">
                                                 </a>
                                             </div>
                                         </div>
